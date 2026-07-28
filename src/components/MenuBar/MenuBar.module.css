@@ -1,0 +1,37 @@
+.menuBar {
+  height: 36px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  font-size: 13px;
+  color: #2b1b24;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.battery {
+  color: #2b1b24;
+}
+
+.clock {
+  font-variant-numeric: tabular-nums;
+  min-width: 64px;
+  text-align: right;
+}
