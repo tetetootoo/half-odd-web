@@ -19,11 +19,22 @@ function WindowBody({ item }: { item: DesktopItem }) {
     case 'text':
     case 'notes':
       return (
-        <ul className={styles.textList}>
-          {item.textLines?.map((line) => (
-            <li key={line}>{line}</li>
-          ))}
-        </ul>
+        <div className={styles.codeEditor}>
+          <div className={styles.lineNumbers} aria-hidden="true">
+            {item.textLines?.map((_, i) => (
+              <div key={i} className={styles.codeLine}>
+                {i + 1}
+              </div>
+            ))}
+          </div>
+          <div className={styles.codeContent}>
+            {item.textLines?.map((line, i) => (
+              <div key={i} className={styles.codeLine}>
+                {line}
+              </div>
+            ))}
+          </div>
+        </div>
       );
     case 'about':
       return (

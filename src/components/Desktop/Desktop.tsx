@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { desktopItems, systemWindows, type DesktopItem } from '../../data/content';
 import { MenuBar } from '../MenuBar/MenuBar';
 import { DesktopIcon } from '../DesktopIcon/DesktopIcon';
@@ -39,20 +39,62 @@ export function Desktop() {
     );
   };
 
+  // "The View - DAO" plays/pauses directly from its desktop icon instead of
+  // opening a window — see audioItem below.
+  const audioItem = desktopItems.find((item) => item.kind === 'audio');
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    return () => audio?.pause();
+  }, []);
+
+  const toggleAudio = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isAudioPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+  };
+
   return (
     <div className={styles.desktop}>
       <MenuBar />
       <div className={styles.iconLayer}>
-        {desktopItems.map((item) => (
-          <DesktopIcon
-            key={item.id}
-            label={item.label}
-            xPercent={item.x}
-            yPercent={item.y}
-            onOpen={() => openWindow(item.id)}
-          />
-        ))}
+        {desktopItems.map((item) =>
+          item.kind === 'audio' ? (
+            <DesktopIcon
+              key={item.id}
+              label={item.label}
+              xPercent={item.x}
+              yPercent={item.y}
+              iconSrc={item.posterSrc}
+              playback={{ isPlaying: isAudioPlaying, onToggle: toggleAudio }}
+            />
+          ) : (
+            <DesktopIcon
+              key={item.id}
+              label={item.label}
+              xPercent={item.x}
+              yPercent={item.y}
+              iconSrc={item.iconSrc}
+              onOpen={() => openWindow(item.id)}
+            />
+          ),
+        )}
       </div>
+      {audioItem && (
+        <audio
+          ref={audioRef}
+          src={audioItem.mediaSrc}
+          onPlay={() => setIsAudioPlaying(true)}
+          onPause={() => setIsAudioPlaying(false)}
+          onEnded={() => setIsAudioPlaying(false)}
+        />
+      )}
       <WindowManager
         openWindows={openWindows}
         itemsById={itemsById}

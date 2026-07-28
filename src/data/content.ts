@@ -1,4 +1,12 @@
-export type WindowKind = 'project' | 'image' | 'text' | 'about' | 'notes' | 'trash' | 'browser';
+export type WindowKind =
+  | 'project'
+  | 'image'
+  | 'text'
+  | 'about'
+  | 'notes'
+  | 'trash'
+  | 'browser'
+  | 'audio';
 
 export interface IconLink {
   url: string;
@@ -16,6 +24,9 @@ export interface DesktopItem {
   link?: IconLink;
   description?: string;
   textLines?: string[];
+  mediaSrc?: string;
+  posterSrc?: string;
+  iconSrc?: string;
 }
 
 export interface DockLink {
@@ -28,10 +39,13 @@ export const desktopItems: DesktopItem[] = [
   {
     id: 'the-view-dao',
     label: 'The View - DAO',
-    kind: 'image',
+    kind: 'audio',
     windowTitle: 'the view - dao',
     x: 4,
     y: 10,
+    // Audio-only track extracted from the original video (see public/media/the-view-dao).
+    mediaSrc: '/media/the-view-dao/the-view-dao.m4a',
+    posterSrc: '/media/the-view-dao/cover.png',
   },
   {
     id: 'body-hommage',
@@ -50,6 +64,7 @@ export const desktopItems: DesktopItem[] = [
     windowTitle: ':).txt',
     x: 48,
     y: 10,
+    iconSrc: '/icons/txt-doc.png',
     // Placeholder — original list was captured live in a prior session and not
     // preserved verbatim here. Replace with the real list before shipping.
     textLines: [

@@ -1,6 +1,13 @@
 import { dockLinks } from '../../data/content';
 import styles from './Dock.module.css';
 
+const icons = {
+  mail: '/icons/mail.png',
+  safari: '/icons/safari.png',
+  github: '/icons/github.jpg',
+  trash: '/icons/trash.png',
+};
+
 interface DockProps {
   onOpenAboutMe: () => void;
   onOpenNotes: () => void;
@@ -18,14 +25,10 @@ export function Dock({ onOpenAboutMe, onOpenNotes, onOpenSafari, onOpenTrash }: 
         <span className={styles.glyph} aria-hidden="true" />
       </button>
       <button type="button" className={styles.item} onClick={onOpenSafari} title="Safari">
-        <span className={styles.glyph} aria-hidden="true" />
+        <img className={styles.glyphImage} src={icons.safari} alt="" />
       </button>
-      <a
-        className={styles.item}
-        href={dockLinks.mail}
-        title="Mail"
-      >
-        <span className={styles.glyph} aria-hidden="true" />
+      <a className={styles.item} href={dockLinks.mail} title="Mail">
+        <img className={styles.glyphImage} src={icons.mail} alt="" />
       </a>
       <a
         className={styles.item}
@@ -43,10 +46,10 @@ export function Dock({ onOpenAboutMe, onOpenNotes, onOpenSafari, onOpenTrash }: 
         rel="noreferrer"
         title="GitHub"
       >
-        <span className={styles.glyph} aria-hidden="true" />
+        <img className={`${styles.glyphImage} ${styles.rounded}`} src={icons.github} alt="" />
       </a>
       <button type="button" className={styles.item} onClick={onOpenTrash} title="Trash">
-        <span className={styles.glyph} aria-hidden="true" />
+        <img className={styles.glyphImage} src={icons.trash} alt="" />
       </button>
     </nav>
   );

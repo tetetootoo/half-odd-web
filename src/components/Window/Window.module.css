@@ -86,13 +86,38 @@
   font-size: 13px;
 }
 
-.textList {
+.codeEditor {
   flex: 1;
-  margin: 0;
-  padding: 0 0 0 20px;
+  display: flex;
+  align-items: stretch;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fbfafc;
+  border: 1px solid #e5dde1;
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 13px;
   text-align: left;
-  color: #3a2e34;
-  line-height: 1.9;
+}
+
+.lineNumbers {
+  padding: 16px 12px;
+  background: #f1ebee;
+  color: #b3a3ac;
+  text-align: right;
+  user-select: none;
+  border-right: 1px solid #e5dde1;
+}
+
+.codeContent {
+  flex: 1;
+  padding: 16px;
+  color: #2c2230;
+  overflow-x: auto;
+}
+
+.codeLine {
+  line-height: 1.7;
+  white-space: pre;
 }
 
 .about {
