@@ -1,6 +1,25 @@
+import { useState, type FormEvent } from 'react';
 import type { DesktopItem } from '../../data/content';
 import { useDrag } from '../../hooks/useDrag';
 import styles from './Window.module.css';
+
+function formatNoteDateShort(iso: string): string {
+  const d = new Date(iso);
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  return `${dd}/${mm}/${d.getFullYear()}`;
+}
+
+function formatNoteDateLong(iso: string): string {
+  const d = new Date(iso);
+  const datePart = d.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+  const timePart = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+  return `${datePart} at ${timePart}`;
+}
 
 interface WindowProps {
   item: DesktopItem;
@@ -55,12 +74,183 @@ function ImageOverlayFrame({ item }: { item: DesktopItem }) {
   );
 }
 
+const EMAIL_PATTERN = /^\S+@\S+\.\S+$/;
+const HEADING_PREFIX = '## ';
+
+function notePreviewText(paragraph: string): string {
+  return paragraph.startsWith(HEADING_PREFIX) ? paragraph.slice(HEADING_PREFIX.length) : paragraph;
+}
+
+function NotesFrame({ item }: { item: DesktopItem }) {
+  const notes = item.notes ?? [];
+  const [selectedId, setSelectedId] = useState(notes[0]?.id);
+  const selected = notes.find((note) => note.id === selectedId) ?? notes[0];
+
+  if (!selected) {
+    return <div className={styles.placeholder}>No notes yet</div>;
+  }
+
+  return (
+    <div className={styles.notesFrame}>
+      <div className={styles.notesSidebar}>
+        {notes.map((note) => (
+          <button
+            key={note.id}
+            type="button"
+            className={`${styles.noteListItem} ${
+              note.id === selected.id ? styles.noteListItemActive : ''
+            }`}
+            onClick={() => setSelectedId(note.id)}
+          >
+            <span className={styles.noteListTitle}>{note.title}</span>
+            <span className={styles.noteListMeta}>
+              <span className={styles.noteListDate}>{formatNoteDateShort(note.date)}</span>
+              <span className={styles.noteListPreview}>{notePreviewText(note.paragraphs[0] ?? '')}</span>
+            </span>
+          </button>
+        ))}
+      </div>
+      <div className={styles.notesDetail}>
+        <div className={styles.notesDetailDate}>{formatNoteDateLong(selected.date)}</div>
+        <h2 className={styles.notesDetailTitle}>{selected.title}</h2>
+        {selected.paragraphs.map((paragraph, i) => {
+          if (paragraph.startsWith(HEADING_PREFIX)) {
+            return (
+              <h3 key={i} className={styles.notesDetailSubheading}>
+                {paragraph.slice(HEADING_PREFIX.length)}
+              </h3>
+            );
+          }
+          if (EMAIL_PATTERN.test(paragraph)) {
+            return (
+              <p key={i} className={styles.notesDetailParagraph}>
+                <a className={styles.notesDetailLink} href={`mailto:${paragraph}`}>
+                  {paragraph}
+                </a>
+              </p>
+            );
+          }
+          return (
+            <p key={i} className={styles.notesDetailParagraph}>
+              {paragraph}
+            </p>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+type SubmitStatus = 'idle' | 'sending' | 'sent' | 'error';
+
+function MailFrame({ item }: { item: DesktopItem }) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<SubmitStatus>('idle');
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!item.formEndpoint || status === 'sending') return;
+    setStatus('sending');
+    try {
+      const response = await fetch(item.formEndpoint, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(e.currentTarget),
+      });
+      if (response.ok) {
+        setStatus('sent');
+        setName('');
+        setEmail('');
+        setMessage('');
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  return (
+    <div className={styles.mailFrame}>
+      <div className={styles.mailSidebar}>
+        <div className={styles.mailListItem}>
+          <div className={styles.mailListHeader}>
+            <span className={styles.mailListSender}>{name || 'you'}</span>
+            <span className={styles.mailListDate}>now</span>
+          </div>
+          <div className={styles.mailListSubject}>{item.mailSubject}</div>
+          <div className={styles.mailListPreview}>{message || 'Hi Theresa, ...'}</div>
+        </div>
+      </div>
+      <div className={styles.mailDetail}>
+        <form className={styles.mailForm} onSubmit={handleSubmit}>
+          <input type="hidden" name="_subject" value={item.mailSubject} />
+          <div className={styles.mailFormRow}>
+            <span className={styles.mailFormLabel}>To:</span>
+            <span className={styles.mailFormStatic}>{item.mailTo}</span>
+          </div>
+          <div className={styles.mailFormRow}>
+            <span className={styles.mailFormLabel}>Subject:</span>
+            <span className={styles.mailFormStatic}>{item.mailSubject}</span>
+          </div>
+          <div className={styles.mailFormRow}>
+            <label className={styles.mailFormLabel} htmlFor="mail-name">
+              From:
+            </label>
+            <input
+              id="mail-name"
+              name="name"
+              className={styles.mailFormInput}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.mailFormRow}>
+            <label className={styles.mailFormLabel} htmlFor="mail-email">
+              Email:
+            </label>
+            <input
+              id="mail-email"
+              name="email"
+              type="email"
+              className={styles.mailFormInput}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <textarea
+            name="message"
+            className={styles.mailFormMessage}
+            placeholder="Hi Theresa, ..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          />
+          <div className={styles.mailFormFooter}>
+            <button type="submit" className={styles.mailFormSend} disabled={status === 'sending'}>
+              {status === 'sending' ? 'Sending...' : status === 'sent' ? 'Sent ✓' : 'Send'}
+            </button>
+            {status === 'error' && (
+              <span className={styles.mailFormError}>
+                Something went wrong — try again or email {item.mailTo} directly.
+              </span>
+            )}
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 function WindowBody({ item }: { item: DesktopItem }) {
   switch (item.kind) {
     case 'image':
       return <ImageOverlayFrame item={item} />;
     case 'text':
-    case 'notes':
       return (
         <div className={styles.textPad}>
           {item.textLines?.map((line, i) => (
@@ -70,6 +260,10 @@ function WindowBody({ item }: { item: DesktopItem }) {
           ))}
         </div>
       );
+    case 'notes':
+      return <NotesFrame item={item} />;
+    case 'mail':
+      return <MailFrame item={item} />;
     case 'about':
       return (
         <div className={styles.aboutDoc}>
@@ -117,6 +311,8 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowP
   const isProject = item.kind === 'project';
   const isImageKind = item.kind === 'image';
   const isAboutKind = item.kind === 'about';
+  const isNotesKind = item.kind === 'notes';
+  const isMailKind = item.kind === 'mail';
   const isFileTitle = item.kind === 'text' || item.kind === 'notes';
   const isFlushDoc = isFileTitle || item.kind === 'about';
   const step = (cascadeIndex % CASCADE_WRAP) * CASCADE_STEP_PX;
@@ -124,7 +320,7 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowP
 
   return (
     <div
-      className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''}`}
+      className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''}`}
       style={{
         zIndex,
         transform: `translate(calc(-50% + ${step + offset.x}px), ${step + offset.y}px)`,
@@ -166,7 +362,7 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowP
         ) : null}
       </div>
       <div
-        className={`${styles.content} ${isFlushDoc || isImageKind || isProject ? styles.contentFlush : ''}`}
+        className={`${styles.content} ${isFlushDoc || isImageKind || isProject || isMailKind ? styles.contentFlush : ''}`}
       >
         <WindowBody item={item} />
         {isProject && (

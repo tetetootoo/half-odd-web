@@ -13,6 +13,7 @@ const icons = {
 interface DockProps {
   onOpenAboutMe: () => void;
   onOpenNotes: () => void;
+  onOpenMail: () => void;
   onOpenTrash: () => void;
 }
 
@@ -24,7 +25,7 @@ function Tooltip({ label }: { label: string }) {
   );
 }
 
-export function Dock({ onOpenAboutMe, onOpenNotes, onOpenTrash }: DockProps) {
+export function Dock({ onOpenAboutMe, onOpenNotes, onOpenMail, onOpenTrash }: DockProps) {
   return (
     <nav className={styles.dock} aria-label="Dock">
       <button type="button" className={styles.item} onClick={onOpenAboutMe}>
@@ -35,10 +36,10 @@ export function Dock({ onOpenAboutMe, onOpenNotes, onOpenTrash }: DockProps) {
         <img className={styles.glyphImage} src={icons.notes} alt="" />
         <Tooltip label="Notes" />
       </button>
-      <a className={styles.item} href={dockLinks.mail}>
+      <button type="button" className={styles.item} onClick={onOpenMail}>
         <img className={styles.glyphImage} src={icons.mail} alt="" />
         <Tooltip label="Mail" />
-      </a>
+      </button>
       <a className={styles.item} href={dockLinks.instagram} target="_blank" rel="noreferrer">
         <img className={styles.glyphImage} src={icons.instagram} alt="" />
         <Tooltip label="Instagram" />

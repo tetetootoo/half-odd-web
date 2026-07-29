@@ -4,6 +4,7 @@ export type WindowKind =
   | 'text'
   | 'about'
   | 'notes'
+  | 'mail'
   | 'trash'
   | 'audio';
 
@@ -16,6 +17,13 @@ export interface AboutField {
   label: string;
   value: string;
   href?: string;
+}
+
+export interface NoteEntry {
+  id: string;
+  title: string;
+  date: string;
+  paragraphs: string[];
 }
 
 export interface DesktopItem {
@@ -35,7 +43,16 @@ export interface DesktopItem {
   iconSrc?: string;
   aboutFields?: AboutField[];
   bioParagraphs?: string[];
+  notes?: NoteEntry[];
+  mailTo?: string;
+  mailSubject?: string;
+  formEndpoint?: string;
 }
+
+const aboutBioParagraphs = [
+  "i'm theresa schantz, a web designer & developer and brand designer based in copenhagen and berlin.",
+  "i've been crafting websites, web apps, visual identities and branding products for companies across health, hospitality and tech. currently tinkering new digital systems, previously at sap.",
+];
 
 export interface DockLink {
   id: string;
@@ -152,7 +169,7 @@ export const desktopItems: DesktopItem[] = [
     windowTitle: 'antispace flyer.jpg',
     x: 26,
     y: 58,
-    iconSrc: '/media/antispace-flyer/media.jpg',
+    iconSrc: '/media/antispace-flyer/icon.png',
     mediaSrc: '/media/antispace-flyer/media.jpg',
     mediaType: 'image',
   },
@@ -217,20 +234,53 @@ export const systemWindows: DesktopItem[] = [
       { label: 'position', value: 'web designer / developer' },
       { label: 'mail', value: 'ts@halfodd.com', href: 'mailto:ts@halfodd.com' },
     ],
-    bioParagraphs: [
-      "i'm theresa schantz, a web designer & developer and brand designer based in copenhagen and berlin.",
-      "i've been crafting websites, web apps, visual identities and branding products for companies across health, hospitality and tech. currently tinkering new digital systems, previously at sap.",
-    ],
+    bioParagraphs: aboutBioParagraphs,
   },
   {
     id: 'notes',
     label: 'Notes',
     kind: 'notes',
-    windowTitle: 'notes.txt',
+    windowTitle: 'Notes',
     x: 0,
     y: 0,
     iconSrc: '/icons/txt-doc.png',
-    textLines: ['Placeholder note — add your own notes here.'],
+    notes: [
+      {
+        id: 'about',
+        title: 'About',
+        date: '2026-07-27T11:35:00',
+        paragraphs: aboutBioParagraphs,
+      },
+      {
+        id: 'imprint',
+        title: 'Imprint',
+        date: '2026-07-23T09:15:00',
+        paragraphs: ['Half Odd\nc/o Theresa Schantz', 'CVR: 45714470', 'ts@halfodd.com'],
+      },
+      {
+        id: 'legal',
+        title: 'Legal',
+        date: '2026-07-23T09:00:00',
+        paragraphs: [
+          '## Privacy Statement',
+          'When you fill out the contact form, I collect your name, email address, and message. This information is used solely to respond to your enquiry and will never be shared with third parties, sold, or used for marketing purposes.',
+          'Your data is stored securely and only kept for as long as needed to handle your request.',
+          'Under GDPR, you have the right to access, correct, or request deletion of any personal data I hold about you. To exercise any of these rights, get in touch directly.',
+          'This site processes personal data in accordance with the General Data Protection Regulation (EU) 2016/679.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'mail',
+    label: 'Mail',
+    kind: 'mail',
+    windowTitle: 'contact',
+    x: 0,
+    y: 0,
+    mailTo: 'ts@halfodd.com',
+    mailSubject: "let's get in touch!",
+    formEndpoint: 'https://formspree.io/f/mgogqkll',
   },
   {
     id: 'trash',
@@ -245,5 +295,4 @@ export const systemWindows: DesktopItem[] = [
 export const dockLinks = {
   instagram: 'https://instagram.com/iamparryhotter',
   github: 'https://github.com/tetetootoo',
-  mail: 'mailto:ts@halfodd.com',
 };
