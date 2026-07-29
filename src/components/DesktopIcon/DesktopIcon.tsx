@@ -53,7 +53,7 @@ export function DesktopIcon({
     >
       <span className={styles.glyphWrapper}>
         {iconSrc ? (
-          <img className={styles.glyphImage} src={iconSrc} alt="" />
+          <img className={styles.glyphImage} src={iconSrc} alt="" draggable={false} />
         ) : (
           <span className={styles.glyph} aria-hidden="true" />
         )}

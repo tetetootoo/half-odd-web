@@ -32,6 +32,8 @@
   background: #e9e2e5;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   flex-shrink: 0;
+  cursor: grab;
+  touch-action: none;
 }
 
 .titleBarText {

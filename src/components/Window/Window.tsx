@@ -1,4 +1,5 @@
 import type { DesktopItem } from '../../data/content';
+import { useDrag } from '../../hooks/useDrag';
 import styles from './Window.module.css';
 
 interface WindowProps {
@@ -119,15 +120,25 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowP
   const isFileTitle = item.kind === 'text' || item.kind === 'notes';
   const isFlushDoc = isFileTitle || item.kind === 'about';
   const step = (cascadeIndex % CASCADE_WRAP) * CASCADE_STEP_PX;
+  const { offset, handlers: dragHandlers } = useDrag();
 
   return (
     <div
       className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''}`}
-      style={{ zIndex, transform: `translate(calc(-50% + ${step}px), ${step}px)` }}
+      style={{
+        zIndex,
+        transform: `translate(calc(-50% + ${step + offset.x}px), ${step + offset.y}px)`,
+      }}
       onPointerDown={onFocus}
     >
-      <div className={`${styles.titleBar} ${isFlushDoc ? styles.titleBarText : ''}`}>
-        <div className={styles.trafficLights}>
+      <div
+        className={`${styles.titleBar} ${isFlushDoc ? styles.titleBarText : ''}`}
+        {...dragHandlers}
+      >
+        <div
+          className={styles.trafficLights}
+          onPointerDown={(e) => e.stopPropagation()}
+        >
           <button
             type="button"
             className={`${styles.light} ${styles.red}`}
