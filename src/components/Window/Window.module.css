@@ -1,3 +1,4 @@
+
 .window {
   position: absolute;
   top: 12%;
@@ -17,6 +18,10 @@
   max-width: 92vw;
 }
 
+.windowAbout {
+  width: min(610px, 82vw);
+}
+
 .titleBar {
   position: relative;
   display: flex;
@@ -32,9 +37,6 @@
 .titleBarText {
   justify-content: flex-start;
   gap: 10px;
-  height: auto;
-  min-height: 38px;
-  padding: 8px 12px;
   background: #f2eef0;
 }
 
@@ -56,12 +58,6 @@
   display: flex;
   align-items: center;
   gap: 6px;
-}
-
-.fileIcon {
-  width: 54px;
-  height: 54px;
-  object-fit: contain;
 }
 
 .fileName {
@@ -193,13 +189,14 @@
   padding: 18px 22px;
   overflow-y: auto;
   font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
-  font-size: 13px;
+  font-size: 11px;
+  font-weight: 400;
   color: #1c1319;
   text-align: left;
 }
 
 .textLine {
-  line-height: 1.6;
+  line-height: 1.5;
   white-space: pre;
 }
 
@@ -209,7 +206,9 @@
   padding: 20px 24px 24px;
   overflow-y: auto;
   font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
-  font-size: 13px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
   color: #1c1319;
   text-align: left;
 }
@@ -275,7 +274,7 @@
 
 .aboutBio p {
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .infoCardFloating {
@@ -299,13 +298,6 @@
   opacity: 1;
 }
 
-.infoTitle {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 700;
-  color: #1c1319;
-}
-
 .tags {
   margin: 0;
   padding: 0;
@@ -313,15 +305,20 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 12px;
+  font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
   color: #6b5a62;
 }
 
 .link {
-  font-size: 13px;
+  font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
   color: #a8517a;
   text-decoration: none;
-  font-weight: 600;
 }
 
 .link:hover {
@@ -330,7 +327,9 @@
 
 .description {
   margin: 0;
-  font-size: 13px;
+  font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 11px;
+  font-weight: 400;
   line-height: 1.5;
   color: #4a3d43;
 }

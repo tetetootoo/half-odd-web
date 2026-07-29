@@ -115,13 +115,14 @@ function WindowBody({ item }: { item: DesktopItem }) {
 export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowProps) {
   const isProject = item.kind === 'project';
   const isImageKind = item.kind === 'image';
+  const isAboutKind = item.kind === 'about';
   const isFileTitle = item.kind === 'text' || item.kind === 'notes';
   const isFlushDoc = isFileTitle || item.kind === 'about';
   const step = (cascadeIndex % CASCADE_WRAP) * CASCADE_STEP_PX;
 
   return (
     <div
-      className={`${styles.window} ${isImageKind ? styles.windowFixed : ''}`}
+      className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''}`}
       style={{ zIndex, transform: `translate(calc(-50% + ${step}px), ${step}px)` }}
       onPointerDown={onFocus}
     >
@@ -147,7 +148,6 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowP
         </div>
         {isFileTitle ? (
           <div className={styles.fileTitleGroup}>
-            {item.iconSrc && <img className={styles.fileIcon} src={item.iconSrc} alt="" />}
             <span className={styles.fileName}>{item.windowTitle}</span>
           </div>
         ) : !isFlushDoc ? (
@@ -160,7 +160,6 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowP
         <WindowBody item={item} />
         {isProject && (
           <aside className={styles.infoCardFloating}>
-            <h3 className={styles.infoTitle}>{item.label}</h3>
             {item.tags && (
               <ul className={styles.tags}>
                 {item.tags.map((tag) => (
