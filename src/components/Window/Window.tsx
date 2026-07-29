@@ -17,7 +17,16 @@ function MediaFrame({ item }: { item: DesktopItem }) {
     return <div className={styles.placeholder}>Image / video placeholder</div>;
   }
   if (item.mediaType === 'video') {
-    return <video className={styles.media} src={item.mediaSrc} controls poster={item.posterSrc} />;
+    return (
+      <video
+        className={styles.media}
+        src={item.mediaSrc}
+        poster={item.posterSrc}
+        muted
+        autoPlay
+        playsInline
+      />
+    );
   }
   return <img className={styles.media} src={item.mediaSrc} alt={item.label} />;
 }

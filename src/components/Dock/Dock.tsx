@@ -2,7 +2,7 @@ import { dockLinks } from '../../data/content';
 import styles from './Dock.module.css';
 
 const icons = {
-  aboutMe: '/icons/txt-doc.png',
+  aboutMe: '/icons/memoji.jpg',
   notes: '/icons/notes.png',
   mail: '/icons/mail.png',
   instagram: '/icons/instagram.png',
@@ -28,7 +28,7 @@ export function Dock({ onOpenAboutMe, onOpenNotes, onOpenTrash }: DockProps) {
   return (
     <nav className={styles.dock} aria-label="Dock">
       <button type="button" className={styles.item} onClick={onOpenAboutMe}>
-        <img className={styles.glyphImage} src={icons.aboutMe} alt="" />
+        <img className={`${styles.glyphImage} ${styles.rounded}`} src={icons.aboutMe} alt="" />
         <Tooltip label="About Me" />
       </button>
       <button type="button" className={styles.item} onClick={onOpenNotes}>
