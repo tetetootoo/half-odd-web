@@ -13,6 +13,12 @@ export interface IconLink {
   label?: string;
 }
 
+export interface AboutField {
+  label: string;
+  value: string;
+  href?: string;
+}
+
 export interface DesktopItem {
   id: string;
   label: string;
@@ -27,6 +33,8 @@ export interface DesktopItem {
   mediaSrc?: string;
   posterSrc?: string;
   iconSrc?: string;
+  aboutFields?: AboutField[];
+  bioParagraphs?: string[];
 }
 
 export interface DockLink {
@@ -154,16 +162,25 @@ export const systemWindows: DesktopItem[] = [
     windowTitle: 'about me',
     x: 0,
     y: 0,
-    description:
-      'Placeholder bio — designer & developer based in Copenhagen, building interactive web experiences. Replace this with your real bio.',
+    posterSrc: '/media/about-me/profile.jpg',
+    aboutFields: [
+      { label: 'name', value: 'theresa schantz' },
+      { label: 'position', value: 'web designer / developer' },
+      { label: 'mail', value: 'ts@halfodd.com', href: 'mailto:ts@halfodd.com' },
+    ],
+    bioParagraphs: [
+      "i'm theresa schantz, a web designer & developer and brand designer based in copenhagen and berlin.",
+      "i've been crafting websites, web apps, visual identities and branding products for companies across health, hospitality and tech. currently tinkering new digital systems, previously at sap.",
+    ],
   },
   {
     id: 'notes',
     label: 'Notes',
     kind: 'notes',
-    windowTitle: 'notes',
+    windowTitle: 'notes.txt',
     x: 0,
     y: 0,
+    iconSrc: '/icons/txt-doc.png',
     textLines: ['Placeholder note — add your own notes here.'],
   },
   {

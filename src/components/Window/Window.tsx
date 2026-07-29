@@ -19,28 +19,46 @@ function WindowBody({ item }: { item: DesktopItem }) {
     case 'text':
     case 'notes':
       return (
-        <div className={styles.codeEditor}>
-          <div className={styles.lineNumbers} aria-hidden="true">
-            {item.textLines?.map((_, i) => (
-              <div key={i} className={styles.codeLine}>
-                {i + 1}
-              </div>
-            ))}
-          </div>
-          <div className={styles.codeContent}>
-            {item.textLines?.map((line, i) => (
-              <div key={i} className={styles.codeLine}>
-                {line}
-              </div>
-            ))}
-          </div>
+        <div className={styles.textPad}>
+          {item.textLines?.map((line, i) => (
+            <div key={i} className={styles.textLine}>
+              {line}
+            </div>
+          ))}
         </div>
       );
     case 'about':
       return (
-        <div className={styles.about}>
-          <div className={styles.avatarPlaceholder} />
-          <p>{item.description}</p>
+        <div className={styles.aboutDoc}>
+          <div className={styles.aboutHeading}>{item.windowTitle}</div>
+          <div className={styles.aboutTop}>
+            {item.posterSrc && (
+              <img className={styles.aboutPhoto} src={item.posterSrc} alt={item.label} />
+            )}
+            {item.aboutFields && (
+              <div className={styles.aboutFields}>
+                {item.aboutFields.map((field) => (
+                  <div key={field.label} className={styles.aboutFieldRow}>
+                    <span className={styles.aboutFieldLabel}>{field.label}</span>
+                    {field.href ? (
+                      <a className={styles.aboutFieldLink} href={field.href}>
+                        {field.value}
+                      </a>
+                    ) : (
+                      <span>{field.value}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          {item.bioParagraphs && (
+            <div className={styles.aboutBio}>
+              {item.bioParagraphs.map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </div>
+          )}
         </div>
       );
     case 'trash':
@@ -60,6 +78,8 @@ function WindowBody({ item }: { item: DesktopItem }) {
 
 export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowProps) {
   const isProject = item.kind === 'project';
+  const isFileTitle = item.kind === 'text' || item.kind === 'notes';
+  const isFlushDoc = isFileTitle || item.kind === 'about';
   const step = (cascadeIndex % CASCADE_WRAP) * CASCADE_STEP_PX;
 
   return (
@@ -68,7 +88,7 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowP
       style={{ zIndex, transform: `translate(calc(-50% + ${step}px), ${step}px)` }}
       onPointerDown={onFocus}
     >
-      <div className={styles.titleBar}>
+      <div className={`${styles.titleBar} ${isFlushDoc ? styles.titleBarText : ''}`}>
         <div className={styles.trafficLights}>
           <button
             type="button"
@@ -79,9 +99,16 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowP
           <span className={`${styles.light} ${styles.yellow}`} aria-hidden="true" />
           <span className={`${styles.light} ${styles.green}`} aria-hidden="true" />
         </div>
-        <span className={styles.title}>{item.windowTitle}</span>
+        {isFileTitle ? (
+          <div className={styles.fileTitleGroup}>
+            {item.iconSrc && <img className={styles.fileIcon} src={item.iconSrc} alt="" />}
+            <span className={styles.fileName}>{item.windowTitle}</span>
+          </div>
+        ) : !isFlushDoc ? (
+          <span className={styles.title}>{item.windowTitle}</span>
+        ) : null}
       </div>
-      <div className={styles.content}>
+      <div className={`${styles.content} ${isFlushDoc ? styles.contentFlush : ''}`}>
         <WindowBody item={item} />
         {isProject && (
           <aside className={styles.infoCard}>
