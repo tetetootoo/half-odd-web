@@ -104,7 +104,6 @@ export function Desktop() {
       <Dock
         onOpenAboutMe={() => openWindow('about-me')}
         onOpenNotes={() => openWindow('notes')}
-        onOpenSafari={() => openWindow('safari')}
         onOpenTrash={() => openWindow('trash')}
       />
     </div>

@@ -12,10 +12,43 @@ interface WindowProps {
 const CASCADE_STEP_PX = 28;
 const CASCADE_WRAP = 6;
 
+function MediaFrame({ item }: { item: DesktopItem }) {
+  if (!item.mediaSrc) {
+    return <div className={styles.placeholder}>Image / video placeholder</div>;
+  }
+  if (item.mediaType === 'video') {
+    return <video className={styles.media} src={item.mediaSrc} controls poster={item.posterSrc} />;
+  }
+  return <img className={styles.media} src={item.mediaSrc} alt={item.label} />;
+}
+
+// Type 4: fixed 480x440 overlay — the media's longer edge is pinned to
+// 440px (the box's own height) and the shorter edge follows the image's
+// natural aspect ratio, which is exactly what object-fit: contain against a
+// 440x440 box gives us, centered in the slightly wider 480px frame.
+function ImageOverlayFrame({ item }: { item: DesktopItem }) {
+  return (
+    <div className={styles.imageBox}>
+      {!item.mediaSrc ? (
+        <div className={styles.imageBoxPlaceholder}>Image / video placeholder</div>
+      ) : item.mediaType === 'video' ? (
+        <video
+          className={styles.imageBoxMedia}
+          src={item.mediaSrc}
+          controls
+          poster={item.posterSrc}
+        />
+      ) : (
+        <img className={styles.imageBoxMedia} src={item.mediaSrc} alt={item.label} />
+      )}
+    </div>
+  );
+}
+
 function WindowBody({ item }: { item: DesktopItem }) {
   switch (item.kind) {
     case 'image':
-      return <div className={styles.placeholder}>Image / video placeholder</div>;
+      return <ImageOverlayFrame item={item} />;
     case 'text':
     case 'notes':
       return (
@@ -63,14 +96,8 @@ function WindowBody({ item }: { item: DesktopItem }) {
       );
     case 'trash':
       return <div className={styles.placeholder}>Trash is empty</div>;
-    case 'browser':
-      return (
-        <div className={styles.browser}>
-          <div className={styles.addressBar}>{item.link?.url}</div>
-          <div className={styles.placeholder}>Browser placeholder</div>
-        </div>
-      );
     case 'project':
+      return <MediaFrame item={item} />;
     default:
       return <div className={styles.placeholder}>Screenshot / video placeholder</div>;
   }
@@ -78,13 +105,14 @@ function WindowBody({ item }: { item: DesktopItem }) {
 
 export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowProps) {
   const isProject = item.kind === 'project';
+  const isImageKind = item.kind === 'image';
   const isFileTitle = item.kind === 'text' || item.kind === 'notes';
   const isFlushDoc = isFileTitle || item.kind === 'about';
   const step = (cascadeIndex % CASCADE_WRAP) * CASCADE_STEP_PX;
 
   return (
     <div
-      className={styles.window}
+      className={`${styles.window} ${isImageKind ? styles.windowFixed : ''}`}
       style={{ zIndex, transform: `translate(calc(-50% + ${step}px), ${step}px)` }}
       onPointerDown={onFocus}
     >
@@ -95,7 +123,16 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowP
             className={`${styles.light} ${styles.red}`}
             onClick={onClose}
             aria-label="Close window"
-          />
+          >
+            <svg className={styles.closeIcon} viewBox="0 0 10 10" width="7" height="7" aria-hidden="true">
+              <path
+                d="M1.5 1.5L8.5 8.5M8.5 1.5L1.5 8.5"
+                stroke="#4d0000"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
           <span className={`${styles.light} ${styles.yellow}`} aria-hidden="true" />
           <span className={`${styles.light} ${styles.green}`} aria-hidden="true" />
         </div>
@@ -108,10 +145,12 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowP
           <span className={styles.title}>{item.windowTitle}</span>
         ) : null}
       </div>
-      <div className={`${styles.content} ${isFlushDoc ? styles.contentFlush : ''}`}>
+      <div
+        className={`${styles.content} ${isFlushDoc || isImageKind || isProject ? styles.contentFlush : ''}`}
+      >
         <WindowBody item={item} />
         {isProject && (
-          <aside className={styles.infoCard}>
+          <aside className={styles.infoCardFloating}>
             <h3 className={styles.infoTitle}>{item.label}</h3>
             {item.tags && (
               <ul className={styles.tags}>

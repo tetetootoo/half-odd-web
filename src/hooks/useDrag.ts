@@ -5,7 +5,11 @@ export interface Position {
   y: number;
 }
 
-const CLICK_THRESHOLD_PX = 4;
+// Generous on purpose: real mouse/trackpad clicks routinely jitter a few
+// pixels between down and up, and double-clicking makes that worse. A tight
+// threshold here misclassifies clicks as micro-drags and silently swallows
+// them, which reads as "nothing happens when I click."
+const CLICK_THRESHOLD_PX = 10;
 
 /**
  * Tracks a pixel drag offset to apply as a CSS transform on top of a fixed

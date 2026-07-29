@@ -5,7 +5,6 @@ export type WindowKind =
   | 'about'
   | 'notes'
   | 'trash'
-  | 'browser'
   | 'audio';
 
 export interface IconLink {
@@ -31,6 +30,7 @@ export interface DesktopItem {
   description?: string;
   textLines?: string[];
   mediaSrc?: string;
+  mediaType?: 'image' | 'video';
   posterSrc?: string;
   iconSrc?: string;
   aboutFields?: AboutField[];
@@ -64,6 +64,9 @@ export const desktopItems: DesktopItem[] = [
     y: 10,
     tags: ['visual branding', 'website design', 'web development with framer'],
     link: { url: 'https://bodyhommage.com' },
+    iconSrc: '/media/body-hommage/icon.png',
+    mediaSrc: '/media/body-hommage/website.mp4',
+    mediaType: 'video',
   },
   {
     id: 'smiley-txt',
@@ -109,6 +112,9 @@ export const desktopItems: DesktopItem[] = [
     windowTitle: 'antispace poster.jpg',
     x: 26,
     y: 34,
+    iconSrc: '/media/antispace-poster/media.jpg',
+    mediaSrc: '/media/antispace-poster/media.jpg',
+    mediaType: 'image',
   },
   {
     id: 'antispace',
@@ -123,6 +129,9 @@ export const desktopItems: DesktopItem[] = [
       'booking system integration',
       'print media design',
     ],
+    iconSrc: '/media/antispace/icon.png',
+    mediaSrc: '/media/antispace/website.mov',
+    mediaType: 'video',
   },
   {
     id: 'awake',
@@ -132,6 +141,9 @@ export const desktopItems: DesktopItem[] = [
     x: 4,
     y: 58,
     tags: ['website design', 'web development with shopify', 'ai video creation'],
+    iconSrc: '/media/awake/icon.png',
+    mediaSrc: '/media/awake/website.mp4',
+    mediaType: 'video',
   },
   {
     id: 'antispace-flyer',
@@ -140,6 +152,9 @@ export const desktopItems: DesktopItem[] = [
     windowTitle: 'antispace flyer.jpg',
     x: 26,
     y: 58,
+    iconSrc: '/media/antispace-flyer/media.jpg',
+    mediaSrc: '/media/antispace-flyer/media.jpg',
+    mediaType: 'image',
   },
   {
     id: 'half-a-love-letter',
@@ -151,6 +166,39 @@ export const desktopItems: DesktopItem[] = [
     tags: ['concept development', 'front- & backend development', 'ui design'],
     link: { url: 'https://halfaloveletter.com' },
     description: 'platform to anonymously submit and read love letters',
+    mediaSrc: '/media/half-a-love-letter/screenshot.png',
+    mediaType: 'image',
+  },
+  {
+    id: 'bramlen',
+    label: 'bramlen',
+    kind: 'project',
+    windowTitle: 'bramlen',
+    x: 4,
+    y: 82,
+    tags: ['software solutions'],
+    link: { url: 'https://bramlen.com' },
+    description: 'my other business :))',
+    iconSrc: '/media/bramlen/icon.png',
+    mediaSrc: '/media/bramlen/media.png',
+    mediaType: 'image',
+  },
+  {
+    id: 'wrestling-octopi',
+    label: 'wrestling octopi',
+    kind: 'project',
+    windowTitle: 'wrestling octopi',
+    x: 26,
+    y: 82,
+    tags: [
+      'backend development',
+      'ui design & visual identity',
+      'frontend development',
+      'online deployment',
+    ],
+    link: { url: 'https://wrestlingoctopi.com' },
+    description: 'instagram business profile manager for desktop',
+    iconSrc: '/media/wrestling-octopi/icon.png',
   },
 ];
 
@@ -182,15 +230,6 @@ export const systemWindows: DesktopItem[] = [
     y: 0,
     iconSrc: '/icons/txt-doc.png',
     textLines: ['Placeholder note — add your own notes here.'],
-  },
-  {
-    id: 'safari',
-    label: 'Safari',
-    kind: 'browser',
-    windowTitle: 'safari',
-    x: 0,
-    y: 0,
-    link: { url: 'https://amused-memory-754088.framer.app/' },
   },
   {
     id: 'trash',
