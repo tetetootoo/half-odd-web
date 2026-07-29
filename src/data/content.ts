@@ -44,6 +44,7 @@ export interface DesktopItem {
   aboutFields?: AboutField[];
   bioParagraphs?: string[];
   notes?: NoteEntry[];
+  trashItems?: DesktopItem[];
   mailTo?: string;
   mailSubject?: string;
   formEndpoint?: string;
@@ -289,6 +290,21 @@ export const systemWindows: DesktopItem[] = [
     windowTitle: 'trash',
     x: 0,
     y: 0,
+    // Each entry is a kind: 'image' DesktopItem (mediaSrc/mediaType/iconSrc)
+    // rendered as a clickable thumbnail; clicking opens it like any other window.
+    trashItems: [
+      {
+        id: 'body-hommage-logo',
+        label: 'Body Hommage Logo',
+        kind: 'image',
+        windowTitle: 'Body Hommage Logo',
+        x: 0,
+        y: 0,
+        iconSrc: '/media/body-hommage-logo/logo.png',
+        mediaSrc: '/media/body-hommage-logo/logo.png',
+        mediaType: 'image',
+      },
+    ],
   },
 ];
 

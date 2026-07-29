@@ -27,6 +27,7 @@ interface WindowProps {
   cascadeIndex: number;
   onClose: () => void;
   onFocus: () => void;
+  onOpenItem: (id: string) => void;
 }
 
 const CASCADE_STEP_PX = 28;
@@ -246,7 +247,47 @@ function MailFrame({ item }: { item: DesktopItem }) {
   );
 }
 
-function WindowBody({ item }: { item: DesktopItem }) {
+function TrashFrame({ item, onOpenItem }: { item: DesktopItem; onOpenItem: (id: string) => void }) {
+  const trashItems = item.trashItems ?? [];
+
+  if (trashItems.length === 0) {
+    return <div className={styles.trashEmptyState}>Trash is empty</div>;
+  }
+
+  return (
+    <div className={styles.trashGrid}>
+      {trashItems.map((entry) => (
+        <button
+          key={entry.id}
+          type="button"
+          className={styles.trashItem}
+          onClick={() => onOpenItem(entry.id)}
+        >
+          {entry.iconSrc || entry.posterSrc ? (
+            <img
+              className={styles.trashThumb}
+              src={entry.iconSrc ?? entry.posterSrc}
+              alt={entry.label}
+            />
+          ) : entry.mediaType === 'video' ? (
+            <video className={styles.trashThumb} src={entry.mediaSrc} muted preload="metadata" />
+          ) : (
+            <img className={styles.trashThumb} src={entry.mediaSrc} alt={entry.label} />
+          )}
+          <span className={styles.trashLabel}>{entry.label}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function WindowBody({
+  item,
+  onOpenItem,
+}: {
+  item: DesktopItem;
+  onOpenItem: (id: string) => void;
+}) {
   switch (item.kind) {
     case 'image':
       return <ImageOverlayFrame item={item} />;
@@ -299,7 +340,7 @@ function WindowBody({ item }: { item: DesktopItem }) {
         </div>
       );
     case 'trash':
-      return <div className={styles.placeholder}>Trash is empty</div>;
+      return <TrashFrame item={item} onOpenItem={onOpenItem} />;
     case 'project':
       return <MediaFrame item={item} />;
     default:
@@ -307,12 +348,13 @@ function WindowBody({ item }: { item: DesktopItem }) {
   }
 }
 
-export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowProps) {
+export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenItem }: WindowProps) {
   const isProject = item.kind === 'project';
   const isImageKind = item.kind === 'image';
   const isAboutKind = item.kind === 'about';
   const isNotesKind = item.kind === 'notes';
   const isMailKind = item.kind === 'mail';
+  const isTrashKind = item.kind === 'trash';
   const isFileTitle = item.kind === 'text' || item.kind === 'notes';
   const isFlushDoc = isFileTitle || item.kind === 'about';
   const step = (cascadeIndex % CASCADE_WRAP) * CASCADE_STEP_PX;
@@ -320,7 +362,7 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowP
 
   return (
     <div
-      className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''}`}
+      className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''} ${isTrashKind ? styles.windowTrash : ''}`}
       style={{
         zIndex,
         transform: `translate(calc(-50% + ${step + offset.x}px), ${step + offset.y}px)`,
@@ -362,9 +404,9 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus }: WindowP
         ) : null}
       </div>
       <div
-        className={`${styles.content} ${isFlushDoc || isImageKind || isProject || isMailKind ? styles.contentFlush : ''}`}
+        className={`${styles.content} ${isFlushDoc || isImageKind || isProject || isMailKind || isTrashKind ? styles.contentFlush : ''}`}
       >
-        <WindowBody item={item} />
+        <WindowBody item={item} onOpenItem={onOpenItem} />
         {isProject && (
           <aside className={styles.infoCardFloating}>
             {item.tags && (

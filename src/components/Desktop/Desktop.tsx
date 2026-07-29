@@ -12,6 +12,9 @@ export function Desktop() {
     for (const item of [...desktopItems, ...systemWindows]) {
       map.set(item.id, item);
     }
+    for (const trashItem of systemWindows.find((w) => w.id === 'trash')?.trashItems ?? []) {
+      map.set(trashItem.id, trashItem);
+    }
     return map;
   }, []);
 
@@ -100,6 +103,7 @@ export function Desktop() {
         itemsById={itemsById}
         onClose={closeWindow}
         onFocus={focusWindow}
+        onOpenItem={openWindow}
       />
       <Dock
         onOpenAboutMe={() => openWindow('about-me')}
