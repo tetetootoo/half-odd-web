@@ -166,6 +166,7 @@ export const desktopItems: DesktopItem[] = [
     tags: ['concept development', 'front- & backend development', 'ui design'],
     link: { url: 'https://halfaloveletter.com' },
     description: 'platform to anonymously submit and read love letters',
+    iconSrc: '/media/half-a-love-letter/icon.png',
     mediaSrc: '/media/half-a-love-letter/screenshot.png',
     mediaType: 'image',
   },

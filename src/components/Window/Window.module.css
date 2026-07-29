@@ -32,6 +32,9 @@
 .titleBarText {
   justify-content: flex-start;
   gap: 10px;
+  height: auto;
+  min-height: 38px;
+  padding: 8px 12px;
   background: #f2eef0;
 }
 
@@ -56,8 +59,8 @@
 }
 
 .fileIcon {
-  width: 16px;
-  height: 16px;
+  width: 54px;
+  height: 54px;
   object-fit: contain;
 }
 

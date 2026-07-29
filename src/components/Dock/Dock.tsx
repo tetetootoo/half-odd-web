@@ -2,7 +2,7 @@ import { dockLinks } from '../../data/content';
 import styles from './Dock.module.css';
 
 const icons = {
-  aboutMe: '/icons/memoji.jpg',
+  aboutMe: '/icons/memoji.png',
   notes: '/icons/notes.png',
   mail: '/icons/mail.png',
   instagram: '/icons/instagram.png',
