@@ -1,4 +1,4 @@
-import { useDrag } from '../../hooks/useDrag';
+import { useDrag, type Position } from '../../hooks/useDrag';
 import styles from './DesktopIcon.module.css';
 
 interface PlaybackControl {
@@ -12,6 +12,7 @@ interface DesktopIconProps {
   yPercent: number;
   iconSrc?: string;
   onOpen?: () => void;
+  onDragEnd?: (offset: Position) => void;
   playback?: PlaybackControl;
 }
 
@@ -36,9 +37,10 @@ export function DesktopIcon({
   yPercent,
   iconSrc,
   onOpen,
+  onDragEnd,
   playback,
 }: DesktopIconProps) {
-  const { offset, handlers } = useDrag(playback ? playback.onToggle : onOpen);
+  const { offset, handlers } = useDrag(playback ? playback.onToggle : onOpen, onDragEnd);
 
   return (
     <button

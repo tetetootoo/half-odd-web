@@ -15,9 +15,12 @@ const CLICK_THRESHOLD_PX = 10;
  * Tracks a pixel drag offset to apply as a CSS transform on top of a fixed
  * base position (e.g. percent-based `left`/`top`), so drag deltas never get
  * mixed with the base position's unit. Fires `onClick` when a press ends
- * without exceeding the movement threshold.
+ * without exceeding the movement threshold, or `onDragEnd` with the final
+ * pixel offset when it does — callers that pass `onDragEnd` are expected to
+ * fold that offset into their own persisted base position, since the
+ * internal offset resets to zero right after.
  */
-export function useDrag(onClick?: () => void) {
+export function useDrag(onClick?: () => void, onDragEnd?: (offset: Position) => void) {
   const [offset, setOffset] = useState<Position>({ x: 0, y: 0 });
   const draggingRef = useRef(false);
   const movedRef = useRef(false);
@@ -53,6 +56,9 @@ export function useDrag(onClick?: () => void) {
   const onPointerUp = () => {
     if (draggingRef.current && !movedRef.current) {
       onClick?.();
+    } else if (draggingRef.current && movedRef.current) {
+      onDragEnd?.(offset);
+      setOffset({ x: 0, y: 0 });
     }
     draggingRef.current = false;
   };
