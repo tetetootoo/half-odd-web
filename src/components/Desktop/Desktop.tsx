@@ -9,18 +9,6 @@ import styles from './Desktop.module.css';
 
 type IconPositions = Record<string, Position>;
 
-// Dragged positions only live in memory for this session — there's no
-// backend to persist them globally. Use the "copy layout" button to grab
-// the final x/y values and hand them over to bake into content.ts directly,
-// which is the only thing that actually changes the layout for every visitor.
-function formatLayout(items: DesktopItem[], positions: IconPositions): string {
-  const lines = items.map((item) => {
-    const pos = positions[item.id] ?? { x: item.x, y: item.y };
-    return `  ${item.id}: { x: ${pos.x.toFixed(1)}, y: ${pos.y.toFixed(1)} }`;
-  });
-  return `{\n${lines.join(',\n')}\n}`;
-}
-
 export function Desktop() {
   const itemsById = useMemo(() => {
     const map = new Map<string, DesktopItem>();
@@ -37,7 +25,6 @@ export function Desktop() {
   const zCounterRef = useRef(1);
   const iconLayerRef = useRef<HTMLDivElement>(null);
   const [iconPositions, setIconPositions] = useState<IconPositions>({});
-  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied'>('idle');
 
   const getIconPosition = (item: DesktopItem): Position =>
     iconPositions[item.id] ?? { x: item.x, y: item.y };
@@ -52,12 +39,6 @@ export function Desktop() {
       y: current.y + (pixelOffset.y / rect.height) * 100,
     };
     setIconPositions((prev) => ({ ...prev, [item.id]: next }));
-  };
-
-  const copyLayout = async () => {
-    await navigator.clipboard.writeText(formatLayout(desktopItems, iconPositions));
-    setCopyStatus('copied');
-    setTimeout(() => setCopyStatus('idle'), 1500);
   };
 
   const openWindow = (id: string) => {
@@ -155,9 +136,6 @@ export function Desktop() {
           onOpenMail={() => openWindow('mail')}
           onOpenTrash={() => openWindow('trash')}
         />
-        <button type="button" className={styles.copyLayoutButton} onClick={copyLayout}>
-          {copyStatus === 'copied' ? 'Copied!' : 'Copy layout'}
-        </button>
       </div>
       <div className={styles.mobileNotice}>
         <p>

@@ -21,23 +21,6 @@
   min-height: 0;
 }
 
-.copyLayoutButton {
-  position: absolute;
-  bottom: 14px;
-  left: 14px;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  color: #2b1b24;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
 .mobileNotice {
   display: none;
 }
