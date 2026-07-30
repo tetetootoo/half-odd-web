@@ -6,7 +6,8 @@ export type WindowKind =
   | 'notes'
   | 'mail'
   | 'trash'
-  | 'audio';
+  | 'audio'
+  | 'browser';
 
 export interface IconLink {
   url: string;
@@ -191,16 +192,12 @@ export const desktopItems: DesktopItem[] = [
   {
     id: 'bramlen',
     label: 'bramlen',
-    kind: 'project',
+    kind: 'browser',
     windowTitle: 'bramlen',
     x: 4,
     y: 82,
-    tags: ['software solutions'],
     link: { url: 'https://bramlen.com' },
-    description: 'my other business :))',
-    iconSrc: '/media/bramlen/icon.png',
-    mediaSrc: '/media/bramlen/media.png',
-    mediaType: 'image',
+    iconSrc: '/icons/safari.png',
   },
   {
     id: 'wrestling-octopi',

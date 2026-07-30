@@ -52,6 +52,59 @@ function MediaFrame({ item }: { item: DesktopItem }) {
   return <img className={styles.media} src={item.mediaSrc} alt={item.label} />;
 }
 
+function BrowserFrame({ item }: { item: DesktopItem }) {
+  const [reloadKey, setReloadKey] = useState(0);
+  const url = item.link?.url;
+
+  if (!url) {
+    return <div className={styles.placeholder}>No site linked</div>;
+  }
+
+  const displayUrl = url.replace(/^https?:\/\//, '');
+
+  return (
+    <div className={styles.browserFrame}>
+      <div className={styles.browserToolbar}>
+        <button
+          type="button"
+          className={styles.browserReload}
+          onClick={() => setReloadKey((k) => k + 1)}
+          aria-label="Reload"
+        >
+          <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true">
+            <path
+              d="M13.5 8a5.5 5.5 0 1 1-1.6-3.89M13.5 2v3.5H10"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        <span className={styles.browserAddress}>
+          <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
+            <path
+              d="M3 5.5V4a3 3 0 1 1 6 0v1.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1"
+            />
+            <rect x="2" y="5.5" width="8" height="5.5" rx="1" fill="currentColor" />
+          </svg>
+          {displayUrl}
+        </span>
+      </div>
+      <iframe
+        key={reloadKey}
+        className={styles.browserIframe}
+        src={url}
+        title={item.windowTitle}
+      />
+    </div>
+  );
+}
+
 // Type 4: fixed 480x440 overlay — the media's longer edge is pinned to
 // 440px (the box's own height) and the shorter edge follows the image's
 // natural aspect ratio, which is exactly what object-fit: contain against a
@@ -341,6 +394,8 @@ function WindowBody({
       );
     case 'trash':
       return <TrashFrame item={item} onOpenItem={onOpenItem} />;
+    case 'browser':
+      return <BrowserFrame item={item} />;
     case 'project':
       return <MediaFrame item={item} />;
     default:
@@ -355,6 +410,7 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenIte
   const isNotesKind = item.kind === 'notes';
   const isMailKind = item.kind === 'mail';
   const isTrashKind = item.kind === 'trash';
+  const isBrowserKind = item.kind === 'browser';
   const isFileTitle = item.kind === 'text' || item.kind === 'notes';
   const isFlushDoc = isFileTitle || item.kind === 'about';
   const step = (cascadeIndex % CASCADE_WRAP) * CASCADE_STEP_PX;
@@ -362,7 +418,7 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenIte
 
   return (
     <div
-      className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''} ${isTrashKind ? styles.windowTrash : ''}`}
+      className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''} ${isTrashKind ? styles.windowTrash : ''} ${isBrowserKind ? styles.windowBrowser : ''}`}
       style={{
         zIndex,
         transform: `translate(calc(-50% + ${step + offset.x}px), ${step + offset.y}px)`,
@@ -404,7 +460,7 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenIte
         ) : null}
       </div>
       <div
-        className={`${styles.content} ${isFlushDoc || isImageKind || isProject || isMailKind || isTrashKind ? styles.contentFlush : ''}`}
+        className={`${styles.content} ${isFlushDoc || isImageKind || isProject || isMailKind || isTrashKind || isBrowserKind ? styles.contentFlush : ''}`}
       >
         <WindowBody item={item} onOpenItem={onOpenItem} />
         {isProject && (

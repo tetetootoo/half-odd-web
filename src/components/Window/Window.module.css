@@ -36,6 +36,11 @@
   height: 480px;
 }
 
+.windowBrowser {
+  width: min(820px, 90vw);
+  height: 600px;
+}
+
 .titleBar {
   position: relative;
   display: flex;
@@ -531,6 +536,64 @@
   background: #fff;
   color: #8a7a80;
   font-size: 13px;
+}
+
+.browserFrame {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  background: #fff;
+}
+
+.browserToolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  height: 40px;
+  padding: 0 12px;
+  background: #ece7ea;
+  border-bottom: 1px solid #ddd5da;
+}
+
+.browserReload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #6b5a62;
+  cursor: pointer;
+}
+
+.browserReload:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.browserAddress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 1;
+  height: 26px;
+  border-radius: 13px;
+  background: #fff;
+  color: #4a3d43;
+  font-size: 12px;
+}
+
+.browserIframe {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  border: none;
 }
 
 .aboutDoc {
