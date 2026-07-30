@@ -14,6 +14,7 @@ interface DesktopIconProps {
   onOpen?: () => void;
   onDragEnd?: (offset: Position) => void;
   playback?: PlaybackControl;
+  showLinkBadge?: boolean;
 }
 
 // Capitalizes each space-separated word but leaves anything from a "."
@@ -39,6 +40,7 @@ export function DesktopIcon({
   onOpen,
   onDragEnd,
   playback,
+  showLinkBadge,
 }: DesktopIconProps) {
   const { offset, handlers } = useDrag(playback ? playback.onToggle : onOpen, onDragEnd);
 
@@ -71,6 +73,20 @@ export function DesktopIcon({
                 <path d="M7 4.5v15l13-7.5-13-7.5z" fill="currentColor" />
               </svg>
             )}
+          </span>
+        )}
+        {showLinkBadge && (
+          <span className={styles.linkBadge} aria-hidden="true">
+            <svg viewBox="0 0 10 10" width="8" height="8">
+              <path
+                d="M2.5 7.5L7.5 2.5M7.5 2.5H3.5M7.5 2.5V6.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </span>
         )}
       </span>
