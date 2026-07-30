@@ -36,6 +36,8 @@ export interface DesktopItem {
   y: number;
   tags?: string[];
   link?: IconLink;
+  showLinkBadge?: boolean;
+  showScrollHint?: boolean;
   description?: string;
   textLines?: string[];
   mediaSrc?: string;
@@ -77,15 +79,14 @@ export const desktopItems: DesktopItem[] = [
   {
     id: 'body-hommage',
     label: 'Body Hommage',
-    kind: 'project',
+    kind: 'browser',
     windowTitle: 'body hommage',
     x: 26,
     y: 10,
     tags: ['visual branding', 'website design', 'web development with framer'],
     link: { url: 'https://bodyhommage.com' },
+    showScrollHint: true,
     iconSrc: '/media/body-hommage/icon.png',
-    mediaSrc: '/media/body-hommage/website.mp4',
-    mediaType: 'video',
   },
   {
     id: 'smiley-txt',
@@ -163,6 +164,7 @@ export const desktopItems: DesktopItem[] = [
     x: 4,
     y: 58,
     tags: ['website design', 'web development with shopify', 'ai video creation'],
+    link: { url: 'https://awake.de' },
     iconSrc: '/media/awake/icon.png',
     mediaSrc: '/media/awake/website.mp4',
     mediaType: 'video',
@@ -187,6 +189,7 @@ export const desktopItems: DesktopItem[] = [
     y: 58,
     tags: ['concept development', 'front- & backend development', 'ui design'],
     link: { url: 'https://halfaloveletter.com' },
+    showLinkBadge: true,
     description: 'platform to anonymously submit and read love letters',
     iconSrc: '/media/half-a-love-letter/icon.png',
     mediaSrc: '/media/half-a-love-letter/screenshot.png',
@@ -200,6 +203,7 @@ export const desktopItems: DesktopItem[] = [
     x: 4,
     y: 82,
     link: { url: 'https://bramlen.com' },
+    description: 'my side quest software business. dare to click the button!',
     iconSrc: '/icons/safari.png',
   },
   {
@@ -216,6 +220,7 @@ export const desktopItems: DesktopItem[] = [
       'online deployment',
     ],
     link: { url: 'https://wrestlingoctopi.com' },
+    showLinkBadge: true,
     description: 'instagram business profile manager for desktop',
     iconSrc: '/media/wrestling-octopi/icon.png',
   },
