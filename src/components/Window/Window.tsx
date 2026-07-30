@@ -95,12 +95,29 @@ function BrowserFrame({ item }: { item: DesktopItem }) {
           {displayUrl}
         </span>
       </div>
-      <iframe
-        key={reloadKey}
-        className={styles.browserIframe}
-        src={url}
-        title={item.windowTitle}
-      />
+      <div className={styles.browserViewport}>
+        <iframe
+          key={reloadKey}
+          className={styles.browserIframe}
+          src={url}
+          title={item.windowTitle}
+        />
+        {item.showScrollHint && (
+          <span className={styles.scrollHint} aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="14" height="14">
+              <path
+                d="M4 6l4 4 4-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            scroll
+          </span>
+        )}
+      </div>
     </div>
   );
 }
@@ -418,7 +435,7 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenIte
 
   return (
     <div
-      className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''} ${isTrashKind ? styles.windowTrash : ''} ${isBrowserKind ? styles.windowBrowser : ''}`}
+      className={styles.windowWrapper}
       style={{
         zIndex,
         transform: `translate(calc(-50% + ${step + offset.x}px), ${step + offset.y}px)`,
@@ -426,67 +443,66 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenIte
       onPointerDown={onFocus}
     >
       <div
-        className={`${styles.titleBar} ${isFlushDoc ? styles.titleBarText : ''}`}
-        {...dragHandlers}
+        className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''} ${isTrashKind ? styles.windowTrash : ''} ${isBrowserKind ? styles.windowBrowser : ''}`}
       >
         <div
-          className={styles.trafficLights}
-          onPointerDown={(e) => e.stopPropagation()}
+          className={`${styles.titleBar} ${isFlushDoc ? styles.titleBarText : ''}`}
+          {...dragHandlers}
         >
-          <button
-            type="button"
-            className={`${styles.light} ${styles.red}`}
-            onClick={onClose}
-            aria-label="Close window"
+          <div
+            className={styles.trafficLights}
+            onPointerDown={(e) => e.stopPropagation()}
           >
-            <svg className={styles.closeIcon} viewBox="0 0 10 10" width="7" height="7" aria-hidden="true">
-              <path
-                d="M1.5 1.5L8.5 8.5M8.5 1.5L1.5 8.5"
-                stroke="#4d0000"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-          <span className={`${styles.light} ${styles.yellow}`} aria-hidden="true" />
-          <span className={`${styles.light} ${styles.green}`} aria-hidden="true" />
-        </div>
-        {isFileTitle ? (
-          <div className={styles.fileTitleGroup}>
-            <span className={styles.fileName}>{item.windowTitle}</span>
+            <button
+              type="button"
+              className={`${styles.light} ${styles.red}`}
+              onClick={onClose}
+              aria-label="Close window"
+            >
+              <svg className={styles.closeIcon} viewBox="0 0 10 10" width="7" height="7" aria-hidden="true">
+                <path
+                  d="M1.5 1.5L8.5 8.5M8.5 1.5L1.5 8.5"
+                  stroke="#4d0000"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+            <span className={`${styles.light} ${styles.yellow}`} aria-hidden="true" />
+            <span className={`${styles.light} ${styles.green}`} aria-hidden="true" />
           </div>
-        ) : !isFlushDoc ? (
-          <span className={styles.title}>{item.windowTitle}</span>
-        ) : null}
+          {isFileTitle ? (
+            <div className={styles.fileTitleGroup}>
+              <span className={styles.fileName}>{item.windowTitle}</span>
+            </div>
+          ) : !isFlushDoc ? (
+            <span className={styles.title}>{item.windowTitle}</span>
+          ) : null}
+        </div>
+        <div
+          className={`${styles.content} ${isFlushDoc || isImageKind || isProject || isMailKind || isTrashKind || isBrowserKind ? styles.contentFlush : ''}`}
+        >
+          <WindowBody item={item} onOpenItem={onOpenItem} />
+        </div>
       </div>
-      <div
-        className={`${styles.content} ${isFlushDoc || isImageKind || isProject || isMailKind || isTrashKind || isBrowserKind ? styles.contentFlush : ''}`}
-      >
-        <WindowBody item={item} onOpenItem={onOpenItem} />
-        {isProject && (
-          <aside className={styles.infoCardFloating}>
-            {item.tags && (
-              <ul className={styles.tags}>
-                {item.tags.map((tag) => (
-                  <li key={tag}>{tag}</li>
-                ))}
-              </ul>
-            )}
-            {item.link && (
-              <a
-                className={styles.link}
-                href={item.link.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {item.link.label ?? item.link.url.replace(/^https?:\/\//, '')}
-                <span aria-hidden="true"> ↗</span>
-              </a>
-            )}
-            {item.description && <p className={styles.description}>{item.description}</p>}
-          </aside>
-        )}
-      </div>
+      {(isProject || isBrowserKind) && (
+        <aside className={styles.infoCardFloating}>
+          {item.tags && (
+            <ul className={styles.tags}>
+              {item.tags.map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
+          )}
+          {item.link && (
+            <a className={styles.link} href={item.link.url} target="_blank" rel="noreferrer">
+              {item.link.label ?? item.link.url.replace(/^https?:\/\//, '')}
+              <span aria-hidden="true"> ↗</span>
+            </a>
+          )}
+          {item.description && <p className={styles.description}>{item.description}</p>}
+        </aside>
+      )}
     </div>
   );
 }
