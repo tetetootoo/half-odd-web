@@ -8,20 +8,38 @@
   overflow: hidden;
 }
 
+.desktopUi {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .iconLayer {
   position: relative;
   flex: 1;
   min-height: 0;
 }
 
+.mobileNotice {
+  display: none;
+}
+
 @media (max-width: 640px) {
-  .iconLayer {
+  .desktopUi {
+    display: none;
+  }
+
+  .mobileNotice {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    padding: 16px;
-    gap: 4px;
-    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0;
+    padding: 32px;
+    text-align: center;
+    color: #4a3d43;
+    font-size: 16px;
+    line-height: 1.5;
   }
 }

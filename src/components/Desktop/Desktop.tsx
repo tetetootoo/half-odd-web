@@ -112,55 +112,65 @@ export function Desktop() {
 
   return (
     <div className={styles.desktop}>
-      <MenuBar />
-      <div className={styles.iconLayer} ref={iconLayerRef}>
-        {desktopItems.map((item) => {
-          const position = getIconPosition(item);
-          return item.kind === 'audio' ? (
-            <DesktopIcon
-              key={item.id}
-              label={item.label}
-              xPercent={position.x}
-              yPercent={position.y}
-              iconSrc={item.posterSrc}
-              onDragEnd={(offset) => handleIconDragEnd(item, offset)}
-              playback={{ isPlaying: isAudioPlaying, onToggle: toggleAudio }}
-            />
-          ) : (
-            <DesktopIcon
-              key={item.id}
-              label={item.label}
-              xPercent={position.x}
-              yPercent={position.y}
-              iconSrc={item.iconSrc}
-              onOpen={() => openWindow(item.id)}
-              onDragEnd={(offset) => handleIconDragEnd(item, offset)}
-            />
-          );
-        })}
-      </div>
-      {audioItem && (
-        <audio
-          ref={audioRef}
-          src={audioItem.mediaSrc}
-          onPlay={() => setIsAudioPlaying(true)}
-          onPause={() => setIsAudioPlaying(false)}
-          onEnded={() => setIsAudioPlaying(false)}
+      <div className={styles.desktopUi}>
+        <MenuBar />
+        <div className={styles.iconLayer} ref={iconLayerRef}>
+          {desktopItems.map((item) => {
+            const position = getIconPosition(item);
+            return item.kind === 'audio' ? (
+              <DesktopIcon
+                key={item.id}
+                label={item.label}
+                xPercent={position.x}
+                yPercent={position.y}
+                iconSrc={item.posterSrc}
+                onDragEnd={(offset) => handleIconDragEnd(item, offset)}
+                playback={{ isPlaying: isAudioPlaying, onToggle: toggleAudio }}
+              />
+            ) : (
+              <DesktopIcon
+                key={item.id}
+                label={item.label}
+                xPercent={position.x}
+                yPercent={position.y}
+                iconSrc={item.iconSrc}
+                onOpen={() => openWindow(item.id)}
+                onDragEnd={(offset) => handleIconDragEnd(item, offset)}
+                showLinkBadge={item.showLinkBadge}
+              />
+            );
+          })}
+        </div>
+        {audioItem && (
+          <audio
+            ref={audioRef}
+            src={audioItem.mediaSrc}
+            onPlay={() => setIsAudioPlaying(true)}
+            onPause={() => setIsAudioPlaying(false)}
+            onEnded={() => setIsAudioPlaying(false)}
+          />
+        )}
+        <WindowManager
+          openWindows={openWindows}
+          itemsById={itemsById}
+          onClose={closeWindow}
+          onFocus={focusWindow}
+          onOpenItem={openWindow}
         />
-      )}
-      <WindowManager
-        openWindows={openWindows}
-        itemsById={itemsById}
-        onClose={closeWindow}
-        onFocus={focusWindow}
-        onOpenItem={openWindow}
-      />
-      <Dock
-        onOpenAboutMe={() => openWindow('about-me')}
-        onOpenNotes={() => openWindow('notes')}
-        onOpenMail={() => openWindow('mail')}
-        onOpenTrash={() => openWindow('trash')}
-      />
+        <Dock
+          onOpenAboutMe={() => openWindow('about-me')}
+          onOpenNotes={() => openWindow('notes')}
+          onOpenMail={() => openWindow('mail')}
+          onOpenTrash={() => openWindow('trash')}
+        />
+      </div>
+      <div className={styles.mobileNotice}>
+        <p>
+          mobile view is currently not available
+          <br />
+          check out my portfolio on your desktop {'<33'}
+        </p>
+      </div>
     </div>
   );
 }
