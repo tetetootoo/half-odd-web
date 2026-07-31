@@ -12,6 +12,7 @@
   cursor: pointer;
   touch-action: none;
   user-select: none;
+  text-decoration: none;
 }
 
 .icon:hover,

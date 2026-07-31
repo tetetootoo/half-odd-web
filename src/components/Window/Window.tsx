@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import type { DesktopItem } from '../../data/content';
+import type { DesktopItem } from '../../data/desktopContent';
 import { useDrag } from '../../hooks/useDrag';
 import styles from './Window.module.css';
 

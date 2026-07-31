@@ -1,4 +1,4 @@
-import { dockLinks } from '../../data/content';
+import { dockLinks } from '../../data/desktopContent';
 import styles from './Dock.module.css';
 
 const icons = {

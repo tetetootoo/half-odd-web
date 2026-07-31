@@ -11,6 +11,7 @@ interface DesktopIconProps {
   xPercent: number;
   yPercent: number;
   iconSrc?: string;
+  href?: string;
   onOpen?: () => void;
   onDragEnd?: (offset: Position) => void;
   playback?: PlaybackControl;
@@ -37,24 +38,16 @@ export function DesktopIcon({
   xPercent,
   yPercent,
   iconSrc,
+  href,
   onOpen,
   onDragEnd,
   playback,
   showLinkBadge,
 }: DesktopIconProps) {
-  const { offset, handlers } = useDrag(playback ? playback.onToggle : onOpen, onDragEnd);
+  const { offset, handlers } = useDrag(href ? undefined : playback ? playback.onToggle : onOpen, onDragEnd);
 
-  return (
-    <button
-      type="button"
-      className={styles.icon}
-      style={{
-        left: `${xPercent}%`,
-        top: `${yPercent}%`,
-        transform: `translate(${offset.x}px, ${offset.y}px)`,
-      }}
-      {...handlers}
-    >
+  const content = (
+    <>
       <span className={styles.glyphWrapper}>
         {iconSrc ? (
           <img className={styles.glyphImage} src={iconSrc} alt="" draggable={false} />
@@ -91,6 +84,26 @@ export function DesktopIcon({
         )}
       </span>
       <span className={styles.label}>{capitalizeLabel(label)}</span>
+    </>
+  );
+
+  const style = {
+    left: `${xPercent}%`,
+    top: `${yPercent}%`,
+    transform: `translate(${offset.x}px, ${offset.y}px)`,
+  };
+
+  if (href) {
+    return (
+      <a className={styles.icon} style={style} href={href} target="_blank" rel="noreferrer" {...handlers}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <button type="button" className={styles.icon} style={style} {...handlers}>
+      {content}
     </button>
   );
 }

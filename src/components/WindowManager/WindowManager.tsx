@@ -1,4 +1,4 @@
-import type { DesktopItem } from '../../data/content';
+import type { DesktopItem } from '../../data/desktopContent';
 import { Window } from '../Window/Window';
 
 export interface OpenWindow {

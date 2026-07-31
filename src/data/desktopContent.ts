@@ -7,7 +7,10 @@ export type WindowKind =
   | 'mail'
   | 'trash'
   | 'audio'
-  | 'browser';
+  | 'browser'
+  // Opens the linked URL directly in a new tab instead of any overlay window
+  // — for icons that should just forward straight to the external site.
+  | 'link';
 
 export interface IconLink {
   url: string;
@@ -183,17 +186,14 @@ export const desktopItems: DesktopItem[] = [
   {
     id: 'half-a-love-letter',
     label: 'Half a Love Letter',
-    kind: 'project',
+    kind: 'browser',
     windowTitle: 'half a love letter',
     x: 41.7,
     y: 14.4,
     tags: ['concept development', 'front- & backend development', 'ui design'],
     link: { url: 'https://halfaloveletter.com' },
-    showLinkBadge: true,
     description: 'platform to anonymously submit and read love letters',
     iconSrc: '/media/half-a-love-letter/icon.png',
-    mediaSrc: '/media/half-a-love-letter/screenshot.png',
-    mediaType: 'image',
   },
   {
     id: 'bramlen',
@@ -209,19 +209,12 @@ export const desktopItems: DesktopItem[] = [
   {
     id: 'wrestling-octopi',
     label: 'wrestling octopi',
-    kind: 'project',
+    kind: 'link',
     windowTitle: 'wrestling octopi',
     x: 22.5,
     y: 62.2,
-    tags: [
-      'backend development',
-      'ui design & visual identity',
-      'frontend development',
-      'online deployment',
-    ],
     link: { url: 'https://wrestlingoctopi.com' },
     showLinkBadge: true,
-    description: 'instagram business profile manager for desktop',
     iconSrc: '/media/wrestling-octopi/icon.png',
   },
 ];
@@ -273,6 +266,8 @@ export const systemWindows: DesktopItem[] = [
           'Your data is stored securely and only kept for as long as needed to handle your request.',
           'Under GDPR, you have the right to access, correct, or request deletion of any personal data I hold about you. To exercise any of these rights, get in touch directly.',
           'This site processes personal data in accordance with the General Data Protection Regulation (EU) 2016/679.',
+          '## Design Credit',
+          "This site's design takes heavy inspiration from Apple's macOS and iOS operating systems. Not all icon designs are my own — where icons are Apple's own designs, credit belongs to Apple and I do not claim them as my own work.",
         ],
       },
     ],
