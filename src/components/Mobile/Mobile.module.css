@@ -1,0 +1,711 @@
+.phone {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #f2a7cb;
+  overflow: hidden;
+}
+
+.grid {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 8px;
+  padding: 56px 12px 24px;
+  align-content: start;
+}
+
+.appIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.appGlyphWrapper {
+  position: relative;
+  width: 54px;
+  height: 54px;
+}
+
+.appGlyph {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  border-radius: 12px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+}
+
+.appGlyphOnWhite {
+  background: #fff;
+  padding: 3px;
+  box-sizing: border-box;
+}
+
+.appGlyphOnGrey {
+  background: #d9d3d6;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.appGlyphCover {
+  object-fit: cover;
+}
+
+.playBadge {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+}
+
+.appLabel {
+  font-size: 11px;
+  line-height: 1.3;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  word-break: break-word;
+}
+
+.dock {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin: 0 12px 14px;
+  padding: 10px 24px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.dockItem {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dockGlyph {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  border-radius: 10px;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+}
+
+.rounded {
+  border-radius: 11px;
+}
+
+/* ---- Safari-style site/screen-recording chrome ---- */
+
+.siteFrame {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.siteContent {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #000;
+}
+
+.siteIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+}
+
+.siteMedia {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.siteMediaVideo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sitePlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #8a7a80;
+  background: repeating-linear-gradient(45deg, #e5dde1, #e5dde1 10px, #ddd3d8 10px, #ddd3d8 20px);
+  font-size: 13px;
+}
+
+.siteToolbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+  background: rgba(246, 242, 244, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.siteToolbarBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  color: #2b1b24;
+  cursor: pointer;
+}
+
+.siteUrlPill {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.05);
+  font-size: 13px;
+  color: #2b1b24;
+}
+
+.siteCornerActions {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.siteInfoToggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #2b1b24;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.siteCloseBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: #2b1b24;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.siteInfoBox {
+  position: absolute;
+  top: 52px;
+  right: 14px;
+  z-index: 1;
+  width: 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.siteInfoTags {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #6b5a62;
+}
+
+.siteInfoDescription {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #4a3d43;
+}
+
+.siteInfoLink {
+  font-size: 12px;
+  font-weight: 600;
+  color: #a8517a;
+  text-decoration: none;
+}
+
+/* ---- Simple doc-style overlays (txt list, plain images) ---- */
+
+.docOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.docHeader {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 52px;
+  padding: 0 14px;
+  background: #f2eef0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.docHeaderIcon {
+  position: absolute;
+  left: 14px;
+  font-size: 15px;
+  color: #6b5a62;
+}
+
+.docTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1c1319;
+}
+
+.docClose {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  color: #2b1b24;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.docScroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px;
+}
+
+.docImage {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.textPad {
+  font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 13px;
+  color: #1c1319;
+}
+
+.textLine {
+  line-height: 1.6;
+}
+
+/* ---- About overlay ---- */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  background: #f6f2f4;
+}
+
+.overlayHeader {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  background: #f2eef0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.overlayClose {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  color: #2b1b24;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.overlayTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1c1319;
+}
+
+.overlayScroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px;
+}
+
+.overlayBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.overlayDescription {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4a3d43;
+}
+
+.overlayLink {
+  font-size: 14px;
+  font-weight: 600;
+  color: #a8517a;
+  text-decoration: none;
+}
+
+.aboutPhoto {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.aboutName {
+  margin: 4px 0 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.aboutRole {
+  margin: 0;
+  font-size: 13px;
+  color: #6b5a62;
+}
+
+/* ---- Notes app (list + detail) ---- */
+
+.notesPage {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  background: #f6f2f4;
+}
+
+.notesCloseBtn {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  color: #2b1b24;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.notesListScroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 56px 16px 16px;
+}
+
+.notesListTitle {
+  margin: 4px 0 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1c1319;
+}
+
+.notesListCount {
+  margin: 2px 0 16px;
+  font-size: 14px;
+  color: #8a7a80;
+}
+
+.notesListCard {
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.notesListRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-bottom: 1px solid #ece7ea;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.notesListRowTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1c1319;
+}
+
+.notesListRowMeta {
+  font-size: 13px;
+  color: #8a7a80;
+}
+
+.notesDetailScroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 56px 20px 20px;
+}
+
+.notesBackLink {
+  display: block;
+  margin: 0 0 14px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #a8517a;
+  cursor: pointer;
+}
+
+.notesDetailTitleLine {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1c1319;
+}
+
+.notesSubheading {
+  margin: 22px 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1c1319;
+}
+
+/* ---- Mail compose sheet ---- */
+
+.sheetBackdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+}
+
+.mailSheet {
+  width: 100%;
+  height: 92%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.sheetHandle {
+  width: 36px;
+  height: 5px;
+  margin: 8px auto 0;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.mailSheetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px 0;
+}
+
+.sheetIconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  color: #2b1b24;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.sheetSendBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sheetSendBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.mailSheetTitle {
+  margin: 12px 20px 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1c1319;
+}
+
+.mailFields {
+  display: flex;
+  flex-direction: column;
+  margin: 14px 20px 0;
+}
+
+.mailFieldRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ece7ea;
+  font-size: 14px;
+  color: #1c1319;
+}
+
+.mailFieldLabel {
+  flex-shrink: 0;
+  width: 56px;
+  color: #8a7a80;
+}
+
+.mailFieldInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  color: #1c1319;
+  outline: none;
+}
+
+.mailBody {
+  flex: 1;
+  min-height: 100px;
+  margin: 14px 20px 0;
+  border: none;
+  resize: none;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #1c1319;
+  outline: none;
+}
+
+.mailStatus {
+  margin: 0 20px 14px;
+  font-size: 13px;
+  color: #2f8f4e;
+}
+
+.mailStatusError {
+  margin: 0 20px 14px;
+  font-size: 13px;
+  color: #c0392b;
+}
