@@ -4,6 +4,7 @@ import {
   contactInfo,
   gridApps,
   notesInfo,
+  trashItems,
   type MobileAppItem,
 } from '../../data/mobileContent';
 import styles from './Mobile.module.css';
@@ -185,10 +186,7 @@ function TextDoc({ app, onClose }: { app: MobileAppItem; onClose: () => void }) 
   return (
     <div className={styles.docOverlay}>
       <div className={styles.docHeader}>
-        <span className={styles.docHeaderIcon} aria-hidden="true">
-          ☰
-        </span>
-        <span className={styles.docTitle}>{app.label} ⌄</span>
+        <span className={styles.docTitle}>{app.label}</span>
         <button type="button" className={styles.docClose} onClick={onClose} aria-label="Close">
           ✕
         </button>
@@ -207,12 +205,25 @@ function TextDoc({ app, onClose }: { app: MobileAppItem; onClose: () => void }) 
 }
 
 function ImageDoc({ app, onClose }: { app: MobileAppItem; onClose: () => void }) {
+  if (app.overlayFill) {
+    return (
+      <div className={styles.docOverlay}>
+        <img className={styles.docImageFill} src={app.mediaSrc} alt={app.label} />
+        <button
+          type="button"
+          className={styles.docCloseFloating}
+          onClick={onClose}
+          aria-label="Close"
+        >
+          ✕
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.docOverlay}>
       <div className={styles.docHeader}>
-        <span className={styles.docHeaderIcon} aria-hidden="true">
-          ☰
-        </span>
         <span className={styles.docTitle}>{app.label}</span>
         <button type="button" className={styles.docClose} onClick={onClose} aria-label="Close">
           ✕
@@ -220,6 +231,44 @@ function ImageDoc({ app, onClose }: { app: MobileAppItem; onClose: () => void })
       </div>
       <div className={styles.docScroll}>
         <img className={styles.docImage} src={app.mediaSrc} alt={app.label} />
+      </div>
+    </div>
+  );
+}
+
+function TrashFolder({ onClose }: { onClose: () => void }) {
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const selected = trashItems.find((item) => item.id === selectedId);
+
+  if (selected && selected.kind === 'site') {
+    return <SiteFrame app={selected} onBack={() => setSelectedId(null)} />;
+  }
+  if (selected && selected.kind === 'image') {
+    return <ImageDoc app={selected} onClose={() => setSelectedId(null)} />;
+  }
+
+  return (
+    <div className={styles.docOverlay}>
+      <div className={styles.docHeader}>
+        <span className={styles.docTitle}>Trash</span>
+        <button type="button" className={styles.docClose} onClick={onClose} aria-label="Close">
+          ✕
+        </button>
+      </div>
+      <div className={styles.docScroll}>
+        <div className={styles.trashGrid}>
+          {trashItems.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={styles.trashItem}
+              onClick={() => setSelectedId(item.id)}
+            >
+              <img className={styles.trashItemIcon} src={item.iconSrc} alt="" />
+              <span className={styles.trashItemLabel}>{item.label}</span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -471,6 +520,9 @@ export function Mobile() {
       )}
       {openApp && openApp.kind === 'image' && (
         <ImageDoc app={openApp} onClose={() => setOpenId(null)} />
+      )}
+      {openApp && openApp.kind === 'trash' && (
+        <TrashFolder onClose={() => setOpenId(null)} />
       )}
     </div>
   );

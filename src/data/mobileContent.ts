@@ -1,7 +1,9 @@
 // 'site' = shown inside a Safari-style chrome (live iframe via embedUrl, or a
 // screen-recording/screenshot via mediaSrc standing in until a phone-recorded
 // video is dropped in). 'image' = a plain standalone picture, no browser chrome.
-export type MobileAppKind = 'site' | 'image' | 'audio' | 'link' | 'text';
+// 'trash' opens the Trash as a folder overlay listing multiple files instead
+// of a single doc/site/image.
+export type MobileAppKind = 'site' | 'image' | 'audio' | 'link' | 'text' | 'trash';
 
 export interface MobileAppItem {
   id: string;
@@ -25,6 +27,9 @@ export interface MobileAppItem {
   // the default contain fit — 'cover' fills the tile edge-to-edge instead,
   // cropping top/bottom.
   iconFit?: 'cover';
+  // For kind 'image': fill the overlay edge-to-edge (cropping to cover)
+  // instead of the padded, letterboxed doc-style layout.
+  overlayFill?: boolean;
 }
 
 export const aboutInfo = {
@@ -73,6 +78,28 @@ export const contactInfo = {
   formEndpoint: 'https://formspree.io/f/mgogqkll',
 };
 
+// Files inside the Trash "folder" — more can be added here later.
+export const trashItems: MobileAppItem[] = [
+  {
+    id: 'body-hommage',
+    label: 'Body Hommage',
+    iconSrc: '/media/body-hommage/icon.png',
+    kind: 'site',
+    embedUrl: 'https://bodyhommage.com',
+    link: { url: 'https://bodyhommage.com' },
+    tags: ['visual branding', 'website design', 'web development with framer'],
+  },
+  {
+    id: 'body-hommage-logo',
+    label: 'Logo',
+    iconSrc: '/media/body-hommage-logo/logo.png',
+    iconBg: 'white',
+    kind: 'image',
+    mediaSrc: '/media/body-hommage-logo/logo.png',
+    mediaType: 'image',
+  },
+];
+
 // Everything that isn't About/Notes/Mail lives here, in a fixed grid order —
 // the dock only holds those three, matching the desktop dock's reduced set.
 export const gridApps: MobileAppItem[] = [
@@ -89,15 +116,6 @@ export const gridApps: MobileAppItem[] = [
       'booking system integration',
       'print media design',
     ],
-  },
-  {
-    id: 'body-hommage',
-    label: 'Body Hommage',
-    iconSrc: '/media/body-hommage/icon.png',
-    kind: 'site',
-    embedUrl: 'https://bodyhommage.com',
-    link: { url: 'https://bodyhommage.com' },
-    tags: ['visual branding', 'website design', 'web development with framer'],
   },
   {
     id: 'awake',
@@ -197,6 +215,7 @@ export const gridApps: MobileAppItem[] = [
     kind: 'image',
     mediaSrc: '/media/antispace-poster/media.jpg',
     mediaType: 'image',
+    overlayFill: true,
   },
   {
     id: 'antispace-flyer',
@@ -206,15 +225,14 @@ export const gridApps: MobileAppItem[] = [
     kind: 'image',
     mediaSrc: '/media/antispace-flyer/media.jpg',
     mediaType: 'image',
+    overlayFill: true,
   },
   {
     id: 'trash',
     label: 'Trash',
     iconSrc: '/icons/trash.png',
     iconBg: 'grey',
-    kind: 'image',
-    mediaSrc: '/media/body-hommage-logo/logo.png',
-    mediaType: 'image',
+    kind: 'trash',
   },
   {
     id: 'github',
