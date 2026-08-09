@@ -147,7 +147,7 @@ export const gridApps: MobileAppItem[] = [
       'long fins and a snorkel',
       'sunrise shack',
       'bio supermarkets',
-      'daydreaming of the farm I will own one day (manifesting!!)',
+      'daydreaming about the farm I will own one day (manifesting!!)',
       'pyjama sets',
       'heated rivalry',
       'photo booth',
