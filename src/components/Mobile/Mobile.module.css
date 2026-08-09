@@ -415,6 +415,10 @@
   line-height: 1.6;
 }
 
+.textLineBold {
+  font-weight: 700;
+}
+
 /* ---- About overlay ---- */
 
 .overlay {

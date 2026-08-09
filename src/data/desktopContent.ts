@@ -101,6 +101,7 @@ export const desktopItems: DesktopItem[] = [
     iconSrc: '/icons/txt-doc.png',
     textLines: [
       'Things that make me :)',
+      '',
       'that first sip of coffee in the morning',
       'long and short legged dogs',
       'the color pink',

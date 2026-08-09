@@ -194,8 +194,11 @@ function TextDoc({ app, onClose }: { app: MobileAppItem; onClose: () => void }) 
       <div className={styles.docScroll}>
         <div className={styles.textPad}>
           {app.textLines?.map((line, i) => (
-            <div key={i} className={styles.textLine}>
-              {line}
+            <div
+              key={i}
+              className={i === 0 ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}
+            >
+              {line || ' '}
             </div>
           ))}
         </div>

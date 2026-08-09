@@ -365,8 +365,11 @@ function WindowBody({
       return (
         <div className={styles.textPad}>
           {item.textLines?.map((line, i) => (
-            <div key={i} className={styles.textLine}>
-              {line}
+            <div
+              key={i}
+              className={i === 0 ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}
+            >
+              {line || ' '}
             </div>
           ))}
         </div>

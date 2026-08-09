@@ -221,6 +221,10 @@
   white-space: pre;
 }
 
+.textLineBold {
+  font-weight: 700;
+}
+
 .notesFrame {
   display: flex;
   flex: 1;
