@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import type { DesktopItem } from '../../data/desktopContent';
-import { useDrag } from '../../hooks/useDrag';
+import { useDrag, type Position } from '../../hooks/useDrag';
 import styles from './Window.module.css';
 
 function formatNoteDateShort(iso: string): string {
@@ -434,14 +434,21 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenIte
   const isFileTitle = item.kind === 'text' || item.kind === 'notes';
   const isFlushDoc = isFileTitle || item.kind === 'about';
   const step = (cascadeIndex % CASCADE_WRAP) * CASCADE_STEP_PX;
-  const { offset, handlers: dragHandlers } = useDrag();
+  // Drag distance persists here across pointer-ups; useDrag's own offset
+  // resets to zero right after each drag ends, so without folding it into
+  // this base position the window would snap back to its cascade spot.
+  const [basePosition, setBasePosition] = useState<Position>({ x: 0, y: 0 });
+  const handleDragEnd = (dragOffset: Position) => {
+    setBasePosition((prev) => ({ x: prev.x + dragOffset.x, y: prev.y + dragOffset.y }));
+  };
+  const { offset, handlers: dragHandlers } = useDrag(undefined, handleDragEnd);
 
   return (
     <div
       className={styles.windowWrapper}
       style={{
         zIndex,
-        transform: `translate(calc(-50% + ${step + offset.x}px), ${step + offset.y}px)`,
+        transform: `translate(calc(-50% + ${step + basePosition.x + offset.x}px), ${step + basePosition.y + offset.y}px)`,
       }}
       onPointerDown={onFocus}
     >
