@@ -61,7 +61,21 @@ function AppIcon({
   if (app.kind === 'link' && app.href) {
     return (
       <a className={styles.appIcon} href={app.href} target="_blank" rel="noreferrer">
-        <img className={glyphClass} src={app.iconSrc} alt="" />
+        <span className={styles.appGlyphWrapper}>
+          <img className={glyphClass} src={app.iconSrc} alt="" />
+          <span className={styles.linkBadge} aria-hidden="true">
+            <svg viewBox="0 0 10 10" width="8" height="8">
+              <path
+                d="M2.5 7.5L7.5 2.5M7.5 2.5H3.5M7.5 2.5V6.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+        </span>
         <span className={styles.appLabel}>{app.label}</span>
       </a>
     );

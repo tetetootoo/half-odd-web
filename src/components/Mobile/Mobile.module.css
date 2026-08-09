@@ -63,6 +63,22 @@
   object-fit: cover;
 }
 
+.linkBadge {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #2b1b24;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
 .playBadge {
   position: absolute;
   inset: 0;
@@ -234,19 +250,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.92);
   color: #2b1b24;
-  font-size: 13px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
 }
 
 .siteInfoBox {
   position: absolute;
-  top: 52px;
+  top: 58px;
   right: 14px;
   z-index: 1;
   width: 210px;
@@ -318,16 +335,17 @@
   right: 14px;
   top: 50%;
   transform: translateY(-50%);
-  width: 26px;
-  height: 26px;
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.12);
   color: #2b1b24;
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -357,16 +375,17 @@
   top: 14px;
   right: 14px;
   z-index: 1;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.92);
   color: #2b1b24;
-  font-size: 13px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -446,16 +465,17 @@
   right: 14px;
   top: 50%;
   transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.12);
   color: #2b1b24;
-  font-size: 13px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -529,16 +549,17 @@
   top: 14px;
   right: 14px;
   z-index: 1;
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.12);
   color: #2b1b24;
-  font-size: 13px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -672,13 +693,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   border: none;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.12);
   color: #2b1b24;
-  font-size: 13px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
 }
 
