@@ -82,7 +82,7 @@ export const contactInfo = {
 export const trashItems: MobileAppItem[] = [
   {
     id: 'body-hommage-logo',
-    label: 'Logo',
+    label: 'Body Hommage Logo',
     iconSrc: '/media/body-hommage-logo/logo.png',
     iconBg: 'white',
     kind: 'image',
