@@ -129,8 +129,8 @@ export const desktopItems: DesktopItem[] = [
     tags: ['concept development', 'frontend and backend dev', 'ui design'],
     description: 'VAT tracking app for freelancers in Denmark. Coming soon.',
     iconSrc: '/media/mom-spaghetti/icon.png',
-    mediaSrc: '/media/mom-spaghetti/media.png',
-    mediaType: 'image',
+    mediaSrc: '/media/mom-spaghetti/desktop.mov',
+    mediaType: 'video',
   },
   {
     id: 'antispace-poster',

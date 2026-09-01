@@ -184,9 +184,8 @@ export const gridApps: MobileAppItem[] = [
     iconSrc: '/media/mom-spaghetti/icon.png',
     iconBg: 'white',
     kind: 'site',
-    // Placeholder screenshot until a phone-recorded screen video is dropped in.
-    mediaSrc: '/media/mom-spaghetti/media.png',
-    mediaType: 'image',
+    mediaSrc: '/media/mom-spaghetti/phone.mov',
+    mediaType: 'video',
     tags: ['concept development', 'frontend and backend dev', 'ui design'],
     description: 'VAT tracking app for freelancers in Denmark. Coming soon.',
   },
