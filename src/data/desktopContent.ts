@@ -218,6 +218,17 @@ export const desktopItems: DesktopItem[] = [
     showLinkBadge: true,
     iconSrc: '/media/wrestling-octopi/icon.png',
   },
+  {
+    id: 'photo-portfolio',
+    label: 'Photo Portfolio',
+    kind: 'browser',
+    windowTitle: 'Photo Portfolio',
+    x: 16,
+    y: 28,
+    link: { url: 'https://theresaschantz.com' },
+    description: 'personal photography portfolio',
+    iconSrc: '/media/photo-portfolio/icon.png',
+  },
 ];
 
 export const systemWindows: DesktopItem[] = [

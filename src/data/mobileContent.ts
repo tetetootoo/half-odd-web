@@ -230,6 +230,15 @@ export const gridApps: MobileAppItem[] = [
     overlayFill: true,
   },
   {
+    id: 'photo-portfolio',
+    label: 'Photo Portfolio',
+    iconSrc: '/media/photo-portfolio/icon.png',
+    kind: 'site',
+    embedUrl: 'https://theresaschantz.com',
+    link: { url: 'https://theresaschantz.com' },
+    description: 'personal photography portfolio',
+  },
+  {
     id: 'trash',
     label: 'Trash',
     iconSrc: '/icons/trash.png',
