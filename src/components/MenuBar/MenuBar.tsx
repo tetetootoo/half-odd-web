@@ -16,7 +16,7 @@ export function MenuBar() {
 
   return (
     <header className={styles.menuBar}>
-      <div className={styles.logo} aria-hidden="true" />
+      <img className={styles.logo} src="/icons/logo.png" alt="" aria-hidden="true" />
       <div className={styles.right}>
         <svg
           className={styles.battery}
