@@ -7,7 +7,7 @@ import {
   trashItems,
   type MobileAppItem,
 } from '../../data/mobileContent';
-import { isHeading } from '../../data/textBlocks';
+import { isBoldLine, isHeading, stripBoldMarkers } from '../../data/textBlocks';
 import styles from './Mobile.module.css';
 
 const DOCK_ICONS = {
@@ -225,12 +225,11 @@ function TextDoc({
                   </div>
                 );
               }
+              const bold = i === 0 || isBoldLine(block);
+              const text = isBoldLine(block) ? stripBoldMarkers(block) : block;
               return (
-                <div
-                  key={i}
-                  className={i === 0 ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}
-                >
-                  {block || ' '}
+                <div key={i} className={bold ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}>
+                  {text || ' '}
                 </div>
               );
             }

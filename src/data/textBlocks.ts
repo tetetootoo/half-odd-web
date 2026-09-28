@@ -29,3 +29,15 @@ export function isHeading(block: TextBlock): block is string {
 export function stripHeadingPrefix(block: string): string {
   return block.slice(HEADING_PREFIX.length);
 }
+
+// A whole line wrapped in **double asterisks** — a bold pull-quote inside a
+// section rather than a new section headline, so it gets bold weight but
+// none of a headline's extra top/bottom spacing (reuses the plain
+// .textLine/.textLineBold treatment the doc title already uses).
+export function isBoldLine(block: TextBlock): block is string {
+  return typeof block === 'string' && block.startsWith('**') && block.endsWith('**') && block.length > 4;
+}
+
+export function stripBoldMarkers(block: string): string {
+  return block.slice(2, -2);
+}

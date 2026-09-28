@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import type { DesktopItem } from '../../data/desktopContent';
-import { isHeading, stripHeadingPrefix } from '../../data/textBlocks';
+import { isBoldLine, isHeading, stripBoldMarkers, stripHeadingPrefix } from '../../data/textBlocks';
 import { useDrag, type Position } from '../../hooks/useDrag';
 import styles from './Window.module.css';
 
@@ -374,12 +374,11 @@ function WindowBody({
                   </div>
                 );
               }
+              const bold = i === 0 || isBoldLine(block);
+              const text = isBoldLine(block) ? stripBoldMarkers(block) : block;
               return (
-                <div
-                  key={i}
-                  className={i === 0 ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}
-                >
-                  {block || ' '}
+                <div key={i} className={bold ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}>
+                  {text || ' '}
                 </div>
               );
             }
