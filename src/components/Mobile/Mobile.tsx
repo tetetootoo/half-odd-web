@@ -7,7 +7,7 @@ import {
   trashItems,
   type MobileAppItem,
 } from '../../data/mobileContent';
-import { isBoldLine, isHeading, stripBoldMarkers } from '../../data/textBlocks';
+import { isBoldLine, isHeading, stripBoldMarkers, withHeadingSpacers } from '../../data/textBlocks';
 import styles from './Mobile.module.css';
 
 const DOCK_ICONS = {
@@ -216,7 +216,7 @@ function TextDoc({
       </div>
       <div className={styles.docScroll}>
         <div className={styles.textPad}>
-          {app.textLines?.map((block, i) => {
+          {app.textLines && withHeadingSpacers(app.textLines).map((block, i) => {
             if (typeof block === 'string') {
               if (isHeading(block)) {
                 return (

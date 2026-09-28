@@ -1,6 +1,12 @@
 import { useState, type FormEvent } from 'react';
 import type { DesktopItem } from '../../data/desktopContent';
-import { isBoldLine, isHeading, stripBoldMarkers, stripHeadingPrefix } from '../../data/textBlocks';
+import {
+  isBoldLine,
+  isHeading,
+  stripBoldMarkers,
+  stripHeadingPrefix,
+  withHeadingSpacers,
+} from '../../data/textBlocks';
 import { useDrag, type Position } from '../../hooks/useDrag';
 import styles from './Window.module.css';
 
@@ -365,7 +371,7 @@ function WindowBody({
     case 'text':
       return (
         <div className={styles.textPad}>
-          {item.textLines?.map((block, i) => {
+          {item.textLines && withHeadingSpacers(item.textLines).map((block, i) => {
             if (typeof block === 'string') {
               if (isHeading(block)) {
                 return (
