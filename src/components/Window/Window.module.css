@@ -75,7 +75,7 @@
 }
 
 .fileName {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: #1c1319;
   text-transform: capitalize;
@@ -115,7 +115,7 @@
 }
 
 .title {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: #1c1319;
   text-transform: capitalize;
@@ -145,7 +145,7 @@
   );
   border-radius: 8px;
   color: #6b5a62;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .media {
@@ -192,7 +192,7 @@
   );
   border-radius: 8px;
   color: #6b5a62;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .contentFlush {
@@ -210,7 +210,7 @@
   padding: 18px 22px;
   overflow-y: auto;
   font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   color: #1c1319;
   text-align: left;
@@ -305,7 +305,7 @@
 }
 
 .noteListTitle {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: #1c1319;
 }
@@ -315,7 +315,7 @@
   width: 100%;
   gap: 6px;
   overflow: hidden;
-  font-size: 12px;
+  font-size: 13px;
   color: #8a7a80;
 }
 
@@ -339,21 +339,21 @@
 
 .notesDetailDate {
   margin-bottom: 18px;
-  font-size: 13px;
+  font-size: 14px;
   color: #9a8b90;
   text-align: center;
 }
 
 .notesDetailTitle {
   margin: 0 0 20px;
-  font-size: 30px;
+  font-size: 31px;
   font-weight: 700;
   color: #1c1319;
 }
 
 .notesDetailParagraph {
   margin: 0 0 18px;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: #1c1319;
   white-space: pre-line;
@@ -361,7 +361,7 @@
 
 .notesDetailSubheading {
   margin: 24px 0 18px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: #1c1319;
 }
@@ -408,19 +408,19 @@
 }
 
 .mailListSender {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: #1c1319;
 }
 
 .mailListDate {
   flex-shrink: 0;
-  font-size: 11px;
+  font-size: 12px;
   color: #8a7a80;
 }
 
 .mailListSubject {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: #1c1319;
 }
@@ -431,7 +431,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.4;
   color: #8a7a80;
 }
@@ -455,7 +455,7 @@
   gap: 12px;
   padding: 10px 0;
   border-bottom: 1px solid #ece7ea;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .mailFormLabel {
@@ -486,7 +486,7 @@
   resize: none;
   background: transparent;
   font: inherit;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   color: #1c1319;
   outline: none;
@@ -506,7 +506,7 @@
   background: #3b82f6;
   color: #fff;
   font: inherit;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.15s ease;
@@ -522,7 +522,7 @@
 }
 
 .mailFormError {
-  font-size: 12px;
+  font-size: 13px;
   color: #c0392b;
 }
 
@@ -570,7 +570,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.3;
   color: #1c1319;
   text-align: center;
@@ -584,7 +584,7 @@
   width: 100%;
   background: #fff;
   color: #8a7a80;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .browserFrame {
@@ -635,7 +635,7 @@
   border-radius: 13px;
   background: #fff;
   color: #4a3d43;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .browserViewport {
@@ -664,7 +664,7 @@
   background: #fff;
   color: #1c1319;
   opacity: 0.75;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   pointer-events: none;
@@ -700,7 +700,7 @@
   padding: 20px 24px 24px;
   overflow-y: auto;
   font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
   color: #1c1319;
@@ -799,7 +799,7 @@
   display: flex;
   flex-direction: column;
   font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
   color: #6b5a62;
@@ -807,7 +807,7 @@
 
 .link {
   font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
   color: #a8517a;
@@ -821,7 +821,7 @@
 .description {
   margin: 0;
   font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
   color: #4a3d43;
