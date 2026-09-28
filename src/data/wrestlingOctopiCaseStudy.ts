@@ -24,6 +24,7 @@ export const WRESTLING_OCTOPI_CASE_STUDY: TextBlock[] = [
   'Product Strategy · UX/UI · Interaction Design · Visual Design · Front-End Development · Back-End Development · AI Integration',
   '## Stack',
   'React · TypeScript · Vite · Tailwind · Zustand · Node.js · Express · PostgreSQL · Prisma · Redis · BullMQ · Instagram API · Claude API · Playwright',
+  '',
   '## 01 · The problem started with my own workflow',
   'I started working more closely with social media and wanted a tool that could take some of the repetitive work out of the process.',
   'There were already plenty of platforms built for this. The problem was that the ones I tried tended to fall into one of three categories: they were expensive, they were missing parts of the workflow I wanted, or they had accumulated so much functionality that using them felt like another task in itself.',

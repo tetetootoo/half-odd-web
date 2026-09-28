@@ -234,7 +234,7 @@ export const desktopItems: DesktopItem[] = [
     // overlay to reuse), so this opens the same URL in a new tab.
     textLines: [
       ...WRESTLING_OCTOPI_CASE_STUDY,
-      { href: 'https://wrestlingoctopi.com', label: 'view wrestling octopi here' },
+      { href: 'https://wrestlingoctopi.com', label: 'View Wrestling Octopi here' },
     ],
   },
   {

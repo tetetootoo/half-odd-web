@@ -190,7 +190,7 @@ export const gridApps: MobileAppItem[] = [
     // wrestling-octopi is a 'site' overlay on mobile, so reuse it in place.
     textLines: [
       ...WRESTLING_OCTOPI_CASE_STUDY,
-      { openId: 'wrestling-octopi', label: 'view wrestling octopi here' },
+      { openId: 'wrestling-octopi', label: 'View Wrestling Octopi here' },
     ],
   },
   {
