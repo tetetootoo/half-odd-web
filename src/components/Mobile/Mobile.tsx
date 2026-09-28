@@ -7,6 +7,7 @@ import {
   trashItems,
   type MobileAppItem,
 } from '../../data/mobileContent';
+import { isHeading } from '../../data/textBlocks';
 import styles from './Mobile.module.css';
 
 const DOCK_ICONS = {
@@ -196,7 +197,15 @@ function SiteFrame({ app, onBack }: { app: MobileAppItem; onBack: () => void }) 
   );
 }
 
-function TextDoc({ app, onClose }: { app: MobileAppItem; onClose: () => void }) {
+function TextDoc({
+  app,
+  onClose,
+  onOpenApp,
+}: {
+  app: MobileAppItem;
+  onClose: () => void;
+  onOpenApp: (id: string) => void;
+}) {
   return (
     <div className={styles.docOverlay}>
       <div className={styles.docHeader}>
@@ -208,14 +217,34 @@ function TextDoc({ app, onClose }: { app: MobileAppItem; onClose: () => void }) 
       <div className={styles.docScroll}>
         <div className={styles.textPad}>
           {app.textLines?.map((block, i) => {
-            if (typeof block !== 'string') {
-              return 'images' in block ? (
+            if (typeof block === 'string') {
+              if (isHeading(block)) {
+                return (
+                  <div key={i} className={styles.textHeading}>
+                    {stripHeadingPrefix(block)}
+                  </div>
+                );
+              }
+              return (
+                <div
+                  key={i}
+                  className={i === 0 ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}
+                >
+                  {block || ' '}
+                </div>
+              );
+            }
+            if ('images' in block) {
+              return (
                 <div key={i} className={styles.textImageRow}>
                   {block.images.map((src) => (
                     <img key={src} className={styles.textImage} src={src} alt="" />
                   ))}
                 </div>
-              ) : (
+              );
+            }
+            if ('image' in block) {
+              return (
                 <img
                   key={i}
                   className={styles.textImageFull}
@@ -224,13 +253,30 @@ function TextDoc({ app, onClose }: { app: MobileAppItem; onClose: () => void }) 
                 />
               );
             }
+            if ('openId' in block) {
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  className={styles.textLink}
+                  onClick={() => onOpenApp(block.openId)}
+                >
+                  {block.label}
+                  <span aria-hidden="true"> ↗</span>
+                </button>
+              );
+            }
             return (
-              <div
+              <a
                 key={i}
-                className={i === 0 ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}
+                className={styles.textLink}
+                href={block.href}
+                target="_blank"
+                rel="noreferrer"
               >
-                {block || ' '}
-              </div>
+                {block.label}
+                <span aria-hidden="true"> ↗</span>
+              </a>
             );
           })}
         </div>
@@ -551,7 +597,7 @@ export function Mobile() {
         <SiteFrame app={openApp} onBack={() => setOpenId(null)} />
       )}
       {openApp && openApp.kind === 'text' && (
-        <TextDoc app={openApp} onClose={() => setOpenId(null)} />
+        <TextDoc app={openApp} onClose={() => setOpenId(null)} onOpenApp={(id) => setOpenId(id)} />
       )}
       {openApp && openApp.kind === 'image' && (
         <ImageDoc app={openApp} onClose={() => setOpenId(null)} />

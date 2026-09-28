@@ -17,6 +17,11 @@ images, so it's a quick add.
 - `image-5`, `image-6`, `image-7` — end of section 04
 - `image-10` — right before section 06
 
-The `wrestling octopi ↗` line at the very end is a link back to
-wrestlingoctopi.com, not an image — nothing to drop for that one, though
-it's still plain text rather than a clickable link on the site itself.
+Images (and the side-by-side image-3/image-4 pair) render at 50% width,
+centered. `brand-image` is auto-cropped to its visible content, trimming
+the transparent padding around it.
+
+"view wrestling octopi here" at the end is now a bold, working link with
+an arrow — on mobile it opens the Wrestling Octopi overlay in place, on
+desktop (which has no overlay for it) it opens wrestlingoctopi.com in a
+new tab. Nothing to drop for that one.

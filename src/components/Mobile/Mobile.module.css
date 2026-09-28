@@ -432,23 +432,45 @@
 
 .textLine {
   line-height: 1.6;
+  margin-bottom: 14px;
 }
 
 .textLineBold {
   font-weight: 700;
 }
 
+.textHeading {
+  font-weight: 700;
+  line-height: 1.6;
+  margin: 26px 0 12px;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-weight: 700;
+  color: #a8517a;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .textImageFull {
   display: block;
-  width: 100%;
-  margin: 4px 0;
+  width: 50%;
+  margin: 16px auto;
   border-radius: 8px;
 }
 
 .textImageRow {
   display: flex;
   gap: 8px;
-  margin: 4px 0;
+  width: 50%;
+  margin: 16px auto;
 }
 
 .textImageRow .textImage {

@@ -229,7 +229,12 @@ export const desktopItems: DesktopItem[] = [
     x: 33.5,
     y: 62.5,
     iconSrc: '/icons/txt-doc.png',
-    textLines: WRESTLING_OCTOPI_CASE_STUDY,
+    // wrestling-octopi is a direct external link on desktop (no internal
+    // overlay to reuse), so this opens the same URL in a new tab.
+    textLines: [
+      ...WRESTLING_OCTOPI_CASE_STUDY,
+      { href: 'https://wrestlingoctopi.com', label: 'view wrestling octopi here' },
+    ],
   },
   {
     id: 'photo-portfolio',

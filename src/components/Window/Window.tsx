@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import type { DesktopItem } from '../../data/desktopContent';
+import { isHeading, stripHeadingPrefix } from '../../data/textBlocks';
 import { useDrag, type Position } from '../../hooks/useDrag';
 import styles from './Window.module.css';
 
@@ -365,14 +366,34 @@ function WindowBody({
       return (
         <div className={styles.textPad}>
           {item.textLines?.map((block, i) => {
-            if (typeof block !== 'string') {
-              return 'images' in block ? (
+            if (typeof block === 'string') {
+              if (isHeading(block)) {
+                return (
+                  <div key={i} className={styles.textHeading}>
+                    {stripHeadingPrefix(block)}
+                  </div>
+                );
+              }
+              return (
+                <div
+                  key={i}
+                  className={i === 0 ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}
+                >
+                  {block || ' '}
+                </div>
+              );
+            }
+            if ('images' in block) {
+              return (
                 <div key={i} className={styles.textImageRow}>
                   {block.images.map((src) => (
                     <img key={src} className={styles.textImage} src={src} alt="" />
                   ))}
                 </div>
-              ) : (
+              );
+            }
+            if ('image' in block) {
+              return (
                 <img
                   key={i}
                   className={styles.textImageFull}
@@ -381,13 +402,30 @@ function WindowBody({
                 />
               );
             }
+            if ('openId' in block) {
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  className={styles.textLink}
+                  onClick={() => onOpenItem(block.openId)}
+                >
+                  {block.label}
+                  <span aria-hidden="true"> ↗</span>
+                </button>
+              );
+            }
             return (
-              <div
+              <a
                 key={i}
-                className={i === 0 ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}
+                className={styles.textLink}
+                href={block.href}
+                target="_blank"
+                rel="noreferrer"
               >
-                {block || ' '}
-              </div>
+                {block.label}
+                <span aria-hidden="true"> ↗</span>
+              </a>
             );
           })}
         </div>

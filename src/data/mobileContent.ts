@@ -186,7 +186,11 @@ export const gridApps: MobileAppItem[] = [
     label: 'wrestling octopi case study.txt',
     iconSrc: '/icons/txt-icon.png',
     kind: 'text',
-    textLines: WRESTLING_OCTOPI_CASE_STUDY,
+    // wrestling-octopi is a 'site' overlay on mobile, so reuse it in place.
+    textLines: [
+      ...WRESTLING_OCTOPI_CASE_STUDY,
+      { openId: 'wrestling-octopi', label: 'view wrestling octopi here' },
+    ],
   },
   {
     id: 'mom-spaghetti',
