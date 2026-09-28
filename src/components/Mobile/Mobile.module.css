@@ -441,6 +441,14 @@
   font-weight: 700;
 }
 
+.textTitle {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 14px;
+  overflow-wrap: anywhere;
+}
+
 .textHeading {
   font-weight: 700;
   line-height: 1.6;

@@ -42,15 +42,16 @@ export function stripBoldMarkers(block: string): string {
   return block.slice(2, -2);
 }
 
-// Inserts one blank spacer line before and after every headline (and one
-// after the doc's own bold title, block 0), so authors don't need to hand-
-// place blank-string entries around every '## ' line in the source data.
-// Skips inserting a spacer where the data already supplies one, so content
-// that wants *extra* space can still add its own blank entries on top.
+// Inserts one blank spacer line before and after every headline, so authors
+// don't need to hand-place blank-string entries around every '## ' line in
+// the source data. Skips inserting a spacer where the data already
+// supplies one, so content that wants *extra* space can still add its own
+// blank entries on top. Deliberately doesn't touch the doc's own title
+// (block 0) — the hero block (title, tagline, Role/Scope/Stack-style
+// labels) stays tight; only real section headlines get this treatment.
 export function withHeadingSpacers(blocks: TextBlock[]): TextBlock[] {
   const out: TextBlock[] = [];
   blocks.forEach((block, i) => {
-    const isTitle = i === 0 && typeof block === 'string' && !isHeading(block);
     const headline = isHeading(block);
 
     if (headline && out.length > 0 && out[out.length - 1] !== '') {
@@ -59,7 +60,7 @@ export function withHeadingSpacers(blocks: TextBlock[]): TextBlock[] {
 
     out.push(block);
 
-    if ((headline || isTitle) && blocks[i + 1] !== '') {
+    if (headline && blocks[i + 1] !== '') {
       out.push('');
     }
   });

@@ -380,8 +380,15 @@ function WindowBody({
                   </div>
                 );
               }
-              const bold = i === 0 || isBoldLine(block);
-              const text = isBoldLine(block) ? stripBoldMarkers(block) : block;
+              if (i === 0) {
+                return (
+                  <div key={i} className={styles.textTitle}>
+                    {block}
+                  </div>
+                );
+              }
+              const bold = isBoldLine(block);
+              const text = bold ? stripBoldMarkers(block) : block;
               return (
                 <div key={i} className={bold ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}>
                   {text || ' '}
