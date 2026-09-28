@@ -1,3 +1,5 @@
+import { WRESTLING_OCTOPI_CASE_STUDY } from './wrestlingOctopiCaseStudy';
+
 export type WindowKind =
   | 'project'
   | 'image'
@@ -217,6 +219,16 @@ export const desktopItems: DesktopItem[] = [
     link: { url: 'https://wrestlingoctopi.com' },
     showLinkBadge: true,
     iconSrc: '/media/wrestling-octopi/icon.png',
+  },
+  {
+    id: 'wrestling-octopi-case-study',
+    label: 'wrestling octopi case study.txt',
+    kind: 'text',
+    windowTitle: 'wrestling octopi case study.txt',
+    x: 33.5,
+    y: 62.5,
+    iconSrc: '/icons/txt-doc.png',
+    textLines: WRESTLING_OCTOPI_CASE_STUDY,
   },
   {
     id: 'photo-portfolio',

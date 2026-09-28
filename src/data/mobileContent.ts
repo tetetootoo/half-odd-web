@@ -1,3 +1,5 @@
+import { WRESTLING_OCTOPI_CASE_STUDY } from './wrestlingOctopiCaseStudy';
+
 // 'site' = shown inside a Safari-style chrome (live iframe via embedUrl, or a
 // screen-recording/screenshot via mediaSrc standing in until a phone-recorded
 // video is dropped in). 'image' = a plain standalone picture, no browser chrome.
@@ -177,6 +179,13 @@ export const gridApps: MobileAppItem[] = [
       'online deployment',
     ],
     description: 'instagram business profile manager for desktop',
+  },
+  {
+    id: 'wrestling-octopi-case-study',
+    label: 'wrestling octopi case study.txt',
+    iconSrc: '/icons/txt-icon.png',
+    kind: 'text',
+    textLines: WRESTLING_OCTOPI_CASE_STUDY,
   },
   {
     id: 'mom-spaghetti',
