@@ -364,14 +364,32 @@ function WindowBody({
     case 'text':
       return (
         <div className={styles.textPad}>
-          {item.textLines?.map((line, i) => (
-            <div
-              key={i}
-              className={i === 0 ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}
-            >
-              {line || ' '}
-            </div>
-          ))}
+          {item.textLines?.map((block, i) => {
+            if (typeof block !== 'string') {
+              return 'images' in block ? (
+                <div key={i} className={styles.textImageRow}>
+                  {block.images.map((src) => (
+                    <img key={src} className={styles.textImage} src={src} alt="" />
+                  ))}
+                </div>
+              ) : (
+                <img
+                  key={i}
+                  className={styles.textImageFull}
+                  src={block.image}
+                  alt={block.alt ?? ''}
+                />
+              );
+            }
+            return (
+              <div
+                key={i}
+                className={i === 0 ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}
+              >
+                {block || ' '}
+              </div>
+            );
+          })}
         </div>
       );
     case 'notes':

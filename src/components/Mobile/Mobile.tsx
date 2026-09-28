@@ -207,14 +207,32 @@ function TextDoc({ app, onClose }: { app: MobileAppItem; onClose: () => void }) 
       </div>
       <div className={styles.docScroll}>
         <div className={styles.textPad}>
-          {app.textLines?.map((line, i) => (
-            <div
-              key={i}
-              className={i === 0 ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}
-            >
-              {line || ' '}
-            </div>
-          ))}
+          {app.textLines?.map((block, i) => {
+            if (typeof block !== 'string') {
+              return 'images' in block ? (
+                <div key={i} className={styles.textImageRow}>
+                  {block.images.map((src) => (
+                    <img key={src} className={styles.textImage} src={src} alt="" />
+                  ))}
+                </div>
+              ) : (
+                <img
+                  key={i}
+                  className={styles.textImageFull}
+                  src={block.image}
+                  alt={block.alt ?? ''}
+                />
+              );
+            }
+            return (
+              <div
+                key={i}
+                className={i === 0 ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}
+              >
+                {block || ' '}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

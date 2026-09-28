@@ -1,6 +1,14 @@
+import type { TextBlock } from './textBlocks';
+
+const MEDIA = '/media/wrestling-octopi-case-study';
+
 // Shared between mobile and desktop so the "wrestling octopi case study.txt"
 // overlay reads identically on both platforms.
-export const WRESTLING_OCTOPI_CASE_STUDY: string[] = [
+//
+// Image/graphic slots not yet dropped in are simply skipped here — see
+// public/media/wrestling-octopi-case-study/README.md for which filenames
+// are still missing and where they go.
+export const WRESTLING_OCTOPI_CASE_STUDY: TextBlock[] = [
   'Wrestling Octopi',
   'Designing and engineering a social media workspace I wanted to use myself.',
   'Independent Product · 2026 - Present',
@@ -22,7 +30,7 @@ export const WRESTLING_OCTOPI_CASE_STUDY: string[] = [
   'So instead of adapting my workflow to another platform, I started building the one I wanted to use.',
   'Wrestling Octopi became an experiment in how much capability I could bring into one product without making the experience feel like it contained that much capability.',
   '',
-  '[image 1]',
+  { image: `${MEDIA}/image-1.png` },
   '',
   "02 · Researching what I didn't want to build",
   'My early design process started with existing social media management tools.',
@@ -30,8 +38,6 @@ export const WRESTLING_OCTOPI_CASE_STUDY: string[] = [
   'At the same time, I collected references from products and websites completely outside the social-media category whose clarity, hierarchy or interaction I liked.',
   "The objective wasn't to recreate one competitor.",
   'I wanted the functionality of a serious social media tool with the restraint of products that feel much simpler than they really are.',
-  '',
-  '[image 2]',
   '',
   "03 · AI could build an interface. It couldn't decide what mine should feel like.",
   'Because I was already experimenting heavily with AI-assisted development, I initially let AI take a larger role in generating the interface.',
@@ -43,8 +49,7 @@ export const WRESTLING_OCTOPI_CASE_STUDY: string[] = [
   'That became an important turning point in the project. I stopped treating AI output as finished design and moved back into the interface manually - removing unnecessary containers, reconsidering hierarchy and spacing, simplifying components, and establishing a visual language deliberately rather than accepting the first coherent implementation.',
   'AI remained useful for producing software quickly. Taste still had to come from me.',
   '',
-  '[image 3]',
-  '[image 4] (side by side with image 3)',
+  { images: [`${MEDIA}/image-3.png`, `${MEDIA}/image-4.png`] },
   '',
   '04 · Making a powerful system feel direct',
   "This is where I'd use the real design-engineering example I found.",
@@ -58,10 +63,6 @@ export const WRESTLING_OCTOPI_CASE_STUDY: string[] = [
   'So I pushed system complexity into contextual feedback instead: small status indicators when state matters, publishing progress while an action is happening, retry controls when something fails, and direct manipulation for the primary planning interaction.',
   'The engineering became part of the interface design.',
   "The system could be complicated. The interaction shouldn't feel complicated.",
-  '',
-  '[image 5]',
-  '[image 6]',
-  '[image 7]',
   '',
   '05 · Designing around creation rather than navigation',
   'I would then introduce the broader product.',
@@ -78,16 +79,14 @@ export const WRESTLING_OCTOPI_CASE_STUDY: string[] = [
   'The goal is not to make every feature visible.',
   'It is to make the next action obvious.',
   '',
-  '[image 8]',
-  '[image 9]',
-  '',
-  '[image 10]',
+  { image: `${MEDIA}/image-8.png` },
+  { image: `${MEDIA}/image-9.png` },
   '',
   '06 · Building the product behind the interface',
   'Wrestling Octopi is not a prototype.',
   'I designed and built the application across frontend, backend, data, asynchronous processing and external services.',
   '',
-  '[graphic 1]',
+  { image: `${MEDIA}/graphic-1.png` },
   '',
   "The technical goal was never complexity for its own sake. It was to build enough infrastructure that complexity didn't have to become part of the user's workflow.",
   '',
@@ -110,7 +109,7 @@ export const WRESTLING_OCTOPI_CASE_STUDY: string[] = [
   'Observe → question → design → build → use → reconsider → build again.',
   'Wrestling Octopi is still evolving toward launch, but that loop has already changed how I think about designing software.',
   '',
-  '[brand image]',
+  { image: `${MEDIA}/brand-image.png` },
   '',
   'wrestling octopi ↗',
 ];

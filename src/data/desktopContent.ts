@@ -1,4 +1,5 @@
 import { WRESTLING_OCTOPI_CASE_STUDY } from './wrestlingOctopiCaseStudy';
+import type { TextBlock } from './textBlocks';
 
 export type WindowKind =
   | 'project'
@@ -44,7 +45,7 @@ export interface DesktopItem {
   showLinkBadge?: boolean;
   showScrollHint?: boolean;
   description?: string;
-  textLines?: string[];
+  textLines?: TextBlock[];
   mediaSrc?: string;
   mediaType?: 'image' | 'video';
   posterSrc?: string;

@@ -1,4 +1,5 @@
 import { WRESTLING_OCTOPI_CASE_STUDY } from './wrestlingOctopiCaseStudy';
+import type { TextBlock } from './textBlocks';
 
 // 'site' = shown inside a Safari-style chrome (live iframe via embedUrl, or a
 // screen-recording/screenshot via mediaSrc standing in until a phone-recorded
@@ -14,7 +15,7 @@ export interface MobileAppItem {
   kind: MobileAppKind;
   href?: string;
   audioSrc?: string;
-  textLines?: string[];
+  textLines?: TextBlock[];
   link?: { url: string };
   embedUrl?: string;
   mediaSrc?: string;
