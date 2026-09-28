@@ -209,6 +209,7 @@
   background: #fff;
   padding: 18px 22px;
   overflow-y: auto;
+  overflow-x: hidden;
   font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
   font-size: 12px;
   font-weight: 400;
@@ -218,7 +219,8 @@
 
 .textLine {
   line-height: 1.5;
-  white-space: pre;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   margin-bottom: 10px;
 }
 
@@ -230,6 +232,7 @@
   font-weight: 700;
   line-height: 1.5;
   margin: 20px 0 8px;
+  overflow-wrap: anywhere;
 }
 
 .textLink {

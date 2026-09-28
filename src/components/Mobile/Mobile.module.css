@@ -353,6 +353,7 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding: 20px;
 }
@@ -433,6 +434,7 @@
 .textLine {
   line-height: 1.6;
   margin-bottom: 14px;
+  overflow-wrap: anywhere;
 }
 
 .textLineBold {
@@ -443,6 +445,7 @@
   font-weight: 700;
   line-height: 1.6;
   margin: 26px 0 12px;
+  overflow-wrap: anywhere;
 }
 
 .textLink {
