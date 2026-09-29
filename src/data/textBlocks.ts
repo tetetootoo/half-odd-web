@@ -4,27 +4,22 @@
 // textLines (":).txt", Notes, etc.) don't need to change at all — only
 // content that actually needs one of these uses the object forms.
 //
-// Authoring conventions for plain strings:
-//   '## Text'        section headline
-//   '**Text**'       a whole line wrapped in this is bold emphasis at full
-//                     tier weight — a big mid-document pull-quote once past
-//                     the doc's opening hero block, or a small bold field
-//                     label (like "Role") while still inside it
-//   'a **word** mid'  inline emphasis inside an ordinary line — rendered as
-//                     a <strong> run within its normal tier, not upgraded
-//   plain text        everything else
-//
-// layoutTextDoc() below turns a raw TextBlock[] into fully-resolved render
-// instructions — which type-scale tier each line belongs to, spacing, and
-// display text (inline **markers** preserved for the renderer to bold) —
-// so components don't re-derive any of this.
+// Plain strings use literal, ordinary markdown heading syntax — no
+// position-based or content-based guessing:
+//   '# Text'    -> h1 (the doc's own title)
+//   '## Text'   -> section heading
+//   '### Text'  -> intro/large text
+//   plain text  -> body, with **bold** rendered inline wherever it appears
+// Everything else that needs its own visual treatment (a big standalone
+// statement, a small-caps metadata fact, an eyebrow label, ...) is an
+// explicit block below rather than something inferred from a string.
 export type TextBlock =
   | string
   | { image: string; alt?: string }
   | { images: string[] }
   // A not-yet-supplied asset slot — renders nothing on the site, exists so
-  // the doc's structure (and the hero-block/body boundary below) stays
-  // correct while real files are pending. `note` is dev-facing only.
+  // the doc's structure stays correct while real files are pending. `note`
+  // is dev-facing only.
   | { pending: string }
   // Opens another item's own overlay/window in place — for a case-study
   // link like "View Wrestling Octopi here" that should reuse the site's
@@ -34,23 +29,27 @@ export type TextBlock =
   // has no internal overlay to reuse (e.g. a desktop icon that's a direct
   // external link, or a link with no internal overlay at all like GitHub).
   | { href: string; label: string }
-  // A reusable text+visual split section (not Wrestling-Octopi-specific):
-  // a narrow text column (eyebrow label, body paragraphs, an optional
-  // closing statement rendered more prominently than body but well under
-  // section-headline scale) beside one dominant visual. `orientation`
-  // and `textRatio` control which side the text sits on and how wide it
-  // is; both platforms render it (desktop as true side-by-side, mobile
-  // always stacked text-first regardless of `orientation` — there's no
-  // room for a real column split on a phone). The visual auto-falls-back
-  // to a placeholder (matching the same box's dimensions) if `visualSrc`
-  // 404s, so the real file can be dropped in later with no layout change.
+  // A reusable text+visual split section (not project-specific): a narrow
+  // text column (eyebrow label, body paragraphs, an optional closing
+  // statement rendered more prominently than body but well under
+  // section-headline scale) beside one dominant visual. `orientation` and
+  // `textRatio` control which side the text sits on and how wide it is;
+  // both platforms render it (desktop as true side-by-side, mobile always
+  // stacked text-first regardless of `orientation` — there's no room for a
+  // real column split on a phone). The visual auto-falls-back to a
+  // placeholder (matching the same box's dimensions) if `visualSrc` 404s,
+  // so the real file can be dropped in later with no layout change.
   | { splitSection: SplitMediaSection }
-  // A small caps label rendered above the doc's H1 (e.g. a project name
-  // sitting above its own headline sentence). Optional — most docs don't
-  // need one and just start straight at the title (index 0 = h1, as
-  // always). When present as the very first block, the H1 becomes
-  // whichever string block comes next instead of index 0.
+  // A small caps label rendered above the doc's own H1.
   | { eyebrow: string }
+  // A big standalone editorial statement (pull-quote scale) — the
+  // explicit way to get majorStatement tier, since it's not inferred from
+  // markdown syntax. Supports an embedded '\n' for a manual line break.
+  | { statement: string }
+  // One or more small-caps facts (a date range, "Role" + its value, ...).
+  // A single string is one line; an array renders each on its own line at
+  // the same tier, tightly spaced — for label/value pairs, etc.
+  | { metadata: string | string[] }
   // A native HTML/CSS node-and-connector diagram — university/SAP-Graph
   // style trees, simple chains, small interaction sketches. See
   // FlowDiagramData below.
@@ -114,22 +113,9 @@ export type TextTier =
   | 'h1'
   | 'introLarge'
   | 'metadata'
-  | 'metadataBold'
   | 'sectionHeading'
   | 'majorStatement'
   | 'body';
-
-export const HEADING_PREFIX = '## ';
-
-function isHeadingLine(text: string): boolean {
-  return text.startsWith(HEADING_PREFIX);
-}
-
-// A whole line wrapped in **double asterisks**, vs. just containing one
-// somewhere in the middle (that's inline emphasis, handled by parseInline).
-function isWholeLineBold(text: string): boolean {
-  return text.startsWith('**') && text.endsWith('**') && text.length > 4 && text.indexOf('**', 2) === text.length - 2;
-}
 
 export type LaidOutBlock =
   | { kind: 'text'; tier: TextTier; text: string }
@@ -145,47 +131,20 @@ export type LaidOutBlock =
   | { kind: 'narrow'; paragraphs: string[] }
   | { kind: 'escalatingStatement'; first: string; second: string };
 
-// Resolves raw content into what to render: tier assignment (see rules
-// below), display text (inline **markers** left intact for parseInline),
-// and one blank spacer line auto-inserted before/after every section
-// headline (skipped where the data already supplies one, so content that
-// wants *extra* space can add its own blank entries on top).
-//
-// Tier rules, by position/marker — no extra authoring needed beyond the
-// '## '/'**...**' conventions above:
-//   an { eyebrow } block        -> its own 'eyebrow' tier, doesn't affect
-//                                  anything else below
-//   the first string block      -> h1 (normally index 0, or index 1 if an
-//                                  eyebrow sits at index 0)
-//   the string right after h1,
-//     specifically at index 1   -> introLarge (the tagline under it) — a
-//                                  doc that opens with an eyebrow (pushing
-//                                  h1 to index 1) skips this automatically,
-//                                  since nothing reaches index 1 as a fresh
-//                                  string there
-//   inside the hero block       -> metadata / metadataBold (short facts
-//                                  like "SAP · Berlin · 2020-2021" or bold
-//                                  field labels like "Role"). The hero
-//                                  block runs from after h1/introLarge
-//                                  until whichever comes first: a '## '
-//                                  heading, any non-text block (image/
-//                                  pending/link/diagram/etc.), or a plain
-//                                  line over 150 characters — real prose
-//                                  reliably reads longer than hero facts
-//                                  even combined, so a doc that goes
-//                                  straight from its meta line into real
-//                                  paragraphs (no heading or media forcing
-//                                  the zone closed first) still reads as
-//                                  body copy once the content stops
-//                                  looking like a fact.
-//   a '## ' line                -> sectionHeading
-//   a whole-line '**bold**'     -> majorStatement (pull-quote) once past
-//                                  the hero block, metadataBold inside it
-//   everything else             -> body (inline **bold** rendered inline)
+const HEADING_TIER: [prefix: string, tier: TextTier][] = [
+  ['### ', 'introLarge'],
+  ['## ', 'sectionHeading'],
+  ['# ', 'h1'],
+];
+
+// Resolves raw content into what to render: literal '#'/'##'/'###' heading
+// syntax maps straight to its tier, one blank spacer line is auto-inserted
+// before/after every '## ' section heading (skipped where the data already
+// supplies one, so content that wants *extra* space can add its own blank
+// entries on top), and everything else is body copy with inline **bold**
+// left intact for parseInline to render.
 export function layoutTextDoc(blocks: TextBlock[]): LaidOutBlock[] {
   const out: LaidOutBlock[] = [];
-  let inHeroBlock = true;
-  let h1Assigned = false;
 
   const pushText = (tier: TextTier, text: string) => {
     out.push({ kind: 'text', tier, text: text || ' ' });
@@ -197,10 +156,12 @@ export function layoutTextDoc(blocks: TextBlock[]): LaidOutBlock[] {
     if (typeof block !== 'string') {
       if ('eyebrow' in block) {
         pushText('eyebrow', block.eyebrow);
-        return;
-      }
-      inHeroBlock = false;
-      if ('images' in block) {
+      } else if ('statement' in block) {
+        pushText('majorStatement', block.statement);
+      } else if ('metadata' in block) {
+        const lines = Array.isArray(block.metadata) ? block.metadata : [block.metadata];
+        lines.forEach((line) => pushText('metadata', line));
+      } else if ('images' in block) {
         out.push({ kind: 'images', images: block.images });
       } else if ('image' in block) {
         out.push({ kind: 'image', image: block.image, alt: block.alt });
@@ -234,54 +195,28 @@ export function layoutTextDoc(blocks: TextBlock[]): LaidOutBlock[] {
       return;
     }
 
-    if (!h1Assigned) {
-      h1Assigned = true;
-      pushText('h1', block);
-      return;
-    }
-    if (i === 1 && block !== '') {
-      pushText('introLarge', block);
-      return;
-    }
-    if (isHeadingLine(block)) {
-      inHeroBlock = false;
-      if (out.length > 0 && !isBlank(out[out.length - 1])) {
+    const heading = HEADING_TIER.find(([prefix]) => block.startsWith(prefix));
+    if (heading) {
+      const [prefix, tier] = heading;
+      if (tier === 'sectionHeading' && out.length > 0 && !isBlank(out[out.length - 1])) {
         pushText('body', '');
       }
-      pushText('sectionHeading', block.slice(HEADING_PREFIX.length));
-      if (blocks[i + 1] !== '') {
+      pushText(tier, block.slice(prefix.length));
+      if (tier === 'sectionHeading' && blocks[i + 1] !== '') {
         pushText('body', '');
       }
       return;
     }
-    if (inHeroBlock) {
-      const bold = isWholeLineBold(block);
-      const content = bold ? block.slice(2, -2) : block;
-      // Hero-zone facts (dates, role/scope lines) read short even
-      // combined; real prose reliably doesn't. A doc with no heading or
-      // media between its meta line and its opening paragraphs (nothing
-      // else forces the zone closed) still needs to fall through to
-      // body/majorStatement once the content stops looking like a fact.
-      if (content.length <= 150) {
-        pushText(bold ? 'metadataBold' : 'metadata', content);
-        return;
-      }
-      inHeroBlock = false;
-    }
-    if (isWholeLineBold(block)) {
-      pushText('majorStatement', block.slice(2, -2));
-      return;
-    }
+
     pushText('body', block);
   });
 
   return out;
 }
 
-// Splits a line's remaining **bold** markers into plain/bold runs for
-// inline rendering within a tier that isn't already fully bold (body,
-// metadata, introLarge). Whole-line-bold text never reaches here with
-// markers still attached — layoutTextDoc already strips those.
+// Splits a line's **bold** markers into plain/bold runs for inline
+// rendering — every tier renders through this, so **bold** works anywhere
+// (a whole line, mid-sentence, a heading) without needing its own markup.
 export interface InlineRun {
   text: string;
   bold: boolean;

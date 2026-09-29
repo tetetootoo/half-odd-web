@@ -138,7 +138,7 @@ export const gridApps: MobileAppItem[] = [
     iconSrc: '/icons/txt-icon.png',
     kind: 'text',
     textLines: [
-      'Things that make me :)',
+      '# Things that make me :)',
       '',
       'that first sip of coffee in the morning',
       'long and short legged dogs',

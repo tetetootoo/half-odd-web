@@ -12,12 +12,12 @@ import type { TextBlock } from './textBlocks';
 export const WORKING_AT_SAP: TextBlock[] = [
   // ---- 1. Hero ----
   { eyebrow: 'SAP Graph' },
-  'Where I learned the difference between writing code and engineering software.',
-  'Front-End Engineering · Design Systems · SAP',
+  '# Where I learned the difference between writing code and engineering software.',
+  { metadata: 'Front-End Engineering · Design Systems · SAP' },
   'I arrived at SAP with a foundation in computer science and practical programming. At university, I had built games, worked on a virtual machine, and learned to think about code through projects I could largely understand from end to end.',
   'SAP Graph was different.',
   'For the first time, I was contributing to a production system larger than anything I could hold in my head, built simultaneously by engineers, designers, and product teams across a large organisation.',
-  '**University taught me how to write software.\nSAP taught me how software gets built together.**',
+  { statement: 'University taught me how to write software.\nSAP taught me how software gets built together.' },
 
   // ---- 2. From university to SAP Graph ----
   {
@@ -54,7 +54,7 @@ export const WORKING_AT_SAP: TextBlock[] = [
     },
   },
   'A design system stopped being a collection of consistent-looking components.',
-  '**It became shared infrastructure between design and engineering.**',
+  { statement: 'It became shared infrastructure between design and engineering.' },
 
   // ---- 4. The tooltip story ----
   "## When the system isn't the answer",
@@ -68,7 +68,7 @@ export const WORKING_AT_SAP: TextBlock[] = [
       "It was understanding that engineering principles aren't rules to follow mechanically.",
     ],
   },
-  '**Consistency matters.\nSo does knowing when the cost of preserving it exceeds its value.**',
+  { statement: 'Consistency matters.\nSo does knowing when the cost of preserving it exceeds its value.' },
   {
     flowDiagram: {
       lines: [{ nodes: ['Button'] }, { connector: '↓ hover' }, { nodes: ['Tooltip'] }],
@@ -112,5 +112,5 @@ export const WORKING_AT_SAP: TextBlock[] = [
 
   // ---- 6. Final statement ----
   '',
-  '**I entered knowing how to program.\nI left understanding how software survives change.**',
+  { statement: 'I entered knowing how to program.\nI left understanding how software survives change.' },
 ];

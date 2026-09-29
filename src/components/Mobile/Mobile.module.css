@@ -474,11 +474,6 @@
   margin-bottom: 4px;
 }
 
-.tierMetadataBold {
-  composes: tierMetadata;
-  font-weight: 700;
-  color: #1c1319;
-}
 
 .tierSectionHeading {
   font-size: 26px;

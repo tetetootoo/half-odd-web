@@ -418,7 +418,6 @@ const TEXT_TIER_CLASS: Record<TextTier, keyof typeof styles> = {
   h1: 'tierH1',
   introLarge: 'tierIntroLarge',
   metadata: 'tierMetadata',
-  metadataBold: 'tierMetadataBold',
   sectionHeading: 'tierSectionHeading',
   majorStatement: 'tierMajorStatement',
   body: 'tierBody',

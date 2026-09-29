@@ -268,11 +268,6 @@
   max-width: 680px;
 }
 
-.tierMetadataBold {
-  composes: tierMetadata;
-  font-weight: 700;
-  color: #1c1319;
-}
 
 .tierSectionHeading {
   font-size: 32px;
