@@ -6,7 +6,7 @@ import letter from './half-a-love-letter-case-study.md?raw';
 // Shared "little preview" document glyph — same icon .txt files use.
 export const MARKDOWN_DOCUMENT_ICON = '/icons/doc-preview.svg';
 export type CaseStudyId = 'wrestling-octopi-case-study' | 'sap-graph-case-study' | 'antispace-berlin-case-study' | 'half-a-love-letter-case-study';
-export interface MediaSlot { label: string; path: string; src?: string; type?: 'video'; ratio?: string }
+export interface MediaSlot { label: string; path: string; src?: string; type?: 'video'; ratio?: string; hideCaption?: boolean }
 export interface LayoutDirective { layout: 'media' | 'split' | 'gallery' | 'asymmetric' | 'comparison' | 'architecture'; media: MediaSlot[]; paragraphs?: number }
 export interface CaseStudyConfig {
   id: CaseStudyId;
@@ -25,6 +25,8 @@ const anti = (file: string, label: string, ratio = '3 / 4', src?: string) => slo
 const love = (file: string, label: string) => slot('half-a-love-letter-case-study', file, label, '2940 / 1600', `/media/half-a-love-letter-case-study/${file}`);
 const media = (...items: MediaSlot[]): LayoutDirective => ({ layout: 'media', media: items });
 const gallery = (...items: MediaSlot[]): LayoutDirective => ({ layout: 'gallery', media: items });
+// Keeps the label for alt text / the placeholder's visible text, just hides the caption under the image.
+const silent = (item: MediaSlot): MediaSlot => ({ ...item, hideCaption: true });
 
 export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
   'wrestling-octopi-case-study': {
@@ -50,7 +52,6 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
       HERO_MEDIA: media(anti('home-website-screenrecord.mov', 'Antispace website', '1280 / 666', '/media/antispace-case-study/home-website-screenrecord.mov')),
       BRAND_GALLERY: { layout: 'asymmetric', media: [
         anti('poster-1.jpg', 'Poster', '2 / 3', '/media/antispace-poster/media.jpg'),
-        anti('poster.png', 'Second poster', '1172 / 998', '/media/antispace-case-study/poster.png'),
         anti('name-cards.png', 'Name card', '900 / 1106', '/media/antispace-case-study/name-cards.png'),
         anti('flyer.png', 'Flyer', '1094 / 764', '/media/antispace-case-study/flyer.png'),
         anti('screenshot-recovery-hero.png', 'Typography detail', '2434 / 882', '/media/antispace-case-study/screenshot-recovery-hero.png'),
@@ -58,12 +59,11 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
       ] },
       WEBSITE_VIDEO: media(anti('home-website-screenrecord.mov', 'Navigation and interaction', '1280 / 666', '/media/antispace-case-study/home-website-screenrecord.mov')),
       DETAIL_ROW: gallery(
-        anti('screenshot-more-info.png', 'Typography', '2934 / 1596', '/media/antispace-case-study/screenshot-more-info.png'),
-        anti('screenshot-concept-tiles.png', 'Responsive tiles', '2900 / 1498', '/media/antispace-case-study/screenshot-concept-tiles.png'),
-        anti('detail-3.jpg', 'Interaction'),
+        silent(anti('screenshot-more-info.png', 'Typography', '2934 / 1596', '/media/antispace-case-study/screenshot-more-info.png')),
+        silent(anti('screenshot-concept-tiles.png', 'Responsive tiles', '2900 / 1498', '/media/antispace-case-study/screenshot-concept-tiles.png')),
+        silent(anti('detail-3.jpg', 'Interaction')),
       ),
       BOOKING_SPLIT: { layout: 'split', paragraphs: 2, media: [anti('recovery-animation.mov', 'Booking path', '1280 / 666', '/media/antispace-case-study/recovery-animation.mov')] },
-      FINAL_VISUAL: media(anti('flyer.png', 'Antispace print', '1094 / 764', '/media/antispace-case-study/flyer.png')),
     },
   },
   'half-a-love-letter-case-study': {

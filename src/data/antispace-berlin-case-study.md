@@ -19,7 +19,6 @@ Working from an identity created by **Evolvcraft**, I extended the visual langua
 <!-- BRAND_GALLERY
 Editorial asymmetric composition:
 poster
-poster
 business/name card
 flyer
 typography detail
@@ -71,8 +70,3 @@ The site launched successfully and the work led to additional website enquiries 
 
 # Sometimes the design challenge isn't creating the perfect system.
 # It's creating the clearest experience around an imperfect one.
-
-<!-- FINAL_VISUAL
-Full-bleed Antispace visual: strongest website/print composition.
-End visually rather than with another dense explanation.
--->

@@ -25,6 +25,6 @@ export function CaseStudyMedia({ media }: { media: MediaSlot }) {
         : media.type === 'video' ? <video ref={video} src={media.src} muted loop playsInline controls preload="metadata" onError={() => setFailed(true)} aria-label={media.label} />
           : <img src={media.src} alt={media.label} loading="lazy" onError={() => setFailed(true)} />}
     </div>
-    <figcaption>{media.label}</figcaption>
+    {!media.hideCaption && <figcaption>{media.label}</figcaption>}
   </figure>;
 }
