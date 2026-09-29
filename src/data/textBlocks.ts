@@ -13,7 +13,10 @@
 // Everything else that needs its own visual treatment (a big standalone
 // statement, a small-caps metadata fact, an eyebrow label, ...) is an
 // explicit block below rather than something inferred from a string.
+export type ConceptualDiagram = 'perspective' | 'composition' | 'judgment' | 'change';
+
 export type TextBlock =
+  | { conceptualDiagram: ConceptualDiagram }
   | string
   | { image: string; alt?: string }
   | { images: string[] }
@@ -118,6 +121,7 @@ export type TextTier =
   | 'body';
 
 export type LaidOutBlock =
+  | { kind: 'conceptualDiagram'; diagram: ConceptualDiagram }
   | { kind: 'text'; tier: TextTier; text: string }
   | { kind: 'image'; image: string; alt?: string }
   | { kind: 'images'; images: string[] }
@@ -154,7 +158,9 @@ export function layoutTextDoc(blocks: TextBlock[]): LaidOutBlock[] {
 
   blocks.forEach((block, i) => {
     if (typeof block !== 'string') {
-      if ('eyebrow' in block) {
+      if ('conceptualDiagram' in block) {
+        out.push({ kind: 'conceptualDiagram', diagram: block.conceptualDiagram });
+      } else if ('eyebrow' in block) {
         pushText('eyebrow', block.eyebrow);
       } else if ('statement' in block) {
         pushText('majorStatement', block.statement);

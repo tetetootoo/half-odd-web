@@ -1,4 +1,6 @@
 import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
+import { MarkdownDoc } from '../CaseStudy/MarkdownDoc';
+import { ConceptDiagram } from '../CaseStudy/ConceptDiagram';
 import { useState, type FormEvent } from 'react';
 import type { DesktopItem } from '../../data/desktopContent';
 import {
@@ -533,6 +535,8 @@ function WindowBody({
   switch (item.kind) {
     case 'image':
       return <ImageOverlayFrame item={item} />;
+    case 'markdown':
+      return item.caseStudyId ? <MarkdownDoc caseStudyId={item.caseStudyId} onOpenItem={onOpenItem} /> : null;
     case 'text':
       if (item.plainText) return <PlainTextDoc lines={item.plainText} />;
       return (
@@ -596,6 +600,8 @@ function WindowBody({
                   );
                 case 'splitSection':
                   return <SplitSectionBlock key={i} data={entry.data} />;
+                case 'conceptualDiagram':
+                  return <ConceptDiagram key={i} diagram={entry.diagram} />;
                 case 'flowDiagram':
                   return <FlowDiagram key={i} data={entry.data} />;
                 case 'flowComparison':
@@ -669,7 +675,7 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenIte
   const isMailKind = item.kind === 'mail';
   const isTrashKind = item.kind === 'trash';
   const isBrowserKind = item.kind === 'browser';
-  const isTextKind = item.kind === 'text';
+  const isTextKind = item.kind === 'text' || item.kind === 'markdown';
   const isFileTitle = isTextKind || item.kind === 'notes';
   const isFlushDoc = isFileTitle || item.kind === 'about';
   const step = (cascadeIndex % CASCADE_WRAP) * CASCADE_STEP_PX;

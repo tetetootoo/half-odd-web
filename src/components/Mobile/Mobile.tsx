@@ -1,4 +1,6 @@
 import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
+import { MarkdownDoc } from '../CaseStudy/MarkdownDoc';
+import { ConceptDiagram } from '../CaseStudy/ConceptDiagram';
 import { useRef, useState, type FormEvent } from 'react';
 import {
   aboutInfo,
@@ -378,8 +380,8 @@ function TextDoc({
           ✕
         </button>
       </div>
-      <div className={app.plainText ? `${styles.docScroll} ${styles.editorialScroll}` : styles.docScroll}>
-        {app.plainText ? <PlainTextDoc lines={app.plainText} /> : <div className={styles.textPad}>
+      <div className={app.caseStudyId || app.plainText ? `${styles.docScroll} ${styles.editorialScroll}` : styles.docScroll}>
+        {app.plainText ? <PlainTextDoc lines={app.plainText} /> : app.caseStudyId ? <MarkdownDoc caseStudyId={app.caseStudyId} onOpenItem={onOpenApp} /> : <div className={styles.textPad}>
           {app.textLines &&
             layoutTextDoc(app.textLines).map((entry, i) => {
               switch (entry.kind) {
@@ -439,6 +441,8 @@ function TextDoc({
                   );
                 case 'splitSection':
                   return <SplitSectionBlock key={i} data={entry.data} />;
+                case 'conceptualDiagram':
+                  return <ConceptDiagram key={i} diagram={entry.diagram} />;
                 case 'flowDiagram':
                   return <FlowDiagram key={i} data={entry.data} />;
                 case 'flowComparison':
@@ -770,7 +774,7 @@ export function Mobile() {
       {openApp && openApp.kind === 'site' && (
         <SiteFrame app={openApp} onBack={() => setOpenId(null)} />
       )}
-      {openApp && openApp.kind === 'text' && (
+      {openApp && (openApp.kind === 'text' || openApp.kind === 'markdown') && (
         <TextDoc app={openApp} onClose={() => setOpenId(null)} onOpenApp={(id) => setOpenId(id)} />
       )}
       {openApp && openApp.kind === 'image' && (

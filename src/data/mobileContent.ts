@@ -1,4 +1,4 @@
-import { WRESTLING_OCTOPI_CASE_STUDY } from './wrestlingOctopiCaseStudy';
+import { CASE_STUDIES, MARKDOWN_DOCUMENT_ICON, type CaseStudyId } from './caseStudies';
 import type { TextBlock } from './textBlocks';
 
 // 'site' = shown inside a Safari-style chrome (live iframe via embedUrl, or a
@@ -6,7 +6,7 @@ import type { TextBlock } from './textBlocks';
 // video is dropped in). 'image' = a plain standalone picture, no browser chrome.
 // 'trash' opens the Trash as a folder overlay listing multiple files instead
 // of a single doc/site/image.
-export type MobileAppKind = 'site' | 'image' | 'audio' | 'link' | 'text' | 'trash';
+export type MobileAppKind = 'site' | 'image' | 'audio' | 'link' | 'text' | 'markdown' | 'trash';
 
 export interface MobileAppItem {
   id: string;
@@ -16,6 +16,7 @@ export interface MobileAppItem {
   href?: string;
   audioSrc?: string;
   textLines?: TextBlock[];
+  caseStudyId?: CaseStudyId;
   plainText?: string[];
   link?: { url: string };
   embedUrl?: string;
@@ -184,18 +185,32 @@ export const gridApps: MobileAppItem[] = [
     description: 'instagram business profile manager for desktop',
   },
   {
+    id: 'antispace-berlin-case-study',
+    label: CASE_STUDIES['antispace-berlin-case-study'].label,
+    kind: 'markdown',
+    caseStudyId: 'antispace-berlin-case-study',
+    iconSrc: MARKDOWN_DOCUMENT_ICON,
+  },
+  {
+    id: 'half-a-love-letter-case-study',
+    label: CASE_STUDIES['half-a-love-letter-case-study'].label,
+    kind: 'markdown',
+    caseStudyId: 'half-a-love-letter-case-study',
+    iconSrc: MARKDOWN_DOCUMENT_ICON,
+  },
+  {
+    id: 'sap-graph-case-study',
+    label: CASE_STUDIES['sap-graph-case-study'].label,
+    kind: 'markdown',
+    caseStudyId: 'sap-graph-case-study',
+    iconSrc: MARKDOWN_DOCUMENT_ICON,
+  },
+  {
     id: 'wrestling-octopi-case-study',
-    label: 'wrestling octopi case study.txt',
-    iconSrc: '/icons/txt-icon.png',
-    kind: 'text',
-    // wrestling-octopi is a 'site' overlay on mobile, so reuse it in place;
-    // GitHub has no internal overlay on either platform, so that one's
-    // always an external link.
-    textLines: [
-      ...WRESTLING_OCTOPI_CASE_STUDY,
-      { openId: 'wrestling-octopi', label: 'View Live Product' },
-      { href: 'https://github.com/tetetootoo', label: 'View GitHub' },
-    ],
+    label: CASE_STUDIES['wrestling-octopi-case-study'].label,
+    kind: 'markdown',
+    caseStudyId: 'wrestling-octopi-case-study',
+    iconSrc: MARKDOWN_DOCUMENT_ICON,
   },
   {
     id: 'mom-spaghetti',

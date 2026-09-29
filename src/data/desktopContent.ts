@@ -1,10 +1,11 @@
-import { WRESTLING_OCTOPI_CASE_STUDY } from './wrestlingOctopiCaseStudy';
+import { CASE_STUDIES, MARKDOWN_DOCUMENT_ICON, type CaseStudyId } from './caseStudies';
 import type { TextBlock } from './textBlocks';
 
 export type WindowKind =
   | 'project'
   | 'image'
   | 'text'
+  | 'markdown'
   | 'about'
   | 'notes'
   | 'mail'
@@ -46,6 +47,7 @@ export interface DesktopItem {
   showScrollHint?: boolean;
   description?: string;
   textLines?: TextBlock[];
+  caseStudyId?: CaseStudyId;
   plainText?: string[];
   mediaSrc?: string;
   mediaType?: 'image' | 'video';
@@ -224,20 +226,44 @@ export const desktopItems: DesktopItem[] = [
     iconSrc: '/media/wrestling-octopi/icon.png',
   },
   {
+    id: 'antispace-berlin-case-study',
+    label: CASE_STUDIES['antispace-berlin-case-study'].label,
+    kind: 'markdown',
+    caseStudyId: 'antispace-berlin-case-study',
+    iconSrc: MARKDOWN_DOCUMENT_ICON,
+    windowTitle: CASE_STUDIES['antispace-berlin-case-study'].label,
+    x: 84,
+    y: 8,
+  },
+  {
+    id: 'half-a-love-letter-case-study',
+    label: CASE_STUDIES['half-a-love-letter-case-study'].label,
+    kind: 'markdown',
+    caseStudyId: 'half-a-love-letter-case-study',
+    iconSrc: MARKDOWN_DOCUMENT_ICON,
+    windowTitle: CASE_STUDIES['half-a-love-letter-case-study'].label,
+    x: 5,
+    y: 70,
+  },
+  {
+    id: 'sap-graph-case-study',
+    label: CASE_STUDIES['sap-graph-case-study'].label,
+    kind: 'markdown',
+    caseStudyId: 'sap-graph-case-study',
+    iconSrc: MARKDOWN_DOCUMENT_ICON,
+    windowTitle: CASE_STUDIES['sap-graph-case-study'].label,
+    x: 26,
+    y: 8,
+  },
+  {
     id: 'wrestling-octopi-case-study',
-    label: 'wrestling octopi case study.txt',
-    kind: 'text',
-    windowTitle: 'wrestling octopi case study.txt',
+    label: CASE_STUDIES['wrestling-octopi-case-study'].label,
+    kind: 'markdown',
+    caseStudyId: 'wrestling-octopi-case-study',
+    iconSrc: MARKDOWN_DOCUMENT_ICON,
+    windowTitle: CASE_STUDIES['wrestling-octopi-case-study'].label,
     x: 33.5,
     y: 62.5,
-    iconSrc: '/icons/txt-doc.png',
-    // wrestling-octopi is a direct external link on desktop (no internal
-    // overlay to reuse), so both of these open in a new tab.
-    textLines: [
-      ...WRESTLING_OCTOPI_CASE_STUDY,
-      { href: 'https://www.wrestlingoctopi.com/', label: 'View Live Product' },
-      { href: 'https://github.com/tetetootoo', label: 'View GitHub' },
-    ],
   },
   {
     id: 'photo-portfolio',
