@@ -7,7 +7,7 @@ import letter from './half-a-love-letter-case-study.md?raw';
 export const MARKDOWN_DOCUMENT_ICON = '/icons/doc-preview.svg';
 export type CaseStudyId = 'wrestling-octopi-case-study' | 'sap-graph-case-study' | 'antispace-berlin-case-study' | 'half-a-love-letter-case-study';
 export interface MediaSlot { label: string; path: string; src?: string; type?: 'video'; ratio?: string; hideCaption?: boolean }
-export interface LayoutDirective { layout: 'media' | 'split' | 'gallery' | 'asymmetric' | 'comparison' | 'architecture'; media: MediaSlot[]; paragraphs?: number }
+export interface LayoutDirective { layout: 'media' | 'split' | 'gallery' | 'bento' | 'comparison' | 'architecture'; media: MediaSlot[]; paragraphs?: number }
 export interface CaseStudyConfig {
   id: CaseStudyId;
   label: string;
@@ -50,7 +50,7 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
     id: 'antispace-berlin-case-study', label: 'Antispace Berlin.md', markdown: antispace, artDirection: 'editorial',
     directives: {
       HERO_MEDIA: media(anti('home-website-screenrecord.mov', 'Antispace website', '1280 / 666', '/media/antispace-case-study/home-website-screenrecord.mov')),
-      BRAND_GALLERY: { layout: 'asymmetric', media: [
+      BRAND_GALLERY: { layout: 'bento', media: [
         anti('poster-1.jpg', 'Poster', '2 / 3', '/media/antispace-poster/media.jpg'),
         anti('name-cards.png', 'Name card', '900 / 1106', '/media/antispace-case-study/name-cards.png'),
         anti('flyer.png', 'Flyer', '1094 / 764', '/media/antispace-case-study/flyer.png'),
@@ -61,7 +61,6 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
       DETAIL_ROW: gallery(
         silent(anti('screenshot-more-info.png', 'Typography', '2934 / 1596', '/media/antispace-case-study/screenshot-more-info.png')),
         silent(anti('screenshot-concept-tiles.png', 'Responsive tiles', '2900 / 1498', '/media/antispace-case-study/screenshot-concept-tiles.png')),
-        silent(anti('detail-3.jpg', 'Interaction')),
       ),
       BOOKING_SPLIT: { layout: 'split', paragraphs: 2, media: [anti('recovery-animation.mov', 'Booking path', '1280 / 666', '/media/antispace-case-study/recovery-animation.mov')] },
     },

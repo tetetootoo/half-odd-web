@@ -17,13 +17,13 @@ Working from an identity created by **Evolvcraft**, I extended the visual langua
 # It was to understand it well enough to make it live in new contexts.
 
 <!-- BRAND_GALLERY
-Editorial asymmetric composition:
+Aligned bento grid:
 poster
 business/name card
 flyer
 typography detail
 social asset
-Let the work dominate; avoid a conventional UX case-study grid.
+Align tile edges with consistent gaps and preserve the complete artwork.
 -->
 
 ---
@@ -46,10 +46,9 @@ Show navigation, responsive tiles, hover states and restrained scroll effects.
 -->
 
 <!-- DETAIL_ROW
-Three details:
+Two details:
 Typography
 Responsive tiles
-Interaction
 Use minimal captions.
 -->
 

@@ -30,8 +30,8 @@ supply capped total gaps rather than accumulating with element margins.
 blocks into the text column without duplicating or rewriting their copy.
 The configuration specifies how many paragraphs each split owns.
 
-Layout directives select full-width media, splits, galleries, asymmetric
-print compositions, comparisons, or the explicitly conceptual software-layer
+Layout directives select full-width media, splits, galleries, aligned bento
+print grids, comparisons, or the explicitly conceptual software-layer
 diagram. That diagram names no unverified technology or implementation.
 
 ## Media replacement
@@ -61,6 +61,6 @@ unique desktop/mobile entries, WIP status, and preservation of `:).txt`.
 
 For browser QA, open all four files at desktop, laptop, tablet and mobile
 widths. Check close/reopen and next-project navigation, vertically stacked
-splits/comparisons, the asymmetric gallery's mobile order, and the SAP
+splits/comparisons, the bento grid's mobile alignment, and the SAP
 mobile diagrams. Check continuous video looping and the absence of playback controls. Browser
 visual and interaction QA needs an available browser connection.
