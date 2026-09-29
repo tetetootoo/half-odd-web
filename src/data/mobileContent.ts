@@ -1,5 +1,4 @@
 import { WRESTLING_OCTOPI_CASE_STUDY } from './wrestlingOctopiCaseStudy';
-import { WORKING_AT_SAP } from './workingAtSAP';
 import type { TextBlock } from './textBlocks';
 
 // 'site' = shown inside a Safari-style chrome (live iframe via embedUrl, or a
@@ -255,13 +254,6 @@ export const gridApps: MobileAppItem[] = [
     embedUrl: 'https://theresaschantz.com',
     link: { url: 'https://theresaschantz.com' },
     description: 'personal photography portfolio',
-  },
-  {
-    id: 'working-at-sap',
-    label: 'working at SAP.txt',
-    iconSrc: '/icons/txt-icon.png',
-    kind: 'text',
-    textLines: WORKING_AT_SAP,
   },
   {
     id: 'trash',

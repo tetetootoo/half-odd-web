@@ -1,5 +1,4 @@
 import { WRESTLING_OCTOPI_CASE_STUDY } from './wrestlingOctopiCaseStudy';
-import { WORKING_AT_SAP } from './workingAtSAP';
 import type { TextBlock } from './textBlocks';
 
 export type WindowKind =
@@ -248,16 +247,6 @@ export const desktopItems: DesktopItem[] = [
     link: { url: 'https://theresaschantz.com' },
     description: 'personal photography portfolio',
     iconSrc: '/media/photo-portfolio/icon.png',
-  },
-  {
-    id: 'working-at-sap',
-    label: 'working at SAP.txt',
-    kind: 'text',
-    windowTitle: 'working at SAP.txt',
-    x: 45,
-    y: 58,
-    iconSrc: '/icons/txt-doc.png',
-    textLines: WORKING_AT_SAP,
   },
 ];
 
