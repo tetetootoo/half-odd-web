@@ -1,13 +1,13 @@
 .document { flex: 1; min-width: 0; overflow-y: auto; background: #fff; color: #1c1319; container-type: inline-size; }
 .page { padding: 48px 56px 72px; }
-.block { width: 100%; max-width: 680px; margin: var(--block-gap, 20px) auto 0; display: flow-root; }
+.block { width: 100%; max-width: 680px; margin: var(--block-gap, 20px) 0 0; display: flow-root; }
 .block:first-child { margin-top: 0; }
-.block p { font-size: 18px; line-height: 1.6; margin: 0; }
-.block h2 { font-size: 32px; line-height: 1.1; letter-spacing: -.025em; margin: 0; text-wrap: pretty; }
+.block p { font-size: 16px; line-height: 1.6; margin: 0; }
+.block h2 { font-size: 20px; line-height: 1.3; letter-spacing: -.01em; margin: 0; text-wrap: pretty; font-weight: 700; }
 .block hr { border: 0; border-top: 1px solid #e9e2e5; margin: 0; }
-.block .title { font-size: clamp(38px, 7.5cqi, 72px); font-weight: 700; line-height: 1.03; letter-spacing: -.025em; margin: 0; text-wrap: pretty; }
-.block .subtitle { font-size: 26px; line-height: 1.25; }
-.block .statement { font-size: clamp(32px, 5.8cqi, 52px); line-height: 1.08; font-weight: 700; letter-spacing: -.02em; text-wrap: pretty; }
+.block .title { font-size: 32px; font-weight: 700; line-height: 1.2; letter-spacing: -.01em; margin: 0; text-wrap: pretty; }
+.block .subtitle { font-size: 18px; line-height: 1.4; }
+.block .statement { font-size: 22px; line-height: 1.3; font-weight: 700; letter-spacing: -.005em; text-wrap: pretty; }
 .block .metadata, .block .eyebrow { font-size: 13px; line-height: 1.6; color: #6b5a62; }
 .metadata strong { font-weight: 400; }
 .eyebrow { letter-spacing: .1em; }
@@ -49,11 +49,11 @@
 .mobileDiagram { display: none; }
 @container (max-width: 700px) {
   .page { padding: 40px 24px 56px; }
-  .block p { font-size: 17px; }
-  .block .title { font-size: 42px; }
-  .block .metadata, .block .eyebrow { font-size: 13px; }
-  .block .statement { font-size: 34px; }
-  .block .subtitle, .block h2 { font-size: 26px; }
+  .block p { font-size: 15px; }
+  .block .title { font-size: 28px; }
+  .block .metadata, .block .eyebrow { font-size: 12px; }
+  .block .statement { font-size: 20px; }
+  .block .subtitle, .block h2 { font-size: 18px; }
   .split { grid-template-columns: 1fr; gap: 24px; }
   .gallery, .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .asymmetric { grid-template-columns: 1fr 1fr; gap: 20px; }

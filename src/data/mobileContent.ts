@@ -136,7 +136,7 @@ export const gridApps: MobileAppItem[] = [
   {
     id: 'smiley-txt',
     label: ':).txt',
-    iconSrc: '/icons/txt-icon.png',
+    iconSrc: '/icons/doc-preview.svg',
     kind: 'text',
     plainText: [
       'Things that make me :)',

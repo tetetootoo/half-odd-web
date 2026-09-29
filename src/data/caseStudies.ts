@@ -3,8 +3,8 @@ import sap from './sap-graph-case-study-preview.md?raw';
 import antispace from './antispace-berlin-case-study.md?raw';
 import letter from './half-a-love-letter-case-study.md?raw';
 
-// Temporary existing document glyph. Replace this ONE path with /icons/md-file.png.
-export const MARKDOWN_DOCUMENT_ICON = '/icons/txt-doc.png';
+// Shared "little preview" document glyph — same icon .txt files use.
+export const MARKDOWN_DOCUMENT_ICON = '/icons/doc-preview.svg';
 export type CaseStudyId = 'wrestling-octopi-case-study' | 'sap-graph-case-study' | 'antispace-berlin-case-study' | 'half-a-love-letter-case-study';
 export interface MediaSlot { label: string; path: string; src?: string; type?: 'video'; ratio?: string }
 export interface LayoutDirective { layout: 'media' | 'split' | 'gallery' | 'asymmetric' | 'comparison' | 'architecture'; media: MediaSlot[]; paragraphs?: number }
@@ -53,7 +53,7 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
         anti('poster.png', 'Second poster', '1172 / 998', '/media/antispace-case-study/poster.png'),
         anti('name-cards.png', 'Name card', '900 / 1106', '/media/antispace-case-study/name-cards.png'),
         anti('flyer.png', 'Flyer', '1094 / 764', '/media/antispace-case-study/flyer.png'),
-        anti('typography.jpg', 'Typography detail', '3 / 2'),
+        anti('screenshot-recovery-hero.png', 'Typography detail', '2434 / 882', '/media/antispace-case-study/screenshot-recovery-hero.png'),
         anti('goodie-bags.png', 'Social asset', '630 / 1112', '/media/antispace-case-study/goodie-bags.png'),
       ] },
       WEBSITE_VIDEO: media(anti('home-website-screenrecord.mov', 'Navigation and interaction', '1280 / 666', '/media/antispace-case-study/home-website-screenrecord.mov')),

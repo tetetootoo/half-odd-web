@@ -104,7 +104,7 @@ export const desktopItems: DesktopItem[] = [
     windowTitle: ':).txt',
     x: 58.3,
     y: 6.2,
-    iconSrc: '/icons/txt-doc.png',
+    iconSrc: '/icons/doc-preview.svg',
     plainText: [
       'Things that make me :)',
       '',

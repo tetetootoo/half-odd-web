@@ -8,10 +8,11 @@ has no URL router or document deep links.
 
 ## Shared icon
 
-`MARKDOWN_DOCUMENT_ICON` is the only Markdown icon setting. It currently
-borrows the existing document glyph temporarily. When the custom icon is
-ready, add `public/icons/md-file.png` and change that constant. TXT icons
-and the plain-text note have independent rendering and are unaffected.
+`MARKDOWN_DOCUMENT_ICON` (`public/icons/doc-preview.svg`) is the only
+Markdown icon setting — a generic "little preview" page glyph (folded
+corner, faint content lines), matching real macOS document icons rather
+than a plain folder/text glyph. The `:).txt` icon uses the same SVG. The
+system Notes glyph has independent rendering and is unaffected.
 
 ## Content and layout
 
