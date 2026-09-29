@@ -66,5 +66,4 @@
   .mobileDiagram { display: block; }
   .block { margin-top: min(var(--block-gap, 20px), 56px); }
 }
-/* No reveal hides content. Video autoplay is disabled by the media component
-   when reduced motion is requested; playback controls always remain available. */
+/* Videos autoplay continuously, muted and without playback controls. */

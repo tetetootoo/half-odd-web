@@ -43,8 +43,7 @@ that slot's `src` to its `/media/...` URL. A different filename is also fine:
 update `path`, `src`, and `type` together. Existing Antispace assets already
 have `src` values. Failed image/video requests use the same stable placeholder.
 
-Videos have controls and play only while visible and reduced motion is off.
-Changing the reduced-motion preference pauses autoplay immediately. No
+Videos autoplay muted on an infinite loop without playback controls. No
 scroll reveal hides content. Portrait print images use contain to preserve
 whole designs. The old Half a Love Letter envelope emoji is deliberately
 not presented as evidence of the final hand-drawn interaction.
@@ -63,5 +62,5 @@ unique desktop/mobile entries, WIP status, and preservation of `:).txt`.
 For browser QA, open all four files at desktop, laptop, tablet and mobile
 widths. Check close/reopen and next-project navigation, vertically stacked
 splits/comparisons, the asymmetric gallery's mobile order, and the SAP
-mobile diagrams. Toggle reduced motion while a video is playing. Browser
+mobile diagrams. Check continuous video looping and the absence of playback controls. Browser
 visual and interaction QA needs an available browser connection.

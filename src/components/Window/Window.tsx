@@ -55,6 +55,7 @@ function MediaFrame({ item }: { item: DesktopItem }) {
         poster={item.posterSrc}
         muted
         autoPlay
+        loop
         playsInline
       />
     );
@@ -145,7 +146,12 @@ function ImageOverlayFrame({ item }: { item: DesktopItem }) {
         <video
           className={styles.imageBoxMedia}
           src={item.mediaSrc}
-          controls
+          autoPlay
+          muted
+          loop
+          playsInline
+          disablePictureInPicture
+          disableRemotePlayback
           poster={item.posterSrc}
         />
       ) : (
