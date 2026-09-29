@@ -438,6 +438,16 @@
   font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
 }
 
+.tierEyebrow {
+  composes: tierMono;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b5a62;
+  margin-bottom: 16px;
+}
+
 .tierH1 {
   font-size: 46px;
   font-weight: 700;
@@ -575,6 +585,131 @@
   background: repeating-linear-gradient(45deg, #e5dde1, #e5dde1 10px, #ddd3d8 10px, #ddd3d8 20px);
   color: #6b5a62;
   font-size: 12px;
+}
+
+/* ---- Restrained system diagrams (SAP-style case studies): thin-line
+   node/connector diagrams, no fills, no cards, no gradients ---- */
+
+.flowDiagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0;
+}
+
+.flowText {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6b5a62;
+  text-align: center;
+}
+
+.flowNodes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.flowNode {
+  border: 1px solid #cdbcc4;
+  border-radius: 4px;
+  padding: 9px 16px;
+  font-size: 13px;
+  color: #1c1319;
+  background: #fff;
+  text-align: center;
+}
+
+.flowNodeEmphasize {
+  border-color: #a8517a;
+  border-width: 1.5px;
+  padding: 13px 22px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.flowConnector {
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  color: #a89099;
+}
+
+.flowCaption {
+  margin-top: 10px;
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.5;
+  color: #8a7a80;
+  text-align: center;
+}
+
+.flowComparison {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin: 32px 0;
+}
+
+.flowComparison .flowDiagram {
+  margin: 0;
+}
+
+.layerDiagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0;
+}
+
+.layerStep {
+  border: 1px solid #cdbcc4;
+  border-radius: 4px;
+  color: #1c1319;
+  text-align: center;
+  background: #fff;
+}
+
+.narrow {
+  margin: 28px 0;
+}
+
+.narrowParagraph {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #1c1319;
+  margin: 0 0 14px;
+}
+
+.narrowParagraph:last-child {
+  margin-bottom: 0;
+}
+
+.escalatingStatement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 0;
+}
+
+.escalatingFirst {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #1c1319;
+}
+
+.escalatingSecond {
+  margin-top: 24px;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.05;
+  color: #1c1319;
 }
 
 .textImageFull {

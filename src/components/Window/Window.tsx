@@ -3,6 +3,7 @@ import type { DesktopItem } from '../../data/desktopContent';
 import {
   layoutTextDoc,
   parseInline,
+  type FlowDiagramData,
   type SplitMediaSection,
   type TextTier,
 } from '../../data/textBlocks';
@@ -413,6 +414,7 @@ function SplitSectionBlock({ data }: { data: SplitMediaSection }) {
 }
 
 const TEXT_TIER_CLASS: Record<TextTier, keyof typeof styles> = {
+  eyebrow: 'tierEyebrow',
   h1: 'tierH1',
   introLarge: 'tierIntroLarge',
   metadata: 'tierMetadata',
@@ -421,6 +423,105 @@ const TEXT_TIER_CLASS: Record<TextTier, keyof typeof styles> = {
   majorStatement: 'tierMajorStatement',
   body: 'tierBody',
 };
+
+// Restrained node/connector diagram — university/SAP-Graph trees, simple
+// chains, small interaction sketches. Thin-bordered boxes, no fills beyond
+// white, no gradients; used standalone or twice inside a FlowComparison.
+function FlowDiagram({ data }: { data: FlowDiagramData }) {
+  return (
+    <div className={styles.flowDiagram}>
+      {data.lines.map((line, li) => {
+        if ('text' in line) {
+          return (
+            <div key={li} className={styles.flowText}>
+              {line.text}
+            </div>
+          );
+        }
+        if ('connector' in line) {
+          return (
+            <div key={li} className={styles.flowConnector} aria-hidden="true">
+              {line.connector}
+            </div>
+          );
+        }
+        return (
+          <div key={li} className={styles.flowNodes}>
+            {line.nodes.map((node, ni) => (
+              <div
+                key={ni}
+                className={line.emphasize ? `${styles.flowNode} ${styles.flowNodeEmphasize}` : styles.flowNode}
+              >
+                {node}
+              </div>
+            ))}
+          </div>
+        );
+      })}
+      {data.caption && <p className={styles.flowCaption}>{data.caption}</p>}
+    </div>
+  );
+}
+
+function FlowComparisonBlock({ left, right }: { left: FlowDiagramData; right: FlowDiagramData }) {
+  return (
+    <div className={styles.flowComparison}>
+      <FlowDiagram data={left} />
+      <FlowDiagram data={right} />
+    </div>
+  );
+}
+
+// An ascending stack of labels, each rendered visibly larger than the
+// last, suggesting one layer building on the next.
+function LayerDiagram({ steps }: { steps: string[] }) {
+  return (
+    <div className={styles.layerDiagram}>
+      {steps.map((step, si) => (
+        <div key={si}>
+          {si > 0 && (
+            <div className={styles.flowConnector} aria-hidden="true">
+              ↓
+            </div>
+          )}
+          <div
+            className={styles.layerStep}
+            style={{
+              padding: `${8 + si * 4}px ${18 + si * 8}px`,
+              fontSize: `${13 + si * 2}px`,
+              fontWeight: si === steps.length - 1 ? 700 : 400,
+            }}
+          >
+            {step}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function NarrowText({ paragraphs }: { paragraphs: string[] }) {
+  return (
+    <div className={styles.narrow}>
+      {paragraphs.map((paragraph, pi) => (
+        <p key={pi} className={styles.narrowParagraph}>
+          {parseInline(paragraph).map((run, ri) =>
+            run.bold ? <strong key={ri}>{run.text}</strong> : <span key={ri}>{run.text}</span>,
+          )}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+function EscalatingStatement({ first, second }: { first: string; second: string }) {
+  return (
+    <div className={styles.escalatingStatement}>
+      <p className={styles.escalatingFirst}>{first}</p>
+      <p className={styles.escalatingSecond}>{second}</p>
+    </div>
+  );
+}
 
 function WindowBody({
   item,
@@ -494,6 +595,16 @@ function WindowBody({
                   );
                 case 'splitSection':
                   return <SplitSectionBlock key={i} data={entry.data} />;
+                case 'flowDiagram':
+                  return <FlowDiagram key={i} data={entry.data} />;
+                case 'flowComparison':
+                  return <FlowComparisonBlock key={i} left={entry.left} right={entry.right} />;
+                case 'layerDiagram':
+                  return <LayerDiagram key={i} steps={entry.steps} />;
+                case 'narrow':
+                  return <NarrowText key={i} paragraphs={entry.paragraphs} />;
+                case 'escalatingStatement':
+                  return <EscalatingStatement key={i} first={entry.first} second={entry.second} />;
                 default:
                   return null;
               }

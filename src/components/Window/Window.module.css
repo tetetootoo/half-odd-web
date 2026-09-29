@@ -229,14 +229,24 @@
   font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
 }
 
+.tierEyebrow {
+  composes: tierMono;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b5a62;
+  margin-bottom: 20px;
+}
+
 .tierH1 {
-  font-size: 80px;
+  font-size: 72px;
   font-weight: 700;
   line-height: 1.0;
   letter-spacing: -0.01em;
   margin-bottom: 16px;
   overflow-wrap: anywhere;
-  max-width: 720px;
+  max-width: 880px;
 }
 
 .tierIntroLarge {
@@ -378,6 +388,141 @@
   background: repeating-linear-gradient(45deg, #e5dde1, #e5dde1 10px, #ddd3d8 10px, #ddd3d8 20px);
   color: #6b5a62;
   font-size: 13px;
+}
+
+/* ---- Restrained system diagrams (SAP-style case studies): thin-line
+   node/connector diagrams, no fills, no cards, no gradients ---- */
+
+.flowDiagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 78%;
+  margin: 48px auto;
+}
+
+.flowText {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #6b5a62;
+  text-align: center;
+  max-width: 480px;
+}
+
+.flowNodes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.flowNode {
+  border: 1px solid #cdbcc4;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #1c1319;
+  background: #fff;
+  text-align: center;
+}
+
+.flowNodeEmphasize {
+  border-color: #a8517a;
+  border-width: 1.5px;
+  padding: 16px 28px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.flowConnector {
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  color: #a89099;
+}
+
+.flowCaption {
+  margin-top: 12px;
+  max-width: 480px;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.5;
+  color: #8a7a80;
+  text-align: center;
+}
+
+.flowComparison {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 64px;
+  margin: 48px auto;
+  width: 78%;
+}
+
+.flowComparison .flowDiagram {
+  width: auto;
+  margin: 0;
+  flex: 1 1 220px;
+}
+
+.layerDiagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin: 48px auto;
+}
+
+.layerStep {
+  border: 1px solid #cdbcc4;
+  border-radius: 4px;
+  color: #1c1319;
+  text-align: center;
+  background: #fff;
+}
+
+.narrow {
+  max-width: 580px;
+  margin: 40px auto;
+}
+
+.narrowParagraph {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #1c1319;
+  margin: 0 0 16px;
+}
+
+.narrowParagraph:last-child {
+  margin-bottom: 0;
+}
+
+.escalatingStatement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 72px 0;
+}
+
+.escalatingFirst {
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.05;
+  color: #1c1319;
+  max-width: 640px;
+}
+
+.escalatingSecond {
+  margin-top: 36px;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.02;
+  color: #1c1319;
+  max-width: 760px;
 }
 
 .textImageFull {

@@ -44,7 +44,31 @@ export type TextBlock =
   // room for a real column split on a phone). The visual auto-falls-back
   // to a placeholder (matching the same box's dimensions) if `visualSrc`
   // 404s, so the real file can be dropped in later with no layout change.
-  | { splitSection: SplitMediaSection };
+  | { splitSection: SplitMediaSection }
+  // A small caps label rendered above the doc's H1 (e.g. a project name
+  // sitting above its own headline sentence). Optional — most docs don't
+  // need one and just start straight at the title (index 0 = h1, as
+  // always). When present as the very first block, the H1 becomes
+  // whichever string block comes next instead of index 0.
+  | { eyebrow: string }
+  // A native HTML/CSS node-and-connector diagram — university/SAP-Graph
+  // style trees, simple chains, small interaction sketches. See
+  // FlowDiagramData below.
+  | { flowDiagram: FlowDiagramData }
+  // Two small FlowDiagrams side by side, for a restrained comparison
+  // (e.g. "internal approach" vs. "considered exception").
+  | { flowComparison: { left: FlowDiagramData; right: FlowDiagramData } }
+  // An ascending stack of labels suggesting one layer building on the
+  // next (e.g. primitive -> wrapper -> component -> interface). Each
+  // step renders visibly larger than the last.
+  | { layerDiagram: string[] }
+  // Body copy constrained to a narrower reading column than usual (for a
+  // more intimate, text-led section), not wrapped in a card.
+  | { narrow: string[] }
+  // Two statements in immediate succession where the second should read
+  // as a noticeably bigger escalation of the first (e.g. "How do I build
+  // this?" -> "What should remain reusable after I've built this?").
+  | { escalatingStatement: { first: string; second: string } };
 
 export interface SplitMediaSection {
   eyebrow?: string;
@@ -56,6 +80,22 @@ export interface SplitMediaSection {
   orientation?: 'text-left' | 'visual-left';
   /** Desktop text column width as a percent of the row. Default 40. */
   textRatio?: number;
+}
+
+// One diagram, top to bottom, as an ordered list of lines:
+//   { text }       a plain label/caption line, not boxed (e.g. "UNIVERSITY")
+//   { nodes }      one or more boxed nodes side by side (wraps on mobile);
+//                  `emphasize` renders them larger/bolder as the diagram's
+//                  outcome/focal point
+//   { connector }  a small glyph row between rows, e.g. '↓' or '↙  ↓  ↘'
+export type FlowDiagramLine =
+  | { text: string }
+  | { nodes: string[]; emphasize?: boolean }
+  | { connector: string };
+
+export interface FlowDiagramData {
+  lines: FlowDiagramLine[];
+  caption?: string;
 }
 
 // The editorial type scale for markdown-sourced case studies (both txt-doc
@@ -70,6 +110,7 @@ export interface SplitMediaSection {
 //   Metadata            13-15px    12-14px
 //   Captions            12-14px    12-13px
 export type TextTier =
+  | 'eyebrow'
   | 'h1'
   | 'introLarge'
   | 'metadata'
@@ -97,7 +138,12 @@ export type LaidOutBlock =
   | { kind: 'openLink'; openId: string; label: string }
   | { kind: 'hrefLink'; href: string; label: string }
   | { kind: 'pending' }
-  | { kind: 'splitSection'; data: SplitMediaSection };
+  | { kind: 'splitSection'; data: SplitMediaSection }
+  | { kind: 'flowDiagram'; data: FlowDiagramData }
+  | { kind: 'flowComparison'; left: FlowDiagramData; right: FlowDiagramData }
+  | { kind: 'layerDiagram'; steps: string[] }
+  | { kind: 'narrow'; paragraphs: string[] }
+  | { kind: 'escalatingStatement'; first: string; second: string };
 
 // Resolves raw content into what to render: tier assignment (see rules
 // below), display text (inline **markers** left intact for parseInline),
@@ -107,18 +153,31 @@ export type LaidOutBlock =
 //
 // Tier rules, by position/marker — no extra authoring needed beyond the
 // '## '/'**...**' conventions above:
-//   index 0                     -> h1 (the doc title)
-//   index 1                     -> introLarge (the tagline under it)
+//   an { eyebrow } block        -> its own 'eyebrow' tier, doesn't affect
+//                                  anything else below
+//   the first string block      -> h1 (normally index 0, or index 1 if an
+//                                  eyebrow sits at index 0)
+//   the string right after h1,
+//     specifically at index 1   -> introLarge (the tagline under it) — a
+//                                  doc that opens with an eyebrow (pushing
+//                                  h1 to index 1) skips this automatically,
+//                                  since nothing reaches index 1 as a fresh
+//                                  string there
 //   inside the hero block       -> metadata / metadataBold (short facts
 //                                  like "SAP · Berlin · 2020-2021" or bold
 //                                  field labels like "Role"). The hero
-//                                  block runs from index 2 until whichever
-//                                  comes first: a '## ' heading, or any
-//                                  non-text block (image/pending/link) —
-//                                  so a doc that goes straight from its
-//                                  meta line into a hero image/video, then
-//                                  into real paragraphs, reads as body
-//                                  copy even before the first heading.
+//                                  block runs from after h1/introLarge
+//                                  until whichever comes first: a '## '
+//                                  heading, any non-text block (image/
+//                                  pending/link/diagram/etc.), or a plain
+//                                  line over 150 characters — real prose
+//                                  reliably reads longer than hero facts
+//                                  even combined, so a doc that goes
+//                                  straight from its meta line into real
+//                                  paragraphs (no heading or media forcing
+//                                  the zone closed first) still reads as
+//                                  body copy once the content stops
+//                                  looking like a fact.
 //   a '## ' line                -> sectionHeading
 //   a whole-line '**bold**'     -> majorStatement (pull-quote) once past
 //                                  the hero block, metadataBold inside it
@@ -126,15 +185,20 @@ export type LaidOutBlock =
 export function layoutTextDoc(blocks: TextBlock[]): LaidOutBlock[] {
   const out: LaidOutBlock[] = [];
   let inHeroBlock = true;
+  let h1Assigned = false;
 
   const pushText = (tier: TextTier, text: string) => {
-    out.push({ kind: 'text', tier, text: text || ' ' });
+    out.push({ kind: 'text', tier, text: text || ' ' });
   };
   const isBlank = (entry: LaidOutBlock | undefined) =>
-    !!entry && entry.kind === 'text' && entry.text === ' ';
+    !!entry && entry.kind === 'text' && entry.text === ' ';
 
   blocks.forEach((block, i) => {
     if (typeof block !== 'string') {
+      if ('eyebrow' in block) {
+        pushText('eyebrow', block.eyebrow);
+        return;
+      }
       inHeroBlock = false;
       if ('images' in block) {
         out.push({ kind: 'images', images: block.images });
@@ -144,6 +208,24 @@ export function layoutTextDoc(blocks: TextBlock[]): LaidOutBlock[] {
         out.push({ kind: 'pending' });
       } else if ('splitSection' in block) {
         out.push({ kind: 'splitSection', data: block.splitSection });
+      } else if ('flowDiagram' in block) {
+        out.push({ kind: 'flowDiagram', data: block.flowDiagram });
+      } else if ('flowComparison' in block) {
+        out.push({
+          kind: 'flowComparison',
+          left: block.flowComparison.left,
+          right: block.flowComparison.right,
+        });
+      } else if ('layerDiagram' in block) {
+        out.push({ kind: 'layerDiagram', steps: block.layerDiagram });
+      } else if ('narrow' in block) {
+        out.push({ kind: 'narrow', paragraphs: block.narrow });
+      } else if ('escalatingStatement' in block) {
+        out.push({
+          kind: 'escalatingStatement',
+          first: block.escalatingStatement.first,
+          second: block.escalatingStatement.second,
+        });
       } else if ('openId' in block) {
         out.push({ kind: 'openLink', openId: block.openId, label: block.label });
       } else {
@@ -152,7 +234,8 @@ export function layoutTextDoc(blocks: TextBlock[]): LaidOutBlock[] {
       return;
     }
 
-    if (i === 0) {
+    if (!h1Assigned) {
+      h1Assigned = true;
       pushText('h1', block);
       return;
     }
@@ -172,8 +255,18 @@ export function layoutTextDoc(blocks: TextBlock[]): LaidOutBlock[] {
       return;
     }
     if (inHeroBlock) {
-      pushText(isWholeLineBold(block) ? 'metadataBold' : 'metadata', isWholeLineBold(block) ? block.slice(2, -2) : block);
-      return;
+      const bold = isWholeLineBold(block);
+      const content = bold ? block.slice(2, -2) : block;
+      // Hero-zone facts (dates, role/scope lines) read short even
+      // combined; real prose reliably doesn't. A doc with no heading or
+      // media between its meta line and its opening paragraphs (nothing
+      // else forces the zone closed) still needs to fall through to
+      // body/majorStatement once the content stops looking like a fact.
+      if (content.length <= 150) {
+        pushText(bold ? 'metadataBold' : 'metadata', content);
+        return;
+      }
+      inHeroBlock = false;
     }
     if (isWholeLineBold(block)) {
       pushText('majorStatement', block.slice(2, -2));

@@ -1,108 +1,116 @@
 import type { TextBlock } from './textBlocks';
 
 // Shared between mobile and desktop so the "working at SAP.txt" overlay
-// reads identically on both platforms. Same convention as
-// wrestlingOctopiCaseStudy.ts: '## ' lines are section headlines, lines
-// wrapped in **double asterisks** are bold pull-quotes within a section.
+// reads identically on both platforms.
+//
+// Deliberately restrained compared to the Wrestling Octopi case study:
+// typography, native HTML/CSS diagrams, and whitespace as the visual
+// language rather than product screenshots — SAP Graph's UI is
+// proprietary, so nothing here recreates or implies it. See
+// src/data/textBlocks.ts for the diagram primitives (flowDiagram,
+// flowComparison, layerDiagram, narrow, escalatingStatement).
 export const WORKING_AT_SAP: TextBlock[] = [
-  'SAP Graph',
+  // ---- 1. Hero ----
+  { eyebrow: 'SAP Graph' },
   'Where I learned the difference between writing code and engineering software.',
-  'SAP · Berlin · 2020-2021',
-  '**Role**',
-  'Front-End Engineer · Intern → Working Student',
-  '**Scope**',
-  'Front-End Development · React · TypeScript · Design Systems · Component Architecture · Automated Testing · Agile Development',
-  '## From writing code to engineering software',
-  'I arrived at SAP with a foundation in computer science and practical programming. At university, I had built games, worked on a virtual machine, and learned to think about algorithms, architecture, and code through projects I could largely understand from end to end.',
+  'Front-End Engineering · Design Systems · SAP',
+  'I arrived at SAP with a foundation in computer science and practical programming. At university, I had built games, worked on a virtual machine, and learned to think about code through projects I could largely understand from end to end.',
   'SAP Graph was different.',
-  "For the first time, I was contributing to a production system whose architecture was larger than anything I could hold in my head - built simultaneously by multiple teams, disciplines, and engineers, each responsible for only part of the whole.",
-  'I joined the team first as an intern and continued as a working student, contributing to the frontend of SAP Graph and its early-access platform.',
-  { pending: 'diagram-university-vs-sap-graph' },
-  '**University taught me how to write software. SAP taught me how software gets built together.**',
-  '## 01 · Working inside a system larger than myself',
-  'One of the first things that struck me about SAP Graph was how little any one person needed to know about everything that was happening.',
-  "Different teams and engineers owned different parts of a much larger architecture. I often didn't know the technical details of what another part of the project was implementing, yet the product still moved forward as one system.",
-  'Communication was a large part of why that worked.',
-  "Our daily meetings weren't limited to updates that directly affected everyone in the room. We heard what other people were working on even when their tasks had little immediate connection to our own.",
-  'At first, that level of communication could feel excessive. Over time, I understood its value.',
-  'It created a shared awareness of where the product was moving and made individual pieces of work feel connected to something much larger.',
-  "**The architecture was distributed. The sense of ownership wasn't.**",
-  'Working within a Scrum team also gave me my first experience of software development as a continuous collaborative process: planning, implementation, review, testing, feedback, iteration, and release.',
-  "The product wasn't the result of one person's decisions. It was the accumulation of hundreds of decisions made by people with different areas of expertise but a shared responsibility for the same outcome.",
-  '## 02 · Designing inside an existing language',
-  'At university, I could make most technical and visual decisions within the boundaries of my own projects.',
-  'At SAP, I entered an ecosystem that already had opinions.',
-  "SAP's Fiori design language and UI5 component ecosystem provided established patterns for how enterprise software should look and behave. My job wasn't to invent an interface language from scratch, but to understand an existing one well enough to implement and extend it responsibly.",
-  'I worked closely with designers to translate high-fidelity product designs into production-ready React and TypeScript interfaces.',
-  'Existing components were reused where they solved the problem. In other situations, I built wrappers or product-specific components around them. As new requirements emerged, we continued improving and extending the component library rather than solving every interface problem independently.',
-  { pending: 'diagram-component-pipeline' },
-  "Over time, I built and maintained more than ten reusable UI components that became part of the product's evolving interface system.",
-  'That experience changed the way I understood design systems.',
-  "**A design system wasn't simply a library of things that looked consistent. It was shared infrastructure between design and engineering.**",
-  'A component encoded visual decisions, interaction behaviour, technical constraints, accessibility considerations, and assumptions about how it would be reused elsewhere.',
-  'Building one meant thinking beyond the screen directly in front of me.',
-  '## 03 · Knowing when consistency becomes a constraint',
-  'One small interaction taught me a lesson about engineering judgment that has stayed with me.',
-  'We needed to implement a tooltip that appeared when hovering over a button, with a particular animation and behaviour.',
-  "Our default principle was sensible: use SAP's own components and internal solutions wherever possible rather than introducing unnecessary external dependencies.",
-  'So I tried to build it within those constraints.',
-  'And tried again.',
-  'For hours.',
-  'The interaction we wanted looked simple, but reproducing the intended behaviour with the tools available to us was becoming disproportionately complicated.',
-  "I eventually told my mentor that I didn't think our existing approach was the right solution. An external library could handle the interaction much more effectively.",
-  "He wasn't convinced.",
-  'So we sat down together and worked through the problem.',
-  'After trying to solve it within the existing system himself, he encountered the same limitations I had. We eventually agreed that this was a situation where introducing the external solution was justified.',
-  "What stayed with me wasn't being right about the library.",
-  'It was learning that engineering principles are there to improve a system, not to be followed mechanically.',
-  "At the scale SAP operates, consistency, reuse, maintainability, and dependency discipline matter enormously. Adding a dependency because it saves a few minutes isn't good engineering.",
-  'But neither is spending disproportionate effort preserving a rule when a carefully considered exception produces the better system.',
-  '**Constraints make systems stronger - until the cost of obeying them exceeds the value they provide.**',
-  'That experience also taught me to become more comfortable challenging an implementation decision, explaining why I thought another approach was better, and then working through the problem collaboratively rather than treating disagreement as something to avoid.',
-  '## 04 · Building components for more than one screen',
-  'Much of my frontend work lived at the boundary between a product-specific requirement and a shared system.',
-  'I worked with existing Fiori and UI5 components, built wrappers where we needed additional behaviour, developed reusable components for SAP Graph, and contributed to an interface library that continued evolving alongside the product.',
-  'Feature toggles were another part of that environment, allowing functionality to be introduced and controlled without treating every new feature as an all-or-nothing release.',
-  'The scale of the project gradually changed the questions I asked while developing an interface.',
-  'Instead of only asking:',
-  '**How do I build this?**',
-  'I started asking:',
-  "**What should remain reusable after I've built this?**",
-  'Would another part of the product eventually need the same interaction?',
-  'Should the behaviour belong to the page, or to the component?',
-  'What assumptions was I encoding into its API?',
-  'What happens when the requirements change?',
-  'Could another engineer understand how and why this component works?',
-  "Those questions weren't particularly important when I was building a small university project by myself.",
-  'Inside a large production system, they were fundamental.',
-  '## 05 · Reliability became part of the design',
-  'SAP also changed my definition of when something was finished.',
-  "A feature working locally wasn't enough when other engineers were continuously changing adjacent parts of the system and releases needed to remain predictable.",
-  'Testing therefore became part of my everyday development process.',
-  'I worked with Jest, Cypress, and Gauge and helped establish automated frontend testing practices around the product, covering components and user-facing behaviour across rapid release cycles.',
-  'Testing initially felt like something that verified the code I had already written.',
-  'Eventually, I began to see it differently.',
-  'A good test suite gives a team permission to continue changing a product.',
-  'It lets one engineer modify a component without needing intimate knowledge of every place another engineer relies on it. It makes refactoring less frightening. It catches assumptions that might otherwise only become visible after a release.',
-  "**Testing wasn't something that happened after development. It was part of making future development possible.**",
-  'That shift from thinking about whether my code worked today to whether the system could safely change tomorrow was one of the most important differences between academic programming and production engineering.',
-  '## 06 · Building across disciplines',
-  'Some of my favourite parts of working on SAP Graph happened between disciplines.',
-  'I enjoyed being close enough to the technical architecture to understand the constraints behind what we were building while also working directly with designers on what users would eventually experience.',
-  'A design could look straightforward in a static representation but expose new questions once translated into code.',
-  'An engineering constraint could require reconsidering an interaction.',
-  'An existing component might solve most of a design problem but not all of it.',
-  'Those situations required conversation rather than handoff.',
-  "Working closely with designers taught me that implementation isn't simply the final stage of a design process.",
-  '**Engineering decisions shape the experience just as design decisions shape the implementation.**',
-  'That idea would later become increasingly important to how I work.',
-  '## 07 · What SAP taught me',
-  'SAP changed what I thought being a software engineer meant.',
-  'I entered knowing how to program.',
-  'I left understanding how software survives change.',
-  "I learned how to contribute to an architecture I couldn't understand completely. How to work within an established design language without treating it as immutable. How to reuse before rebuilding. How to recognise when an exception is justified. How to communicate across design and engineering. How to challenge a technical decision respectfully. How testing creates confidence. And how many individual decisions can still produce one coherent product.",
-  "Most importantly, I learned that good engineering isn't defined by how clever an individual piece of code is.",
-  'It is defined by how well that piece fits into everything around it.',
-  'Today, I work in a very different environment. When I build my own products, there may no longer be a large enterprise team around me, but I still think about components, boundaries, maintainability, states, testing, and the person who might need to understand the system after me.',
-  '**SAP gave me the engineering discipline that now sits underneath the way I design and build products.**',
+  'For the first time, I was contributing to a production system larger than anything I could hold in my head, built simultaneously by engineers, designers, and product teams across a large organisation.',
+  '**University taught me how to write software.\nSAP taught me how software gets built together.**',
+
+  // ---- 2. From university to SAP Graph ----
+  {
+    flowDiagram: {
+      lines: [
+        { text: 'UNIVERSITY' },
+        { nodes: ['Small project'] },
+        { connector: '↓' },
+        { text: 'One person can understand most or all of the system' },
+        { connector: '↓' },
+        { text: 'SAP GRAPH' },
+        { nodes: ['SAP Graph'] },
+        { connector: '↙ ↓ ↘' },
+        { nodes: ['Design', 'Engineering', 'Product'] },
+        { connector: '↘ ↓ ↙' },
+        { nodes: ['Shared system'] },
+        { connector: '↓' },
+        { nodes: ['Release'], emphasize: true },
+      ],
+      caption:
+        'Simplified illustration of the shift from individual academic projects to collaborative product development at enterprise scale.',
+    },
+  },
+
+  // ---- 3. Designing inside a system ----
+  '## Designing inside a system',
+  "Working with SAP's Fiori/UI5 ecosystem changed how I understood design systems.",
+  'I translated product designs into React and TypeScript interfaces, worked with existing components, built wrappers where additional behaviour was needed, and contributed reusable components as the product evolved.',
+  { layerDiagram: ['Fiori / UI5 primitive', 'Wrapper', 'Product component', 'Interface'] },
+  {
+    escalatingStatement: {
+      first: 'How do I build this?',
+      second: "What should remain reusable after I've built this?",
+    },
+  },
+  'A design system stopped being a collection of consistent-looking components.',
+  '**It became shared infrastructure between design and engineering.**',
+
+  // ---- 4. The tooltip story ----
+  "## When the system isn't the answer",
+  {
+    narrow: [
+      'One tiny tooltip taught me one of my most lasting engineering lessons.',
+      "We needed an interaction that our existing components couldn't reproduce cleanly. I spent hours trying to keep the solution within our internal ecosystem before arguing that an external library was the better approach.",
+      'My mentor disagreed.',
+      'We eventually sat down and tried solving it together. After encountering the same limitations, we made the exception.',
+      "What stayed with me wasn't being right.",
+      "It was understanding that engineering principles aren't rules to follow mechanically.",
+    ],
+  },
+  '**Consistency matters.\nSo does knowing when the cost of preserving it exceeds its value.**',
+  {
+    flowDiagram: {
+      lines: [{ nodes: ['Button'] }, { connector: '↓ hover' }, { nodes: ['Tooltip'] }],
+    },
+  },
+  {
+    flowComparison: {
+      left: {
+        lines: [
+          { text: 'INTERNAL APPROACH' },
+          { nodes: ['Increasing complexity'] },
+          { connector: '↓' },
+          { nodes: ['Increasing complexity'] },
+          { connector: '↓' },
+          { nodes: ['Increasing complexity'] },
+        ],
+      },
+      right: {
+        lines: [
+          { text: 'CONSIDERED EXCEPTION' },
+          { nodes: ['External solution'] },
+          { connector: '↓' },
+          { nodes: ['Intended interaction'], emphasize: true },
+        ],
+      },
+    },
+  },
+
+  // ---- 5. What stayed with me ----
+  '## What stayed with me',
+  'SAP taught me to think beyond whether my code worked today: reusable components, automated testing, feature toggles, maintainability, collaboration, and the people who would have to understand the system after me.',
+  {
+    flowDiagram: {
+      lines: [
+        { nodes: ['Reusability', 'Testing', 'Feature toggles', 'Maintainability', 'Collaboration'] },
+        { connector: '↓' },
+        { nodes: ['Software that can change'], emphasize: true },
+      ],
+    },
+  },
+
+  // ---- 6. Final statement ----
+  '',
+  '**I entered knowing how to program.\nI left understanding how software survives change.**',
 ];
