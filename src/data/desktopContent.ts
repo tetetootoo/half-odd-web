@@ -231,10 +231,11 @@ export const desktopItems: DesktopItem[] = [
     y: 62.5,
     iconSrc: '/icons/txt-doc.png',
     // wrestling-octopi is a direct external link on desktop (no internal
-    // overlay to reuse), so this opens the same URL in a new tab.
+    // overlay to reuse), so both of these open in a new tab.
     textLines: [
       ...WRESTLING_OCTOPI_CASE_STUDY,
-      { href: 'https://wrestlingoctopi.com', label: 'View Wrestling Octopi here' },
+      { href: 'https://wrestlingoctopi.com', label: 'View Live Product' },
+      { href: 'https://github.com/tetetootoo', label: 'View GitHub' },
     ],
   },
   {

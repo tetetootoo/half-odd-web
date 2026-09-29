@@ -7,7 +7,7 @@ import {
   trashItems,
   type MobileAppItem,
 } from '../../data/mobileContent';
-import { layoutTextDoc, type TextTier } from '../../data/textBlocks';
+import { layoutTextDoc, parseInline, type TextTier } from '../../data/textBlocks';
 import styles from './Mobile.module.css';
 
 const DOCK_ICONS = {
@@ -232,7 +232,9 @@ function TextDoc({
                 case 'text':
                   return (
                     <div key={i} className={styles[TEXT_TIER_CLASS[entry.tier]]}>
-                      {entry.text}
+                      {parseInline(entry.text).map((run, ri) =>
+                        run.bold ? <strong key={ri}>{run.text}</strong> : <span key={ri}>{run.text}</span>,
+                      )}
                     </div>
                   );
                 case 'images':

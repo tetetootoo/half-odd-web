@@ -187,10 +187,13 @@ export const gridApps: MobileAppItem[] = [
     label: 'wrestling octopi case study.txt',
     iconSrc: '/icons/txt-icon.png',
     kind: 'text',
-    // wrestling-octopi is a 'site' overlay on mobile, so reuse it in place.
+    // wrestling-octopi is a 'site' overlay on mobile, so reuse it in place;
+    // GitHub has no internal overlay on either platform, so that one's
+    // always an external link.
     textLines: [
       ...WRESTLING_OCTOPI_CASE_STUDY,
-      { openId: 'wrestling-octopi', label: 'View Wrestling Octopi here' },
+      { openId: 'wrestling-octopi', label: 'View Live Product' },
+      { href: 'https://github.com/tetetootoo', label: 'View GitHub' },
     ],
   },
   {

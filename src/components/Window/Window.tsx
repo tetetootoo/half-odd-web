@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import type { DesktopItem } from '../../data/desktopContent';
-import { layoutTextDoc, type TextTier } from '../../data/textBlocks';
+import { layoutTextDoc, parseInline, type TextTier } from '../../data/textBlocks';
 import { useDrag, type Position } from '../../hooks/useDrag';
 import styles from './Window.module.css';
 
@@ -381,7 +381,9 @@ function WindowBody({
                 case 'text':
                   return (
                     <div key={i} className={styles[TEXT_TIER_CLASS[entry.tier]]}>
-                      {entry.text}
+                      {parseInline(entry.text).map((run, ri) =>
+                        run.bold ? <strong key={ri}>{run.text}</strong> : <span key={ri}>{run.text}</span>,
+                      )}
                     </div>
                   );
                 case 'images':
