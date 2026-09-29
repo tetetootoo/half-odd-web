@@ -45,7 +45,15 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
       FINAL_SEQUENCE: media(wo('final-sequence.mp4', 'Connected product interactions')),
     },
   },
-  'sap-graph-case-study': { id: 'sap-graph-case-study', label: 'SAP Graph.md', markdown: sap, artDirection: 'system', directives: {} },
+  'sap-graph-case-study': {
+    id: 'sap-graph-case-study', label: 'SAP Graph.md', markdown: sap, artDirection: 'system',
+    directives: {
+      COLLABORATION_DIAGRAM: media(silent(slot('sap-graph-case-study', 'collaboration.svg', 'Design, engineering and product contribute to a shared system and release.', '640 / 738', '/media/sap-graph-case-study/collaboration.svg'))),
+      COMPONENT_DIAGRAM: media(silent(slot('sap-graph-case-study', 'component-layers.svg', 'Fiori / UI5 primitives → wrappers → reusable product components → interface.', '640 / 636', '/media/sap-graph-case-study/component-layers.svg'))),
+      TRADEOFF_DIAGRAM: media(silent(slot('sap-graph-case-study', 'engineering-tradeoff.svg', 'Internal workarounds add complexity; an external library enables the intended tooltip interaction.', '640 / 690', '/media/sap-graph-case-study/engineering-tradeoff.svg'))),
+      CHANGE_DIAGRAM: media(silent(slot('sap-graph-case-study', 'software-change.svg', 'Reusability, testing, feature toggles, maintainability and collaboration support software that can change.', '640 / 544', '/media/sap-graph-case-study/software-change.svg'))),
+    },
+  },
   'antispace-berlin-case-study': {
     id: 'antispace-berlin-case-study', label: 'Antispace Berlin.md', markdown: antispace, artDirection: 'editorial',
     directives: {

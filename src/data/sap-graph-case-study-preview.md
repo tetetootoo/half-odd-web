@@ -25,47 +25,7 @@ For the first time, I was contributing to a production system larger than anythi
 
 <br>
 
-```text
-               UNIVERSITY
-
-      ┌─────────────────────────┐
-      │      SMALL PROJECT      │
-      └────────────┬────────────┘
-                   │
-                   ▼
-      ┌─────────────────────────┐
-      │  I CAN UNDERSTAND MOST  │
-      │  OF THE ENTIRE SYSTEM   │
-      └─────────────────────────┘
-
-                   ↓
-                   ↓
-                   ↓
-
-                SAP GRAPH
-
-            ┌──────────────┐
-            │  SAP GRAPH   │
-            └──────┬───────┘
-                   │
-       ┌───────────┼───────────┐
-       │           │           │
-       ▼           ▼           ▼
-   ┌────────┐  ┌───────────┐  ┌─────────┐
-   │ DESIGN │  │ENGINEERING│  │ PRODUCT │
-   └────┬───┘  └─────┬─────┘  └────┬────┘
-        │            │             │
-        └────────────┼─────────────┘
-                     ▼
-            ┌─────────────────┐
-            │  SHARED SYSTEM  │
-            └────────┬────────┘
-                     │
-                     ▼
-               ┌───────────┐
-               │  RELEASE  │
-               └───────────┘
-```
+<!-- COLLABORATION_DIAGRAM -->
 
 *Simplified illustration of the shift from individual academic projects to collaborative product development at enterprise scale.*
 
@@ -81,35 +41,7 @@ I translated product designs into React and TypeScript interfaces, worked with e
 
 <br><br>
 
-```text
-┌───────────────────────────┐
-│   FIORI / UI5 PRIMITIVE   │
-│        [ Button ]         │
-└─────────────┬─────────────┘
-              │
-              ▼
-┌───────────────────────────┐
-│          WRAPPER          │
-│   [ Button + Behaviour ]  │
-└─────────────┬─────────────┘
-              │
-              ▼
-┌───────────────────────────┐
-│     PRODUCT COMPONENT     │
-│  ┌─────────┐  ┌───────┐  │
-│  │ Label   │  │Button │  │
-│  └─────────┘  └───────┘  │
-└─────────────┬─────────────┘
-              │
-              ▼
-┌───────────────────────────┐
-│         INTERFACE         │
-│                           │
-│  ───────────────          │
-│  [     Input     ]        │
-│                 [Action]  │
-└───────────────────────────┘
-```
+<!-- COMPONENT_DIAGRAM -->
 
 <br><br><br><br>
 
@@ -149,26 +81,7 @@ It was understanding that engineering principles aren't rules to follow mechanic
 
 <br><br>
 
-```text
-INTERNAL APPROACH
-
-[ BUTTON ]
-    │
-    ├── workaround
-    │       │
-    │       └── workaround
-    │               │
-    │               └── more complexity
-    │
-    ✕ intended interaction still not clean
-
-
-CONSIDERED EXCEPTION
-
-[ BUTTON ] ── hover ──→ [ TOOLTIP ]
-
-                         ✓ intended interaction
-```
+<!-- TRADEOFF_DIAGRAM -->
 
 <br><br><br>
 
@@ -185,17 +98,7 @@ SAP taught me to think beyond whether my code worked today: reusable components,
 
 <br><br>
 
-```text
-REUSABILITY ───────────┐
-                       │
-TESTING ───────────────┤
-                       │
-FEATURE TOGGLES ───────┼────────→  SOFTWARE THAT CAN CHANGE
-                       │
-MAINTAINABILITY ───────┤
-                       │
-COLLABORATION ─────────┘
-```
+<!-- CHANGE_DIAGRAM -->
 
 <br><br><br><br><br>
 

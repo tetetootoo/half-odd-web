@@ -25,6 +25,8 @@ The first two headings supply the project title/subtitle (SAP keeps its
 eyebrow/title ordering). Later H1s become editorial statements. The first
 paragraph after the hero is metadata. Explicit `<br>` sequences in SAP
 supply capped total gaps rather than accumulating with element margins.
+SAP diagrams use accessible SVG assets in `public/media/sap-graph-case-study`
+through explicit media directives instead of Markdown code sketches.
 
 `INTRO_SPLIT` and `BOOKING_SPLIT` move the immediately preceding paragraph
 blocks into the text column without duplicating or rewriting their copy.
@@ -61,6 +63,5 @@ unique desktop/mobile entries, WIP status, and preservation of `:).txt`.
 
 For browser QA, open all four files at desktop, laptop, tablet and mobile
 widths. Check close/reopen and next-project navigation, vertically stacked
-splits/comparisons, the bento grid's mobile alignment, and the SAP
-mobile diagrams. Check continuous video looping and the absence of playback controls. Browser
+splits/comparisons, the bento grid's mobile alignment, and SAP diagram legibility. Check continuous video looping and the absence of playback controls. Browser
 visual and interaction QA needs an available browser connection.

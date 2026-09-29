@@ -39,6 +39,7 @@
 .architecture p { border-bottom: 1px solid #cdbcc4; padding: 8px 32px; }
 .media > .media + .media { margin-top: 32px; }
 .intimate .page { max-width: 850px; margin: auto; }
+.system .wide:has(.media) { max-width: 680px; }
 .intimate .title, .intimate .subtitle, .intimate .metadata { text-align: center; }
 .intimate .wide:has(.media) { max-width: 680px; }
 .editorial .wide:has(.bento) { margin-top: 80px; }
@@ -47,7 +48,6 @@
 .navigation button { border: 0; background: transparent; padding: 0; cursor: pointer; text-align: left; }
 .document :focus-visible { outline: 2px solid #a8517a; outline-offset: 4px; }
 .block pre { width: fit-content; max-width: 100%; overflow: auto; margin: 0 auto; font: 13px/1.5 Menlo, ui-monospace, monospace; }
-.mobileDiagram { display: none; }
 @container (max-width: 700px) {
   .page { padding: 40px 24px 56px; }
   .block p { font-size: 15px; }
@@ -69,8 +69,6 @@
   .bento > :nth-child(2) { grid-column: 1 / -1; }
   .bento .mediaFrame { flex: none; aspect-ratio: 1 !important; }
   .bento > :nth-child(3) .mediaFrame, .bento > :nth-child(4) .mediaFrame { aspect-ratio: 2 / 1 !important; }
-  .desktopDiagram { display: none; }
-  .mobileDiagram { display: block; }
   .block { margin-top: min(var(--block-gap, 20px), 56px); }
 }
 /* Videos autoplay continuously, muted and without playback controls. */

@@ -2,7 +2,6 @@ import { Fragment, useMemo, type CSSProperties, type ReactNode } from 'react';
 import { Lexer, type Token, type Tokens } from 'marked';
 import { CASE_STUDIES, type CaseStudyId } from '../../data/caseStudies';
 import { CaseStudyMedia } from './CaseStudyMedia';
-import { ConceptDiagram } from './ConceptDiagram';
 import { compileCaseStudy, type CaseBlock } from './markdown';
 import styles from './MarkdownDoc.module.css';
 
@@ -68,10 +67,6 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
       if (config.links?.[label]) content = <a className={styles.projectLink} href={config.links[label]} target="_blank" rel="noreferrer">{label}</a>;
       else if (t.text.includes('`← PREVIOUS PROJECT`')) return null;
       else content = <p className={role === 'metadata' ? styles.metadata : undefined}>{inline(t.tokens)}</p>;
-    } else if (token?.type === 'code' && config.artDirection === 'system') {
-      const text = (token as Tokens.Code).text;
-      const diagram = text.includes('UNIVERSITY') ? 'perspective' : text.includes('FIORI') ? 'composition' : text.includes('INTERNAL APPROACH') ? 'judgment' : 'change';
-      content = <><div className={styles.desktopDiagram}>{renderToken(token)}</div><div className={styles.mobileDiagram}><ConceptDiagram diagram={diagram} /></div></>;
     } else content = token ? renderToken(token) : null;
     return <div key={i} className={`${styles.block} ${wide ? styles.wide : ''}`} style={{ '--block-gap': `${block.gap}px` } as CSSProperties}>{content}</div>;
   };
