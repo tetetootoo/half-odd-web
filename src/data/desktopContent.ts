@@ -218,7 +218,7 @@ export const desktopItems: DesktopItem[] = [
     windowTitle: 'wrestling octopi',
     x: 22.5,
     y: 62.2,
-    link: { url: 'https://wrestlingoctopi.com' },
+    link: { url: 'https://www.wrestlingoctopi.com/' },
     showLinkBadge: true,
     iconSrc: '/media/wrestling-octopi/icon.png',
   },
@@ -234,7 +234,7 @@ export const desktopItems: DesktopItem[] = [
     // overlay to reuse), so both of these open in a new tab.
     textLines: [
       ...WRESTLING_OCTOPI_CASE_STUDY,
-      { href: 'https://wrestlingoctopi.com', label: 'View Live Product' },
+      { href: 'https://www.wrestlingoctopi.com/', label: 'View Live Product' },
       { href: 'https://github.com/tetetootoo', label: 'View GitHub' },
     ],
   },

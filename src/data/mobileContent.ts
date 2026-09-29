@@ -172,8 +172,8 @@ export const gridApps: MobileAppItem[] = [
     iconSrc: '/media/wrestling-octopi/icon.png',
     iconBg: 'white',
     kind: 'site',
-    embedUrl: 'https://wrestlingoctopi.com',
-    link: { url: 'https://wrestlingoctopi.com' },
+    embedUrl: 'https://www.wrestlingoctopi.com/',
+    link: { url: 'https://www.wrestlingoctopi.com/' },
     tags: [
       'backend development',
       'ui design & visual identity',
