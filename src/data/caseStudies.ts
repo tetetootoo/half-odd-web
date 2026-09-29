@@ -47,17 +47,23 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
   'antispace-berlin-case-study': {
     id: 'antispace-berlin-case-study', label: 'Antispace Berlin.md', markdown: antispace, artDirection: 'editorial',
     directives: {
-      HERO_MEDIA: media(anti('website.mov', 'Antispace website', '16 / 10', '/media/antispace/website.mov')),
+      HERO_MEDIA: media(anti('home-website-screenrecord.mov', 'Antispace website', '1280 / 666', '/media/antispace-case-study/home-website-screenrecord.mov')),
       BRAND_GALLERY: { layout: 'asymmetric', media: [
         anti('poster-1.jpg', 'Poster', '2 / 3', '/media/antispace-poster/media.jpg'),
-        anti('poster-2.jpg', 'Second poster', '2 / 3'), anti('card.jpg', 'Name card', '3 / 2'),
-        anti('flyer.jpg', 'Flyer', '4 / 5', '/media/antispace-flyer/media.jpg'),
-        anti('typography.jpg', 'Typography detail', '3 / 2'), anti('social.jpg', 'Social asset', '1 / 1'),
+        anti('poster.png', 'Second poster', '1172 / 998', '/media/antispace-case-study/poster.png'),
+        anti('name-cards.png', 'Name card', '900 / 1106', '/media/antispace-case-study/name-cards.png'),
+        anti('flyer.png', 'Flyer', '1094 / 764', '/media/antispace-case-study/flyer.png'),
+        anti('typography.jpg', 'Typography detail', '3 / 2'),
+        anti('goodie-bags.png', 'Social asset', '630 / 1112', '/media/antispace-case-study/goodie-bags.png'),
       ] },
-      WEBSITE_VIDEO: media(anti('website.mov', 'Navigation and interaction', '16 / 10', '/media/antispace/website.mov')),
-      DETAIL_ROW: gallery(...['Typography', 'Responsive tiles', 'Interaction'].map((label, i) => anti(`detail-${i + 1}.jpg`, label))),
-      BOOKING_SPLIT: { layout: 'split', paragraphs: 2, media: [anti('booking-path.jpg', 'Booking path', '4 / 3')] },
-      FINAL_VISUAL: media(anti('flyer.jpg', 'Antispace print', '4 / 5', '/media/antispace-flyer/media.jpg')),
+      WEBSITE_VIDEO: media(anti('home-website-screenrecord.mov', 'Navigation and interaction', '1280 / 666', '/media/antispace-case-study/home-website-screenrecord.mov')),
+      DETAIL_ROW: gallery(
+        anti('screenshot-more-info.png', 'Typography', '2934 / 1596', '/media/antispace-case-study/screenshot-more-info.png'),
+        anti('screenshot-concept-tiles.png', 'Responsive tiles', '2900 / 1498', '/media/antispace-case-study/screenshot-concept-tiles.png'),
+        anti('detail-3.jpg', 'Interaction'),
+      ),
+      BOOKING_SPLIT: { layout: 'split', paragraphs: 2, media: [anti('recovery-animation.mov', 'Booking path', '1280 / 666', '/media/antispace-case-study/recovery-animation.mov')] },
+      FINAL_VISUAL: media(anti('flyer.png', 'Antispace print', '1094 / 764', '/media/antispace-case-study/flyer.png')),
     },
   },
   'half-a-love-letter-case-study': {
