@@ -1,3 +1,4 @@
+import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
 import { useRef, useState, type FormEvent } from 'react';
 import {
   aboutInfo,
@@ -370,15 +371,15 @@ function TextDoc({
   onOpenApp: (id: string) => void;
 }) {
   return (
-    <div className={styles.docOverlay}>
+    <div className={`${styles.docOverlay} ${app.plainText ? styles.plainTextOverlay : ''}`}>
       <div className={styles.docHeader}>
         <span className={styles.docTitle}>{app.label}</span>
         <button type="button" className={styles.docClose} onClick={onClose} aria-label="Close">
           ✕
         </button>
       </div>
-      <div className={styles.docScroll}>
-        <div className={styles.textPad}>
+      <div className={app.plainText ? `${styles.docScroll} ${styles.editorialScroll}` : styles.docScroll}>
+        {app.plainText ? <PlainTextDoc lines={app.plainText} /> : <div className={styles.textPad}>
           {app.textLines &&
             layoutTextDoc(app.textLines).map((entry, i) => {
               switch (entry.kind) {
@@ -452,7 +453,7 @@ function TextDoc({
                   return null;
               }
             })}
-        </div>
+        </div>}
       </div>
     </div>
   );

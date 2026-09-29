@@ -1115,3 +1115,11 @@
     margin-top: 16px;
   }
 }
+
+/* Plain notes size to their longest line and natural content height. */
+.windowPlainText {
+  width: max-content;
+  max-width: 90vw;
+  height: auto;
+}
+.windowPlainText .content { min-height: 0; }

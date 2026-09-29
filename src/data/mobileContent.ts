@@ -16,6 +16,7 @@ export interface MobileAppItem {
   href?: string;
   audioSrc?: string;
   textLines?: TextBlock[];
+  plainText?: string[];
   link?: { url: string };
   embedUrl?: string;
   mediaSrc?: string;
@@ -136,8 +137,9 @@ export const gridApps: MobileAppItem[] = [
     label: ':).txt',
     iconSrc: '/icons/txt-icon.png',
     kind: 'text',
-    textLines: [
-      '# Things that make me :)',
+    plainText: [
+      'Things that make me :)',
+      '',
       '',
       'that first sip of coffee in the morning',
       'long and short legged dogs',

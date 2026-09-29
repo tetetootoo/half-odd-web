@@ -46,6 +46,7 @@ export interface DesktopItem {
   showScrollHint?: boolean;
   description?: string;
   textLines?: TextBlock[];
+  plainText?: string[];
   mediaSrc?: string;
   mediaType?: 'image' | 'video';
   posterSrc?: string;
@@ -102,8 +103,9 @@ export const desktopItems: DesktopItem[] = [
     x: 58.3,
     y: 6.2,
     iconSrc: '/icons/txt-doc.png',
-    textLines: [
-      '# Things that make me :)',
+    plainText: [
+      'Things that make me :)',
+      '',
       '',
       'that first sip of coffee in the morning',
       'long and short legged dogs',

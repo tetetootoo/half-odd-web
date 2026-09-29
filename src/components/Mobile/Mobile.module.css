@@ -1080,3 +1080,16 @@
   font-size: 13px;
   color: #c0392b;
 }
+
+.editorialScroll { padding: 0; background: #fff; }
+
+.plainTextOverlay {
+  inset: 64px auto auto 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 24px);
+  max-height: calc(100% - 88px);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.plainTextOverlay .docScroll { flex: 0 1 auto; }

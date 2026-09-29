@@ -1,3 +1,4 @@
+import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
 import { useState, type FormEvent } from 'react';
 import type { DesktopItem } from '../../data/desktopContent';
 import {
@@ -533,6 +534,7 @@ function WindowBody({
     case 'image':
       return <ImageOverlayFrame item={item} />;
     case 'text':
+      if (item.plainText) return <PlainTextDoc lines={item.plainText} />;
       return (
         <div className={styles.textPad}>
           {item.textLines &&
@@ -690,7 +692,7 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenIte
       onPointerDown={onFocus}
     >
       <div
-        className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''} ${isTrashKind ? styles.windowTrash : ''} ${isBrowserKind ? styles.windowBrowser : ''} ${isTextKind ? styles.windowTextDoc : ''}`}
+        className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''} ${isTrashKind ? styles.windowTrash : ''} ${isBrowserKind ? styles.windowBrowser : ''} ${isTextKind ? item.plainText ? styles.windowPlainText : styles.windowTextDoc : ''}`}
       >
         <div
           className={`${styles.titleBar} ${isFlushDoc ? styles.titleBarText : ''}`}
