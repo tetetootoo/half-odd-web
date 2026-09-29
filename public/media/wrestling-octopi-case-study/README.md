@@ -10,27 +10,38 @@ In outline order:
 
 1. **hero-video** — full-width hero video/screen recording, right under
    the title block.
-2. **feed-planner-video** — full-width feed planner interaction, right
+2. **intro-visual.mp4** — the 60% side of "The problem" text+visual
+   section, right after the hero video. One strong static/subtly-animated
+   overview or dashboard screen that establishes the product — not the
+   drag interaction (that's feed-planner-video below, where it works as
+   evidence for "Designing complexity out"). Component looks for this
+   exact filename (`intro-visual.mp4`); showing a placeholder until it's
+   there — drop it in and it'll pick it up automatically, no code change
+   needed.
+3. **feed-planner-video** — full-width feed planner interaction, right
    after "A powerful tool shouldn't have to feel like a complicated one."
-3. **feed-detail-draft**, **feed-detail-scheduled**,
+4. **feed-detail-draft**, **feed-detail-scheduled**,
    **feed-detail-publishing**, **feed-detail-failed** — four tightly
    cropped interface details, same crop/scale, right after "It was
    deciding when the user actually needed to see it."
-4. **ai-exploration**, **final-direction** — a two-up comparison right
+5. **ai-exploration**, **final-direction** — a two-up comparison right
    after the "AI could build the interface..." heading: left = early
    AI-generated exploration, right = final manually refined direction.
-5. **architecture-graphic** — simplified architecture diagram, right
+6. **architecture-graphic** — simplified architecture diagram, right
    after the "Designing and engineering as one process" heading.
 
-## Deferred — not built yet
+## "The problem" text+visual section
 
-The outline calls for the introduction paragraph to sit in a 40% text /
-60% product visual two-column layout instead of full-width stacked text.
-That's a real layout change (nothing in the overlay does a side-by-side
-split right now) and there's no visual named for the 60% side yet, so I
-left the intro as a normal full-width paragraph for now. Send the visual
-and confirm you want the two-column treatment built and I'll do both
-together.
+Built as a reusable block (`{ splitSection: {...} }` in
+`textBlocks.ts`), not specific to this doc — same component would work
+anywhere else a text+visual split is wanted. Desktop: true 40/60
+side-by-side, text left / visual right, both configurable per instance
+(`orientation`, `textRatio`). The visual stretches to match whatever
+height the text column ends up needing (object-fit: cover), rather than
+a fixed aspect-ratio, so it stays the dominant element and the real
+video drops in with zero layout shift. Mobile: always stacks text first,
+regardless of desktop `orientation` — no room for a real column split on
+a phone.
 
 ## Footer links
 

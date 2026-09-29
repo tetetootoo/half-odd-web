@@ -7,7 +7,12 @@ import {
   trashItems,
   type MobileAppItem,
 } from '../../data/mobileContent';
-import { layoutTextDoc, parseInline, type TextTier } from '../../data/textBlocks';
+import {
+  layoutTextDoc,
+  parseInline,
+  type SplitMediaSection,
+  type TextTier,
+} from '../../data/textBlocks';
 import styles from './Mobile.module.css';
 
 const DOCK_ICONS = {
@@ -197,6 +202,57 @@ function SiteFrame({ app, onBack }: { app: MobileAppItem; onBack: () => void }) 
   );
 }
 
+function SplitSectionMedia({ data }: { data: SplitMediaSection }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return <div className={styles.splitVisualPlaceholder}>preview coming soon</div>;
+  }
+  if (data.visualType === 'image') {
+    return (
+      <img
+        className={styles.splitVisualMedia}
+        src={data.visualSrc}
+        alt=""
+        onError={() => setFailed(true)}
+      />
+    );
+  }
+  return (
+    <video
+      className={styles.splitVisualMedia}
+      src={data.visualSrc}
+      autoPlay
+      muted
+      loop
+      playsInline
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
+// Reusable text+visual split section — mobile always stacks text first
+// regardless of the desktop `orientation`, since there's no room for a
+// real side-by-side split on a phone. The visual falls back to a
+// same-size placeholder if its file 404s.
+function SplitSectionBlock({ data }: { data: SplitMediaSection }) {
+  return (
+    <div className={styles.splitSection}>
+      <div className={styles.splitText}>
+        {data.eyebrow && <div className={styles.splitEyebrow}>{data.eyebrow}</div>}
+        {data.body.map((paragraph, pi) => (
+          <p key={pi} className={styles.splitBody}>
+            {paragraph}
+          </p>
+        ))}
+        {data.statement && <p className={styles.splitStatement}>{data.statement}</p>}
+      </div>
+      <div className={styles.splitVisual}>
+        <SplitSectionMedia data={data} />
+      </div>
+    </div>
+  );
+}
+
 const TEXT_TIER_CLASS: Record<TextTier, keyof typeof styles> = {
   h1: 'tierH1',
   introLarge: 'tierIntroLarge',
@@ -283,6 +339,8 @@ function TextDoc({
                       <span aria-hidden="true"> ↗</span>
                     </a>
                   );
+                case 'splitSection':
+                  return <SplitSectionBlock key={i} data={entry.data} />;
                 default:
                   return null;
               }

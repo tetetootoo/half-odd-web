@@ -1,5 +1,7 @@
 import type { TextBlock } from './textBlocks';
 
+const MEDIA = '/media/wrestling-octopi-case-study';
+
 // Shared between mobile and desktop so the "wrestling octopi case study.txt"
 // overlay reads identically on both platforms.
 //
@@ -12,9 +14,21 @@ export const WRESTLING_OCTOPI_CASE_STUDY: TextBlock[] = [
   'Designing and engineering a social media workspace from 0→1.',
   '**Product Design · Design Engineering · Full-Stack Development · 2026**',
   { pending: 'hero-video' },
-  'I started working more closely with social media and wanted a tool that could simplify the process. The products I found were either expensive, missing functionality I needed, or so feature-heavy that using them became another task in itself.',
-  'So I started building the tool I wanted to use.',
-  '**Wrestling Octopi brings planning, creating, scheduling, publishing, and managing social content into one connected workspace - designed and engineered by me from the ground up.**',
+  {
+    splitSection: {
+      eyebrow: 'The problem',
+      body: [
+        'I started working more closely with social media and wanted a tool that could simplify the process. The products I found were either expensive, missing functionality I needed, or so feature-heavy that using them became another task in itself.',
+        'So I started building the tool I wanted to use.',
+      ],
+      statement:
+        'Wrestling Octopi brings planning, creating, scheduling, publishing, and managing social content into one connected workspace - designed and engineered by me from the ground up.',
+      visualSrc: `${MEDIA}/intro-visual.mp4`,
+      visualType: 'video',
+      orientation: 'text-left',
+      textRatio: 40,
+    },
+  },
   '## Designing complexity out',
   'My research started with existing social media tools, paying particular attention to the moments where I felt lost, overloaded, or forced through more interface than the task required.',
   'I combined what worked with inspiration from products far outside the category, with one principle:',

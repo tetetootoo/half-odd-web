@@ -33,7 +33,30 @@ export type TextBlock =
   // Opens an external URL in a new tab — for a platform where the target
   // has no internal overlay to reuse (e.g. a desktop icon that's a direct
   // external link, or a link with no internal overlay at all like GitHub).
-  | { href: string; label: string };
+  | { href: string; label: string }
+  // A reusable text+visual split section (not Wrestling-Octopi-specific):
+  // a narrow text column (eyebrow label, body paragraphs, an optional
+  // closing statement rendered more prominently than body but well under
+  // section-headline scale) beside one dominant visual. `orientation`
+  // and `textRatio` control which side the text sits on and how wide it
+  // is; both platforms render it (desktop as true side-by-side, mobile
+  // always stacked text-first regardless of `orientation` — there's no
+  // room for a real column split on a phone). The visual auto-falls-back
+  // to a placeholder (matching the same box's dimensions) if `visualSrc`
+  // 404s, so the real file can be dropped in later with no layout change.
+  | { splitSection: SplitMediaSection };
+
+export interface SplitMediaSection {
+  eyebrow?: string;
+  body: string[];
+  statement?: string;
+  visualSrc: string;
+  visualType?: 'image' | 'video';
+  /** Desktop only — mobile always stacks text first. Default 'text-left'. */
+  orientation?: 'text-left' | 'visual-left';
+  /** Desktop text column width as a percent of the row. Default 40. */
+  textRatio?: number;
+}
 
 // The editorial type scale for markdown-sourced case studies (both txt-doc
 // overlays share it). Ranges as given; components use one concrete value
@@ -73,7 +96,8 @@ export type LaidOutBlock =
   | { kind: 'images'; images: string[] }
   | { kind: 'openLink'; openId: string; label: string }
   | { kind: 'hrefLink'; href: string; label: string }
-  | { kind: 'pending' };
+  | { kind: 'pending' }
+  | { kind: 'splitSection'; data: SplitMediaSection };
 
 // Resolves raw content into what to render: tier assignment (see rules
 // below), display text (inline **markers** left intact for parseInline),
@@ -118,6 +142,8 @@ export function layoutTextDoc(blocks: TextBlock[]): LaidOutBlock[] {
         out.push({ kind: 'image', image: block.image, alt: block.alt });
       } else if ('pending' in block) {
         out.push({ kind: 'pending' });
+      } else if ('splitSection' in block) {
+        out.push({ kind: 'splitSection', data: block.splitSection });
       } else if ('openId' in block) {
         out.push({ kind: 'openLink', openId: block.openId, label: block.label });
       } else {

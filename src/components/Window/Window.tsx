@@ -1,6 +1,11 @@
 import { useState, type FormEvent } from 'react';
 import type { DesktopItem } from '../../data/desktopContent';
-import { layoutTextDoc, parseInline, type TextTier } from '../../data/textBlocks';
+import {
+  layoutTextDoc,
+  parseInline,
+  type SplitMediaSection,
+  type TextTier,
+} from '../../data/textBlocks';
 import { useDrag, type Position } from '../../hooks/useDrag';
 import styles from './Window.module.css';
 
@@ -352,6 +357,61 @@ function TrashFrame({ item, onOpenItem }: { item: DesktopItem; onOpenItem: (id: 
   );
 }
 
+function SplitSectionMedia({ data }: { data: SplitMediaSection }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return <div className={styles.splitVisualPlaceholder}>preview coming soon</div>;
+  }
+  if (data.visualType === 'image') {
+    return (
+      <img
+        className={styles.splitVisualMedia}
+        src={data.visualSrc}
+        alt=""
+        onError={() => setFailed(true)}
+      />
+    );
+  }
+  return (
+    <video
+      className={styles.splitVisualMedia}
+      src={data.visualSrc}
+      autoPlay
+      muted
+      loop
+      playsInline
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
+// Reusable text+visual split section — desktop renders true side-by-side
+// columns (orientation/textRatio configurable); the visual falls back to a
+// same-size placeholder if its file 404s, so dropping the real asset in
+// later needs no layout change.
+function SplitSectionBlock({ data }: { data: SplitMediaSection }) {
+  const textRatio = data.textRatio ?? 40;
+  const visualRatio = 100 - textRatio;
+  const reverse = data.orientation === 'visual-left';
+
+  return (
+    <div className={`${styles.splitSection} ${reverse ? styles.splitSectionReverse : ''}`}>
+      <div className={styles.splitText} style={{ flex: `${textRatio} 1 0%` }}>
+        {data.eyebrow && <div className={styles.splitEyebrow}>{data.eyebrow}</div>}
+        {data.body.map((paragraph, pi) => (
+          <p key={pi} className={styles.splitBody}>
+            {paragraph}
+          </p>
+        ))}
+        {data.statement && <p className={styles.splitStatement}>{data.statement}</p>}
+      </div>
+      <div className={styles.splitVisual} style={{ flex: `${visualRatio} 1 0%` }}>
+        <SplitSectionMedia data={data} />
+      </div>
+    </div>
+  );
+}
+
 const TEXT_TIER_CLASS: Record<TextTier, keyof typeof styles> = {
   h1: 'tierH1',
   introLarge: 'tierIntroLarge',
@@ -432,6 +492,8 @@ function WindowBody({
                       <span aria-hidden="true"> ↗</span>
                     </a>
                   );
+                case 'splitSection':
+                  return <SplitSectionBlock key={i} data={entry.data} />;
                 default:
                   return null;
               }
