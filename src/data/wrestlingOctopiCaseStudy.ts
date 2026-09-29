@@ -34,7 +34,7 @@ export const WRESTLING_OCTOPI_CASE_STUDY: TextBlock[] = [
   { pending: 'before-after-comparison' },
   'So I moved back into the interface manually - simplifying hierarchy, removing unnecessary containers, refining typography and spacing, and establishing a visual system deliberately.',
   { pending: 'design-details-3up' },
-  '**AI remained useful for producing software quickly. Taste still had to come from me.**',
+  '**AI remained useful for producing software quickly.\nTaste still had to come from me.**',
   '## Designing and engineering as one process',
   'There is no handoff between design and engineering on Wrestling Octopi.',
   'An interaction can move from an idea into working software, expose a problem, return to design, and be rebuilt within the same iteration.',

@@ -232,9 +232,13 @@ function TextDoc({
                 case 'text':
                   return (
                     <div key={i} className={styles[TEXT_TIER_CLASS[entry.tier]]}>
-                      {parseInline(entry.text).map((run, ri) =>
-                        run.bold ? <strong key={ri}>{run.text}</strong> : <span key={ri}>{run.text}</span>,
-                      )}
+                      {parseInline(entry.text).map((run, ri) => {
+                        const lines = run.text.split('\n');
+                        const content = lines.flatMap((line, li) =>
+                          li === 0 ? [line] : [<br key={`${ri}-${li}`} />, line],
+                        );
+                        return run.bold ? <strong key={ri}>{content}</strong> : <span key={ri}>{content}</span>;
+                      })}
                     </div>
                   );
                 case 'images':
