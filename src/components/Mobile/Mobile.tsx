@@ -7,7 +7,7 @@ import {
   trashItems,
   type MobileAppItem,
 } from '../../data/mobileContent';
-import { isBoldLine, isHeading, stripBoldMarkers, withHeadingSpacers } from '../../data/textBlocks';
+import { layoutTextDoc, type TextTier } from '../../data/textBlocks';
 import styles from './Mobile.module.css';
 
 const DOCK_ICONS = {
@@ -197,6 +197,16 @@ function SiteFrame({ app, onBack }: { app: MobileAppItem; onBack: () => void }) 
   );
 }
 
+const TEXT_TIER_CLASS: Record<TextTier, keyof typeof styles> = {
+  h1: 'tierH1',
+  introLarge: 'tierIntroLarge',
+  metadata: 'tierMetadata',
+  metadataBold: 'tierMetadataBold',
+  sectionHeading: 'tierSectionHeading',
+  majorStatement: 'tierMajorStatement',
+  body: 'tierBody',
+};
+
 function TextDoc({
   app,
   onClose,
@@ -216,75 +226,61 @@ function TextDoc({
       </div>
       <div className={styles.docScroll}>
         <div className={styles.textPad}>
-          {app.textLines && withHeadingSpacers(app.textLines).map((block, i) => {
-            if (typeof block === 'string') {
-              if (isHeading(block)) {
-                return (
-                  <div key={i} className={styles.textHeading}>
-                    {stripHeadingPrefix(block)}
-                  </div>
-                );
+          {app.textLines &&
+            layoutTextDoc(app.textLines).map((entry, i) => {
+              switch (entry.kind) {
+                case 'text':
+                  return (
+                    <div key={i} className={styles[TEXT_TIER_CLASS[entry.tier]]}>
+                      {entry.text}
+                    </div>
+                  );
+                case 'images':
+                  return (
+                    <div key={i} className={styles.textImageRow}>
+                      {entry.images.map((src) => (
+                        <img key={src} className={styles.textImage} src={src} alt="" />
+                      ))}
+                    </div>
+                  );
+                case 'image':
+                  return (
+                    <img
+                      key={i}
+                      className={styles.textImageFull}
+                      src={entry.image}
+                      alt={entry.alt ?? ''}
+                    />
+                  );
+                case 'openLink':
+                  return (
+                    <button
+                      key={i}
+                      type="button"
+                      className={styles.textLink}
+                      onClick={() => onOpenApp(entry.openId)}
+                    >
+                      {entry.label}
+                      <span aria-hidden="true"> ↗</span>
+                    </button>
+                  );
+                case 'hrefLink':
+                  return (
+                    <a
+                      key={i}
+                      className={styles.textLink}
+                      href={entry.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {entry.label}
+                      <span aria-hidden="true"> ↗</span>
+                    </a>
+                  );
+                default:
+                  return null;
               }
-              if (i === 0) {
-                return (
-                  <div key={i} className={styles.textTitle}>
-                    {block}
-                  </div>
-                );
-              }
-              const bold = isBoldLine(block);
-              const text = bold ? stripBoldMarkers(block) : block;
-              return (
-                <div key={i} className={bold ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}>
-                  {text || ' '}
-                </div>
-              );
-            }
-            if ('images' in block) {
-              return (
-                <div key={i} className={styles.textImageRow}>
-                  {block.images.map((src) => (
-                    <img key={src} className={styles.textImage} src={src} alt="" />
-                  ))}
-                </div>
-              );
-            }
-            if ('image' in block) {
-              return (
-                <img
-                  key={i}
-                  className={styles.textImageFull}
-                  src={block.image}
-                  alt={block.alt ?? ''}
-                />
-              );
-            }
-            if ('openId' in block) {
-              return (
-                <button
-                  key={i}
-                  type="button"
-                  className={styles.textLink}
-                  onClick={() => onOpenApp(block.openId)}
-                >
-                  {block.label}
-                  <span aria-hidden="true"> ↗</span>
-                </button>
-              );
-            }
-            return (
-              <a
-                key={i}
-                className={styles.textLink}
-                href={block.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {block.label}
-                <span aria-hidden="true"> ↗</span>
-              </a>
-            );
-          })}
+            })}
         </div>
       </div>
     </div>

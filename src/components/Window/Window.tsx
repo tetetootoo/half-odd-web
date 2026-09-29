@@ -1,12 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import type { DesktopItem } from '../../data/desktopContent';
-import {
-  isBoldLine,
-  isHeading,
-  stripBoldMarkers,
-  stripHeadingPrefix,
-  withHeadingSpacers,
-} from '../../data/textBlocks';
+import { layoutTextDoc, type TextTier } from '../../data/textBlocks';
 import { useDrag, type Position } from '../../hooks/useDrag';
 import styles from './Window.module.css';
 
@@ -358,6 +352,16 @@ function TrashFrame({ item, onOpenItem }: { item: DesktopItem; onOpenItem: (id: 
   );
 }
 
+const TEXT_TIER_CLASS: Record<TextTier, keyof typeof styles> = {
+  h1: 'tierH1',
+  introLarge: 'tierIntroLarge',
+  metadata: 'tierMetadata',
+  metadataBold: 'tierMetadataBold',
+  sectionHeading: 'tierSectionHeading',
+  majorStatement: 'tierMajorStatement',
+  body: 'tierBody',
+};
+
 function WindowBody({
   item,
   onOpenItem,
@@ -371,75 +375,61 @@ function WindowBody({
     case 'text':
       return (
         <div className={styles.textPad}>
-          {item.textLines && withHeadingSpacers(item.textLines).map((block, i) => {
-            if (typeof block === 'string') {
-              if (isHeading(block)) {
-                return (
-                  <div key={i} className={styles.textHeading}>
-                    {stripHeadingPrefix(block)}
-                  </div>
-                );
+          {item.textLines &&
+            layoutTextDoc(item.textLines).map((entry, i) => {
+              switch (entry.kind) {
+                case 'text':
+                  return (
+                    <div key={i} className={styles[TEXT_TIER_CLASS[entry.tier]]}>
+                      {entry.text}
+                    </div>
+                  );
+                case 'images':
+                  return (
+                    <div key={i} className={styles.textImageRow}>
+                      {entry.images.map((src) => (
+                        <img key={src} className={styles.textImage} src={src} alt="" />
+                      ))}
+                    </div>
+                  );
+                case 'image':
+                  return (
+                    <img
+                      key={i}
+                      className={styles.textImageFull}
+                      src={entry.image}
+                      alt={entry.alt ?? ''}
+                    />
+                  );
+                case 'openLink':
+                  return (
+                    <button
+                      key={i}
+                      type="button"
+                      className={styles.textLink}
+                      onClick={() => onOpenItem(entry.openId)}
+                    >
+                      {entry.label}
+                      <span aria-hidden="true"> ↗</span>
+                    </button>
+                  );
+                case 'hrefLink':
+                  return (
+                    <a
+                      key={i}
+                      className={styles.textLink}
+                      href={entry.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {entry.label}
+                      <span aria-hidden="true"> ↗</span>
+                    </a>
+                  );
+                default:
+                  return null;
               }
-              if (i === 0) {
-                return (
-                  <div key={i} className={styles.textTitle}>
-                    {block}
-                  </div>
-                );
-              }
-              const bold = isBoldLine(block);
-              const text = bold ? stripBoldMarkers(block) : block;
-              return (
-                <div key={i} className={bold ? `${styles.textLine} ${styles.textLineBold}` : styles.textLine}>
-                  {text || ' '}
-                </div>
-              );
-            }
-            if ('images' in block) {
-              return (
-                <div key={i} className={styles.textImageRow}>
-                  {block.images.map((src) => (
-                    <img key={src} className={styles.textImage} src={src} alt="" />
-                  ))}
-                </div>
-              );
-            }
-            if ('image' in block) {
-              return (
-                <img
-                  key={i}
-                  className={styles.textImageFull}
-                  src={block.image}
-                  alt={block.alt ?? ''}
-                />
-              );
-            }
-            if ('openId' in block) {
-              return (
-                <button
-                  key={i}
-                  type="button"
-                  className={styles.textLink}
-                  onClick={() => onOpenItem(block.openId)}
-                >
-                  {block.label}
-                  <span aria-hidden="true"> ↗</span>
-                </button>
-              );
-            }
-            return (
-              <a
-                key={i}
-                className={styles.textLink}
-                href={block.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {block.label}
-                <span aria-hidden="true"> ↗</span>
-              </a>
-            );
-          })}
+            })}
         </div>
       );
     case 'notes':
@@ -499,7 +489,8 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenIte
   const isMailKind = item.kind === 'mail';
   const isTrashKind = item.kind === 'trash';
   const isBrowserKind = item.kind === 'browser';
-  const isFileTitle = item.kind === 'text' || item.kind === 'notes';
+  const isTextKind = item.kind === 'text';
+  const isFileTitle = isTextKind || item.kind === 'notes';
   const isFlushDoc = isFileTitle || item.kind === 'about';
   const step = (cascadeIndex % CASCADE_WRAP) * CASCADE_STEP_PX;
   // Drag distance persists here across pointer-ups; useDrag's own offset
@@ -521,7 +512,7 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenIte
       onPointerDown={onFocus}
     >
       <div
-        className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''} ${isTrashKind ? styles.windowTrash : ''} ${isBrowserKind ? styles.windowBrowser : ''}`}
+        className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''} ${isTrashKind ? styles.windowTrash : ''} ${isBrowserKind ? styles.windowBrowser : ''} ${isTextKind ? styles.windowTextDoc : ''}`}
       >
         <div
           className={`${styles.titleBar} ${isFlushDoc ? styles.titleBarText : ''}`}

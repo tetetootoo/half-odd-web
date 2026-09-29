@@ -4,15 +4,22 @@
 // Notes, etc.) don't need to change at all — only content that actually
 // needs one of these uses the object forms.
 //
-// A plain string starting with '## ' is a section headline: the renderer
-// strips the prefix and bolds it with extra spacing, same convention the
-// Notes app already uses for its own subheadings.
+// Authoring conventions for plain strings:
+//   '## Text'      section headline
+//   '**Text**'     bold emphasis — a big mid-document pull-quote once past
+//                  the first headline, or a small bold field label (like
+//                  "Role") while still in the doc's opening hero block
+//   plain text     everything else
+//
+// layoutTextDoc() below turns a raw TextBlock[] into fully-resolved render
+// instructions — which type-scale tier each line belongs to, spacing, and
+// stripped display text — so components don't re-derive any of this.
 export type TextBlock =
   | string
   | { image: string; alt?: string }
   | { images: string[] }
   // Opens another item's own overlay/window in place — for a case-study
-  // link like "view wrestling octopi here" that should reuse the site's
+  // link like "View Wrestling Octopi here" that should reuse the site's
   // existing overlay for that project rather than duplicate it.
   | { openId: string; label: string }
   // Opens an external URL in a new tab — for a platform where the target
@@ -20,49 +27,111 @@ export type TextBlock =
   // external link).
   | { href: string; label: string };
 
+// The editorial type scale for markdown-sourced case studies (both txt-doc
+// overlays share it). Ranges as given; components use one concrete value
+// per platform, picked from within each range.
+//   Element            Desktop    Mobile
+//   Case H1            72-88px    42-52px
+//   Major statement     48-64px    32-40px
+//   Section heading     28-36px    24-28px
+//   Intro/body large    20-24px    18-20px
+//   Body                17-19px    16-18px
+//   Metadata            13-15px    12-14px
+//   Captions            12-14px    12-13px
+export type TextTier =
+  | 'h1'
+  | 'introLarge'
+  | 'metadata'
+  | 'metadataBold'
+  | 'sectionHeading'
+  | 'majorStatement'
+  | 'body';
+
 export const HEADING_PREFIX = '## ';
 
-export function isHeading(block: TextBlock): block is string {
-  return typeof block === 'string' && block.startsWith(HEADING_PREFIX);
+function isHeadingLine(text: string): boolean {
+  return text.startsWith(HEADING_PREFIX);
 }
 
-export function stripHeadingPrefix(block: string): string {
-  return block.slice(HEADING_PREFIX.length);
+function isBoldLine(text: string): boolean {
+  return text.startsWith('**') && text.endsWith('**') && text.length > 4;
 }
 
-// A whole line wrapped in **double asterisks** — a bold pull-quote inside a
-// section rather than a new section headline, so it gets bold weight but
-// none of a headline's extra top/bottom spacing (reuses the plain
-// .textLine/.textLineBold treatment the doc title already uses).
-export function isBoldLine(block: TextBlock): block is string {
-  return typeof block === 'string' && block.startsWith('**') && block.endsWith('**') && block.length > 4;
-}
+export type LaidOutBlock =
+  | { kind: 'text'; tier: TextTier; text: string }
+  | { kind: 'image'; image: string; alt?: string }
+  | { kind: 'images'; images: string[] }
+  | { kind: 'openLink'; openId: string; label: string }
+  | { kind: 'hrefLink'; href: string; label: string };
 
-export function stripBoldMarkers(block: string): string {
-  return block.slice(2, -2);
-}
+// Resolves raw content into what to render: tier assignment (see rules
+// below), stripped display text, and one blank spacer line auto-inserted
+// before/after every section headline (skipped where the data already
+// supplies one, so content that wants *extra* space can add its own blank
+// entries on top).
+//
+// Tier rules, by position/marker — no extra authoring needed beyond the
+// '## '/'**...**' conventions above:
+//   index 0                        -> h1 (the doc title)
+//   index 1                        -> introLarge (the tagline under it)
+//   before the first '## ' heading -> metadata / metadataBold (hero block
+//                                     facts like "SAP · Berlin · 2020-2021"
+//                                     or bold field labels like "Role")
+//   a '## ' line                   -> sectionHeading
+//   a '**bold**' line after that   -> majorStatement (pull-quote)
+//   everything else                -> body
+export function layoutTextDoc(blocks: TextBlock[]): LaidOutBlock[] {
+  const out: LaidOutBlock[] = [];
+  let headingSeen = false;
 
-// Inserts one blank spacer line before and after every headline, so authors
-// don't need to hand-place blank-string entries around every '## ' line in
-// the source data. Skips inserting a spacer where the data already
-// supplies one, so content that wants *extra* space can still add its own
-// blank entries on top. Deliberately doesn't touch the doc's own title
-// (block 0) — the hero block (title, tagline, Role/Scope/Stack-style
-// labels) stays tight; only real section headlines get this treatment.
-export function withHeadingSpacers(blocks: TextBlock[]): TextBlock[] {
-  const out: TextBlock[] = [];
+  const pushText = (tier: TextTier, text: string) => {
+    out.push({ kind: 'text', tier, text: text || ' ' });
+  };
+
   blocks.forEach((block, i) => {
-    const headline = isHeading(block);
-
-    if (headline && out.length > 0 && out[out.length - 1] !== '') {
-      out.push('');
+    if (typeof block !== 'string') {
+      if ('images' in block) {
+        out.push({ kind: 'images', images: block.images });
+      } else if ('image' in block) {
+        out.push({ kind: 'image', image: block.image, alt: block.alt });
+      } else if ('openId' in block) {
+        out.push({ kind: 'openLink', openId: block.openId, label: block.label });
+      } else {
+        out.push({ kind: 'hrefLink', href: block.href, label: block.label });
+      }
+      return;
     }
 
-    out.push(block);
-
-    if (headline && blocks[i + 1] !== '') {
-      out.push('');
+    if (i === 0) {
+      pushText('h1', block);
+      return;
     }
+    if (i === 1 && block !== '') {
+      pushText('introLarge', block);
+      return;
+    }
+    if (isHeadingLine(block)) {
+      if (out.length > 0 && !(out[out.length - 1].kind === 'text' && out[out.length - 1].text === ' ')) {
+        pushText('body', '');
+      }
+      headingSeen = true;
+      pushText('sectionHeading', block.slice(HEADING_PREFIX.length));
+      const next = blocks[i + 1];
+      if (next !== '') {
+        pushText('body', '');
+      }
+      return;
+    }
+    if (!headingSeen) {
+      pushText(isBoldLine(block) ? 'metadataBold' : 'metadata', isBoldLine(block) ? block.slice(2, -2) : block);
+      return;
+    }
+    if (isBoldLine(block)) {
+      pushText('majorStatement', block.slice(2, -2));
+      return;
+    }
+    pushText('body', block);
   });
+
   return out;
 }
