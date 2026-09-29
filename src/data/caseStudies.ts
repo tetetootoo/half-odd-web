@@ -83,6 +83,7 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
         slot('half-a-love-letter-case-study', 'ai-1.png', 'Claude', '2930 / 1496', '/media/half-a-love-letter-case-study/ai-1.png'),
         slot('half-a-love-letter-case-study', 'ai-3.png', 'Figma AI', '434 / 966', '/media/half-a-love-letter-case-study/ai-3.png'),
         slot('half-a-love-letter-case-study', 'ai-4.png', 'Framer', '526 / 896', '/media/half-a-love-letter-case-study/ai-4.png'),
+        slot('half-a-love-letter-case-study', 'ai-5.png', 'Figma → Framer', '1182 / 986', '/media/half-a-love-letter-case-study/ai-5.png'),
       ] },
       FINAL_DESIGN: media(love('final-experience.mp4', 'Final experience')),
     },

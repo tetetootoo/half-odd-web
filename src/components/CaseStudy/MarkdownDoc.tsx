@@ -64,7 +64,7 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
     } else if (token?.type === 'paragraph') {
       const t = token as Tokens.Paragraph;
       const label = t.text.replaceAll('**', '').trim();
-      if (config.links?.[label]) content = <a className={styles.projectLink} href={config.links[label]} target="_blank" rel="noreferrer">{label}</a>;
+      if (config.links?.[label]) content = <p><a className={styles.projectLink} href={config.links[label]} target="_blank" rel="noreferrer">{label}</a></p>;
       else if (t.text.includes('`← PREVIOUS PROJECT`')) return null;
       else content = <p className={role === 'metadata' ? styles.metadata : undefined}>{inline(t.tokens)}</p>;
     } else content = token ? renderToken(token) : null;

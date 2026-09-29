@@ -17,9 +17,9 @@ I used the project to test something else I was curious about:
 
 ---
 
-## Three tools. Strangely similar answers.
+## Four experiments. Strangely similar answers.
 
-I explored the same idea with Claude, Figma AI, and Framer.
+I explored the same idea with Claude, Figma AI, and Framer, then tested a fourth approach: translating a Figma design directly into Framer.
 
 Different tools repeatedly converged on familiar layouts, predictable components, and literal interpretations of the brief.
 
@@ -28,11 +28,13 @@ They were good at producing **an** interface quickly.
 They were less convincing at deciding what **this** interface should feel like.
 
 <!-- AI_COMPARISON
-Three-column desktop comparison:
-Claude | Figma AI | Framer
+Four examples in a two-column comparison:
+Claude | Figma AI | Framer | Figma → Framer
 Show outputs from the same or closely matched brief where available.
 On mobile, stack or horizontally scroll without making text unreadable.
 -->
+
+The Figma-to-Framer handoff fell short in a different way: Figma produced a static image for Framer instead of a working interface. It reproduced the appearance without delivering the interaction.
 
 # Strangely similar answers.
 
@@ -62,6 +64,6 @@ It didn't need one.
 
 ---
 
-**HTML · CSS · JavaScript · Firebase Firestore**
+HTML · CSS · JavaScript · Firebase Firestore
 
-**View GitHub ↗**
+View GitHub ↗

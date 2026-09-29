@@ -38,19 +38,21 @@
 .architecture figcaption, .architecture small { font-size: 12px; color: #6b5a62; text-align: center; }
 .architecture p { border-bottom: 1px solid #cdbcc4; padding: 8px 32px; }
 .media > .media + .media { margin-top: 32px; }
-.intimate .page { max-width: 850px; margin: auto; }
+.intimate .page { width: 100%; max-width: 792px; margin-inline: auto; }
+.intimate .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .system .wide:has(.media) { max-width: 680px; }
 .intimate .title, .intimate .subtitle, .intimate .metadata { text-align: center; }
 .intimate .wide:has(.media) { max-width: 680px; }
 .editorial .wide:has(.bento) { margin-top: 80px; }
-.projectLink, .navigation button { color: #a8517a; font: inherit; font-weight: 700; text-decoration: none; }
-.navigation { max-width: 680px; margin: 96px auto 0; padding-top: 24px; border-top: 1px solid #e9e2e5; }
+.projectLink, .navigation button { color: #a8517a; font: inherit; font-size: 16px; line-height: 1.6; font-weight: 400; text-decoration: none; }
+.navigation { max-width: 680px; margin: 96px 0 0; padding-top: 24px; border-top: 1px solid #e9e2e5; }
 .navigation button { border: 0; background: transparent; padding: 0; cursor: pointer; text-align: left; }
 .document :focus-visible { outline: 2px solid #a8517a; outline-offset: 4px; }
 .block pre { width: fit-content; max-width: 100%; overflow: auto; margin: 0 auto; font: 13px/1.5 Menlo, ui-monospace, monospace; }
 @container (max-width: 700px) {
   .page { padding: 40px 24px 56px; }
-  .block p { font-size: 15px; }
+  .intimate .page { max-width: 728px; }
+  .block p, .projectLink, .navigation button { font-size: 15px; }
   .block .title { font-size: 28px; }
   .block .metadata, .block .eyebrow { font-size: 12px; }
   .block .statement { font-size: 20px; }
@@ -60,7 +62,7 @@
   .bento { gap: 12px; }
 }
 @container (max-width: 480px) {
-  .gallery, .comparison { grid-template-columns: 1fr; }
+  .gallery, .comparison, .intimate .comparison { grid-template-columns: 1fr; }
   .editorial .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; }
   .bento > :nth-child(n) { grid-column: auto; grid-row: auto; }
