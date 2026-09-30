@@ -265,7 +265,7 @@ export const gridApps: MobileAppItem[] = [
   },
   {
     id: 'photo-portfolio',
-    label: 'Photo Portfolio',
+    label: 'Photography',
     iconSrc: '/media/photo-portfolio/icon.png',
     kind: 'site',
     embedUrl: 'https://theresaschantz.com',

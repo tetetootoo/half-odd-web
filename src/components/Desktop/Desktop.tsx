@@ -41,6 +41,25 @@ export function Desktop() {
     setIconPositions((prev) => ({ ...prev, [item.id]: next }));
   };
 
+  // Dev-only: persists dragged positions into desktopContent.ts via the
+  // save-icon-layout plugin in vite.config.ts.
+  const [layoutStatus, setLayoutStatus] = useState<string | null>(null);
+  const saveIconLayout = async () => {
+    const rounded = Object.fromEntries(
+      Object.entries(iconPositions).map(([id, { x, y }]) => [
+        id,
+        { x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 },
+      ]),
+    );
+    const res = await fetch('/__save-icon-layout', {
+      method: 'POST',
+      body: JSON.stringify(rounded),
+    });
+    const { missing } = (await res.json()) as { missing: string[] };
+    setLayoutStatus(missing.length ? `Not found: ${missing.join(', ')}` : 'Saved');
+    setIconPositions({});
+  };
+
   const openWindow = (id: string) => {
     setOpenWindows((prev) => {
       if (prev.some((w) => w.id === id)) {
@@ -114,6 +133,18 @@ export function Desktop() {
           );
         })}
       </div>
+      {import.meta.env.DEV && (
+        <div className={styles.layoutSaver}>
+          {layoutStatus && <span>{layoutStatus}</span>}
+          <button
+            type="button"
+            disabled={Object.keys(iconPositions).length === 0}
+            onClick={saveIconLayout}
+          >
+            Save layout ({Object.keys(iconPositions).length})
+          </button>
+        </div>
+      )}
       {audioItem && (
         <audio
           ref={audioRef}
