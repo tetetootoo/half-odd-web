@@ -12,6 +12,8 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  /* Above windows, so it stays reachable for restoring minimized ones. */
+  z-index: 1000;
 }
 
 .item {
@@ -29,11 +31,52 @@
   font: inherit;
   cursor: pointer;
   text-decoration: none;
-  transition: transform 0.12s ease;
 }
 
-.item:hover {
-  transform: translateY(-4px);
+.item:focus {
+  outline: none;
+}
+
+.item:focus-visible {
+  outline: 2px solid rgba(40, 32, 36, 0.7);
+  outline-offset: 2px;
+}
+
+/* Scales from the bottom edge so icons grow up out of the dock. */
+.magnify {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 100%;
+  transition: scale 0.14s ease-out;
+}
+
+.dropTarget {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.runningDot {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: rgba(40, 32, 36, 0.7);
+  pointer-events: none;
+}
+
+.divider {
+  align-self: stretch;
+  width: 1px;
+  margin: 4px 2px;
+  background: rgba(40, 32, 36, 0.18);
+}
+
+.minimizedGlyph {
+  border-radius: 6px;
 }
 
 .glyphImage {
@@ -81,10 +124,12 @@
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.1s ease;
+  transition: opacity 0.08s ease;
 }
 
+/* Labels wait a beat before appearing, and vanish immediately on leave. */
 .item:hover .tooltip,
 .item:focus-visible .tooltip {
   opacity: 1;
+  transition: opacity 0.12s ease 0.5s;
 }

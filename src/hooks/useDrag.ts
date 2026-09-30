@@ -5,66 +5,111 @@ export interface Position {
   y: number;
 }
 
-// Generous on purpose: real mouse/trackpad clicks routinely jitter a few
-// pixels between down and up, and double-clicking makes that worse. A tight
-// threshold here misclassifies clicks as micro-drags and silently swallows
-// them, which reads as "nothing happens when I click."
-const CLICK_THRESHOLD_PX = 10;
+// Movement under this counts as a click. Single-click opens items now, so
+// there's no double-click jitter to absorb — a small threshold keeps drags
+// feeling immediate without swallowing ordinary clicks.
+const DEFAULT_THRESHOLD_PX = 5;
+
+// Presses that start on a nested control (a traffic light inside a title
+// bar, say) belong to that control, never to the drag surface around it.
+const NESTED_CONTROL = 'button, a, input, textarea, select, [data-no-drag]';
+
+interface DragOptions {
+  threshold?: number;
+  disabled?: boolean;
+  onDragStart?: (e: React.PointerEvent, origin: Position) => void;
+  onDragMove?: (offset: Position, e: React.PointerEvent) => void;
+  onDragEnd?: (offset: Position, e: React.PointerEvent) => void;
+  // Constrains the live offset, e.g. to keep a title bar reachable.
+  clamp?: (offset: Position) => Position;
+}
 
 /**
- * Tracks a pixel drag offset to apply as a CSS transform on top of a fixed
- * base position (e.g. percent-based `left`/`top`), so drag deltas never get
- * mixed with the base position's unit. Fires `onClick` when a press ends
- * without exceeding the movement threshold, or `onDragEnd` with the final
- * pixel offset when it does — callers that pass `onDragEnd` are expected to
- * fold that offset into their own persisted base position, since the
- * internal offset resets to zero right after.
+ * Tracks a pixel drag offset to apply on top of a fixed base position (e.g.
+ * percent-based `left`/`top`), so drag deltas never get mixed with the base
+ * position's unit. `onDragEnd` receives the final offset; callers fold it
+ * into their own base position, since the internal offset resets to zero
+ * right after. Clicks are left to the element's native `click` event (so
+ * Enter/Space work too) and are suppressed when the press was a drag.
  */
-export function useDrag(onClick?: () => void, onDragEnd?: (offset: Position) => void) {
+export function useDrag({
+  threshold = DEFAULT_THRESHOLD_PX,
+  disabled = false,
+  onDragStart,
+  onDragMove,
+  onDragEnd,
+  clamp,
+}: DragOptions = {}) {
   const [offset, setOffset] = useState<Position>({ x: 0, y: 0 });
-  const draggingRef = useRef(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const pressedRef = useRef(false);
   const movedRef = useRef(false);
-  const startRef = useRef({ pointerX: 0, pointerY: 0, originX: 0, originY: 0 });
+  const suppressClickRef = useRef(false);
+  const offsetRef = useRef<Position>({ x: 0, y: 0 });
+  const startRef = useRef({ x: 0, y: 0 });
+
+  const endDrag = () => {
+    pressedRef.current = false;
+    movedRef.current = false;
+    offsetRef.current = { x: 0, y: 0 };
+    setOffset({ x: 0, y: 0 });
+    setIsDragging(false);
+    delete document.documentElement.dataset.dragging;
+  };
 
   const onPointerDown = (e: React.PointerEvent) => {
+    if (disabled || e.button !== 0) return;
+    const nested = (e.target as Element).closest(NESTED_CONTROL);
+    if (nested && nested !== e.currentTarget) return;
     e.currentTarget.setPointerCapture(e.pointerId);
-    draggingRef.current = true;
+    pressedRef.current = true;
     movedRef.current = false;
-    startRef.current = {
-      pointerX: e.clientX,
-      pointerY: e.clientY,
-      originX: offset.x,
-      originY: offset.y,
-    };
+    startRef.current = { x: e.clientX, y: e.clientY };
   };
 
   const onPointerMove = (e: React.PointerEvent) => {
-    if (!draggingRef.current) return;
-    const dx = e.clientX - startRef.current.pointerX;
-    const dy = e.clientY - startRef.current.pointerY;
-    if (Math.abs(dx) > CLICK_THRESHOLD_PX || Math.abs(dy) > CLICK_THRESHOLD_PX) {
+    if (!pressedRef.current) return;
+    const dx = e.clientX - startRef.current.x;
+    const dy = e.clientY - startRef.current.y;
+    if (!movedRef.current) {
+      if (Math.abs(dx) <= threshold && Math.abs(dy) <= threshold) return;
       movedRef.current = true;
+      setIsDragging(true);
+      document.documentElement.dataset.dragging = '';
+      onDragStart?.(e, startRef.current);
     }
-    if (movedRef.current) {
-      setOffset({
-        x: startRef.current.originX + dx,
-        y: startRef.current.originY + dy,
-      });
-    }
+    const next = clamp ? clamp({ x: dx, y: dy }) : { x: dx, y: dy };
+    offsetRef.current = next;
+    setOffset(next);
+    onDragMove?.(next, e);
   };
 
-  const onPointerUp = () => {
-    if (draggingRef.current && !movedRef.current) {
-      onClick?.();
-    } else if (draggingRef.current && movedRef.current) {
-      onDragEnd?.(offset);
-      setOffset({ x: 0, y: 0 });
+  const onPointerUp = (e: React.PointerEvent) => {
+    if (!pressedRef.current) return;
+    if (movedRef.current) {
+      suppressClickRef.current = true;
+      // The click that follows a drag arrives synchronously after pointerup;
+      // if the element was removed (e.g. dropped in the Trash) it never does.
+      setTimeout(() => (suppressClickRef.current = false), 0);
+      onDragEnd?.(offsetRef.current, e);
     }
-    draggingRef.current = false;
+    endDrag();
+  };
+
+  const onPointerCancel = () => {
+    if (pressedRef.current) endDrag();
+  };
+
+  const onClickCapture = (e: React.MouseEvent) => {
+    if (!suppressClickRef.current) return;
+    suppressClickRef.current = false;
+    e.preventDefault();
+    e.stopPropagation();
   };
 
   return {
     offset,
-    handlers: { onPointerDown, onPointerMove, onPointerUp },
+    isDragging,
+    handlers: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel, onClickCapture },
   };
 }

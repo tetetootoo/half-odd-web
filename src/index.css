@@ -22,3 +22,15 @@ body {
 a {
   color: inherit;
 }
+
+/* While anything is being dragged: one grabbing cursor everywhere, no text
+   selection, and iframes can't swallow the pointer mid-drag. */
+:root[data-dragging],
+:root[data-dragging] * {
+  cursor: grabbing !important;
+  user-select: none;
+}
+
+:root[data-dragging] iframe {
+  pointer-events: none;
+}

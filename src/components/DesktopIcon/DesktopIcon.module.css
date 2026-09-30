@@ -13,11 +13,49 @@
   touch-action: none;
   user-select: none;
   text-decoration: none;
+  transition:
+    background-color 0.12s ease,
+    scale 0.12s ease-out,
+    opacity 0.12s ease-out;
 }
 
-.icon:hover,
-.icon:focus-visible {
+/* Hover hints at the selection highlight; selection is the full version. */
+.icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.icon.selected {
   background: rgba(255, 255, 255, 0.18);
+}
+
+/* Keyboard focus is a ring, distinct from the mouse selection fill. */
+.icon:focus {
+  outline: none;
+}
+
+.icon:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 1px;
+}
+
+/* Lifted above windows and the dock while dragging; on drop the scale and
+   opacity ease back, while the position itself lands instantly. */
+.dragging {
+  z-index: 1100;
+  opacity: 0.92;
+  scale: 1.02;
+  cursor: grabbing;
+}
+
+/* Let the Trash's highlight show through the icon hovering over it. */
+.dragging.overTrash {
+  opacity: 0.55;
+}
+
+.ghost {
+  z-index: 1100;
+  opacity: 0.92;
+  pointer-events: none;
 }
 
 .glyphWrapper {

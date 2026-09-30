@@ -1,8 +1,8 @@
 import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
 import { MarkdownDoc } from '../CaseStudy/MarkdownDoc';
 import { ConceptDiagram } from '../CaseStudy/ConceptDiagram';
-import { useState, type FormEvent } from 'react';
-import type { DesktopItem } from '../../data/desktopContent';
+import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from 'react';
+import { desktopItems, type DesktopItem } from '../../data/desktopContent';
 import {
   layoutTextDoc,
   parseInline,
@@ -11,6 +11,8 @@ import {
   type TextTier,
 } from '../../data/textBlocks';
 import { useDrag, type Position } from '../../hooks/useDrag';
+import type { ManagedWindow } from '../../hooks/useWindowManager';
+import { useTrash } from '../Trash/TrashContext';
 import styles from './Window.module.css';
 
 function formatNoteDateShort(iso: string): string {
@@ -31,17 +33,47 @@ function formatNoteDateLong(iso: string): string {
   return `${datePart} at ${timePart}`;
 }
 
+// The usable desktop, in px relative to the desktop element: below the menu
+// bar and above the dock.
+export interface WorkArea {
+  top: number;
+  bottom: number;
+  width: number;
+  height: number;
+}
+
+interface Geometry {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+}
+
 interface WindowProps {
   item: DesktopItem;
+  managed: ManagedWindow;
   zIndex: number;
-  cascadeIndex: number;
-  onClose: () => void;
+  isActive: boolean;
+  getWorkArea: () => WorkArea;
   onFocus: () => void;
+  onClose: () => void;
+  onMinimize: () => void;
+  onFinishClose: (hadFocus: boolean) => void;
+  onFinishMinimize: (hadFocus: boolean) => void;
   onOpenItem: (id: string) => void;
 }
 
 const CASCADE_STEP_PX = 28;
 const CASCADE_WRAP = 6;
+// Gap between a maximized window and the menu bar, dock and screen edges.
+const MAXIMIZE_INSET_PX = 10;
+// Must match .geometryAnimating's transition duration.
+const GEOMETRY_ANIMATION_MS = 220;
+// Comfortably past the longest exit animation (200ms minimize).
+const EXIT_ANIMATION_FALLBACK_MS = 400;
+// How much of the title bar must stay on screen while dragging.
+const TITLE_BAR_REACH_PX = 60;
+const TITLE_BAR_HEIGHT_PX = 38;
 
 function MediaFrame({ item }: { item: DesktopItem }) {
   if (!item.mediaSrc) {
@@ -333,35 +365,123 @@ function MailFrame({ item }: { item: DesktopItem }) {
   );
 }
 
-function TrashFrame({ item, onOpenItem }: { item: DesktopItem; onOpenItem: (id: string) => void }) {
-  const trashItems = item.trashItems ?? [];
+const desktopItemsById = new Map(desktopItems.map((entry) => [entry.id, entry]));
 
-  if (trashItems.length === 0) {
-    return <div className={styles.trashEmptyState}>Trash is empty</div>;
+// Offsets of the icon glyph inside a desktop icon (see DesktopIcon.module.css),
+// so an item dragged out of the Trash lines up with the icon it becomes.
+const DESKTOP_GLYPH_INSET = { x: 17, y: 8 };
+
+function TrashTile({
+  id,
+  label,
+  thumbSrc,
+  restorable,
+}: {
+  id: string;
+  label: string;
+  thumbSrc?: string;
+  restorable: boolean;
+}) {
+  const trash = useTrash();
+  const thumbRef = useRef<HTMLImageElement>(null);
+  const grabRef = useRef<Position>({ x: 0, y: 0 });
+  const { isDragging, handlers } = useDrag({
+    disabled: !restorable,
+    onDragStart: (_e, origin) => {
+      const thumb = thumbRef.current?.getBoundingClientRect();
+      if (!thumb) return;
+      grabRef.current = {
+        x: origin.x - thumb.left + DESKTOP_GLYPH_INSET.x,
+        y: origin.y - thumb.top + DESKTOP_GLYPH_INSET.y,
+      };
+    },
+    onDragMove: (_offset, e) => trash.onDragOutMove(id, { x: e.clientX, y: e.clientY }, grabRef.current),
+    onDragEnd: (_offset, e) => trash.onDragOutEnd(id, { x: e.clientX, y: e.clientY }),
+  });
+
+  return (
+    <div className={`${styles.trashItem} ${isDragging ? styles.trashItemDragging : ''}`}>
+      <button
+        type="button"
+        className={`${styles.trashOpen} ${restorable ? styles.trashOpenDraggable : ''}`}
+        aria-label={`Open ${label}`}
+        onClick={(e) => trash.onOpen(id, e.currentTarget)}
+        {...handlers}
+      >
+        {thumbSrc ? (
+          <img
+            ref={thumbRef}
+            className={`${styles.trashThumb} ${restorable ? styles.trashThumbIcon : ''}`}
+            src={thumbSrc}
+            alt=""
+            draggable={false}
+          />
+        ) : (
+          <span className={styles.trashThumb} />
+        )}
+        <span className={styles.trashLabel}>{label}</span>
+      </button>
+      {restorable && (
+        <button
+          type="button"
+          className={styles.trashPutBack}
+          aria-label={`Put back ${label}`}
+          title="Put Back"
+          onClick={(e) => {
+            // The tile disappears, so keep keyboard focus in the Trash.
+            const tile = e.currentTarget.parentElement;
+            const next =
+              (tile?.nextElementSibling ?? tile?.previousElementSibling)?.querySelector('button') ??
+              tile?.closest<HTMLElement>('[role="dialog"]');
+            trash.onPutBack(id);
+            requestAnimationFrame(() => next?.focus({ preventScroll: true }));
+          }}
+        >
+          <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
+            <path
+              d="M4.5 2.5L2 5l2.5 2.5M2 5h5a3 3 0 0 1 0 6H6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      )}
+    </div>
+  );
+}
+
+function TrashFrame() {
+  const trash = useTrash();
+
+  if (trash.entries.length === 0 && trash.builtIn.length === 0) {
+    return <div className={styles.trashEmptyState}>Trash is empty.</div>;
   }
 
   return (
     <div className={styles.trashGrid}>
-      {trashItems.map((entry) => (
-        <button
+      {trash.entries.map((entry) => {
+        const source = desktopItemsById.get(entry.id);
+        return (
+          <TrashTile
+            key={entry.id}
+            id={entry.id}
+            label={entry.label}
+            thumbSrc={source?.kind === 'audio' ? source.posterSrc : source?.iconSrc}
+            restorable
+          />
+        );
+      })}
+      {trash.builtIn.map((entry) => (
+        <TrashTile
           key={entry.id}
-          type="button"
-          className={styles.trashItem}
-          onClick={() => onOpenItem(entry.id)}
-        >
-          {entry.iconSrc || entry.posterSrc ? (
-            <img
-              className={styles.trashThumb}
-              src={entry.iconSrc ?? entry.posterSrc}
-              alt={entry.label}
-            />
-          ) : entry.mediaType === 'video' ? (
-            <video className={styles.trashThumb} src={entry.mediaSrc} muted preload="metadata" />
-          ) : (
-            <img className={styles.trashThumb} src={entry.mediaSrc} alt={entry.label} />
-          )}
-          <span className={styles.trashLabel}>{entry.label}</span>
-        </button>
+          id={entry.id}
+          label={entry.label}
+          thumbSrc={entry.iconSrc ?? entry.posterSrc ?? entry.mediaSrc}
+          restorable={false}
+        />
       ))}
     </div>
   );
@@ -663,7 +783,7 @@ function WindowBody({
         </div>
       );
     case 'trash':
-      return <TrashFrame item={item} onOpenItem={onOpenItem} />;
+      return <TrashFrame />;
     case 'browser':
       return <BrowserFrame item={item} />;
     case 'project':
@@ -673,7 +793,19 @@ function WindowBody({
   }
 }
 
-export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenItem }: WindowProps) {
+export function Window({
+  item,
+  managed,
+  zIndex,
+  isActive,
+  getWorkArea,
+  onFocus,
+  onClose,
+  onMinimize,
+  onFinishClose,
+  onFinishMinimize,
+  onOpenItem,
+}: WindowProps) {
   const isProject = item.kind === 'project';
   const isImageKind = item.kind === 'image';
   const isAboutKind = item.kind === 'about';
@@ -684,43 +816,190 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenIte
   const isTextKind = item.kind === 'text' || item.kind === 'markdown';
   const isFileTitle = isTextKind || item.kind === 'notes';
   const isFlushDoc = isFileTitle || item.kind === 'about';
-  const step = (cascadeIndex % CASCADE_WRAP) * CASCADE_STEP_PX;
+  const step = (managed.cascadeIndex % CASCADE_WRAP) * CASCADE_STEP_PX;
+  const trash = useTrash();
+
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const windowRef = useRef<HTMLDivElement>(null);
+
+  // The window's on-screen box, relative to the desktop.
+  const measure = (): Geometry => {
+    const win = windowRef.current!.getBoundingClientRect();
+    const desktop = (wrapperRef.current!.offsetParent as HTMLElement).getBoundingClientRect();
+    return { left: win.left - desktop.left, top: win.top - desktop.top, width: win.width, height: win.height };
+  };
+
   // Drag distance persists here across pointer-ups; useDrag's own offset
   // resets to zero right after each drag ends, so without folding it into
   // this base position the window would snap back to its cascade spot.
   const [basePosition, setBasePosition] = useState<Position>({ x: 0, y: 0 });
-  const handleDragEnd = (dragOffset: Position) => {
-    setBasePosition((prev) => ({ x: prev.x + dragOffset.x, y: prev.y + dragOffset.y }));
+  const boundsRef = useRef({ minX: 0, maxX: 0, minY: 0, maxY: 0 });
+
+  // Maximize swaps the CSS-driven default layout for explicit px geometry,
+  // animates to the work area, and on restore animates back to the exact box
+  // it measured before handing layout back to the CSS defaults.
+  const [geometry, setGeometry] = useState<Geometry | null>(null);
+  const [geometryAnimating, setGeometryAnimating] = useState(false);
+  const [maximized, setMaximized] = useState(false);
+  const restoreGeometryRef = useRef<Geometry | null>(null);
+  const pendingGeometryRef = useRef<Geometry | null>(null);
+  const geometryTimerRef = useRef<number | undefined>(undefined);
+
+  const maximizedGeometry = (): Geometry => {
+    const area = getWorkArea();
+    return {
+      left: MAXIMIZE_INSET_PX,
+      top: area.top + MAXIMIZE_INSET_PX,
+      width: area.width - MAXIMIZE_INSET_PX * 2,
+      height: area.bottom - area.top - MAXIMIZE_INSET_PX * 2,
+    };
   };
-  const { offset, handlers: dragHandlers } = useDrag(undefined, handleDragEnd);
+
+  const toggleMaximize = () => {
+    window.clearTimeout(geometryTimerRef.current);
+    if (!maximized) {
+      const current = measure();
+      // Mid-restore, the box saved before maximizing is still the right one.
+      if (!geometry) restoreGeometryRef.current = current;
+      setGeometryAnimating(false);
+      setGeometry(current);
+      pendingGeometryRef.current = maximizedGeometry();
+      setMaximized(true);
+    } else {
+      setGeometryAnimating(true);
+      setGeometry(restoreGeometryRef.current);
+      setMaximized(false);
+      geometryTimerRef.current = window.setTimeout(() => {
+        setGeometryAnimating(false);
+        setGeometry(null);
+      }, GEOMETRY_ANIMATION_MS + 40);
+    }
+  };
+
+  // Second half of maximizing: the start box is committed, so flush it and
+  // switch to the target with the transition on.
+  useLayoutEffect(() => {
+    const target = pendingGeometryRef.current;
+    if (!target || !wrapperRef.current) return;
+    pendingGeometryRef.current = null;
+    wrapperRef.current.getBoundingClientRect();
+    setGeometryAnimating(true);
+    setGeometry(target);
+    geometryTimerRef.current = window.setTimeout(
+      () => setGeometryAnimating(false),
+      GEOMETRY_ANIMATION_MS + 40,
+    );
+  }, [maximized]);
+
+  useEffect(() => {
+    if (!maximized) return;
+    const handleResize = () => setGeometry(maximizedGeometry());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  });
+
+  useEffect(() => () => window.clearTimeout(geometryTimerRef.current), []);
+
+  const { offset, isDragging, handlers: dragHandlers } = useDrag({
+    // A full-screen window still drags (keeping its size); only the
+    // maximize/restore animation itself blocks dragging.
+    disabled: geometryAnimating,
+    onDragStart: () => {
+      onFocus();
+      const box = measure();
+      const area = getWorkArea();
+      // Keep enough title bar reachable to grab again, and never above the
+      // menu bar. Bounds never pull a window that already sits outside them.
+      boundsRef.current = {
+        minX: Math.min(0, TITLE_BAR_REACH_PX - box.width - box.left),
+        maxX: Math.max(0, area.width - TITLE_BAR_REACH_PX - box.left),
+        minY: Math.min(0, area.top - box.top),
+        maxY: Math.max(0, area.height - TITLE_BAR_HEIGHT_PX - 8 - box.top),
+      };
+    },
+    clamp: ({ x, y }) => {
+      const b = boundsRef.current;
+      return { x: Math.min(Math.max(x, b.minX), b.maxX), y: Math.min(Math.max(y, b.minY), b.maxY) };
+    },
+    onDragEnd: (dragOffset) =>
+      geometry
+        ? setGeometry({ ...geometry, left: geometry.left + dragOffset.x, top: geometry.top + dragOffset.y })
+        : setBasePosition((prev) => ({ x: prev.x + dragOffset.x, y: prev.y + dragOffset.y })),
+  });
+
+  // Move keyboard focus in whenever the manager asks (open, restore, reopen).
+  useEffect(() => {
+    windowRef.current?.focus({ preventScroll: true });
+  }, [managed.focusToken]);
+
+  const { phase } = managed;
+  const phaseClass =
+    phase === 'closing'
+      ? styles.animClose
+      : phase === 'minimizing'
+        ? styles.animMinimize
+        : phase === 'minimized'
+          ? styles.minimized
+          : managed.restored
+            ? styles.animRestore
+            : styles.animOpen;
+
+  const finishExit = () => {
+    const hadFocus = wrapperRef.current?.contains(document.activeElement) ?? false;
+    if (phase === 'closing') onFinishClose(hadFocus);
+    else if (phase === 'minimizing') onFinishMinimize(hadFocus);
+  };
+
+  const handleAnimationEnd = (e: React.AnimationEvent) => {
+    if (e.target === e.currentTarget) finishExit();
+  };
+
+  // Safety net: animationend can arrive late or never (background tab, busy
+  // main thread), and a window must never get stuck half-closed. The manager
+  // ignores whichever of the two finishes second.
+  const finishExitRef = useRef(finishExit);
+  finishExitRef.current = finishExit;
+  useEffect(() => {
+    if (phase !== 'closing' && phase !== 'minimizing') return;
+    const timer = window.setTimeout(() => finishExitRef.current(), EXIT_ANIMATION_FALLBACK_MS);
+    return () => window.clearTimeout(timer);
+  }, [phase]);
+
+  const positionStyle = geometry
+    ? {
+        left: geometry.left,
+        top: geometry.top,
+        width: geometry.width,
+        height: geometry.height,
+        transform: `translate(${offset.x}px, ${offset.y}px)`,
+      }
+    : {
+        transform: `translate(calc(-50% + ${step + basePosition.x + offset.x}px), ${step + basePosition.y + offset.y}px)`,
+      };
 
   return (
     <div
-      className={styles.windowWrapper}
-      style={{
-        zIndex,
-        transform: `translate(calc(-50% + ${step + basePosition.x + offset.x}px), ${step + basePosition.y + offset.y}px)`,
-      }}
+      ref={wrapperRef}
+      className={`${styles.windowWrapper} ${phaseClass} ${isActive ? '' : styles.inactive} ${geometryAnimating ? styles.geometryAnimating : ''}`}
+      style={{ zIndex, ...positionStyle }}
       onPointerDown={onFocus}
+      onAnimationEnd={handleAnimationEnd}
     >
       <div
-        className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''} ${isTrashKind ? styles.windowTrash : ''} ${isBrowserKind ? styles.windowBrowser : ''} ${isTextKind ? item.plainText ? styles.windowPlainText : styles.windowTextDoc : ''}`}
+        ref={windowRef}
+        role="dialog"
+        aria-label={item.windowTitle}
+        tabIndex={-1}
+        data-drop-target={isTrashKind ? 'trash' : undefined}
+        className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''} ${isTrashKind ? styles.windowTrash : ''} ${isBrowserKind ? styles.windowBrowser : ''} ${isTextKind ? item.plainText ? styles.windowPlainText : styles.windowTextDoc : ''} ${geometry ? styles.windowFill : ''} ${isTrashKind && trash.dropActive ? styles.windowDropTarget : ''}`}
       >
         <div
-          className={`${styles.titleBar} ${isFlushDoc ? styles.titleBarText : ''}`}
+          className={`${styles.titleBar} ${isFlushDoc ? styles.titleBarText : ''} ${isDragging ? styles.titleBarDragging : ''}`}
           {...dragHandlers}
         >
-          <div
-            className={styles.trafficLights}
-            onPointerDown={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              className={`${styles.light} ${styles.red}`}
-              onClick={onClose}
-              aria-label="Close window"
-            >
-              <svg className={styles.closeIcon} viewBox="0 0 10 10" width="7" height="7" aria-hidden="true">
+          <div className={styles.trafficLights}>
+            <button type="button" className={`${styles.light} ${styles.red}`} onClick={onClose} aria-label="Close">
+              <svg className={styles.lightIcon} viewBox="0 0 10 10" width="7" height="7" aria-hidden="true">
                 <path
                   d="M1.5 1.5L8.5 8.5M8.5 1.5L1.5 8.5"
                   stroke="#4d0000"
@@ -729,8 +1008,32 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenIte
                 />
               </svg>
             </button>
-            <span className={`${styles.light} ${styles.yellow}`} aria-hidden="true" />
-            <span className={`${styles.light} ${styles.green}`} aria-hidden="true" />
+            <button
+              type="button"
+              className={`${styles.light} ${styles.yellow}`}
+              // In full screen, yellow brings the window back to its original
+              // size instead of sending it to the dock.
+              onClick={maximized ? toggleMaximize : onMinimize}
+              aria-label={maximized ? 'Exit full screen' : 'Minimize'}
+            >
+              <svg className={styles.lightIcon} viewBox="0 0 10 10" width="7" height="7" aria-hidden="true">
+                <path d="M1.5 5H8.5" stroke="#7a4d00" strokeWidth="1.4" strokeLinecap="round" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              className={`${styles.light} ${styles.green}`}
+              onClick={toggleMaximize}
+              aria-label={maximized ? 'Restore' : 'Maximize'}
+            >
+              <svg className={styles.lightIcon} viewBox="0 0 10 10" width="7" height="7" aria-hidden="true">
+                {maximized ? (
+                  <path d="M5.2 1v3.8H9zM4.8 9V5.2H1z" fill="#0a5213" />
+                ) : (
+                  <path d="M1.5 8.5V4L6 8.5zM8.5 1.5V6L4 1.5z" fill="#0a5213" />
+                )}
+              </svg>
+            </button>
           </div>
           {isFileTitle ? (
             <div className={styles.fileTitleGroup}>
@@ -747,7 +1050,7 @@ export function Window({ item, zIndex, cascadeIndex, onClose, onFocus, onOpenIte
         </div>
       </div>
       {(isProject || isBrowserKind) && (
-        <aside className={styles.infoCardFloating}>
+        <aside className={`${styles.infoCardFloating} ${geometry ? styles.infoCardHidden : ''}`}>
           {item.tags && (
             <ul className={styles.tags}>
               {item.tags.map((tag) => (

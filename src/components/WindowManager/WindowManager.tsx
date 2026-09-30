@@ -1,33 +1,34 @@
 import type { DesktopItem } from '../../data/desktopContent';
-import { Window } from '../Window/Window';
-
-export interface OpenWindow {
-  id: string;
-  zIndex: number;
-}
+import type { useWindowManager } from '../../hooks/useWindowManager';
+import { Window, type WorkArea } from '../Window/Window';
 
 interface WindowManagerProps {
-  openWindows: OpenWindow[];
+  manager: ReturnType<typeof useWindowManager>;
   itemsById: Map<string, DesktopItem>;
-  onClose: (id: string) => void;
-  onFocus: (id: string) => void;
+  getWorkArea: () => WorkArea;
   onOpenItem: (id: string) => void;
 }
 
-export function WindowManager({ openWindows, itemsById, onClose, onFocus, onOpenItem }: WindowManagerProps) {
+export function WindowManager({ manager, itemsById, getWorkArea, onOpenItem }: WindowManagerProps) {
   return (
     <>
-      {openWindows.map(({ id, zIndex }, index) => {
-        const item = itemsById.get(id);
+      {manager.windows.map((managed) => {
+        const item = itemsById.get(managed.id);
         if (!item) return null;
+        const { id } = managed;
         return (
           <Window
             key={id}
             item={item}
-            zIndex={zIndex}
-            cascadeIndex={index}
-            onClose={() => onClose(id)}
-            onFocus={() => onFocus(id)}
+            managed={managed}
+            zIndex={manager.zIndexOf(id)}
+            isActive={manager.activeId === id}
+            getWorkArea={getWorkArea}
+            onFocus={() => manager.focus(id)}
+            onClose={() => manager.close(id)}
+            onMinimize={() => manager.minimize(id)}
+            onFinishClose={(hadFocus) => manager.finishClose(id, hadFocus)}
+            onFinishMinimize={(hadFocus) => manager.finishMinimize(id, hadFocus)}
             onOpenItem={onOpenItem}
           />
         );

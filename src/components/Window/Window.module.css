@@ -16,6 +16,122 @@
   overflow: hidden;
 }
 
+.window:focus {
+  outline: none;
+}
+
+.window:focus-visible {
+  outline: 2px solid #0a84ff;
+  outline-offset: 2px;
+}
+
+/* Explicit geometry (maximized, or animating to/from it) fills the wrapper;
+   doubled class so it beats every per-kind size rule. */
+.window.windowFill {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+}
+
+.geometryAnimating {
+  transition-property: left, top, width, height;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ---- Window lifecycle animations ----
+   Individual scale/translate properties compose with the wrapper's inline
+   transform, so these never disturb where the window sits. */
+
+@keyframes windowOpen {
+  from {
+    opacity: 0;
+    scale: 0.985;
+    translate: 0 4px;
+  }
+}
+
+@keyframes windowClose {
+  to {
+    opacity: 0;
+    scale: 0.99;
+    translate: 0 2px;
+  }
+}
+
+@keyframes windowMinimize {
+  to {
+    opacity: 0;
+    scale: 0.96;
+    translate: 0 12px;
+  }
+}
+
+@keyframes windowRestore {
+  from {
+    opacity: 0;
+    scale: 0.96;
+    translate: 0 12px;
+  }
+}
+
+.animOpen {
+  animation: windowOpen 200ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.animRestore {
+  animation: windowRestore 200ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.animClose {
+  animation: windowClose 160ms cubic-bezier(0.4, 0, 1, 1) forwards;
+  pointer-events: none;
+}
+
+.animMinimize {
+  animation: windowMinimize 200ms cubic-bezier(0.4, 0, 1, 1) forwards;
+  pointer-events: none;
+}
+
+.minimized {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Reduced motion keeps the lifecycle (animationend still fires) but skips the motion. */
+@media (prefers-reduced-motion: reduce) {
+  .animOpen,
+  .animRestore,
+  .animClose,
+  .animMinimize {
+    animation-duration: 1ms;
+  }
+
+  .geometryAnimating {
+    transition-duration: 1ms;
+  }
+}
+
+/* Windows behind the frontmost one read slightly quieter in the title bar only. */
+.inactive .trafficLights,
+.inactive .title,
+.inactive .fileName {
+  opacity: 0.7;
+  transition: opacity 0.12s ease;
+}
+
+.inactive .trafficLights:hover,
+.inactive .trafficLights:focus-within {
+  opacity: 1;
+}
+
+.windowDropTarget {
+  box-shadow:
+    0 0 0 3px rgba(10, 132, 255, 0.45),
+    0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
 .windowFixed {
   width: 480px;
   max-width: 92vw;
@@ -68,6 +184,10 @@
   background: #f2eef0;
 }
 
+.titleBarDragging {
+  cursor: grabbing;
+}
+
 .trafficLights {
   display: flex;
   gap: 8px;
@@ -95,19 +215,25 @@
   border-radius: 50%;
   border: none;
   padding: 0;
+  cursor: pointer;
+}
+
+.light:focus-visible {
+  outline: 2px solid #0a84ff;
+  outline-offset: 2px;
 }
 
 .red {
   background: #ff5f57;
-  cursor: pointer;
 }
 
-.closeIcon {
+.lightIcon {
   opacity: 0;
   transition: opacity 0.1s ease;
 }
 
-.trafficLights:hover .closeIcon {
+.trafficLights:hover .lightIcon,
+.trafficLights:focus-within .lightIcon {
   opacity: 1;
 }
 
@@ -814,6 +940,15 @@
 }
 
 .trashItem {
+  position: relative;
+  width: 112px;
+}
+
+.trashItemDragging {
+  opacity: 0.45;
+}
+
+.trashOpen {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -827,8 +962,48 @@
   cursor: pointer;
 }
 
-.trashItem:hover {
+.trashOpenDraggable {
+  touch-action: none;
+}
+
+.trashOpen:hover {
   background: #f0eef0;
+}
+
+.trashOpen:focus-visible {
+  outline: 2px solid #0a84ff;
+  outline-offset: 1px;
+}
+
+/* Small Put Back action; only surfaces on hover or keyboard focus. */
+.trashPutBack {
+  position: absolute;
+  top: 4px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  color: #1c1319;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.trashItem:hover .trashPutBack,
+.trashItem:focus-within .trashPutBack {
+  opacity: 1;
+}
+
+.trashPutBack:focus-visible {
+  outline: 2px solid #0a84ff;
+  outline-offset: 1px;
 }
 
 .trashThumb {
@@ -837,6 +1012,12 @@
   object-fit: cover;
   border-radius: 6px;
   background: #e5dde1;
+}
+
+.trashThumbIcon {
+  object-fit: contain;
+  background: transparent;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
 }
 
 .trashLabel {
@@ -1061,6 +1242,11 @@
   text-align: left;
   opacity: 0.75;
   transition: opacity 0.15s ease;
+}
+
+.infoCardHidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .infoCardFloating:hover {

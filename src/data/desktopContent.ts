@@ -41,6 +41,8 @@ export interface DesktopItem {
   windowTitle: string;
   x: number;
   y: number;
+  // Desktop items can be dragged to the Trash unless this is false.
+  trashable?: boolean;
   tags?: string[];
   link?: IconLink;
   showLinkBadge?: boolean;

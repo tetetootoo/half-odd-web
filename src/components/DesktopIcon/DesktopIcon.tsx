@@ -1,52 +1,37 @@
 import { useDrag, type Position } from '../../hooks/useDrag';
+import { capitalizeLabel } from './capitalizeLabel';
 import styles from './DesktopIcon.module.css';
 
 interface PlaybackControl {
   isPlaying: boolean;
-  onToggle: () => void;
 }
 
 interface DesktopIconProps {
   label: string;
+  ariaLabel: string;
   xPercent: number;
   yPercent: number;
   iconSrc?: string;
   href?: string;
-  onOpen?: () => void;
-  onDragEnd?: (offset: Position) => void;
+  selected: boolean;
+  onSelect: () => void;
+  onActivate?: (opener: HTMLElement) => void;
+  onDragMove: (pointer: Position) => void;
+  onDrop: (offset: Position, pointer: Position) => void;
+  onTrash?: () => void;
+  // A drag is currently over a Trash drop target.
+  overTrash?: boolean;
   playback?: PlaybackControl;
   showLinkBadge?: boolean;
 }
 
-// Capitalizes each space-separated word but leaves anything from a "."
-// onward untouched, so file suffixes like ".txt" or ".jpg" stay lowercase
-// instead of CSS text-transform treating them as a new word to titlecase.
-function capitalizeLabel(label: string): string {
-  return label
-    .split(' ')
-    .map((word) => {
-      const dotIndex = word.indexOf('.');
-      const head = dotIndex === -1 ? word : word.slice(0, dotIndex);
-      const tail = dotIndex === -1 ? '' : word.slice(dotIndex);
-      return head.charAt(0).toUpperCase() + head.slice(1) + tail;
-    })
-    .join(' ');
-}
-
-export function DesktopIcon({
+function IconFace({
   label,
-  xPercent,
-  yPercent,
   iconSrc,
-  href,
-  onOpen,
-  onDragEnd,
   playback,
   showLinkBadge,
-}: DesktopIconProps) {
-  const { offset, handlers } = useDrag(href ? undefined : playback ? playback.onToggle : onOpen, onDragEnd);
-
-  const content = (
+}: Pick<DesktopIconProps, 'label' | 'iconSrc' | 'playback' | 'showLinkBadge'>) {
+  return (
     <>
       <span className={styles.glyphWrapper}>
         {iconSrc ? (
@@ -86,24 +71,106 @@ export function DesktopIcon({
       <span className={styles.label}>{capitalizeLabel(label)}</span>
     </>
   );
+}
 
+// Single click selects, double click opens (Enter/Space open from the
+// keyboard); a press that moves past the drag threshold moves the icon
+// instead (or drops it in the Trash).
+export function DesktopIcon({
+  label,
+  ariaLabel,
+  xPercent,
+  yPercent,
+  iconSrc,
+  href,
+  selected,
+  onSelect,
+  onActivate,
+  onDragMove,
+  onDrop,
+  onTrash,
+  overTrash,
+  playback,
+  showLinkBadge,
+}: DesktopIconProps) {
+  const { offset, isDragging, handlers } = useDrag({
+    onDragStart: onSelect,
+    onDragMove: (_offset, e) => onDragMove({ x: e.clientX, y: e.clientY }),
+    onDragEnd: (dragOffset, e) => onDrop(dragOffset, { x: e.clientX, y: e.clientY }),
+  });
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    onSelect();
+    // A link's own navigation would open on the first click; opening is
+    // left to the double click (or the keyboard) like every other icon.
+    if (href) e.preventDefault();
+    // detail is 0 for clicks synthesized by Enter/Space.
+    if (e.detail === 0) onActivate?.(e.currentTarget);
+  };
+
+  const handleDoubleClick = (e: React.MouseEvent<HTMLElement>) => onActivate?.(e.currentTarget);
+
+  // Keyboard path to the Trash, so dragging is never the only way.
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!onTrash) return;
+    if (e.key === 'Delete' || (e.key === 'Backspace' && (e.metaKey || e.ctrlKey))) {
+      e.preventDefault();
+      onTrash();
+    }
+  };
+
+  const className = `${styles.icon} ${selected ? styles.selected : ''} ${isDragging ? styles.dragging : ''} ${isDragging && overTrash ? styles.overTrash : ''}`;
   const style = {
     left: `${xPercent}%`,
     top: `${yPercent}%`,
-    transform: `translate(${offset.x}px, ${offset.y}px)`,
+    translate: `${offset.x}px ${offset.y}px`,
   };
+  const face = <IconFace label={label} iconSrc={iconSrc} playback={playback} showLinkBadge={showLinkBadge} />;
 
   if (href) {
     return (
-      <a className={styles.icon} style={style} href={href} target="_blank" rel="noreferrer" {...handlers}>
-        {content}
+      <a
+        className={className}
+        style={style}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={ariaLabel}
+        draggable={false}
+        data-dragging-icon={isDragging || undefined}
+        onClick={handleClick}
+        onDoubleClick={handleDoubleClick}
+        onKeyDown={handleKeyDown}
+        {...handlers}
+      >
+        {face}
       </a>
     );
   }
 
   return (
-    <button type="button" className={styles.icon} style={style} {...handlers}>
-      {content}
+    <button
+      type="button"
+      className={className}
+      style={style}
+      aria-label={ariaLabel}
+      data-dragging-icon={isDragging || undefined}
+      onClick={handleClick}
+      onDoubleClick={handleDoubleClick}
+      onKeyDown={handleKeyDown}
+      {...handlers}
+    >
+      {face}
     </button>
+  );
+}
+
+// Non-interactive stand-in that follows the pointer while an item is
+// dragged out of the Trash window onto the desktop.
+export function DesktopIconGhost({ label, iconSrc, left, top }: { label: string; iconSrc?: string; left: number; top: number }) {
+  return (
+    <div className={`${styles.icon} ${styles.selected} ${styles.ghost}`} style={{ left, top }} aria-hidden="true">
+      <IconFace label={label} iconSrc={iconSrc} />
+    </div>
   );
 }

@@ -1,4 +1,5 @@
-import { dockLinks } from '../../data/desktopContent';
+import { useState, type Ref } from 'react';
+import { dockLinks, type DesktopItem } from '../../data/desktopContent';
 import styles from './Dock.module.css';
 
 const icons = {
@@ -10,16 +11,37 @@ const icons = {
   trash: '/icons/trash.png',
 };
 
+// Restrained magnification: the hovered icon and its direct neighbours grow
+// via transform only, so the dock itself never changes size or shifts.
+const MAGNIFY_HOVERED = 1.18;
+const MAGNIFY_NEIGHBOUR = 1.07;
+
 interface DockProps {
-  onOpenAboutMe: () => void;
-  onOpenNotes: () => void;
-  onOpenMail: () => void;
-  onOpenTrash: () => void;
+  ref?: Ref<HTMLElement>;
+  // Windows that are logically open (visible or minimized).
+  runningIds: Set<string>;
+  // Minimized windows with no permanent dock item of their own.
+  minimizedItems: DesktopItem[];
+  trashCount: number;
+  trashDropActive: boolean;
+  onOpenWindow: (id: string, opener: HTMLElement) => void;
+  onRestore: (id: string) => void;
+}
+
+interface DockEntry {
+  key: string;
+  label: string;
+  ariaLabel?: string;
+  iconSrc: string;
+  iconClass?: string;
+  href?: string;
+  windowId?: string;
+  onClick?: (el: HTMLElement) => void;
 }
 
 function Tooltip({ label }: { label: string }) {
   return (
-    <span className={styles.tooltip} role="tooltip">
+    <span className={styles.tooltip} aria-hidden="true">
       {label}
     </span>
   );
@@ -42,35 +64,94 @@ function ExternalLinkBadge() {
   );
 }
 
-export function Dock({ onOpenAboutMe, onOpenNotes, onOpenMail, onOpenTrash }: DockProps) {
+export function Dock({
+  ref,
+  runningIds,
+  minimizedItems,
+  trashCount,
+  trashDropActive,
+  onOpenWindow,
+  onRestore,
+}: DockProps) {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const permanent: DockEntry[] = [
+    { key: 'about-me', label: 'About Me', iconSrc: icons.aboutMe, iconClass: styles.rounded, windowId: 'about-me' },
+    { key: 'notes', label: 'Notes', iconSrc: icons.notes, windowId: 'notes' },
+    { key: 'mail', label: 'Mail', iconSrc: icons.mail, windowId: 'mail' },
+    { key: 'instagram', label: 'Instagram', iconSrc: icons.instagram, href: dockLinks.instagram },
+    { key: 'github', label: 'GitHub', iconSrc: icons.github, iconClass: styles.rounded, href: dockLinks.github },
+  ];
+  const minimized: DockEntry[] = minimizedItems.map((item) => ({
+    key: `minimized-${item.id}`,
+    label: item.label,
+    ariaLabel: `Restore ${item.label}`,
+    iconSrc: (item.kind === 'audio' ? item.posterSrc : item.iconSrc) ?? '',
+    iconClass: styles.minimizedGlyph,
+    onClick: () => onRestore(item.id),
+  }));
+  const trash: DockEntry = {
+    key: 'trash',
+    label: 'Trash',
+    ariaLabel: trashCount > 0 ? `Trash, ${trashCount} item${trashCount === 1 ? '' : 's'}` : 'Trash, empty',
+    iconSrc: icons.trash,
+    iconClass: styles.trashGlyph,
+    windowId: 'trash',
+  };
+  const entries = [...permanent, ...minimized, trash];
+
+  const scaleFor = (index: number) => {
+    if (hoveredIndex === null) return 1;
+    const distance = Math.abs(index - hoveredIndex);
+    return distance === 0 ? MAGNIFY_HOVERED : distance === 1 ? MAGNIFY_NEIGHBOUR : 1;
+  };
+
+  const renderEntry = (entry: DockEntry, index: number) => {
+    const isTrash = entry.key === 'trash';
+    const running = entry.windowId !== undefined && runningIds.has(entry.windowId);
+    const className = `${styles.item} ${isTrash && trashDropActive ? styles.dropTarget : ''}`;
+    const common = {
+      className,
+      'aria-label': entry.ariaLabel ?? entry.label,
+      onPointerEnter: (e: React.PointerEvent) => e.pointerType === 'mouse' && setHoveredIndex(index),
+      'data-drop-target': isTrash ? 'trash' : undefined,
+    };
+    const face = (
+      <>
+        <span className={styles.magnify} style={{ scale: isTrash && trashDropActive ? MAGNIFY_HOVERED : scaleFor(index) }}>
+          <img className={`${styles.glyphImage} ${entry.iconClass ?? ''}`} src={entry.iconSrc} alt="" draggable={false} />
+          {entry.href && <ExternalLinkBadge />}
+        </span>
+        <Tooltip label={entry.label} />
+        {running && <span className={styles.runningDot} aria-hidden="true" />}
+      </>
+    );
+
+    if (entry.href) {
+      return (
+        <a key={entry.key} {...common} href={entry.href} target="_blank" rel="noopener noreferrer">
+          {face}
+        </a>
+      );
+    }
+    return (
+      <button
+        key={entry.key}
+        type="button"
+        {...common}
+        onClick={(e) => (entry.onClick ? entry.onClick(e.currentTarget) : onOpenWindow(entry.windowId!, e.currentTarget))}
+      >
+        {face}
+      </button>
+    );
+  };
+
   return (
-    <nav className={styles.dock} aria-label="Dock">
-      <button type="button" className={styles.item} onClick={onOpenAboutMe}>
-        <img className={`${styles.glyphImage} ${styles.rounded}`} src={icons.aboutMe} alt="" />
-        <Tooltip label="About Me" />
-      </button>
-      <button type="button" className={styles.item} onClick={onOpenNotes}>
-        <img className={styles.glyphImage} src={icons.notes} alt="" />
-        <Tooltip label="Notes" />
-      </button>
-      <button type="button" className={styles.item} onClick={onOpenMail}>
-        <img className={styles.glyphImage} src={icons.mail} alt="" />
-        <Tooltip label="Mail" />
-      </button>
-      <a className={styles.item} href={dockLinks.instagram} target="_blank" rel="noreferrer">
-        <img className={styles.glyphImage} src={icons.instagram} alt="" />
-        <ExternalLinkBadge />
-        <Tooltip label="Instagram" />
-      </a>
-      <a className={styles.item} href={dockLinks.github} target="_blank" rel="noreferrer">
-        <img className={`${styles.glyphImage} ${styles.rounded}`} src={icons.github} alt="" />
-        <ExternalLinkBadge />
-        <Tooltip label="GitHub" />
-      </a>
-      <button type="button" className={styles.item} onClick={onOpenTrash}>
-        <img className={`${styles.glyphImage} ${styles.trashGlyph}`} src={icons.trash} alt="" />
-        <Tooltip label="Trash" />
-      </button>
+    <nav ref={ref} className={styles.dock} aria-label="Dock" onPointerLeave={() => setHoveredIndex(null)}>
+      {permanent.map((entry, i) => renderEntry(entry, i))}
+      {minimized.length > 0 && <span className={styles.divider} aria-hidden="true" />}
+      {minimized.map((entry, i) => renderEntry(entry, permanent.length + i))}
+      {renderEntry(trash, entries.length - 1)}
     </nav>
   );
 }
