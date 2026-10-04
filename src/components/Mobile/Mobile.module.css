@@ -59,6 +59,19 @@
   box-sizing: border-box;
 }
 
+/* Crop the source's pink halo to the white Markdown tile. */
+.appGlyphWrapper:has(.appGlyph[src="/icons/md-icon-mobile.png"]) {
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.appGlyph[src="/icons/md-icon-mobile.png"] {
+  transform: translateY(-0.4px) scale(2.16);
+  border-radius: 0;
+  filter: none;
+}
+
 .appGlyphOnGrey {
   background: #d9d3d6;
   padding: 8px;
