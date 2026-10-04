@@ -18,11 +18,14 @@ import {
   type TextTier,
 } from '../../data/textBlocks';
 import styles from './Mobile.module.css';
+import { dockLinks } from '../../data/desktopContent';
 
 const DOCK_ICONS = {
   about: '/icons/about-me.png',
   notes: '/icons/notes.png',
   mail: '/icons/mail.png',
+  instagram: '/icons/instagram.png',
+  github: '/icons/github.png',
 };
 
 type OverlayId = string | 'about' | 'notes' | 'mail';
@@ -739,7 +742,7 @@ export function Mobile() {
       <div className={styles.grid}>
         {gridApps.map((app) => (
           <Fragment key={app.id}>
-            {(app.id === 'wrestling-octopi' || app.id === 'github') && (
+            {app.id === 'wrestling-octopi' && (
               <div className={styles.sectionGap} aria-hidden="true" />
             )}
             <AppIcon
@@ -770,6 +773,12 @@ export function Mobile() {
         <button type="button" className={styles.dockItem} onClick={() => setOpenId('mail')}>
           <img className={styles.dockGlyph} src={DOCK_ICONS.mail} alt="" />
         </button>
+        <a className={styles.dockItem} href={dockLinks.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <img className={styles.dockGlyph} src={DOCK_ICONS.instagram} alt="" />
+        </a>
+        <a className={styles.dockItem} href={dockLinks.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <img className={`${styles.dockGlyph} ${styles.rounded}`} src={DOCK_ICONS.github} alt="" />
+        </a>
       </nav>
 
       {openId === 'about' && <AboutOverlay onClose={() => setOpenId(null)} />}

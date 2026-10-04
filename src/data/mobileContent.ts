@@ -96,8 +96,8 @@ export const trashItems: MobileAppItem[] = [
   },
 ];
 
-// Everything that isn't About/Notes/Mail lives here, in a fixed grid order —
-// the dock only holds those three, matching the desktop dock's reduced set.
+// Case studies and projects in mobile grid order; utility and social icons
+// live in the dock.
 export const gridApps: MobileAppItem[] = [
   {
     id: 'wrestling-octopi-case-study',
@@ -271,19 +271,5 @@ export const gridApps: MobileAppItem[] = [
       'heated rivalry',
       'photo booth',
     ],
-  },
-  {
-    id: 'github',
-    label: 'GitHub',
-    iconSrc: '/icons/github.png',
-    kind: 'link',
-    href: 'https://github.com/tetetootoo',
-  },
-  {
-    id: 'instagram',
-    label: 'Instagram',
-    iconSrc: '/icons/instagram.png',
-    kind: 'link',
-    href: 'https://instagram.com/iamparryhotter',
   },
 ];
