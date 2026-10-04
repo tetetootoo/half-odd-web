@@ -53,3 +53,7 @@ On smaller screens, the same work is reorganized into a simpler mobile-first fil
 Designed and built by [Theresa Schantz](https://www.halfodd.com/).
 
 Designer & software engineer working across digital products, interfaces, visual identities, and technology.
+
+## License
+
+All rights reserved. See [LICENSE](LICENSE).
