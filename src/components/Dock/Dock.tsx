@@ -3,7 +3,7 @@ import { dockLinks, type DesktopItem } from '../../data/desktopContent';
 import styles from './Dock.module.css';
 
 const icons = {
-  aboutMe: '/icons/memoji.png',
+  aboutMe: '/icons/about-me.png',
   notes: '/icons/notes.png',
   mail: '/icons/mail.png',
   instagram: '/icons/instagram.png',
