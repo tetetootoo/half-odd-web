@@ -1,4 +1,4 @@
-import { CASE_STUDIES, MARKDOWN_DOCUMENT_ICON, type CaseStudyId } from './caseStudies';
+import { CASE_STUDIES, type CaseStudyId } from './caseStudies';
 import type { TextBlock } from './textBlocks';
 
 // 'site' = shown inside a Safari-style chrome (live iframe via embedUrl, or a
@@ -104,28 +104,28 @@ export const gridApps: MobileAppItem[] = [
     label: CASE_STUDIES['wrestling-octopi-case-study'].label,
     kind: 'markdown',
     caseStudyId: 'wrestling-octopi-case-study',
-    iconSrc: MARKDOWN_DOCUMENT_ICON,
+    iconSrc: '/icons/txt-icon.png',
   },
   {
     id: 'antispace-berlin-case-study',
     label: CASE_STUDIES['antispace-berlin-case-study'].label,
     kind: 'markdown',
     caseStudyId: 'antispace-berlin-case-study',
-    iconSrc: MARKDOWN_DOCUMENT_ICON,
+    iconSrc: '/icons/txt-icon.png',
   },
   {
     id: 'sap-graph-case-study',
     label: CASE_STUDIES['sap-graph-case-study'].label,
     kind: 'markdown',
     caseStudyId: 'sap-graph-case-study',
-    iconSrc: MARKDOWN_DOCUMENT_ICON,
+    iconSrc: '/icons/txt-icon.png',
   },
   {
     id: 'half-a-love-letter-case-study',
     label: CASE_STUDIES['half-a-love-letter-case-study'].label,
     kind: 'markdown',
     caseStudyId: 'half-a-love-letter-case-study',
-    iconSrc: MARKDOWN_DOCUMENT_ICON,
+    iconSrc: '/icons/txt-icon.png',
   },
   {
     id: 'wrestling-octopi',
