@@ -234,7 +234,7 @@ export const gridApps: MobileAppItem[] = [
     id: 'half-a-love-letter',
     label: 'Half a Love Letter',
     iconSrc: '/media/half-a-love-letter/icon.png',
-    iconBg: 'white',
+    iconFit: 'cover',
     kind: 'site',
     embedUrl: 'https://halfaloveletter.com',
     link: { url: 'https://halfaloveletter.com' },
