@@ -1,7 +1,7 @@
 import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
 import { MarkdownDoc } from '../CaseStudy/MarkdownDoc';
 import { ConceptDiagram } from '../CaseStudy/ConceptDiagram';
-import { useRef, useState, type FormEvent } from 'react';
+import { Fragment, useRef, useState, type FormEvent } from 'react';
 import {
   aboutInfo,
   contactInfo,
@@ -738,12 +738,16 @@ export function Mobile() {
     <div className={styles.phone}>
       <div className={styles.grid}>
         {gridApps.map((app) => (
-          <AppIcon
-            key={app.id}
-            app={app}
-            isPlaying={app.kind === 'audio' ? isAudioPlaying : undefined}
-            onOpen={() => (app.kind === 'audio' ? toggleAudio() : setOpenId(app.id))}
-          />
+          <Fragment key={app.id}>
+            {(app.id === 'wrestling-octopi' || app.id === 'github') && (
+              <div className={styles.sectionGap} aria-hidden="true" />
+            )}
+            <AppIcon
+              app={app}
+              isPlaying={app.kind === 'audio' ? isAudioPlaying : undefined}
+              onOpen={() => (app.kind === 'audio' ? toggleAudio() : setOpenId(app.id))}
+            />
+          </Fragment>
         ))}
       </div>
       {audioApp && (

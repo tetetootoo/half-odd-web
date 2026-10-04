@@ -19,6 +19,12 @@
   align-content: start;
 }
 
+/* Two 20px row gaps plus this 8px spacer add 28px to the normal gap. */
+.sectionGap {
+  grid-column: 1 / -1;
+  height: 8px;
+}
+
 .appIcon {
   display: flex;
   flex-direction: column;
