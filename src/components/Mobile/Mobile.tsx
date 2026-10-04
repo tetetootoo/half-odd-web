@@ -24,7 +24,6 @@ const DOCK_ICONS = {
   about: '/icons/about-me.png',
   notes: '/icons/notes.png',
   mail: '/icons/mail.png',
-  instagram: '/icons/instagram.png',
   github: '/icons/github.png',
 };
 
@@ -773,11 +772,13 @@ export function Mobile() {
         <button type="button" className={styles.dockItem} onClick={() => setOpenId('mail')}>
           <img className={styles.dockGlyph} src={DOCK_ICONS.mail} alt="" />
         </button>
-        <a className={styles.dockItem} href={dockLinks.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <img className={styles.dockGlyph} src={DOCK_ICONS.instagram} alt="" />
-        </a>
         <a className={styles.dockItem} href={dockLinks.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
           <img className={`${styles.dockGlyph} ${styles.rounded}`} src={DOCK_ICONS.github} alt="" />
+          <span className={styles.linkBadge} aria-hidden="true">
+            <svg viewBox="0 0 10 10" width="8" height="8">
+              <path d="M2.5 7.5L7.5 2.5M7.5 2.5H3.5M7.5 2.5V6.5" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
         </a>
       </nav>
 
