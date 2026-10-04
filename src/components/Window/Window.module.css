@@ -1277,6 +1277,8 @@
 }
 
 .link {
+  min-width: 0;
+  overflow-wrap: anywhere;
   font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace;
   font-size: 12px;
   font-weight: 400;
