@@ -65,8 +65,8 @@ export interface DesktopItem {
 }
 
 const aboutBioParagraphs = [
-  "i'm theresa schantz, a web designer & developer and brand designer based in copenhagen and berlin.",
-  "i've been crafting websites, web apps, visual identities and branding products for companies across health, hospitality and tech. currently tinkering new digital systems, previously at sap.",
+  "i'm theresa schantz, a designer & software engineer working across digital products, visual identities and technology.",
+  "i like figuring out how things should look, how they should work, and then building them. currently building wrestling octopi and running half odd, previously engineering at sap.",
 ];
 
 export interface DockLink {
@@ -291,7 +291,7 @@ export const systemWindows: DesktopItem[] = [
     posterSrc: '/media/about-me/profile.jpg',
     aboutFields: [
       { label: 'name', value: 'theresa schantz' },
-      { label: 'position', value: 'web designer / developer' },
+      { label: 'position', value: 'designer / software engineer' },
       { label: 'mail', value: 'ts@halfodd.com', href: 'mailto:ts@halfodd.com' },
     ],
     bioParagraphs: aboutBioParagraphs,

@@ -835,6 +835,34 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+.aboutOverlay {
+  background: #fff;
+}
+
+.aboutMetadata {
+  margin: 0 0 12px;
+  font-size: 14px;
+}
+
+.aboutMetadata > div {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #ece7ea;
+}
+
+.aboutMetadata dt {
+  flex: 0 0 64px;
+}
+
+.aboutMetadata dd {
+  margin: 0;
+}
+
+.aboutIntro {
+  font-size: 15px;
+}
+
 .aboutName {
   margin: 4px 0 0;
   font-size: 20px;

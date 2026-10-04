@@ -39,12 +39,12 @@ export interface MobileAppItem {
 
 export const aboutInfo = {
   name: 'theresa schantz',
-  role: 'web designer / developer',
+  role: 'designer / software engineer',
   mail: 'ts@halfodd.com',
   photoSrc: '/media/about-me/profile.jpg',
   bioParagraphs: [
-    "i'm theresa schantz, a web designer & developer and brand designer based in copenhagen and berlin.",
-    "i've been crafting websites, web apps, visual identities and branding products for companies across health, hospitality and tech. currently tinkering new digital systems, previously at sap.",
+    "i'm theresa schantz, a designer & software engineer working across digital products, visual identities and technology.",
+    "i like figuring out how things should look, how they should work, and then building them. currently building wrestling octopi and running half odd, previously engineering at sap.",
   ],
 };
 

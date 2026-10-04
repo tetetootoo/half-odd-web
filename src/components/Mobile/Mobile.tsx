@@ -537,7 +537,7 @@ function TrashFolder({ onClose }: { onClose: () => void }) {
 
 function AboutOverlay({ onClose }: { onClose: () => void }) {
   return (
-    <div className={styles.overlay}>
+    <div className={`${styles.overlay} ${styles.aboutOverlay}`}>
       <div className={styles.overlayHeader}>
         <button type="button" className={styles.overlayClose} onClick={onClose} aria-label="Close">
           ✕
@@ -547,13 +547,13 @@ function AboutOverlay({ onClose }: { onClose: () => void }) {
       <div className={styles.overlayScroll}>
         <div className={styles.overlayBody}>
           <img className={styles.aboutPhoto} src={aboutInfo.photoSrc} alt={aboutInfo.name} />
-          <h2 className={styles.aboutName}>{aboutInfo.name}</h2>
-          <p className={styles.aboutRole}>{aboutInfo.role}</p>
-          <a className={styles.overlayLink} href={`mailto:${aboutInfo.mail}`}>
-            {aboutInfo.mail}
-          </a>
-          {aboutInfo.bioParagraphs.map((paragraph) => (
-            <p key={paragraph} className={styles.overlayDescription}>
+          <dl className={styles.aboutMetadata}>
+            <div><dt>name</dt><dd>{aboutInfo.name}</dd></div>
+            <div><dt>position</dt><dd>{aboutInfo.role}</dd></div>
+            <div><dt>mail</dt><dd><a className={styles.overlayLink} href={`mailto:${aboutInfo.mail}`}>{aboutInfo.mail}</a></dd></div>
+          </dl>
+          {aboutInfo.bioParagraphs.map((paragraph, index) => (
+            <p key={paragraph} className={`${styles.overlayDescription} ${index === 0 ? styles.aboutIntro : ''}`}>
               {paragraph}
             </p>
           ))}

@@ -1214,9 +1214,6 @@
 }
 
 .aboutBio {
-  background: #efeced;
-  border-radius: 10px;
-  padding: 18px 20px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -1225,6 +1222,10 @@
 .aboutBio p {
   margin: 0;
   line-height: 1.5;
+}
+
+.aboutBio p:first-child {
+  font-size: 1.08em;
 }
 
 .infoCardFloating {
