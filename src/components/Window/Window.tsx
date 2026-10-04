@@ -136,9 +136,6 @@ function BrowserFrame({ item }: { item: DesktopItem }) {
           </svg>
           {displayUrl}
         </span>
-        {item.id === 'linkedin' && (
-          <a className={styles.aboutFieldLink} href={url} target="_blank" rel="noopener noreferrer">open linkedin ↗</a>
-        )}
       </div>
       <div className={styles.browserViewport}>
         <iframe

@@ -80,7 +80,7 @@ export function Dock({
     { key: 'about-me', label: 'About Me', iconSrc: icons.aboutMe, iconClass: styles.rounded, windowId: 'about-me' },
     { key: 'notes', label: 'Notes', iconSrc: icons.notes, windowId: 'notes' },
     { key: 'mail', label: 'Mail', iconSrc: icons.mail, windowId: 'mail' },
-    { key: 'linkedin', label: 'LinkedIn', iconSrc: icons.linkedin, windowId: 'linkedin' },
+    { key: 'linkedin', label: 'LinkedIn', iconSrc: icons.linkedin, href: dockLinks.linkedin },
     { key: 'instagram', label: 'Instagram', iconSrc: icons.instagram, href: dockLinks.instagram },
     { key: 'github', label: 'GitHub', iconSrc: icons.github, iconClass: styles.rounded, href: dockLinks.github },
   ];

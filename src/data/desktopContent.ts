@@ -282,16 +282,6 @@ export const desktopItems: DesktopItem[] = [
 
 export const systemWindows: DesktopItem[] = [
   {
-    id: 'linkedin',
-    label: 'LinkedIn',
-    kind: 'browser',
-    windowTitle: 'linkedin',
-    x: 0,
-    y: 0,
-    iconSrc: '/icons/linkedin.jpg',
-    link: { url: 'https://www.linkedin.com/in/theresaschantz/' },
-  },
-  {
     id: 'about-me',
     label: 'About Me',
     kind: 'about',

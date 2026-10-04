@@ -266,7 +266,7 @@ export function Desktop() {
   };
 
   const runningIds = new Set(manager.windows.filter((w) => w.phase !== 'closing').map((w) => w.id));
-  const dockWindowIds = new Set(['about-me', 'notes', 'mail', 'linkedin', 'trash']);
+  const dockWindowIds = new Set(['about-me', 'notes', 'mail', 'trash']);
   const minimizedItems = manager.windows
     .filter((w) => (w.phase === 'minimized' || w.phase === 'minimizing') && !dockWindowIds.has(w.id))
     .map((w) => itemsById.get(w.id))
