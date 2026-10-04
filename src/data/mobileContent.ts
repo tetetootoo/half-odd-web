@@ -40,6 +40,7 @@ export interface MobileAppItem {
 export const aboutInfo = {
   name: 'theresa schantz',
   role: 'designer / software engineer',
+  based: 'copenhagen / berlin',
   mail: 'ts@halfodd.com',
   photoSrc: '/media/about-me/profile.jpg',
   bioParagraphs: [

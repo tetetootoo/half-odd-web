@@ -550,6 +550,7 @@ function AboutOverlay({ onClose }: { onClose: () => void }) {
           <dl className={styles.aboutMetadata}>
             <div><dt>name</dt><dd>{aboutInfo.name}</dd></div>
             <div><dt>position</dt><dd>{aboutInfo.role}</dd></div>
+            <div><dt>based</dt><dd>{aboutInfo.based}</dd></div>
             <div><dt>mail</dt><dd><a className={styles.overlayLink} href={`mailto:${aboutInfo.mail}`}>{aboutInfo.mail}</a></dd></div>
           </dl>
           {aboutInfo.bioParagraphs.map((paragraph, index) => (

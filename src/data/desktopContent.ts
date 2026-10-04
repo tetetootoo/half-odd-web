@@ -292,6 +292,7 @@ export const systemWindows: DesktopItem[] = [
     aboutFields: [
       { label: 'name', value: 'theresa schantz' },
       { label: 'position', value: 'designer / software engineer' },
+      { label: 'based', value: 'copenhagen / berlin' },
       { label: 'mail', value: 'ts@halfodd.com', href: 'mailto:ts@halfodd.com' },
     ],
     bioParagraphs: aboutBioParagraphs,
