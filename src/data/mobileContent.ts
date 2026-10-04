@@ -249,7 +249,7 @@ export const gridApps: MobileAppItem[] = [
   {
     id: 'smiley-txt',
     label: ':).txt',
-    iconSrc: '/icons/doc-preview.svg',
+    iconSrc: '/icons/txt-icon.png',
     kind: 'text',
     plainText: [
       'Things that make me :)',
