@@ -319,7 +319,7 @@
 .siteInfoLink {
   font-size: 12px;
   font-weight: 600;
-  color: #a8517a;
+  color: #3b82f6;
   text-decoration: none;
 }
 
@@ -533,7 +533,7 @@
   background: transparent;
   font-family: inherit;
   font-weight: 700;
-  color: #a8517a;
+  color: #3b82f6;
   text-decoration: none;
   cursor: pointer;
 }
@@ -642,7 +642,7 @@
 }
 
 .flowNodeEmphasize {
-  border-color: #a8517a;
+  border-color: #3b82f6;
   border-width: 1.5px;
   padding: 13px 22px;
   font-size: 16px;
@@ -823,7 +823,7 @@
 .overlayLink {
   font-size: 14px;
   font-weight: 600;
-  color: #a8517a;
+  color: #3b82f6;
   text-decoration: none;
 }
 
@@ -977,7 +977,7 @@
   font: inherit;
   font-size: 14px;
   font-weight: 600;
-  color: #a8517a;
+  color: #3b82f6;
   cursor: pointer;
 }
 

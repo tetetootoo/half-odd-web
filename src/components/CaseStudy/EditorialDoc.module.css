@@ -77,7 +77,7 @@
 .outcome { font-size: 34px; font-weight: 700; line-height: 1.1; margin: 0; letter-spacing: -.01em; }
 .navigation { margin-top: 160px; border-top: 1px solid #e9e2e5; padding-top: 28px; }
 .navigationLink { composes: textLink from '../Window/Window.module.css'; text-align: left; }
-.navigation button:focus-visible { outline: 2px solid #a8517a; outline-offset: 6px; }
+.navigation button:focus-visible { outline: 2px solid #3b82f6; outline-offset: 6px; }
 /* No scroll-dependent visibility or motion: all ideas remain readable,
    including when prefers-reduced-motion is enabled. */
 @media (max-width: 720px) {

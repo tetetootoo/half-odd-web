@@ -44,10 +44,10 @@
 .intimate .title, .intimate .subtitle, .intimate .metadata { text-align: center; }
 .intimate .wide:has(.media) { max-width: 680px; }
 .editorial .wide:has(.bento) { margin-top: 80px; }
-.projectLink, .navigation button { color: #a8517a; font: inherit; font-size: 16px; line-height: 1.6; font-weight: 400; text-decoration: none; }
+.projectLink, .navigation button { color: #3b82f6; font: inherit; font-size: 16px; line-height: 1.6; font-weight: 400; text-decoration: none; }
 .navigation { max-width: 680px; margin: 96px 0 0; padding-top: 24px; border-top: 1px solid #e9e2e5; }
 .navigation button { border: 0; background: transparent; padding: 0; cursor: pointer; text-align: left; }
-.document :focus-visible { outline: 2px solid #a8517a; outline-offset: 4px; }
+.document :focus-visible { outline: 2px solid #3b82f6; outline-offset: 4px; }
 .block pre { width: fit-content; max-width: 100%; overflow: auto; margin: 0 auto; font: 13px/1.5 Menlo, ui-monospace, monospace; }
 @container (max-width: 700px) {
   .page { padding: 40px 24px 56px; }
