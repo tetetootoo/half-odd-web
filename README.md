@@ -6,6 +6,8 @@ Half Odd is where I work across digital products, visual identities, websites, a
 
 The site itself is designed as a small desktop environment rather than a conventional portfolio. Projects live as files, documents, images, and applications that can be opened, moved, minimized, and explored.
 
+![Half Odd desktop view with project files, image previews, and the dock](docs/images/desktop.jpg)
+
 ## Selected work
 
 The portfolio includes case studies for:
@@ -38,8 +40,9 @@ On smaller screens, the same work is reorganized into a simpler mobile-first fil
 - React
 - TypeScript
 - Vite
-- CSS
-- Framer Motion
+- CSS Modules and native CSS animations
+- Marked for Markdown rendering
+- Oxlint for linting
 
 ## Live
 
