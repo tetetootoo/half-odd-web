@@ -241,6 +241,15 @@
   background: #febc2e;
 }
 
+.light:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.light:disabled .lightIcon {
+  opacity: 0;
+}
+
 .green {
   background: #28c840;
 }

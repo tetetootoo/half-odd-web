@@ -57,7 +57,6 @@ interface WindowProps {
   getWorkArea: () => WorkArea;
   onFocus: () => void;
   onClose: () => void;
-  onMinimize: () => void;
   onFinishClose: (hadFocus: boolean) => void;
   onFinishMinimize: (hadFocus: boolean) => void;
   onOpenItem: (id: string) => void;
@@ -801,7 +800,6 @@ export function Window({
   getWorkArea,
   onFocus,
   onClose,
-  onMinimize,
   onFinishClose,
   onFinishMinimize,
   onOpenItem,
@@ -1011,10 +1009,9 @@ export function Window({
             <button
               type="button"
               className={`${styles.light} ${styles.yellow}`}
-              // In full screen, yellow brings the window back to its original
-              // size instead of sending it to the dock.
-              onClick={maximized ? toggleMaximize : onMinimize}
-              aria-label={maximized ? 'Exit full screen' : 'Minimize'}
+              onClick={maximized ? toggleMaximize : undefined}
+              disabled={!maximized}
+              aria-label="Restore default size"
             >
               <svg className={styles.lightIcon} viewBox="0 0 10 10" width="7" height="7" aria-hidden="true">
                 <path d="M1.5 5H8.5" stroke="#7a4d00" strokeWidth="1.4" strokeLinecap="round" />
