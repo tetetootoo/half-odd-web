@@ -282,6 +282,16 @@ export const desktopItems: DesktopItem[] = [
 
 export const systemWindows: DesktopItem[] = [
   {
+    id: 'linkedin',
+    label: 'LinkedIn',
+    kind: 'browser',
+    windowTitle: 'linkedin',
+    x: 0,
+    y: 0,
+    iconSrc: '/icons/linkedin.jpg',
+    link: { url: 'https://www.linkedin.com/in/theresaschantz/' },
+  },
+  {
     id: 'about-me',
     label: 'About Me',
     kind: 'about',
@@ -292,6 +302,8 @@ export const systemWindows: DesktopItem[] = [
     aboutFields: [
       { label: 'name', value: 'theresa schantz' },
       { label: 'position', value: 'designer / software engineer' },
+      { label: 'currently', value: 'building wrestling octopi · half odd' },
+      { label: 'previously', value: 'software engineering at sap' },
       { label: 'based', value: 'copenhagen / berlin' },
       { label: 'mail', value: 'ts@halfodd.com', href: 'mailto:ts@halfodd.com' },
     ],
@@ -371,6 +383,8 @@ export const systemWindows: DesktopItem[] = [
 ];
 
 export const dockLinks = {
+  linkedin: 'https://www.linkedin.com/in/theresaschantz/',
+  photography: 'https://theresaschantz.com',
   instagram: 'https://instagram.com/iamparryhotter',
   github: 'https://github.com/tetetootoo',
 };

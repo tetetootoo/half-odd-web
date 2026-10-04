@@ -2,7 +2,7 @@ import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
 import { MarkdownDoc } from '../CaseStudy/MarkdownDoc';
 import { ConceptDiagram } from '../CaseStudy/ConceptDiagram';
 import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from 'react';
-import { desktopItems, type DesktopItem } from '../../data/desktopContent';
+import { desktopItems, dockLinks, type DesktopItem } from '../../data/desktopContent';
 import {
   layoutTextDoc,
   parseInline,
@@ -136,6 +136,9 @@ function BrowserFrame({ item }: { item: DesktopItem }) {
           </svg>
           {displayUrl}
         </span>
+        {item.id === 'linkedin' && (
+          <a className={styles.aboutFieldLink} href={url} target="_blank" rel="noopener noreferrer">open linkedin ↗</a>
+        )}
       </div>
       <div className={styles.browserViewport}>
         <iframe
@@ -779,6 +782,11 @@ function WindowBody({
               ))}
             </div>
           )}
+          <footer className={styles.aboutFooter}>
+            <a href={dockLinks.linkedin} target="_blank" rel="noopener noreferrer">linkedin ↗</a>
+            <a href={dockLinks.github} target="_blank" rel="noopener noreferrer">github ↗</a>
+            <a href={dockLinks.photography} target="_blank" rel="noopener noreferrer">photography ↗</a>
+          </footer>
         </div>
       );
     case 'trash':

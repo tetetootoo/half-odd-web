@@ -1319,3 +1319,21 @@
   height: auto;
 }
 .windowPlainText .content { min-height: 0; }
+
+.aboutFooter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid #ece7ea;
+}
+
+.aboutFooter a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.aboutFooter a:hover {
+  text-decoration: underline;
+}

@@ -6,6 +6,7 @@ const icons = {
   aboutMe: '/icons/about-me.png',
   notes: '/icons/notes.png',
   mail: '/icons/mail.png',
+  linkedin: '/icons/linkedin.jpg',
   instagram: '/icons/instagram.png',
   github: '/icons/github.png',
   trash: '/icons/trash.png',
@@ -79,6 +80,7 @@ export function Dock({
     { key: 'about-me', label: 'About Me', iconSrc: icons.aboutMe, iconClass: styles.rounded, windowId: 'about-me' },
     { key: 'notes', label: 'Notes', iconSrc: icons.notes, windowId: 'notes' },
     { key: 'mail', label: 'Mail', iconSrc: icons.mail, windowId: 'mail' },
+    { key: 'linkedin', label: 'LinkedIn', iconSrc: icons.linkedin, windowId: 'linkedin' },
     { key: 'instagram', label: 'Instagram', iconSrc: icons.instagram, href: dockLinks.instagram },
     { key: 'github', label: 'GitHub', iconSrc: icons.github, iconClass: styles.rounded, href: dockLinks.github },
   ];
@@ -118,7 +120,7 @@ export function Dock({
     };
     const face = (
       <>
-        <span className={styles.magnify} style={{ scale: isTrash && trashDropActive ? MAGNIFY_HOVERED : scaleFor(index) }}>
+        <span className={`${styles.magnify} ${entry.key === 'linkedin' ? styles.linkedin : ''}`} style={{ scale: isTrash && trashDropActive ? MAGNIFY_HOVERED : scaleFor(index) }}>
           <img className={`${styles.glyphImage} ${entry.iconClass ?? ''}`} src={entry.iconSrc} alt="" draggable={false} />
           {entry.href && <ExternalLinkBadge />}
         </span>

@@ -40,6 +40,8 @@ export interface MobileAppItem {
 export const aboutInfo = {
   name: 'theresa schantz',
   role: 'designer / software engineer',
+  currently: 'building wrestling octopi · half odd',
+  previously: 'software engineering at sap',
   based: 'copenhagen / berlin',
   mail: 'ts@halfodd.com',
   photoSrc: '/media/about-me/profile.jpg',

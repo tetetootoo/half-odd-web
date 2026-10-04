@@ -137,3 +137,14 @@
   opacity: 1;
   transition: opacity 0.06s ease 0.1s;
 }
+
+.linkedin {
+  overflow: hidden;
+  border-radius: 9px;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+}
+
+.linkedin .glyphImage {
+  transform: scale(1.667);
+  filter: none;
+}

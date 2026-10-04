@@ -550,6 +550,8 @@ function AboutOverlay({ onClose }: { onClose: () => void }) {
           <dl className={styles.aboutMetadata}>
             <div><dt>name</dt><dd>{aboutInfo.name}</dd></div>
             <div><dt>position</dt><dd>{aboutInfo.role}</dd></div>
+            <div><dt>currently</dt><dd>{aboutInfo.currently}</dd></div>
+            <div><dt>previously</dt><dd>{aboutInfo.previously}</dd></div>
             <div><dt>based</dt><dd>{aboutInfo.based}</dd></div>
             <div><dt>mail</dt><dd><a className={styles.overlayLink} href={`mailto:${aboutInfo.mail}`}>{aboutInfo.mail}</a></dd></div>
           </dl>
@@ -558,6 +560,11 @@ function AboutOverlay({ onClose }: { onClose: () => void }) {
               {paragraph}
             </p>
           ))}
+          <footer className={styles.aboutFooter}>
+            <a href={dockLinks.linkedin} target="_blank" rel="noopener noreferrer">linkedin ↗</a>
+            <a href={dockLinks.github} target="_blank" rel="noopener noreferrer">github ↗</a>
+            <a href={dockLinks.photography} target="_blank" rel="noopener noreferrer">photography ↗</a>
+          </footer>
         </div>
       </div>
     </div>
