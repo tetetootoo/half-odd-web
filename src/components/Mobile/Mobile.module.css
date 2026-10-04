@@ -466,7 +466,7 @@
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: #6b5a62;
   margin-bottom: 16px;
 }
@@ -556,7 +556,7 @@
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: #6b5a62;
   margin: 0 0 10px;
 }

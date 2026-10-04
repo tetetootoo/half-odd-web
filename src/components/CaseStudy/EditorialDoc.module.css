@@ -12,7 +12,7 @@
 }
 .eyebrow { composes: tierEyebrow from '../Window/Window.module.css'; margin: 0 0 24px; }
 .h1 { composes: tierH1 from '../Window/Window.module.css'; font-size: clamp(42px, 8.5cqi, 72px); margin: 0 0 28px; text-wrap: balance; }
-.metadata { composes: tierMetadata from '../Window/Window.module.css'; max-width: none; margin: 0 0 80px; text-transform: none; }
+.metadata { composes: tierMetadata from '../Window/Window.module.css'; max-width: none; margin: 0 0 80px; text-transform: lowercase; }
 .sectionHeading { composes: tierSectionHeading from '../Window/Window.module.css'; max-width: 580px; margin: 160px auto 28px; }
 .majorStatement { composes: tierMajorStatement from '../Window/Window.module.css'; font-size: clamp(34px, 6.5cqi, 56px); line-height: 1.06; white-space: pre-line; margin: 144px 0; text-wrap: pretty; }
 .body { composes: tierBody from '../Window/Window.module.css'; }
@@ -23,7 +23,7 @@
 .sequence { margin: 180px 0 64px; white-space: pre-line; text-wrap: pretty; }
 .sequence p { font-size: 34px; font-weight: 500; line-height: 1.15; margin: 0; color: #6b5a62; }
 .sequence p + p { font-size: clamp(34px, 6.5cqi, 56px); font-weight: 700; line-height: 1.06; color: #1c1319; margin-top: 88px; letter-spacing: -0.01em; }
-.label { font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace; font-size: 12px; line-height: 1.5; letter-spacing: .06em; text-transform: uppercase; color: #6b5a62; }
+.label { font-family: Menlo, ui-monospace, 'SF Mono', Consolas, monospace; font-size: 12px; line-height: 1.5; letter-spacing: .06em; text-transform: lowercase; color: #6b5a62; }
 .diagram { width: 80%; margin: 80px auto 0; font-size: 14px; line-height: 1.5; }
 .diagram p { margin-top: 0; }
 .diagram figcaption { font-size: 12px; line-height: 1.5; color: #6b5a62; text-align: center; max-width: 480px; margin: 40px auto 0; }
@@ -68,7 +68,7 @@
 .chain li + li::before { content: '↓'; display: block; margin: 10px; color: #6b5a62; }
 .convergence { display: grid; grid-template-columns: 1fr 48px 1fr; align-items: center; width: 100%; }
 .convergence ul { list-style: none; padding: 0; margin: 0; }
-.convergence li { display: flex; align-items: center; font-family: Menlo, ui-monospace, monospace; font-size: 12px; text-transform: uppercase; min-height: 48px; position: relative; }
+.convergence li { display: flex; align-items: center; font-family: Menlo, ui-monospace, monospace; font-size: 12px; text-transform: lowercase; min-height: 48px; position: relative; }
 .convergence li::after { content: ''; flex: 1; border-top: 1px solid #cdbcc4; margin-left: 12px; }
 .convergence li::before { content: ''; position: absolute; right: 0; height: 100%; border-right: 1px solid #cdbcc4; }
 .convergence li:first-child::before { top: 50%; height: 50%; }
