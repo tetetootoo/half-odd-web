@@ -20,7 +20,7 @@ import {
 import styles from './Mobile.module.css';
 
 const DOCK_ICONS = {
-  about: '/icons/memoji.png',
+  about: '/icons/about-me.png',
   notes: '/icons/notes.png',
   mail: '/icons/mail.png',
 };

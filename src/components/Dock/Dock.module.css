@@ -49,7 +49,7 @@
   align-items: center;
   justify-content: center;
   transform-origin: 50% 100%;
-  transition: scale 0.14s ease-out;
+  transition: scale 0.07s ease-out;
 }
 
 .dropTarget {
@@ -131,9 +131,9 @@
   transition: opacity 0.08s ease;
 }
 
-/* Labels wait a beat before appearing, and vanish immediately on leave. */
+/* Labels appear quickly when hovering or focusing an icon. */
 .item:hover .tooltip,
 .item:focus-visible .tooltip {
   opacity: 1;
-  transition: opacity 0.12s ease 0.5s;
+  transition: opacity 0.06s ease 0.1s;
 }
