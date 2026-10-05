@@ -84,7 +84,8 @@
   max-width: 54px;
   max-height: 54px;
   object-fit: contain;
-  border-radius: 8px;
+  /* Match the document glyph's corner radius at this icon size. */
+  border-radius: 3px;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
 }
 
