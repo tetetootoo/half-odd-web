@@ -49,9 +49,9 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
         { ...wo('Bildschirmfoto 2026-10-05 um 12.47.20.png', 'Calendar view', 'Wrestling Octopi calendar showing scheduled Instagram content in October 2026.'), labelAbove: true },
       ] },
       ANALYTICS: { layout: 'media', size: 'wide', media: [wo('Bildschirmfoto 2026-10-05 um 12.46.25.png', 'Analytics', 'Wrestling Octopi analytics view showing engagement metrics and suggested posting times.')] },
-      COMMENTS: { layout: 'media', size: 'secondary', media: [wo('Bildschirmfoto 2026-10-05 um 12.47.45.png', 'Comments', 'Wrestling Octopi comments interface showing posts, comment threads, and replies.', '2940 / 1600')] },
+      COMMENTS: { layout: 'media', size: 'wide', media: [wo('Bildschirmfoto 2026-10-05 um 12.47.45.png', 'Comments', 'Wrestling Octopi comments interface showing posts, comment threads, and replies.', '2940 / 1600')] },
       ARCHITECTURE: { layout: 'media', size: 'standard', media: [silent(wo('Systemarchitektur von Wrestling Octopi.png', 'System architecture', 'Wrestling Octopi system architecture showing frontend, backend, data infrastructure, and external services.', '1536 / 1024'))] },
-      DEVELOPMENT_PROCESS: { layout: 'media', size: 'process', media: [silent(wo('KI-gestützter Entwicklungsprozess.png', 'AI-assisted development process', 'Seven-step AI-assisted development loop: product decision, design, implementation, manual testing, catching issues, debugging, and refinement.', '1536 / 1024'))] },
+      DEVELOPMENT_PROCESS: { layout: 'media', size: 'process', media: [silent(wo('ki-gestuetzter-entwicklungsprozess.png', 'AI-assisted development process', 'Seven-step AI-assisted development loop: product decision, design, implementation, manual testing, catching issues, debugging, and refinement.', '1536 / 1024'))] },
     },
   },
   'sap-graph-case-study': {

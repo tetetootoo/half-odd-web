@@ -21,7 +21,7 @@ product CTA follow the supplied layout request. No other case study was restyled
 | Analytics | `Bildschirmfoto 2026-10-05 um 12.46.25.png` — metrics and suggested times |
 | Comments | `Bildschirmfoto 2026-10-05 um 12.47.45.png` — posts, threads and replies |
 | System | `Systemarchitektur von Wrestling Octopi.png` plus `graphic-1.png` — supplied system-architecture image displayed directly; `graphic-1.png` remains unused |
-| Development | `KI-gestützter Entwicklungsprozess.png` — supplied process image displayed directly |
+| Development | `ki-gestuetzter-entwicklungsprozess.png` — supplied process image displayed directly |
 
 Unused: Home (`12.48.23`), the static Canva-return button (`12.48.07`), brand image,
 older/duplicate product captures and marketing-heavy raster diagram treatments.

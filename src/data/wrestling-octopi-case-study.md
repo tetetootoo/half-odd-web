@@ -26,8 +26,7 @@ So I moved back into the interface manually - simplifying hierarchy, removing un
 
 <!-- BEFORE_AFTER -->
 
-# AI remained useful for producing software quickly.
-# Taste still had to come from me.
+**AI remained useful for producing software quickly. Taste still had to come from me.**
 
 ---
 
@@ -37,7 +36,7 @@ My research started with existing social media tools, paying particular attentio
 
 I combined what worked with inspiration from products far outside the category, with one principle:
 
-# A powerful tool shouldn't have to feel like a complicated one.
+**A powerful tool shouldn't have to feel like a complicated one.**
 
 <!-- FEED_PREVIEW -->
 
@@ -75,7 +74,7 @@ I use AI coding agents extensively, initially Claude Code and increasingly Codex
 
 That changed how I work with these systems.
 
-# I use AI for leverage, not authority.
+**I use AI for leverage, not authority.**
 
 <!-- DEVELOPMENT_PROCESS -->
 

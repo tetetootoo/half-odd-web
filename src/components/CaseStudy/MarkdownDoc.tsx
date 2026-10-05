@@ -50,8 +50,9 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
       wide = true;
       if (directive.layout === 'intro') {
         content = <div className={styles.intro}>
-          <div>{block.children?.slice(0, -1).map(renderBlock)}</div>
-          <div>{block.children?.slice(-1).map(renderBlock)}</div>
+          <div className={styles.introTitle}>{block.children?.slice(0, 1).map(renderBlock)}</div>
+          <div className={styles.introDetails}>{block.children?.slice(1, -1).map(renderBlock)}</div>
+          <div className={styles.introStatus}>{block.children?.slice(-1).map(renderBlock)}</div>
           <div className={styles.introVideo}>{directive.media.map(media => <CaseStudyMedia key={media.path} media={media} />)}</div>
         </div>;
       } else if (directive.layout === 'architecture') {
