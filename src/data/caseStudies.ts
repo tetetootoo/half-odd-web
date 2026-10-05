@@ -6,8 +6,8 @@ import letter from './half-a-love-letter-case-study.md?raw';
 // Shared "little preview" document glyph — same icon .txt files use.
 export const MARKDOWN_DOCUMENT_ICON = '/icons/doc-preview.svg';
 export type CaseStudyId = 'wrestling-octopi-case-study' | 'sap-graph-case-study' | 'antispace-berlin-case-study' | 'half-a-love-letter-case-study';
-export interface MediaSlot { label: string; path: string; src?: string; type?: 'video'; ratio?: string; hideCaption?: boolean }
-export interface LayoutDirective { layout: 'media' | 'split' | 'gallery' | 'bento' | 'comparison' | 'architecture'; media: MediaSlot[]; paragraphs?: number }
+export interface MediaSlot { label: string; path: string; src?: string; type?: 'video'; ratio?: string; hideCaption?: boolean; alt?: string; poster?: string; respectReducedMotion?: boolean; labelAbove?: boolean }
+export interface LayoutDirective { layout: 'media' | 'split' | 'gallery' | 'bento' | 'comparison' | 'architecture' | 'problem' | 'system' | 'development'; size?: 'wide' | 'standard' | 'secondary' | 'process'; contentBlocks?: number; media: MediaSlot[]; paragraphs?: number }
 export interface CaseStudyConfig {
   id: CaseStudyId;
   label: string;
@@ -20,7 +20,9 @@ const slot = (folder: string, file: string, label: string, ratio = '16 / 10', sr
   path: `/media/${folder}/${file}`, label, ratio, src,
   type: /\.(mp4|mov)$/.test(file) ? 'video' : undefined,
 });
-const wo = (file: string, label: string) => slot('wrestling-octopi-case-study', file, label);
+const wo = (file: string, label: string, alt: string, ratio = '2940 / 1602'): MediaSlot => ({
+  ...slot('wrestling-octopi-case-study', file, label, ratio, `/media/wrestling-octopi-case-study/${file}`), alt,
+});
 const anti = (file: string, label: string, ratio = '3 / 4', src?: string) => slot('antispace-case-study', file, label, ratio, src);
 const love = (file: string, label: string) => slot('half-a-love-letter-case-study', file, label, '2940 / 1600', `/media/half-a-love-letter-case-study/${file}`);
 const media = (...items: MediaSlot[]): LayoutDirective => ({ layout: 'media', media: items });
@@ -31,18 +33,26 @@ const silent = (item: MediaSlot): MediaSlot => ({ ...item, hideCaption: true });
 export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
   'wrestling-octopi-case-study': {
     id: 'wrestling-octopi-case-study', label: 'Wrestling Octopi.md', markdown: wrestling, artDirection: 'product',
-    links: { 'View live product ↗': 'https://www.wrestlingoctopi.com/', 'View GitHub ↗': 'https://github.com/tetetootoo' },
+    links: { 'View Wrestling Octopi ↗': 'https://www.wrestlingoctopi.com/', 'View GitHub ↗': 'https://github.com/tetetootoo' },
     directives: {
-      HERO_MEDIA: media(wo('hero.mp4', 'Current product')),
-      INTRO_SPLIT: { layout: 'split', paragraphs: 3, media: [wo('intro-visual.mp4', 'Product overview')] },
-      FEED_PLANNER_VIDEO: media(wo('feed-planner.mp4', 'Feed planner interaction')),
-      STATE_GRID: gallery(...['Draft', 'Scheduled', 'Publishing', 'Failed / Retry'].map((label, i) => wo(`feed-state-${i + 1}.png`, label))),
-      BEFORE_AFTER: { layout: 'comparison', media: [wo('ai-exploration.png', 'Early AI-heavy direction'), wo('final-direction.png', 'Current refined direction')] },
-      DESIGN_DETAILS: gallery(...['Hierarchy', 'Typography + spacing', 'Components + states'].map((label, i) => wo(`design-detail-${i + 1}.png`, label))),
-      PROCESS_SEQUENCE: gallery(...['01 / Idea', '02 / First implementation', '03 / Refined interaction'].map((label, i) => wo(`process-${i + 1}.png`, label))),
-      ARCHITECTURE: { layout: 'architecture', media: [] },
-      FINAL_PRODUCT_INTERACTION: media(wo('final-interaction.mp4', 'Current product interaction')),
-      FINAL_SEQUENCE: media(wo('final-sequence.mp4', 'Connected product interactions')),
+      HERO_MEDIA: { layout: 'split', contentBlocks: 4, media: [{
+        ...wo('workflow.mp4', 'Current product workflow', 'Wrestling Octopi workflow showing Canva design creation, return to the product, and post scheduling.', '2560 / 1380'),
+        poster: '/media/wrestling-octopi-case-study/workflow-poster.jpg', respectReducedMotion: true, hideCaption: true,
+      }] },
+      PROBLEM: { layout: 'problem', size: 'standard', media: [] },
+      BEFORE_AFTER: { layout: 'comparison', size: 'wide', media: [
+        { ...wo('early-direction.png', 'Early direction', 'Early Wrestling Octopi landing page with purple headlines and buttons beside a colorful feed-grid simulation.', '1400 / 910'), labelAbove: true },
+        { ...wo('Bildschirmfoto 2026-10-05 um 12.48.41.png', 'Current direction', 'Current black and white Wrestling Octopi landing page with a simplified headline and product preview.'), labelAbove: true },
+      ] },
+      FEED_PREVIEW: { layout: 'media', size: 'wide', media: [wo('Bildschirmfoto 2026-10-05 um 12.47.31.png', 'Feed Preview', 'Wrestling Octopi Feed Preview showing a three-column Instagram content grid.')] },
+      PLANNING_PAIR: { layout: 'comparison', size: 'wide', media: [
+        { ...wo('Bildschirmfoto 2026-10-05 um 12.46.43.png', 'Column view', 'Wrestling Octopi Column view with a scheduled post, caption editor, publishing time, and image preview.', '2940 / 1606'), labelAbove: true },
+        { ...wo('Bildschirmfoto 2026-10-05 um 12.47.20.png', 'Calendar view', 'Wrestling Octopi calendar showing scheduled Instagram content in October 2026.'), labelAbove: true },
+      ] },
+      ANALYTICS: { layout: 'media', size: 'wide', media: [wo('Bildschirmfoto 2026-10-05 um 12.46.25.png', 'Analytics', 'Wrestling Octopi analytics view showing engagement metrics and suggested posting times.')] },
+      COMMENTS: { layout: 'media', size: 'secondary', media: [wo('Bildschirmfoto 2026-10-05 um 12.47.45.png', 'Comments', 'Wrestling Octopi comments interface showing posts, comment threads, and replies.', '2940 / 1600')] },
+      ARCHITECTURE: { layout: 'system', size: 'standard', media: [] },
+      DEVELOPMENT_PROCESS: { layout: 'development', size: 'process', media: [] },
     },
   },
   'sap-graph-case-study': {

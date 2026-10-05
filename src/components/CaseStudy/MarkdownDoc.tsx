@@ -1,6 +1,7 @@
 import { Fragment, useMemo, type CSSProperties, type ReactNode } from 'react';
 import { Lexer, type Token, type Tokens } from 'marked';
 import { CASE_STUDIES, type CaseStudyId } from '../../data/caseStudies';
+import { WrestlingDiagrams } from './WrestlingDiagrams';
 import { CaseStudyMedia } from './CaseStudyMedia';
 import { compileCaseStudy, type CaseBlock } from './markdown';
 import styles from './MarkdownDoc.module.css';
@@ -48,7 +49,9 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
     let wide = false;
     if (directive) {
       wide = true;
-      if (directive.layout === 'architecture') {
+      if (directive.layout === 'problem' || directive.layout === 'system' || directive.layout === 'development') {
+        content = <WrestlingDiagrams kind={directive.layout} />;
+      } else if (directive.layout === 'architecture') {
         content = <figure className={styles.architecture}><figcaption>Conceptual software layers</figcaption>{['Frontend', 'Application / API', 'Data', 'Integrations / services'].map((label, n) => <Fragment key={label}>{n > 0 && <span aria-hidden="true">↓</span>}<p>{label}</p></Fragment>)}<small>Illustrative relationships, not a verified implementation architecture.</small></figure>;
       } else {
         content = <div className={styles[directive.layout]}>
@@ -68,11 +71,11 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
       else if (t.text.includes('`← PREVIOUS PROJECT`')) return null;
       else content = <p className={role === 'metadata' ? styles.metadata : undefined}>{inline(t.tokens)}</p>;
     } else content = token ? renderToken(token) : null;
-    return <div key={i} className={`${styles.block} ${wide ? styles.wide : ''}`} style={{ '--block-gap': `${block.gap}px` } as CSSProperties}>{content}</div>;
+    return <div key={i} className={`${styles.block} ${wide ? styles.wide : ''} ${directive ? styles.mediaBlock : ''} ${directive?.size ? styles[`media${directive.size}`] : ''} ${directive?.contentBlocks ? styles.hero : ''}`} style={{ '--block-gap': `${block.gap}px` } as CSSProperties}>{content}</div>;
   };
   const ids = Object.keys(CASE_STUDIES) as CaseStudyId[];
   const next = CASE_STUDIES[ids[(ids.indexOf(caseStudyId) + 1) % ids.length]];
-  return <article className={`${styles.document} ${styles[config.artDirection]}`}>
+  return <article className={`${styles.document} ${styles[config.artDirection]} ${caseStudyId === 'wrestling-octopi-case-study' ? styles.wrestling : ''}`}>
     <div className={styles.page}>{blocks.map(renderBlock)}
       <nav className={styles.navigation} aria-label="Project navigation"><button onClick={() => onOpenItem(next.id)} type="button">Next: {next.label.replace('.md', '')} <span aria-hidden="true">↗</span></button></nav>
     </div>

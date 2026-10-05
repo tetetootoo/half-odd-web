@@ -1,26 +1,50 @@
 # Wrestling Octopi case-study media
 
-Content now comes from `src/data/wrestling-octopi-case-study.md`.
-Layout and media slots are configured in `src/data/caseStudies.ts`.
-The old TypeScript case-study content has been retired.
+Approved narrative lives in `src/data/wrestling-octopi-case-study.md`. Whole
+sections are ordered problem → design evolution → product → system → development
+process → current state. Existing prose is unchanged; the ending status label and
+product CTA follow the supplied layout request. No other case study was restyled.
 
-Add real assets at these paths, then set the corresponding slot's `src`
-in the shared case-study configuration. Missing assets retain their intended
-layout with a neutral placeholder. Do not substitute invented product UI.
+## Asset map (visually inspected)
 
-- `hero.mp4`: current working product
-- `intro-visual.mp4`: product overview beside the opening copy
-- `feed-planner.mp4`: actual drag-and-drop interaction
-- `feed-state-1.png` through `feed-state-4.png`: draft, scheduled, publishing, failed/retry
-- `ai-exploration.png`, `final-direction.png`: matched before/after captures
-- `design-detail-1.png` through `design-detail-3.png`: hierarchy, typography/spacing, components/states
-- `process-1.png` through `process-3.png`: one real feature's development sequence
-- `final-interaction.mp4`: polished current interaction
-- `final-sequence.mp4`: 10–15 seconds across connected current-product interactions
+| Role | Source / implementation |
+| --- | --- |
+| Hero workflow | `Wrestling Octopi Schedule Canva Post Demo.mov` — real Canva creation, return and post workflow |
+| Browser playback | `workflow.mp4` — H.264 conversion, original rotated orientation preserved; 2560 × 1380, 13.95 seconds |
+| Reduced-motion hero | `workflow-poster.jpg` — representative frame from the same recording |
+| Problem | Native fragmented-workflow diagram; the requested problem raster was not found among supplied assets |
+| Early direction | `early-direction.png` — previous purple landing capture recovered from Git's `image-3.png`; no missing original file restored in place |
+| Current direction | `Bildschirmfoto 2026-10-05 um 12.48.41.png` — black/white landing page |
+| Feed Preview | `Bildschirmfoto 2026-10-05 um 12.47.31.png` — three-column image grid |
+| Column view | `Bildschirmfoto 2026-10-05 um 12.46.43.png` — caption, schedule and post image |
+| Calendar view | `Bildschirmfoto 2026-10-05 um 12.47.20.png` — October 2026 |
+| Analytics | `Bildschirmfoto 2026-10-05 um 12.46.25.png` — metrics and suggested times |
+| Comments | `Bildschirmfoto 2026-10-05 um 12.47.45.png` — posts, threads and replies |
+| System | `Systemarchitektur von Wrestling Octopi.png` plus `graphic-1.png` used as references for native semantic layers |
+| Development | `KI-gestützter Entwicklungsprozess.png` used as reference for seven native ordered steps and iteration |
 
-The existing numbered images and brand/graphic assets are preserved but
-not automatically assigned to new slots: their role in this outline has
-not been verified. Project status remains “Work in progress”, moving toward beta.
+Unused: Home (`12.48.23`), the static Canva-return button (`12.48.07`), brand image,
+older/duplicate product captures and marketing-heavy raster diagram treatments.
 
-See `src/components/CaseStudy/README.md` for rendering, media playback,
-icon replacement, and verification details.
+## Verified architecture
+
+Compared the diagrams against `/Users/theresaschantz/Desktop/wrestling-octopi/README.md`,
+web/API manifests and API implementation on 5 October 2026. Native layers list
+React/TypeScript/Vite; Node.js/Express/TypeScript; PostgreSQL, Prisma, Redis and BullMQ;
+Meta APIs, Anthropic Claude, Cloudinary, Canva, Stripe and Resend. Verified service
+implementations include `routes/ai.ts`, `services/canva.ts`, `services/mediaStorage.ts`,
+`services/channelPublishing.ts`, `lib/queue.ts`, `lib/stripe.ts` and `services/email.ts`.
+
+The README mentions S3, but no implemented S3 client/storage path was found in the
+API source. S3 is therefore omitted rather than presented as confirmed architecture.
+The diagrams describe repository implementation, not deployment availability.
+
+## Rendering
+
+Hero uses the existing 40/60 split; its four original opening blocks are owned by
+that split. Semantic media measures, borders, radii and spacing are scoped to this
+document. Paired images use equal-height contain frames without clipping the UI.
+Mobile stacks all pairs; native diagrams retain readable text. No scroll reveals,
+new window chrome, screenshots as cards, or playback controls were added. Video
+uses metadata preload, muted autoplay, inline looping, and a static poster for
+reduced motion. The original MOV remains available as the source asset.

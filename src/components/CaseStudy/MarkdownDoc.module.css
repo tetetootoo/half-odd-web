@@ -74,3 +74,26 @@
   .block { margin-top: min(var(--block-gap, 20px), 56px); }
 }
 /* Videos autoplay continuously, muted and without playback controls. */
+
+/* Wrestling Octopi's editorial media hierarchy; other documents keep their layout. */
+.wrestling .mediawide { width: 100%; max-width: none; }
+.wrestling .mediastandard { width: 88%; max-width: none; margin-inline: auto; margin-top: 64px; }
+.wrestling .mediasecondary { width: 76%; max-width: 517px; margin-inline: auto; }
+.wrestling .mediaprocess { width: 80%; max-width: none; margin-inline: auto; margin-top: 64px; }
+.wrestling .mediaBlock + .block { margin-top: 80px; }
+.wrestling .hero + .block { margin-top: 48px; }
+.wrestling .hero .split { align-items: center; }
+.wrestling .hero .block { width: 100%; }
+.wrestling .mediaFrame { border: 1px solid #e9e2e5; border-radius: 8px; }
+.wrestling .mediaFrame img, .wrestling .mediaFrame video { object-fit: contain; }
+.wrestling .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.wrestling .comparison .mediaFrame { aspect-ratio: 16 / 10 !important; }
+.wrestling .media figcaption { font-size: 12px; line-height: 1.5; letter-spacing: .04em; }
+.labelAbove { display: flex; flex-direction: column; gap: 10px; }
+.labelAbove figcaption { margin: 0; }
+@container (max-width: 700px) {
+  .wrestling .comparison { grid-template-columns: 1fr; gap: 32px; }
+  .wrestling .mediastandard, .wrestling .mediasecondary, .wrestling .mediaprocess { width: 100%; max-width: none; margin-top: 48px; }
+  .wrestling .mediaBlock + .block { margin-top: 56px; }
+  .wrestling .hero + .block { margin-top: 40px; }
+}
