@@ -1,4 +1,6 @@
 .phone {
+  --app-icon-size: 64.8px;
+  --dock-icon-size: 55.2px;
   position: relative;
   height: 100%;
   display: flex;
@@ -13,7 +15,7 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px 8px;
   padding: 56px 12px 24px;
   align-content: start;
@@ -30,7 +32,8 @@
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  padding: 4px;
+  min-width: 0;
+  padding: 4px 0;
   border: none;
   background: transparent;
   font: inherit;
@@ -41,13 +44,13 @@
 
 .appGlyphWrapper {
   position: relative;
-  width: 54px;
-  height: 54px;
+  width: var(--app-icon-size);
+  height: var(--app-icon-size);
 }
 
 .appGlyph {
-  width: 54px;
-  height: 54px;
+  width: var(--app-icon-size);
+  height: var(--app-icon-size);
   object-fit: contain;
   border-radius: 12px;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
@@ -146,8 +149,8 @@
 }
 
 .dockGlyph {
-  width: 46px;
-  height: 46px;
+  width: var(--dock-icon-size);
+  height: var(--dock-icon-size);
   object-fit: contain;
   border-radius: 10px;
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
