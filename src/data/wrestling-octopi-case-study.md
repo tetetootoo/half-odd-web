@@ -45,7 +45,7 @@ The feed planner became a good example. What looks like a simple draggable grid 
 
 The challenge wasn't exposing all of that complexity.
 
-**It was deciding when the user actually needed to see it.**
+It was deciding when the user actually needed to see it.
 
 <!-- PLANNING_PAIR -->
 

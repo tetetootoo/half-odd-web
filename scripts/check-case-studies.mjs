@@ -21,7 +21,7 @@ try {
       assert(config.directives[name], `${config.id}: missing directive ${name}`);
       assert(!html.includes(name), `${config.id}: leaked directive ${name}`);
     }
-    for (const block of blocks.filter(b => b.directive?.layout === 'split')) {
+    for (const block of blocks.filter(b => b.directive?.layout === 'split' || b.directive?.layout === 'intro')) {
       assert.equal(block.children.length, block.directive.contentBlocks ?? block.directive.paragraphs, `${config.id}: split retains preceding copy`);
     }
     for (const directive of Object.values(config.directives)) {

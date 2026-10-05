@@ -38,8 +38,9 @@ retains its original Cloudinary / S3 label; this is the author's source graphic.
 
 ## Rendering
 
-Hero uses the existing 40/60 split; its four original opening blocks are owned by
-that split. Semantic media measures, borders, radii and spacing are scoped to this
+The introduction places title/subtitle/metadata beside the existing status text.
+The workflow video spans the full content width below both columns. Mobile stacks
+the introductory text first and video below. Semantic media measures, borders, radii and spacing are scoped to this
 document. Paired images use equal-height contain frames without clipping the UI.
 Mobile stacks all pairs; supplied diagrams occupy the full content width. No scroll reveals,
 new window chrome, screenshots as cards, or playback controls were added. Video

@@ -7,7 +7,7 @@ import letter from './half-a-love-letter-case-study.md?raw';
 export const MARKDOWN_DOCUMENT_ICON = '/icons/doc-preview.svg';
 export type CaseStudyId = 'wrestling-octopi-case-study' | 'sap-graph-case-study' | 'antispace-berlin-case-study' | 'half-a-love-letter-case-study';
 export interface MediaSlot { label: string; path: string; src?: string; type?: 'video'; ratio?: string; hideCaption?: boolean; alt?: string; poster?: string; respectReducedMotion?: boolean; labelAbove?: boolean }
-export interface LayoutDirective { layout: 'media' | 'split' | 'gallery' | 'bento' | 'comparison' | 'architecture'; size?: 'wide' | 'standard' | 'secondary' | 'process'; contentBlocks?: number; media: MediaSlot[]; paragraphs?: number }
+export interface LayoutDirective { layout: 'media' | 'intro' | 'split' | 'gallery' | 'bento' | 'comparison' | 'architecture'; size?: 'wide' | 'standard' | 'secondary' | 'process'; contentBlocks?: number; media: MediaSlot[]; paragraphs?: number }
 export interface CaseStudyConfig {
   id: CaseStudyId;
   label: string;
@@ -35,7 +35,7 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
     id: 'wrestling-octopi-case-study', label: 'Wrestling Octopi.md', markdown: wrestling, artDirection: 'product',
     links: { 'View Wrestling Octopi ↗': 'https://www.wrestlingoctopi.com/', 'View GitHub ↗': 'https://github.com/tetetootoo' },
     directives: {
-      HERO_MEDIA: { layout: 'split', contentBlocks: 4, media: [{
+      HERO_MEDIA: { layout: 'intro', contentBlocks: 4, media: [{
         ...wo('workflow.mp4', 'Current product workflow', 'Wrestling Octopi workflow showing Canva design creation, return to the product, and post scheduling.', '2560 / 1380'),
         poster: '/media/wrestling-octopi-case-study/workflow-poster.jpg', respectReducedMotion: true, hideCaption: true,
       }] },

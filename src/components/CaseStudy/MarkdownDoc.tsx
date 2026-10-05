@@ -48,7 +48,13 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
     let wide = false;
     if (directive) {
       wide = true;
-      if (directive.layout === 'architecture') {
+      if (directive.layout === 'intro') {
+        content = <div className={styles.intro}>
+          <div>{block.children?.slice(0, -1).map(renderBlock)}</div>
+          <div>{block.children?.slice(-1).map(renderBlock)}</div>
+          <div className={styles.introVideo}>{directive.media.map(media => <CaseStudyMedia key={media.path} media={media} />)}</div>
+        </div>;
+      } else if (directive.layout === 'architecture') {
         content = <figure className={styles.architecture}><figcaption>Conceptual software layers</figcaption>{['Frontend', 'Application / API', 'Data', 'Integrations / services'].map((label, n) => <Fragment key={label}>{n > 0 && <span aria-hidden="true">↓</span>}<p>{label}</p></Fragment>)}<small>Illustrative relationships, not a verified implementation architecture.</small></figure>;
       } else {
         content = <div className={styles[directive.layout]}>
