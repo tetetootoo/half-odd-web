@@ -7,6 +7,7 @@
   width: 88px;
   padding: 8px 4px;
   background: transparent;
+  font-family: inherit;
   border: none;
   border-radius: 8px;
   cursor: grab;
