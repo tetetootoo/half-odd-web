@@ -27,11 +27,24 @@ function inline(tokens: Token[] = []): ReactNode {
 function renderToken(token: Token): ReactNode {
   const t = token as Tokens.Generic;
   switch (token.type) {
+    case 'heading': {
+      const Tag = `h${Math.min(t.depth, 6)}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+      return <Tag>{inline(t.tokens)}</Tag>;
+    }
     case 'paragraph': case 'text': return <p>{inline(t.tokens ?? Lexer.lexInline(t.text))}</p>;
     case 'blockquote': return <aside className={styles.status}>{(t.tokens ?? []).map((child: Token, i: number) => <Fragment key={i}>{renderToken(child)}</Fragment>)}</aside>;
     case 'list': {
       const Tag = t.ordered ? 'ol' : 'ul';
       return <Tag>{t.items.map((item: Tokens.ListItem, i: number) => <li key={i}>{item.tokens.map((child, n) => <Fragment key={n}>{renderToken(child)}</Fragment>)}</li>)}</Tag>;
+    }
+    case 'table': {
+      const table = token as Tokens.Table;
+      return <div className={styles.tableScroll} tabIndex={0} role="region" aria-label="Scrollable table">
+        <table className={styles.table}>
+          <thead><tr>{table.header.map((cell, i) => <th key={i} scope="col" style={{ textAlign: table.align[i] ?? 'left' }}>{inline(cell.tokens)}</th>)}</tr></thead>
+          <tbody>{table.rows.map((row, i) => <tr key={i}>{row.map((cell, j) => <td key={j} style={{ textAlign: table.align[j] ?? 'left' }}>{inline(cell.tokens)}</td>)}</tr>)}</tbody>
+        </table>
+      </div>;
     }
     case 'hr': return <hr />;
     case 'code': return <pre tabIndex={0} aria-label="Text diagram"><code>{t.text}</code></pre>;
@@ -83,5 +96,12 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
     <div className={styles.page}>{blocks.map(renderBlock)}
       <nav className={styles.navigation} aria-label="Project navigation"><button onClick={() => onOpenItem(next.id)} type="button">Next: {next.label.replace('.md', '')} <span aria-hidden="true">↗</span></button></nav>
     </div>
+  </article>;
+}
+
+export function MarkdownTextDoc({ markdown }: { markdown: string }) {
+  const tokens = useMemo(() => Lexer.lex(markdown), [markdown]);
+  return <article className={`${styles.document} ${styles.editorial}`}>
+    <div className={styles.page}>{tokens.map((token, i) => <div className={styles.block} key={i}>{renderToken(token)}</div>)}</div>
   </article>;
 }

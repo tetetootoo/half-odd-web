@@ -1,3 +1,5 @@
+import cv2Markdown from '../../public/media/cv/cv2.md?raw';
+import cvMarkdown from '../../public/media/cv/ecv.md?raw';
 import { CASE_STUDIES, type CaseStudyId } from './caseStudies';
 import type { TextBlock } from './textBlocks';
 
@@ -17,6 +19,7 @@ export interface MobileAppItem {
   audioSrc?: string;
   textLines?: TextBlock[];
   caseStudyId?: CaseStudyId;
+  markdown?: string;
   plainText?: string[];
   link?: { url: string };
   embedUrl?: string;
@@ -273,5 +276,19 @@ export const gridApps: MobileAppItem[] = [
       'heated rivalry',
       'photo booth',
     ],
+  },
+  {
+    id: 'ecv',
+    label: 'ecv.md',
+    kind: 'markdown',
+    iconSrc: '/icons/md-icon-mobile.png',
+    markdown: cvMarkdown,
+  },
+  {
+    id: 'cv2',
+    label: 'cv2.md',
+    kind: 'markdown',
+    iconSrc: '/icons/md-icon-mobile.png',
+    markdown: cv2Markdown,
   },
 ];

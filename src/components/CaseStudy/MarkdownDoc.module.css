@@ -118,3 +118,8 @@
   .wrestling .page .block:has(> hr) { margin-top: 56px; }
   .wrestling .block:has(> hr) + .block { margin-top: 48px; }
 }
+
+.tableScroll { max-width: 100%; overflow-x: auto; }
+.table { width: 100%; min-width: 420px; border-collapse: collapse; font-size: 15px; line-height: 1.6; }
+.table th, .table td { padding: 12px; border-bottom: 1px solid #e9e2e5; vertical-align: top; }
+.table th { font-weight: 700; }

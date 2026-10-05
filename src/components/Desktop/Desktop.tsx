@@ -30,7 +30,7 @@ function ariaLabelFor(item: DesktopItem, isPlaying: boolean): string {
     case 'audio':
       return `${isPlaying ? 'Pause' : 'Play'} ${label}`;
     case 'markdown':
-      return `Open ${label.replace(/\.md$/, '')} case study`;
+      return item.caseStudyId ? `Open ${label.replace(/\.md$/, '')} case study` : `Open ${label}`;
     default:
       return `Open ${label}`;
   }

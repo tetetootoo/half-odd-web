@@ -1,5 +1,5 @@
 import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
-import { MarkdownDoc } from '../CaseStudy/MarkdownDoc';
+import { MarkdownDoc, MarkdownTextDoc } from '../CaseStudy/MarkdownDoc';
 import { ConceptDiagram } from '../CaseStudy/ConceptDiagram';
 import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from 'react';
 import { desktopItems, dockLinks, type DesktopItem } from '../../data/desktopContent';
@@ -671,7 +671,7 @@ function WindowBody({
     case 'image':
       return <ImageOverlayFrame item={item} />;
     case 'markdown':
-      return item.caseStudyId ? <MarkdownDoc caseStudyId={item.caseStudyId} onOpenItem={onOpenItem} /> : null;
+      return item.markdown ? <MarkdownTextDoc markdown={item.markdown} /> : item.caseStudyId ? <MarkdownDoc caseStudyId={item.caseStudyId} onOpenItem={onOpenItem} /> : null;
     case 'text':
       if (item.plainText) return <PlainTextDoc lines={item.plainText} />;
       return (

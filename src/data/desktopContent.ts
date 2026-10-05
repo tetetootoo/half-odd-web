@@ -1,3 +1,5 @@
+import cv2Markdown from '../../public/media/cv/cv2.md?raw';
+import cvMarkdown from '../../public/media/cv/ecv.md?raw';
 import { CASE_STUDIES, MARKDOWN_DOCUMENT_ICON, type CaseStudyId } from './caseStudies';
 import type { TextBlock } from './textBlocks';
 
@@ -50,6 +52,7 @@ export interface DesktopItem {
   description?: string;
   textLines?: TextBlock[];
   caseStudyId?: CaseStudyId;
+  markdown?: string;
   plainText?: string[];
   mediaSrc?: string;
   mediaType?: 'image' | 'video';
@@ -277,6 +280,26 @@ export const desktopItems: DesktopItem[] = [
     link: { url: 'https://theresaschantz.com' },
     description: 'personal photography portfolio',
     iconSrc: '/media/photo-portfolio/icon.png',
+  },
+  {
+    id: 'ecv',
+    label: 'ecv.md',
+    kind: 'markdown',
+    windowTitle: 'ecv.md',
+    iconSrc: MARKDOWN_DOCUMENT_ICON,
+    markdown: cvMarkdown,
+    x: 89,
+    y: 81.1,
+  },
+  {
+    id: 'cv2',
+    label: 'cv2.md',
+    kind: 'markdown',
+    windowTitle: 'cv2.md',
+    iconSrc: MARKDOWN_DOCUMENT_ICON,
+    markdown: cv2Markdown,
+    x: 89,
+    y: 64,
   },
 ];
 
