@@ -1,3 +1,4 @@
+import { CvDoc } from '../CaseStudy/CvDoc';
 import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
 import { MarkdownDoc, MarkdownTextDoc } from '../CaseStudy/MarkdownDoc';
 import { ConceptDiagram } from '../CaseStudy/ConceptDiagram';
@@ -383,7 +384,7 @@ function TextDoc({
         </button>
       </div>
       <div className={app.markdown || app.caseStudyId || app.plainText ? `${styles.docScroll} ${styles.editorialScroll}` : styles.docScroll}>
-        {app.markdown ? <MarkdownTextDoc markdown={app.markdown} /> : app.plainText ? <PlainTextDoc lines={app.plainText} /> : app.caseStudyId ? <MarkdownDoc caseStudyId={app.caseStudyId} onOpenItem={onOpenApp} /> : <div className={styles.textPad}>
+        {app.markdown ? app.id === 'cv' ? <CvDoc markdown={app.markdown} /> : <MarkdownTextDoc markdown={app.markdown} /> : app.plainText ? <PlainTextDoc lines={app.plainText} /> : app.caseStudyId ? <MarkdownDoc caseStudyId={app.caseStudyId} onOpenItem={onOpenApp} /> : <div className={styles.textPad}>
           {app.textLines &&
             layoutTextDoc(app.textLines).map((entry, i) => {
               switch (entry.kind) {

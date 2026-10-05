@@ -1,0 +1,51 @@
+.document {
+  --cv-section-gap: 48px;
+  --cv-row-gap: 24px;
+  --cv-pink: #a8517a;
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  container-type: inline-size;
+  background: #fff;
+  color: #1c1319;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.page { max-width: 1080px; padding: 48px 56px 72px; margin-inline: auto; }
+.document :is(h1, h2, h3, p, ul) { margin: 0; }
+.header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: start; }
+.header h1 { font-size: 36px; line-height: 1.2; letter-spacing: -.02em; text-transform: uppercase; }
+.subtitle { margin-top: 8px !important; font-size: 16px; line-height: 1.4; }
+.contacts { font-size: 12px; line-height: 1.6; }
+.document a { color: var(--cv-pink); text-decoration: none; overflow-wrap: anywhere; }
+.document a:hover { text-decoration: underline; }
+.document :focus-visible { outline: 2px solid var(--cv-pink); outline-offset: 4px; }
+.section { margin-top: var(--cv-section-gap); }
+.section h2 { font-size: 12px; line-height: 1.3; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--cv-pink); margin-bottom: 20px; }
+.section h3 { font-size: 15px; line-height: 1.3; font-weight: 600; }
+.role + .role { margin-top: 32px; }
+.roleTitle { display: block; margin-top: 4px; }
+.roleTitle strong { font-weight: 600; }
+.metadata, .year { font-size: 13px; line-height: 1.4; color: #6b5a62; }
+.metadata { margin-top: 8px !important; }
+.metadata em, .year em { font-style: normal; }
+.role ul { padding-left: 20px; margin-top: 16px; }
+.role li + li { margin-top: 10px; }
+.projectRow { display: grid; grid-template-columns: minmax(0, 22fr) minmax(0, 38fr) minmax(0, 40fr); gap: 20px; align-items: start; }
+.projectRow + .projectRow, .educationRow + .educationRow, .skillRow + .skillRow { margin-top: var(--cv-row-gap); }
+.disciplines strong, .degree strong { font-weight: 400; }
+.educationRow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) auto; gap: 20px; align-items: start; }
+.year { text-align: right; white-space: nowrap; }
+.skillRow { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 20px; }
+.projectRow > *, .educationRow > *, .skillRow > * { min-width: 0; overflow-wrap: break-word; }
+@container (max-width: 760px) {
+  .page { padding: 40px 28px 56px; }
+  .header { grid-template-columns: 1fr; gap: 16px; }
+}
+@container (max-width: 580px) {
+  .page { padding: 32px 24px 48px; }
+  .header h1 { font-size: 32px; }
+  .projectRow, .educationRow, .skillRow { grid-template-columns: 1fr; gap: 6px; }
+  .year { text-align: left; }
+}

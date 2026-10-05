@@ -1,3 +1,4 @@
+import { CvDoc } from '../CaseStudy/CvDoc';
 import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
 import { MarkdownDoc, MarkdownTextDoc } from '../CaseStudy/MarkdownDoc';
 import { ConceptDiagram } from '../CaseStudy/ConceptDiagram';
@@ -671,7 +672,7 @@ function WindowBody({
     case 'image':
       return <ImageOverlayFrame item={item} />;
     case 'markdown':
-      return item.markdown ? <MarkdownTextDoc markdown={item.markdown} /> : item.caseStudyId ? <MarkdownDoc caseStudyId={item.caseStudyId} onOpenItem={onOpenItem} /> : null;
+      return item.markdown ? item.id === 'cv' ? <CvDoc markdown={item.markdown} /> : <MarkdownTextDoc markdown={item.markdown} /> : item.caseStudyId ? <MarkdownDoc caseStudyId={item.caseStudyId} onOpenItem={onOpenItem} /> : null;
     case 'text':
       if (item.plainText) return <PlainTextDoc lines={item.plainText} />;
       return (

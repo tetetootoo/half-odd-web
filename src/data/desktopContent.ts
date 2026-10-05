@@ -1,5 +1,4 @@
-import cv2Markdown from '../../public/media/cv/cv2.md?raw';
-import cvMarkdown from '../../public/media/cv/ecv.md?raw';
+import cvMarkdown from '../../public/media/cv/CV.md?raw';
 import { CASE_STUDIES, MARKDOWN_DOCUMENT_ICON, type CaseStudyId } from './caseStudies';
 import type { TextBlock } from './textBlocks';
 
@@ -282,22 +281,12 @@ export const desktopItems: DesktopItem[] = [
     iconSrc: '/media/photo-portfolio/icon.png',
   },
   {
-    id: 'ecv',
-    label: 'ecv.md',
+    id: 'cv',
+    label: 'CV.md',
     kind: 'markdown',
-    windowTitle: 'ecv.md',
+    windowTitle: 'CV.md',
     iconSrc: MARKDOWN_DOCUMENT_ICON,
     markdown: cvMarkdown,
-    x: 89,
-    y: 81.1,
-  },
-  {
-    id: 'cv2',
-    label: 'cv2.md',
-    kind: 'markdown',
-    windowTitle: 'cv2.md',
-    iconSrc: MARKDOWN_DOCUMENT_ICON,
-    markdown: cv2Markdown,
     x: 89,
     y: 64,
   },

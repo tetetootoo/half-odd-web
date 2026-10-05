@@ -1,5 +1,4 @@
-import cv2Markdown from '../../public/media/cv/cv2.md?raw';
-import cvMarkdown from '../../public/media/cv/ecv.md?raw';
+import cvMarkdown from '../../public/media/cv/CV.md?raw';
 import { CASE_STUDIES, type CaseStudyId } from './caseStudies';
 import type { TextBlock } from './textBlocks';
 
@@ -278,17 +277,10 @@ export const gridApps: MobileAppItem[] = [
     ],
   },
   {
-    id: 'ecv',
-    label: 'ecv.md',
+    id: 'cv',
+    label: 'CV.md',
     kind: 'markdown',
     iconSrc: '/icons/md-icon-mobile.png',
     markdown: cvMarkdown,
-  },
-  {
-    id: 'cv2',
-    label: 'cv2.md',
-    kind: 'markdown',
-    iconSrc: '/icons/md-icon-mobile.png',
-    markdown: cv2Markdown,
   },
 ];

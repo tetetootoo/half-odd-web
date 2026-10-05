@@ -9,21 +9,21 @@ product CTA follow the supplied layout request. No other case study was restyled
 
 | Role | Source / implementation |
 | --- | --- |
-| Hero workflow | `Wrestling Octopi Schedule Canva Post Demo.mov` — real Canva creation, return and post workflow |
-| Browser playback | `workflow.mp4` — H.264 conversion, original rotated orientation preserved; 2560 × 1380, 13.95 seconds |
-| Reduced-motion hero | `workflow-poster.jpg` — representative frame from the same recording |
+| Hero workflow | `canva-design-and-post-scheduling-source.mov` — real Canva creation, return and post workflow |
+| Browser playback | `canva-design-and-post-scheduling-workflow.mp4` — H.264 conversion, original rotated orientation preserved; 2560 × 1380, 13.95 seconds |
+| Reduced-motion hero | `canva-design-and-post-scheduling-poster.jpg` — representative frame from the same recording |
 | Problem | No supplied problem diagram found; no replacement graphic is generated |
-| Early direction | `early-direction.png` — previous purple landing capture recovered from Git's `image-3.png`; no missing original file restored in place |
-| Current direction | `Bildschirmfoto 2026-10-05 um 12.48.41.png` — black/white landing page |
-| Feed Preview | `Bildschirmfoto 2026-10-05 um 12.47.31.png` — three-column image grid |
-| Column view | `Bildschirmfoto 2026-10-05 um 12.46.43.png` — caption, schedule and post image |
-| Calendar view | `Bildschirmfoto 2026-10-05 um 12.47.20.png` — October 2026 |
-| Analytics | `Bildschirmfoto 2026-10-05 um 12.46.25.png` — metrics and suggested times |
-| Comments | `Bildschirmfoto 2026-10-05 um 12.47.45.png` — posts, threads and replies |
-| System | `Systemarchitektur von Wrestling Octopi.png` plus `graphic-1.png` — supplied system-architecture image displayed directly; `graphic-1.png` remains unused |
-| Development | `ki-gestuetzter-entwicklungsprozess.png` — supplied process image displayed directly |
+| Early direction | `landing-page-early-purple.png` — previous purple landing capture recovered from Git's `image-3.png`; no missing original file restored in place |
+| Current direction | `landing-page-current-monochrome.png` — black/white landing page |
+| Feed Preview | `instagram-feed-grid-preview.png` — three-column image grid |
+| Column view | `post-column-caption-and-schedule.png` — caption, schedule and post image |
+| Calendar view | `post-calendar-october-2026.png` — October 2026 |
+| Analytics | `analytics-engagement-and-posting-times.png` — metrics and suggested times |
+| Comments | `post-comments-and-replies.png` — posts, threads and replies |
+| System | `system-architecture-overview.png` plus `system-architecture-service-integrations.png` — supplied system-architecture image displayed directly; `system-architecture-service-integrations.png` remains unused |
+| Development | `ai-assisted-development-iteration-process.png` — supplied process image displayed directly |
 
-Unused: Home (`12.48.23`), the static Canva-return button (`12.48.07`), brand image,
+Unused: `home-dashboard-posting-overview.png`, `canva-return-to-wrestling-octopi-button.png`, `octopus-brand-mascot.png`,
 older/duplicate product captures and marketing-heavy raster diagram treatments.
 
 ## Supplied diagrams

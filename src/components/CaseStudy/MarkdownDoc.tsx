@@ -105,3 +105,7 @@ export function MarkdownTextDoc({ markdown }: { markdown: string }) {
     <div className={styles.page}>{tokens.map((token, i) => <div className={styles.block} key={i}>{renderToken(token)}</div>)}</div>
   </article>;
 }
+
+export function MarkdownInline({ tokens }: { tokens: Token[] }) {
+  return <>{inline(tokens)}</>;
+}

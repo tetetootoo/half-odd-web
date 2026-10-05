@@ -36,22 +36,22 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
     links: { 'View Wrestling Octopi ↗': 'https://www.wrestlingoctopi.com/', 'View GitHub ↗': 'https://github.com/tetetootoo' },
     directives: {
       HERO_MEDIA: { layout: 'intro', contentBlocks: 4, media: [{
-        ...wo('workflow.mp4', 'Current product workflow', 'Wrestling Octopi workflow showing Canva design creation, return to the product, and post scheduling.', '2560 / 1380'),
-        poster: '/media/wrestling-octopi-case-study/workflow-poster.jpg', respectReducedMotion: true, hideCaption: true,
+        ...wo('canva-design-and-post-scheduling-workflow.mp4', 'Current product workflow', 'Wrestling Octopi workflow showing Canva design creation, return to the product, and post scheduling.', '2560 / 1380'),
+        poster: '/media/wrestling-octopi-case-study/canva-design-and-post-scheduling-poster.jpg', respectReducedMotion: true, hideCaption: true,
       }] },
       BEFORE_AFTER: { layout: 'comparison', size: 'wide', media: [
-        { ...wo('early-direction.png', 'Early direction', 'Early Wrestling Octopi landing page with purple headlines and buttons beside a colorful feed-grid simulation.', '1400 / 910'), labelAbove: true },
-        { ...wo('Bildschirmfoto 2026-10-05 um 12.48.41.png', 'Current direction', 'Current black and white Wrestling Octopi landing page with a simplified headline and product preview.'), labelAbove: true },
+        { ...wo('landing-page-early-purple.png', 'Early direction', 'Early Wrestling Octopi landing page with purple headlines and buttons beside a colorful feed-grid simulation.', '1400 / 910'), labelAbove: true },
+        { ...wo('landing-page-current-monochrome.png', 'Current direction', 'Current black and white Wrestling Octopi landing page with a simplified headline and product preview.'), labelAbove: true },
       ] },
-      FEED_PREVIEW: { layout: 'media', size: 'wide', media: [wo('Bildschirmfoto 2026-10-05 um 12.47.31.png', 'Feed Preview', 'Wrestling Octopi Feed Preview showing a three-column Instagram content grid.')] },
+      FEED_PREVIEW: { layout: 'media', size: 'wide', media: [wo('instagram-feed-grid-preview.png', 'Feed Preview', 'Wrestling Octopi Feed Preview showing a three-column Instagram content grid.')] },
       PLANNING_PAIR: { layout: 'comparison', size: 'wide', media: [
-        { ...wo('Bildschirmfoto 2026-10-05 um 12.46.43.png', 'Column view', 'Wrestling Octopi Column view with a scheduled post, caption editor, publishing time, and image preview.', '2940 / 1606'), labelAbove: true },
-        { ...wo('Bildschirmfoto 2026-10-05 um 12.47.20.png', 'Calendar view', 'Wrestling Octopi calendar showing scheduled Instagram content in October 2026.'), labelAbove: true },
+        { ...wo('post-column-caption-and-schedule.png', 'Column view', 'Wrestling Octopi Column view with a scheduled post, caption editor, publishing time, and image preview.', '2940 / 1606'), labelAbove: true },
+        { ...wo('post-calendar-october-2026.png', 'Calendar view', 'Wrestling Octopi calendar showing scheduled Instagram content in October 2026.'), labelAbove: true },
       ] },
-      ANALYTICS: { layout: 'media', size: 'wide', media: [wo('Bildschirmfoto 2026-10-05 um 12.46.25.png', 'Analytics', 'Wrestling Octopi analytics view showing engagement metrics and suggested posting times.')] },
-      COMMENTS: { layout: 'media', size: 'wide', media: [wo('Bildschirmfoto 2026-10-05 um 12.47.45.png', 'Comments', 'Wrestling Octopi comments interface showing posts, comment threads, and replies.', '2940 / 1600')] },
-      ARCHITECTURE: { layout: 'media', size: 'standard', media: [silent(wo('Systemarchitektur von Wrestling Octopi.png', 'System architecture', 'Wrestling Octopi system architecture showing frontend, backend, data infrastructure, and external services.', '1536 / 1024'))] },
-      DEVELOPMENT_PROCESS: { layout: 'media', size: 'process', media: [silent(wo('ki-gestuetzter-entwicklungsprozess.png', 'AI-assisted development process', 'Seven-step AI-assisted development loop: product decision, design, implementation, manual testing, catching issues, debugging, and refinement.', '1536 / 1024'))] },
+      ANALYTICS: { layout: 'media', size: 'wide', media: [wo('analytics-engagement-and-posting-times.png', 'Analytics', 'Wrestling Octopi analytics view showing engagement metrics and suggested posting times.')] },
+      COMMENTS: { layout: 'media', size: 'wide', media: [wo('post-comments-and-replies.png', 'Comments', 'Wrestling Octopi comments interface showing posts, comment threads, and replies.', '2940 / 1600')] },
+      ARCHITECTURE: { layout: 'media', size: 'standard', media: [silent(wo('system-architecture-overview.png', 'System architecture', 'Wrestling Octopi system architecture showing frontend, backend, data infrastructure, and external services.', '1536 / 1024'))] },
+      DEVELOPMENT_PROCESS: { layout: 'media', size: 'process', media: [silent(wo('ai-assisted-development-iteration-process.png', 'AI-assisted development process', 'Seven-step AI-assisted development loop: product decision, design, implementation, manual testing, catching issues, debugging, and refinement.', '1536 / 1024'))] },
     },
   },
   'sap-graph-case-study': {
