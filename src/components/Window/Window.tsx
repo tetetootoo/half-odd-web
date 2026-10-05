@@ -66,10 +66,11 @@ const CASCADE_STEP_PX = 28;
 const CASCADE_WRAP = 6;
 // Gap between a maximized window and the menu bar, dock and screen edges.
 const MAXIMIZE_INSET_PX = 10;
-// Must match .geometryAnimating's transition duration.
-const GEOMETRY_ANIMATION_MS = 220;
-// Comfortably past the longest exit animation (200ms minimize).
-const EXIT_ANIMATION_FALLBACK_MS = 400;
+// Read the CSS token so reduced motion and lifecycle timers stay aligned.
+function motionDuration(name: string): number {
+  return parseFloat(getComputedStyle(document.documentElement).getPropertyValue(name)) || 1;
+}
+
 // How much of the title bar must stay on screen while dragging.
 const TITLE_BAR_REACH_PX = 60;
 const TITLE_BAR_HEIGHT_PX = 38;
@@ -169,6 +170,7 @@ function BrowserFrame({ item }: { item: DesktopItem }) {
 // natural aspect ratio, which is exactly what object-fit: contain against a
 // 440x440 box gives us, centered in the slightly wider 480px frame.
 function ImageOverlayFrame({ item }: { item: DesktopItem }) {
+  const [loaded, setLoaded] = useState(false);
   return (
     <div className={styles.imageBox}>
       {!item.mediaSrc ? (
@@ -186,7 +188,14 @@ function ImageOverlayFrame({ item }: { item: DesktopItem }) {
           poster={item.posterSrc}
         />
       ) : (
-        <img className={styles.imageBoxMedia} src={item.mediaSrc} alt={item.label} />
+        <img
+          className={`${styles.imageBoxMedia} ${loaded ? styles.imageLoaded : styles.imageLoading}`}
+          src={item.mediaSrc}
+          alt={item.label}
+          ref={(image) => { if (image?.complete) setLoaded(true); }}
+          onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(true)}
+        />
       )}
     </div>
   );
@@ -386,6 +395,7 @@ function TrashTile({
   const grabRef = useRef<Position>({ x: 0, y: 0 });
   const { isDragging, handlers } = useDrag({
     disabled: !restorable,
+    onDragCancel: trash.onDragOutCancel,
     onDragStart: (_e, origin) => {
       const thumb = thumbRef.current?.getBoundingClientRect();
       if (!thumb) return;
@@ -875,7 +885,7 @@ export function Window({
       geometryTimerRef.current = window.setTimeout(() => {
         setGeometryAnimating(false);
         setGeometry(null);
-      }, GEOMETRY_ANIMATION_MS + 40);
+      }, motionDuration('--motion-window') + 40);
     }
   };
 
@@ -890,7 +900,7 @@ export function Window({
     setGeometry(target);
     geometryTimerRef.current = window.setTimeout(
       () => setGeometryAnimating(false),
-      GEOMETRY_ANIMATION_MS + 40,
+      motionDuration('--motion-window') + 40,
     );
   }, [maximized]);
 
@@ -964,7 +974,7 @@ export function Window({
   finishExitRef.current = finishExit;
   useEffect(() => {
     if (phase !== 'closing' && phase !== 'minimizing') return;
-    const timer = window.setTimeout(() => finishExitRef.current(), EXIT_ANIMATION_FALLBACK_MS);
+    const timer = window.setTimeout(() => finishExitRef.current(), motionDuration(phase === 'closing' ? '--motion-close' : '--motion-window') + 80);
     return () => window.clearTimeout(timer);
   }, [phase]);
 
@@ -986,6 +996,7 @@ export function Window({
       className={`${styles.windowWrapper} ${phaseClass} ${isActive ? '' : styles.inactive} ${geometryAnimating ? styles.geometryAnimating : ''}`}
       style={{ zIndex, ...positionStyle }}
       onPointerDown={onFocus}
+      onFocusCapture={onFocus}
       onAnimationEnd={handleAnimationEnd}
     >
       <div

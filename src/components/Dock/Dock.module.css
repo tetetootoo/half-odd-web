@@ -49,7 +49,7 @@
   align-items: center;
   justify-content: center;
   transform-origin: 50% 100%;
-  transition: scale 0.07s ease-out;
+  transition: scale var(--motion-fast) var(--ease-out);
 }
 
 .dropTarget {
@@ -120,6 +120,7 @@
   bottom: calc(100% + 12px);
   left: 50%;
   transform: translateX(-50%);
+  translate: 0 2px;
   padding: 5px 10px;
   border-radius: 6px;
   background: rgba(40, 32, 36, 0.9);
@@ -128,14 +129,22 @@
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.08s ease;
+  transition: opacity var(--motion-instant) var(--ease-soft), translate var(--motion-instant) var(--ease-out);
 }
-
-/* Labels appear quickly when hovering or focusing an icon. */
-.item:hover .tooltip,
+@media (hover: hover) and (pointer: fine) {
+/* Delayed pointer labels; keyboard labels appear immediately. */
+.item:hover .tooltip {
+  opacity: 1;
+  translate: 0 0;
+  transition-duration: var(--motion-instant);
+  transition-delay: var(--motion-tooltip-delay);
+}
+}
 .item:focus-visible .tooltip {
   opacity: 1;
-  transition: opacity 0.06s ease 0.1s;
+  translate: 0 0;
+  transition-duration: var(--motion-instant);
+  transition-delay: var(--motion-tooltip-delay);
 }
 
 .linkedin {
@@ -147,4 +156,20 @@
 .linkedin .glyphImage {
   transform: scale(1.667);
   filter: none;
+}
+
+.dock { transition: background-color var(--motion-fast) var(--ease-soft); }
+.item { transition: scale var(--motion-instant) var(--ease-out), background-color var(--motion-fast) var(--ease-soft); }
+.item:active { scale: .95; }
+.item:focus-visible .tooltip { transition-delay: 0ms; }
+.externalBadge svg { transition: translate var(--motion-fast) var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .dock:hover { background: rgba(255, 255, 255, .39); }
+  .item:hover { text-decoration: none; }
+  .item:hover .externalBadge svg { translate: 1px -1px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .magnify { scale: 1 !important; }
+  .item:active { scale: none; }
+  .tooltip, .externalBadge svg { translate: none !important; }
 }

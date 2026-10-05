@@ -120,7 +120,7 @@ export function Dock({
     };
     const face = (
       <>
-        <span className={`${styles.magnify} ${entry.key === 'linkedin' ? styles.linkedin : ''}`} style={{ scale: isTrash && trashDropActive ? MAGNIFY_HOVERED : scaleFor(index) }}>
+        <span className={`${styles.magnify} ${entry.key === 'linkedin' ? styles.linkedin : ''}`} style={{ scale: isTrash && trashDropActive ? 1.08 : scaleFor(index) }}>
           <img className={`${styles.glyphImage} ${entry.iconClass ?? ''}`} src={entry.iconSrc} alt="" draggable={false} />
           {entry.href && <ExternalLinkBadge />}
         </span>

@@ -9,20 +9,22 @@
   background: transparent;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
+  cursor: grab;
   touch-action: none;
   user-select: none;
   text-decoration: none;
   transition:
-    background-color 0.12s ease,
-    scale 0.12s ease-out,
-    opacity 0.12s ease-out;
+    background-color var(--motion-fast) var(--ease-soft),
+    scale var(--motion-fast) var(--ease-out),
+    opacity var(--motion-fast) var(--ease-out);
 }
-
+@media (hover: hover) and (pointer: fine) {
 /* Hover hints at the selection highlight; selection is the full version. */
 .icon:hover {
   background: rgba(255, 255, 255, 0.1);
 }
+}
+
 
 .icon.selected {
   background: rgba(255, 255, 255, 0.18);
@@ -49,7 +51,7 @@
 
 /* Let the Trash's highlight show through the icon hovering over it. */
 .dragging.overTrash {
-  opacity: 0.55;
+  opacity: 0.9;
 }
 
 .ghost {
@@ -100,11 +102,14 @@
   color: #fff;
   opacity: 0.15;
   filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
-  transition: opacity 0.15s ease;
+  transition: opacity var(--motion-fast) var(--ease-soft);
   pointer-events: none;
 }
-
-.icon:hover .playBadge,
+@media (hover: hover) and (pointer: fine) {
+.icon:hover .playBadge {
+  opacity: 1;
+}
+}
 .icon:focus-visible .playBadge {
   opacity: 1;
 }
@@ -132,4 +137,22 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   text-align: center;
   word-break: break-word;
+}
+
+.icon:not(.dragging):active { scale: .98; transition-duration: var(--motion-instant); }
+.linkBadge svg { transition: translate var(--motion-fast) var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .icon:hover .linkBadge svg { translate: 1px -1px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .icon, .icon:not(.dragging):active { scale: none; }
+  .linkBadge svg { translate: none !important; }
+}
+
+@keyframes iconTrash { to { scale: .9; opacity: 0; } }
+@keyframes iconRestore { from { scale: .96; opacity: 0; } }
+.exiting { animation: iconTrash var(--motion-close) var(--ease-soft) forwards; pointer-events: none; }
+.restored { animation: iconRestore var(--motion-standard) var(--ease-out) backwards; }
+@media (prefers-reduced-motion: reduce) {
+  .exiting, .restored { scale: none !important; }
 }

@@ -55,6 +55,13 @@ export function Desktop() {
 
   const manager = useWindowManager();
   const { iconPositions, setIconPositions, trash, setTrash } = useDesktopState();
+  const [exitingIds, setExitingIds] = useState<Set<string>>(new Set());
+  const [restoredIds, setRestoredIds] = useState<Set<string>>(new Set());
+  const trashTimers = useRef(new Map<string, number>());
+  useEffect(() => {
+    const timers = trashTimers.current;
+    return () => timers.forEach((timer) => window.clearTimeout(timer));
+  }, []);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [trashDropActive, setTrashDropActive] = useState(false);
   const [trashGhost, setTrashGhost] = useState<{ id: string; left: number; top: number } | null>(null);
@@ -159,14 +166,21 @@ export function Desktop() {
   const openFromContent = (id: string) => activate(id, document.activeElement as HTMLElement | null);
 
   const moveToTrash = (item: DesktopItem) => {
-    if (item.trashable === false || trashedIds.has(item.id)) return;
+    if (item.trashable === false || trashedIds.has(item.id) || trashTimers.current.has(item.id)) return;
     const { x, y } = getIconPosition(item);
-    setTrash((prev) => [...prev, { id: item.id, kind: item.kind, label: item.label, x, y }]);
-    setIconPositions((prev) => {
-      const { [item.id]: _removed, ...rest } = prev;
-      return rest;
-    });
-    if (selectedId === item.id) setSelectedId(null);
+    setExitingIds((prev) => new Set(prev).add(item.id));
+    const duration = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--motion-close')) || 1;
+    trashTimers.current.set(item.id, window.setTimeout(() => {
+      trashTimers.current.delete(item.id);
+      setExitingIds((prev) => { const next = new Set(prev); next.delete(item.id); return next; });
+      setRestoredIds((prev) => { const next = new Set(prev); next.delete(item.id); return next; });
+      setTrash((prev) => [...prev, { id: item.id, kind: item.kind, label: item.label, x, y }]);
+      setIconPositions((prev) => {
+        const { [item.id]: _removed, ...rest } = prev;
+        return rest;
+      });
+      setSelectedId((current) => current === item.id ? null : current);
+    }, duration));
   };
 
   // Put an item back from the Trash: at `at` when dragged out to a spot,
@@ -175,6 +189,7 @@ export function Desktop() {
     const entry = trash.find((e) => e.id === id);
     if (!entry) return;
     const position = at ?? findFreePosition({ x: entry.x, y: entry.y }, id);
+    setRestoredIds((prev) => new Set(prev).add(id));
     setTrash((prev) => prev.filter((e) => e.id !== id));
     setIconPositions((prev) => ({ ...prev, [id]: position }));
   };
@@ -211,6 +226,7 @@ export function Desktop() {
     entries: trash,
     builtIn: builtInTrash,
     dropActive: trashDropActive,
+    onDragOutCancel: () => setTrashGhost(null),
     onOpen: (id: string, opener: HTMLElement) => activate(id, opener),
     onPutBack: (id: string) => putBack(id),
     onDragOutMove: (id: string, pointer: Position, grab: Position) => {
@@ -295,9 +311,12 @@ export function Desktop() {
                 iconSrc={isAudio ? item.posterSrc : item.iconSrc}
                 href={item.kind === 'link' ? item.link?.url : undefined}
                 selected={selectedId === item.id}
+                exiting={exitingIds.has(item.id)}
+                restored={restoredIds.has(item.id)}
                 onSelect={() => setSelectedId(item.id)}
                 onActivate={(opener) => activate(item.id, opener)}
                 onDragMove={(pointer) => setTrashDropActive(item.trashable !== false && isOverTrash(pointer))}
+                onDragCancel={() => setTrashDropActive(false)}
                 onDrop={(offset, pointer) => handleIconDrop(item, offset, pointer)}
                 onTrash={item.trashable === false ? undefined : () => trashFromKeyboard(item)}
                 overTrash={trashDropActive}

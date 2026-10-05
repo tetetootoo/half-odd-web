@@ -1,13 +1,12 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export interface Position {
   x: number;
   y: number;
 }
 
-// Movement under this counts as a click. Single-click opens items now, so
-// there's no double-click jitter to absorb — a small threshold keeps drags
-// feeling immediate without swallowing ordinary clicks.
+// A small radial threshold keeps dragging immediate without moving icons
+// during ordinary single or double clicks.
 const DEFAULT_THRESHOLD_PX = 5;
 
 // Presses that start on a nested control (a traffic light inside a title
@@ -19,6 +18,7 @@ interface DragOptions {
   disabled?: boolean;
   onDragStart?: (e: React.PointerEvent, origin: Position) => void;
   onDragMove?: (offset: Position, e: React.PointerEvent) => void;
+  onDragCancel?: () => void;
   onDragEnd?: (offset: Position, e: React.PointerEvent) => void;
   // Constrains the live offset, e.g. to keep a title bar reachable.
   clamp?: (offset: Position) => Position;
@@ -38,17 +38,28 @@ export function useDrag({
   onDragStart,
   onDragMove,
   onDragEnd,
+  onDragCancel,
   clamp,
 }: DragOptions = {}) {
   const [offset, setOffset] = useState<Position>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
+  const frameRef = useRef<number | null>(null);
+  const pendingEventRef = useRef<React.PointerEvent | null>(null);
   const pressedRef = useRef(false);
   const movedRef = useRef(false);
   const suppressClickRef = useRef(false);
   const offsetRef = useRef<Position>({ x: 0, y: 0 });
   const startRef = useRef({ x: 0, y: 0 });
 
+  useEffect(() => () => {
+    if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+    if (pressedRef.current) delete document.documentElement.dataset.dragging;
+  }, []);
+
   const endDrag = () => {
+    if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+    frameRef.current = null;
+    pendingEventRef.current = null;
     pressedRef.current = false;
     movedRef.current = false;
     offsetRef.current = { x: 0, y: 0 };
@@ -58,12 +69,13 @@ export function useDrag({
   };
 
   const onPointerDown = (e: React.PointerEvent) => {
-    if (disabled || e.button !== 0) return;
+    if (disabled || e.button !== 0 || !e.isPrimary) return;
     const nested = (e.target as Element).closest(NESTED_CONTROL);
     if (nested && nested !== e.currentTarget) return;
     e.currentTarget.setPointerCapture(e.pointerId);
     pressedRef.current = true;
     movedRef.current = false;
+    suppressClickRef.current = false;
     startRef.current = { x: e.clientX, y: e.clientY };
   };
 
@@ -72,7 +84,7 @@ export function useDrag({
     const dx = e.clientX - startRef.current.x;
     const dy = e.clientY - startRef.current.y;
     if (!movedRef.current) {
-      if (Math.abs(dx) <= threshold && Math.abs(dy) <= threshold) return;
+      if (Math.hypot(dx, dy) <= threshold) return;
       movedRef.current = true;
       setIsDragging(true);
       document.documentElement.dataset.dragging = '';
@@ -80,8 +92,14 @@ export function useDrag({
     }
     const next = clamp ? clamp({ x: dx, y: dy }) : { x: dx, y: dy };
     offsetRef.current = next;
-    setOffset(next);
-    onDragMove?.(next, e);
+    pendingEventRef.current = e;
+    if (frameRef.current === null) {
+      frameRef.current = requestAnimationFrame(() => {
+        frameRef.current = null;
+        setOffset(offsetRef.current);
+        if (pendingEventRef.current) onDragMove?.(offsetRef.current, pendingEventRef.current);
+      });
+    }
   };
 
   const onPointerUp = (e: React.PointerEvent) => {
@@ -97,7 +115,9 @@ export function useDrag({
   };
 
   const onPointerCancel = () => {
-    if (pressedRef.current) endDrag();
+    if (!pressedRef.current) return;
+    onDragCancel?.();
+    endDrag();
   };
 
   const onClickCapture = (e: React.MouseEvent) => {
@@ -110,6 +130,6 @@ export function useDrag({
   return {
     offset,
     isDragging,
-    handlers: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel, onClickCapture },
+    handlers: { onPointerDown, onPointerMove, onPointerUp, onPointerCancel, onLostPointerCapture: onPointerCancel, onClickCapture },
   };
 }

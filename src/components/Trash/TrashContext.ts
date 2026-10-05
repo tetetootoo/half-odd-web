@@ -16,6 +16,7 @@ interface TrashContextValue {
   // Dragging an entry out of the Trash window onto the desktop. `grab` is
   // the pointer's offset inside the dragged icon, so it never jumps.
   onDragOutMove: (id: string, pointer: Position, grab: Position) => void;
+  onDragOutCancel: () => void;
   onDragOutEnd: (id: string, pointer: Position) => void;
 }
 

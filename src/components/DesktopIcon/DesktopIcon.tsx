@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDrag, type Position } from '../../hooks/useDrag';
 import { capitalizeLabel } from './capitalizeLabel';
 import styles from './DesktopIcon.module.css';
@@ -14,9 +15,12 @@ interface DesktopIconProps {
   iconSrc?: string;
   href?: string;
   selected: boolean;
+  exiting?: boolean;
+  restored?: boolean;
   onSelect: () => void;
   onActivate?: (opener: HTMLElement) => void;
   onDragMove: (pointer: Position) => void;
+  onDragCancel: () => void;
   onDrop: (offset: Position, pointer: Position) => void;
   onTrash?: () => void;
   // A drag is currently over a Trash drop target.
@@ -84,19 +88,27 @@ export function DesktopIcon({
   iconSrc,
   href,
   selected,
+  exiting,
+  restored,
   onSelect,
   onActivate,
   onDragMove,
   onDrop,
+  onDragCancel,
   onTrash,
   overTrash,
   playback,
   showLinkBadge,
 }: DesktopIconProps) {
+  const [dropOffset, setDropOffset] = useState<Position>({ x: 0, y: 0 });
   const { offset, isDragging, handlers } = useDrag({
     onDragStart: onSelect,
+    onDragCancel,
     onDragMove: (_offset, e) => onDragMove({ x: e.clientX, y: e.clientY }),
-    onDragEnd: (dragOffset, e) => onDrop(dragOffset, { x: e.clientX, y: e.clientY }),
+    onDragEnd: (dragOffset, e) => {
+      if (overTrash) setDropOffset(dragOffset);
+      onDrop(dragOffset, { x: e.clientX, y: e.clientY });
+    },
   });
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -112,6 +124,12 @@ export function DesktopIcon({
 
   // Keyboard path to the Trash, so dragging is never the only way.
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (href && e.key === ' ') {
+      e.preventDefault();
+      onSelect();
+      onActivate?.(e.currentTarget as HTMLElement);
+      return;
+    }
     if (!onTrash) return;
     if (e.key === 'Delete' || (e.key === 'Backspace' && (e.metaKey || e.ctrlKey))) {
       e.preventDefault();
@@ -119,11 +137,11 @@ export function DesktopIcon({
     }
   };
 
-  const className = `${styles.icon} ${selected ? styles.selected : ''} ${isDragging ? styles.dragging : ''} ${isDragging && overTrash ? styles.overTrash : ''}`;
+  const className = `${exiting ? styles.exiting : restored ? styles.restored : ''} ${styles.icon} ${selected ? styles.selected : ''} ${isDragging ? styles.dragging : ''} ${isDragging && overTrash ? styles.overTrash : ''}`;
   const style = {
     left: `${xPercent}%`,
     top: `${yPercent}%`,
-    translate: `${offset.x}px ${offset.y}px`,
+    translate: `${offset.x + (exiting ? dropOffset.x : 0)}px ${offset.y + (exiting ? dropOffset.y : 0)}px`,
   };
   const face = <IconFace label={label} iconSrc={iconSrc} playback={playback} showLinkBadge={showLinkBadge} />;
 

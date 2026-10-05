@@ -1,0 +1,49 @@
+/* Shared interaction vocabulary. Lifecycle timers read these same values. */
+:root {
+  --motion-instant: 80ms;
+  --motion-fast: 120ms;
+  --motion-standard: 180ms;
+  --motion-window: 220ms;
+  --motion-slow: 300ms;
+  --motion-close: 150ms;
+  --motion-tooltip-delay: 450ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+:where(button, a, input, textarea, select):focus-visible {
+  outline: 2px solid #0a84ff;
+  outline-offset: 2px;
+}
+
+:where(button) {
+  transition: background-color var(--motion-fast) var(--ease-soft),
+    border-color var(--motion-fast) var(--ease-soft),
+    scale var(--motion-instant) var(--ease-out);
+}
+:where(button:not(:disabled)):active { scale: .98; }
+:where(button:disabled) { cursor: default; }
+:where(a) {
+  transition: color var(--motion-fast) var(--ease-soft),
+    opacity var(--motion-fast) var(--ease-soft);
+}
+:where(input, textarea, select) {
+  transition: border-color var(--motion-fast) var(--ease-soft),
+    outline-color var(--motion-fast) var(--ease-soft);
+}
+@media (hover: hover) and (pointer: fine) {
+  :where(a:hover) { text-decoration: underline; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-instant: 1ms;
+    --motion-fast: 1ms;
+    --motion-standard: 1ms;
+    --motion-window: 1ms;
+    --motion-slow: 1ms;
+    --motion-close: 1ms;
+  }
+  :where(button:not(:disabled)):active { scale: none; }
+  html:focus-within { scroll-behavior: auto; }
+}
