@@ -1,7 +1,6 @@
 import { Fragment, useMemo, type CSSProperties, type ReactNode } from 'react';
 import { Lexer, type Token, type Tokens } from 'marked';
 import { CASE_STUDIES, type CaseStudyId } from '../../data/caseStudies';
-import { WrestlingDiagrams } from './WrestlingDiagrams';
 import { CaseStudyMedia } from './CaseStudyMedia';
 import { compileCaseStudy, type CaseBlock } from './markdown';
 import styles from './MarkdownDoc.module.css';
@@ -49,9 +48,7 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
     let wide = false;
     if (directive) {
       wide = true;
-      if (directive.layout === 'problem' || directive.layout === 'system' || directive.layout === 'development') {
-        content = <WrestlingDiagrams kind={directive.layout} />;
-      } else if (directive.layout === 'architecture') {
+      if (directive.layout === 'architecture') {
         content = <figure className={styles.architecture}><figcaption>Conceptual software layers</figcaption>{['Frontend', 'Application / API', 'Data', 'Integrations / services'].map((label, n) => <Fragment key={label}>{n > 0 && <span aria-hidden="true">↓</span>}<p>{label}</p></Fragment>)}<small>Illustrative relationships, not a verified implementation architecture.</small></figure>;
       } else {
         content = <div className={styles[directive.layout]}>

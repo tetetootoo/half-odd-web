@@ -14,8 +14,6 @@ So I started building the tool I wanted to use.
 
 **Wrestling Octopi brings planning, creating, scheduling, publishing, and managing social content into one connected workspace - designed and engineered by me from the ground up.**
 
-<!-- PROBLEM -->
-
 ---
 
 ## AI could build the interface. It couldn't decide what it should feel like.

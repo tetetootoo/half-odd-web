@@ -7,7 +7,7 @@ import letter from './half-a-love-letter-case-study.md?raw';
 export const MARKDOWN_DOCUMENT_ICON = '/icons/doc-preview.svg';
 export type CaseStudyId = 'wrestling-octopi-case-study' | 'sap-graph-case-study' | 'antispace-berlin-case-study' | 'half-a-love-letter-case-study';
 export interface MediaSlot { label: string; path: string; src?: string; type?: 'video'; ratio?: string; hideCaption?: boolean; alt?: string; poster?: string; respectReducedMotion?: boolean; labelAbove?: boolean }
-export interface LayoutDirective { layout: 'media' | 'split' | 'gallery' | 'bento' | 'comparison' | 'architecture' | 'problem' | 'system' | 'development'; size?: 'wide' | 'standard' | 'secondary' | 'process'; contentBlocks?: number; media: MediaSlot[]; paragraphs?: number }
+export interface LayoutDirective { layout: 'media' | 'split' | 'gallery' | 'bento' | 'comparison' | 'architecture'; size?: 'wide' | 'standard' | 'secondary' | 'process'; contentBlocks?: number; media: MediaSlot[]; paragraphs?: number }
 export interface CaseStudyConfig {
   id: CaseStudyId;
   label: string;
@@ -39,7 +39,6 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
         ...wo('workflow.mp4', 'Current product workflow', 'Wrestling Octopi workflow showing Canva design creation, return to the product, and post scheduling.', '2560 / 1380'),
         poster: '/media/wrestling-octopi-case-study/workflow-poster.jpg', respectReducedMotion: true, hideCaption: true,
       }] },
-      PROBLEM: { layout: 'problem', size: 'standard', media: [] },
       BEFORE_AFTER: { layout: 'comparison', size: 'wide', media: [
         { ...wo('early-direction.png', 'Early direction', 'Early Wrestling Octopi landing page with purple headlines and buttons beside a colorful feed-grid simulation.', '1400 / 910'), labelAbove: true },
         { ...wo('Bildschirmfoto 2026-10-05 um 12.48.41.png', 'Current direction', 'Current black and white Wrestling Octopi landing page with a simplified headline and product preview.'), labelAbove: true },
@@ -51,8 +50,8 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
       ] },
       ANALYTICS: { layout: 'media', size: 'wide', media: [wo('Bildschirmfoto 2026-10-05 um 12.46.25.png', 'Analytics', 'Wrestling Octopi analytics view showing engagement metrics and suggested posting times.')] },
       COMMENTS: { layout: 'media', size: 'secondary', media: [wo('Bildschirmfoto 2026-10-05 um 12.47.45.png', 'Comments', 'Wrestling Octopi comments interface showing posts, comment threads, and replies.', '2940 / 1600')] },
-      ARCHITECTURE: { layout: 'system', size: 'standard', media: [] },
-      DEVELOPMENT_PROCESS: { layout: 'development', size: 'process', media: [] },
+      ARCHITECTURE: { layout: 'media', size: 'standard', media: [silent(wo('Systemarchitektur von Wrestling Octopi.png', 'System architecture', 'Wrestling Octopi system architecture showing frontend, backend, data infrastructure, and external services.', '1536 / 1024'))] },
+      DEVELOPMENT_PROCESS: { layout: 'media', size: 'process', media: [silent(wo('KI-gestützter Entwicklungsprozess.png', 'AI-assisted development process', 'Seven-step AI-assisted development loop: product decision, design, implementation, manual testing, catching issues, debugging, and refinement.', '1536 / 1024'))] },
     },
   },
   'sap-graph-case-study': {
