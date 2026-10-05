@@ -309,6 +309,7 @@ export function Desktop() {
                 xPercent={position.x}
                 yPercent={position.y}
                 iconSrc={isAudio ? item.posterSrc : item.iconSrc}
+                imagePreview={item.kind === 'image'}
                 href={item.kind === 'link' ? item.link?.url : undefined}
                 selected={selectedId === item.id}
                 exiting={exitingIds.has(item.id)}
@@ -366,6 +367,7 @@ export function Desktop() {
           <DesktopIconGhost
             label={ghostItem.label}
             iconSrc={ghostItem.kind === 'audio' ? ghostItem.posterSrc : ghostItem.iconSrc}
+            imagePreview={ghostItem.kind === 'image'}
             left={trashGhost.left}
             top={trashGhost.top}
           />

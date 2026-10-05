@@ -84,8 +84,7 @@
   max-width: 54px;
   max-height: 54px;
   object-fit: contain;
-  /* Match the document glyph's corner radius at this icon size. */
-  border-radius: 3px;
+  border-radius: 8px;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
 }
 
@@ -158,3 +157,6 @@
 @media (prefers-reduced-motion: reduce) {
   .exiting, .restored { scale: none !important; }
 }
+
+/* Only image-file thumbnails use the document glyph's tighter corners. */
+.imagePreview .glyphImage { border-radius: 3px; }

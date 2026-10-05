@@ -13,6 +13,7 @@ interface DesktopIconProps {
   xPercent: number;
   yPercent: number;
   iconSrc?: string;
+  imagePreview?: boolean;
   href?: string;
   selected: boolean;
   exiting?: boolean;
@@ -86,6 +87,7 @@ export function DesktopIcon({
   xPercent,
   yPercent,
   iconSrc,
+  imagePreview,
   href,
   selected,
   exiting,
@@ -137,7 +139,7 @@ export function DesktopIcon({
     }
   };
 
-  const className = `${exiting ? styles.exiting : restored ? styles.restored : ''} ${styles.icon} ${selected ? styles.selected : ''} ${isDragging ? styles.dragging : ''} ${isDragging && overTrash ? styles.overTrash : ''}`;
+  const className = `${exiting ? styles.exiting : restored ? styles.restored : ''} ${styles.icon} ${imagePreview ? styles.imagePreview : ''} ${selected ? styles.selected : ''} ${isDragging ? styles.dragging : ''} ${isDragging && overTrash ? styles.overTrash : ''}`;
   const style = {
     left: `${xPercent}%`,
     top: `${yPercent}%`,
@@ -185,9 +187,9 @@ export function DesktopIcon({
 
 // Non-interactive stand-in that follows the pointer while an item is
 // dragged out of the Trash window onto the desktop.
-export function DesktopIconGhost({ label, iconSrc, left, top }: { label: string; iconSrc?: string; left: number; top: number }) {
+export function DesktopIconGhost({ label, iconSrc, imagePreview, left, top }: { label: string; iconSrc?: string; imagePreview?: boolean; left: number; top: number }) {
   return (
-    <div className={`${styles.icon} ${styles.selected} ${styles.ghost}`} style={{ left, top }} aria-hidden="true">
+    <div className={`${styles.icon} ${imagePreview ? styles.imagePreview : ''} ${styles.selected} ${styles.ghost}`} style={{ left, top }} aria-hidden="true">
       <IconFace label={label} iconSrc={iconSrc} />
     </div>
   );
