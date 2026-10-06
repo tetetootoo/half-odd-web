@@ -22,12 +22,25 @@
 .interaction p { margin: 12px 0 0; }
 .hover { padding-top: 14px; display: flex; flex-direction: column; font-size: 15px; font-weight: 400; line-height: 1.45; }
 .horizontalArrow { font-size: 28px; color: var(--sap-line); }
-.timeline { padding: 24px 0; }
-.timelineRow { display: grid; grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr); gap: 24px; align-items: center; }
+.reuse .branches .node { padding-block: 14px; }
+.reuse .support { color: var(--sap-muted); margin-top: 28px; }
+.timeline { padding: 12px 0; }
+.timelineRow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(64px, .65fr) minmax(0, 1fr); grid-template-rows: repeat(4, auto); gap: 6px 20px; align-items: start; }
+.timelineState { display: contents; }
+.timelineState > * { grid-column: 1; }
+.timelineState:last-child > * { grid-column: 3; }
+.timelineState > :nth-child(1) { grid-row: 1; }
+.timelineState > :nth-child(2) { grid-row: 2; }
+.timelineState > :nth-child(3) { grid-row: 3; }
+.timelineState > :nth-child(4) { grid-row: 4; }
 .timeline p { margin: 0; font-size: 14px; line-height: 1.45; }
-.timeline .date { font-weight: 600; margin-bottom: 12px; }
-.timeline small { margin-top: 12px; }
-.timeline figcaption { margin-top: 20px; text-align: left; }
+.timeline .date { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.timeline .product { font-size: 17px; font-weight: 600; }
+.timeline .status { color: var(--sap-muted); }
+.timeline small { margin-top: 6px; }
+.timeline figcaption { margin-top: 24px; text-align: center; }
+.timelineConnector { grid-column: 2; grid-row: 2; align-self: center; position: relative; border-top: 1px solid var(--sap-line); }
+.timelineConnector::after { content: ''; position: absolute; right: 0; top: -4px; width: 6px; height: 6px; border-top: 1px solid var(--sap-line); border-right: 1px solid var(--sap-line); transform: rotate(45deg); }
 @container (max-width: 700px) {
   .diagram { padding: 32px 20px; }
   .diagram h3 { font-size: 28px; }
@@ -41,5 +54,9 @@
   .interaction, .timelineRow { grid-template-columns: 1fr; gap: 16px; }
   .hover { padding: 0; align-items: center; }
   .horizontalArrow { display: inline-block; transform: rotate(90deg); justify-self: start; }
-  .timelineRow > .horizontalArrow { margin-left: 8px; }
+  .timelineRow { grid-template-rows: auto; }
+  .timelineState { display: block; }
+  .timelineState > * { margin-top: 6px; }
+  .timelineConnector { grid-column: 1; grid-row: auto; height: 32px; width: 0; border-top: 0; border-left: 1px solid var(--sap-line); margin: 4px 0 4px 10px; }
+  .timelineConnector::after { top: auto; bottom: 0; right: -3px; transform: rotate(135deg); }
 }

@@ -4,15 +4,15 @@ const Node = ({ children }: { children: string }) => <div className={styles.node
 export function SapDiagram({ kind }: { kind: string }) {
   if (kind === 'sap-evolution') return <figure className={styles.timeline} aria-label="Product evolution after my contribution">
     <div className={styles.timelineRow}>
-      <div><p className={styles.date}>2020-21</p><p>sap graph</p><p>early access</p><small>my contribution</small></div>
-      <span className={styles.horizontalArrow} aria-hidden="true">→</span>
-      <div><p className={styles.date}>today</p><p>graph / api composition</p><p>generally available</p><small>sap integration suite</small></div>
+      <div className={styles.timelineState}><p className={styles.date}>2020-21</p><p className={styles.product}>sap graph</p><p className={styles.status}>early access</p><small>my contribution</small></div>
+      <span className={styles.timelineConnector} aria-hidden="true" />
+      <div className={styles.timelineState}><p className={styles.date}>today</p><p className={styles.product}>graph / api composition</p><p className={styles.status}>generally available</p><small>sap integration suite</small></div>
     </div><figcaption>the capability evolved after my time on the team</figcaption>
   </figure>;
   const exception = kind === 'sap-exception';
   const graph = kind === 'sap-graph';
   const title = exception ? 'considered exception' : graph ? 'one graph instead of fragmented systems' : 'software that can change';
-  return <figure className={styles.diagram} aria-label={title}>
+  return <figure className={`${styles.diagram} ${kind === 'sap-reuse' ? styles.reuse : ''}`} aria-label={title}>
     <h3>{title}</h3>
     {exception ? <>
       <div className={styles.interaction}>
