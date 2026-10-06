@@ -1,109 +1,140 @@
-# SAP GRAPH
+# SAP Graph
 
-# Where I learned the difference between writing code and engineering software.
+**frontend engineering · design systems · developer tools**
 
-**Front-End Engineering · Design Systems · SAP**
+SAP Graph was an early-stage developer platform inside SAP Technology & Innovation, designed to give developers a unified way to work with business data spread across otherwise disconnected enterprise systems.
 
-<br><br><br>
+I joined the team during its early-access phase, first as a software engineering intern and later as a working student.
 
-I arrived at SAP with a foundation in computer science and practical programming. At university, I had built games, worked on a virtual machine, and learned to think about code through projects I could largely understand from end to end.
+My work sat at the intersection of product design and frontend engineering: translating high-fidelity product designs into production software, building reusable interface infrastructure, and helping establish the quality and consistency of an evolving developer product.
 
-SAP Graph was different.
 
-For the first time, I was contributing to a production system larger than anything I could hold in my head, built simultaneously by engineers, designers, and product teams across a large organisation.
 
-<br><br><br><br>
 
-**University taught me how to write software. SAP taught me how software gets built together.**
+## one graph instead of fragmented systems
 
-<br><br><br><br>
+Enterprise data rarely lives in one place.
 
----
+A developer building a single application experience may need information from multiple products, APIs, and data models.
 
-## FROM UNIVERSITY → SAP GRAPH
+SAP Graph approached that problem by introducing a semantic layer across those systems, giving developers a unified way to navigate connected business data instead of requiring every application to handle each underlying source independently.
 
-<br>
+<!-- SAP_GRAPH_DIAGRAM -->
 
-<!-- COLLABORATION_DIAGRAM -->
 
-<br><br><br><br>
+## translating design into production software
 
----
+I worked closely with product designers to translate high-fidelity interface and interaction specifications into production-facing React and TypeScript software.
 
-# Designing inside a system
+That meant more than reproducing a static design.
 
-Working with SAP's Fiori/UI5 ecosystem changed how I understood design systems.
+Each interaction had to work within an evolving product architecture, SAP's existing frontend ecosystem, accessibility requirements, reusable component patterns, and the constraints of a large engineering organisation.
 
-I translated product designs into React and TypeScript interfaces, worked with existing components, built wrappers where additional behaviour was needed, and contributed reusable components as the product evolved.
+The work taught me to treat implementation as part of the design process: understanding the intention behind an interaction, identifying where the design met technical constraints, and finding solutions that preserved the experience rather than simply approximating the mockup.
 
-<br><br>
 
-<!-- COMPONENT_DIAGRAM -->
 
-<br><br><br><br>
 
-# How do I build this?
+## building for reuse
 
-<br><br><br>
+As the product grew, repeated interface patterns needed to become shared infrastructure rather than one-off implementations.
 
-## ↓
+I built and maintained more than 10 reusable UI components and wrappers within SAP's Fiori/UI5 ecosystem, used across the SAP Graph frontend.
 
-<br><br><br>
+Working inside an established design system changed the way I thought about components.
 
-# What should remain reusable after I've built this?
+A component wasn't finished when it matched one screen. It needed to remain predictable across different contexts, expose the right amount of flexibility, preserve shared interaction patterns, and be understandable to the engineers using it later.
 
-<br><br><br>
+<!-- SAP_REUSE_DIAGRAM -->
 
-A design system stopped being a collection of consistent-looking components. **It became shared infrastructure between design and engineering.**
 
-<br><br><br><br>
+## software that can change
 
----
+Reusable components create room for a product to evolve.
 
-# When the system isn't the answer
+The challenge was finding the boundary between what should remain fixed and what should remain configurable.
 
-One tiny tooltip taught me one of my most lasting engineering lessons.
+Too little flexibility creates duplication.
 
-We needed an interaction that our existing components couldn't reproduce cleanly. I spent hours trying to keep the solution within our internal ecosystem before arguing that an external library was the better approach.
+Too much flexibility turns a component into another system that developers have to understand.
 
-My mentor disagreed.
+I learned to look for the stable interaction or visual pattern underneath individual screens and encode that pattern without prematurely generalising everything around it.
 
-We eventually sat down and tried solving it together. After encountering the same limitations, we made the exception.
 
-What stayed with me wasn't being right.
+## considered exceptions
 
-It was understanding that engineering principles aren't rules to follow mechanically.
+Not every interaction fit neatly inside the existing component system.
 
-<br><br>
+In one case, the intended tooltip interaction was better supported by an external library than by forcing the behaviour through the available internal primitives.
 
-<!-- TRADEOFF_DIAGRAM -->
+Rather than treating that as a purely technical decision, I assessed the tradeoff together with a mentor: the value of preserving the intended interaction against introducing a local dependency outside the primary component system.
 
-<br><br><br>
+We chose the exception deliberately.
 
-**Consistency matters. So does knowing when the cost of preserving it exceeds its value.**
+That experience stayed with me because it reframed consistency for me. A design system is not valuable because every implementation is identical. It is valuable because it gives a team a shared default and makes deviations conscious, explainable decisions.
 
-<br><br><br><br>
+<!-- SAP_EXCEPTION_DIAGRAM -->
 
----
 
-# What stayed with me
+## testing the interface, not just building it
 
-SAP taught me to think beyond whether my code worked today: reusable components, automated testing, feature toggles, maintainability, collaboration, and the people who would have to understand the system after me.
+Production UI work also meant proving that interactions continued to behave correctly as the product changed.
 
-<br><br>
+I built and maintained automated frontend testing across Jest, Cypress, and Gauge, covering different layers of the interface and development workflow.
 
-<!-- CHANGE_DIAGRAM -->
+Testing made the relationship between design and engineering particularly tangible.
 
-<br><br><br><br><br>
+An interface can look correct and still behave incorrectly. Reusable components can work in isolation and fail in context. A seemingly small implementation change can affect interactions elsewhere in the product.
 
----
+The goal wasn't simply test coverage. It was confidence that the experience we designed would continue to work when the product evolved.
 
-<br><br><br>
 
-**I entered knowing how to program.**\
-**I left understanding much more about**\
-**how software survives change.**
+## working inside a product team
 
-<br><br><br><br><br>
+SAP Graph was my first experience building software inside a large cross-functional product organisation.
 
-`← PREVIOUS PROJECT` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `NEXT PROJECT →`
+I worked with product managers, designers, engineers, and mentors across planning, implementation, code review, testing, documentation, and delivery.
+
+The scale of SAP introduced constraints I hadn't encountered in university projects: shared architecture, existing design systems, long-lived code, multiple contributors, documentation standards, accessibility considerations, and decisions that had consequences beyond the screen directly in front of me.
+
+It also showed me how much stronger the work becomes when design and engineering aren't treated as a handoff.
+
+The most interesting problems often appeared exactly at that boundary.
+
+
+## what stayed with me
+
+SAP Graph fundamentally changed how I approached digital product work.
+
+I entered the team primarily from a computer science background.
+
+I left with a much stronger interest in the space between interface design and software engineering.
+
+The experience taught me to ask questions I still use today:
+
+How should this interaction actually behave?
+
+What part of this pattern should become reusable?
+
+Where should the system remain strict?
+
+Where does the product need an exception?
+
+What happens to this decision when another engineer, another screen, or another requirement arrives later?
+
+Those questions now shape the way I work across both design and engineering.
+
+
+## where it went
+
+I worked on SAP Graph during its early-access phase in 2020-21.
+
+Since then, the capability has evolved into Graph / API Composition within SAP Integration Suite's API Management offering and is now generally available.
+
+The core idea remains recognisable: giving developers a unified, semantically connected way to work with business data distributed across different systems.
+
+Today, SAP describes Business Data Graphs that can be consumed through OData V4 and GraphQL and can connect SAP as well as custom data sources.
+
+I wasn't involved in these later iterations, but seeing an early-stage product I contributed to mature into a generally available platform capability has been particularly rewarding.
+
+<!-- SAP_EVOLUTION -->

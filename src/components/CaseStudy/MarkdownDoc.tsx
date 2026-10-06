@@ -1,3 +1,5 @@
+import { SapDiagram } from './SapDiagram';
+import sapStyles from './SapDiagram.module.css';
 import { Fragment, useMemo, type CSSProperties, type ReactNode } from 'react';
 import { Lexer, type Token, type Tokens } from 'marked';
 import { CASE_STUDIES, type CaseStudyId } from '../../data/caseStudies';
@@ -61,7 +63,9 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
     let wide = false;
     if (directive) {
       wide = true;
-      if (directive.layout === 'intro') {
+      if (directive.layout.startsWith('sap-')) {
+        content = <SapDiagram kind={directive.layout} />;
+      } else if (directive.layout === 'intro') {
         content = <div className={styles.intro}>
           <div className={styles.introTitle}>{block.children?.slice(0, 1).map(renderBlock)}</div>
           <div className={styles.introDetails}>{block.children?.slice(1, -1).map(renderBlock)}</div>
@@ -93,7 +97,7 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
   };
   const ids = Object.keys(CASE_STUDIES) as CaseStudyId[];
   const next = CASE_STUDIES[ids[(ids.indexOf(caseStudyId) + 1) % ids.length]];
-  return <article className={`${styles.document} ${styles[config.artDirection]} ${caseStudyId === 'wrestling-octopi-case-study' ? styles.wrestling : ''}`}>
+  return <article className={`${styles.document} ${styles[config.artDirection]} ${caseStudyId === 'sap-graph-case-study' ? sapStyles.caseStudy : ''} ${caseStudyId === 'wrestling-octopi-case-study' ? styles.wrestling : ''}`}>
     <div className={styles.page}>{blocks.map(renderBlock)}
       <nav className={styles.navigation} aria-label="Project navigation"><button onClick={() => onOpenItem(next.id)} type="button">Next: {next.label.replace('.md', '')} <span aria-hidden="true">↗</span></button></nav>
     </div>

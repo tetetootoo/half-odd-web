@@ -40,10 +40,11 @@ export function compileCaseStudy(config: CaseStudyConfig): CaseBlock[] {
     let role: CaseBlock['role'];
     if (token.type === 'heading') {
       headingCount++;
-      if (config.artDirection === 'system') role = headingCount === 1 ? 'eyebrow' : headingCount === 2 ? 'title' : token.depth === 1 ? 'statement' : undefined;
+      if (config.id === 'sap-graph-case-study') role = headingCount === 1 ? 'title' : undefined;
+      else if (config.artDirection === 'system') role = headingCount === 1 ? 'eyebrow' : headingCount === 2 ? 'title' : token.depth === 1 ? 'statement' : undefined;
       else role = headingCount === 1 ? 'title' : headingCount === 2 ? 'subtitle' : token.depth === 1 ? 'statement' : undefined;
     }
-    if (!metadata && token.type === 'paragraph' && headingCount === 2) { role = 'metadata'; metadata = true; }
+    if (!metadata && token.type === 'paragraph' && (config.id === 'sap-graph-case-study' ? headingCount === 1 : headingCount === 2)) { role = 'metadata'; metadata = true; }
     if (token.type === 'hr') gap = Math.min(Math.max(gap, 48), 64);
     blocks.push({ token, role, gap });
     gap = token.type === 'hr' ? 40 : 20;

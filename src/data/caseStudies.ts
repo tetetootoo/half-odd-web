@@ -7,7 +7,7 @@ import letter from './half-a-love-letter-case-study.md?raw';
 export const MARKDOWN_DOCUMENT_ICON = '/icons/doc-preview.svg';
 export type CaseStudyId = 'wrestling-octopi-case-study' | 'sap-graph-case-study' | 'antispace-berlin-case-study' | 'half-a-love-letter-case-study';
 export interface MediaSlot { label: string; path: string; src?: string; type?: 'video'; ratio?: string; hideCaption?: boolean; alt?: string; poster?: string; respectReducedMotion?: boolean; labelAbove?: boolean }
-export interface LayoutDirective { layout: 'media' | 'intro' | 'split' | 'gallery' | 'bento' | 'comparison' | 'architecture'; size?: 'wide' | 'standard' | 'secondary' | 'process'; contentBlocks?: number; media: MediaSlot[]; paragraphs?: number }
+export interface LayoutDirective { layout: 'media' | 'intro' | 'split' | 'gallery' | 'bento' | 'comparison' | 'architecture' | 'sap-graph' | 'sap-reuse' | 'sap-exception' | 'sap-evolution'; size?: 'wide' | 'standard' | 'secondary' | 'process'; contentBlocks?: number; media: MediaSlot[]; paragraphs?: number }
 export interface CaseStudyConfig {
   id: CaseStudyId;
   label: string;
@@ -57,10 +57,10 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
   'sap-graph-case-study': {
     id: 'sap-graph-case-study', label: 'SAP Graph.md', markdown: sap, artDirection: 'system',
     directives: {
-      COLLABORATION_DIAGRAM: media(slot('sap-graph-case-study', 'collaboration.svg', 'Simplified illustration of the shift from individual academic projects to collaborative product development at enterprise scale.', '640 / 738', '/media/sap-graph-case-study/collaboration.svg')),
-      COMPONENT_DIAGRAM: media(silent(slot('sap-graph-case-study', 'component-layers.svg', 'Fiori / UI5 primitives → wrappers → reusable product components → interface.', '640 / 636', '/media/sap-graph-case-study/component-layers.svg'))),
-      TRADEOFF_DIAGRAM: media(silent(slot('sap-graph-case-study', 'engineering-tradeoff.svg', 'Internal workarounds add complexity; an external library enables the intended tooltip interaction.', '640 / 690', '/media/sap-graph-case-study/engineering-tradeoff.svg'))),
-      CHANGE_DIAGRAM: media(silent(slot('sap-graph-case-study', 'software-change.svg', 'Reusability, testing, feature toggles, maintainability and collaboration support software that can change.', '640 / 544', '/media/sap-graph-case-study/software-change.svg'))),
+      SAP_GRAPH_DIAGRAM: { layout: 'sap-graph', media: [] },
+      SAP_REUSE_DIAGRAM: { layout: 'sap-reuse', media: [] },
+      SAP_EXCEPTION_DIAGRAM: { layout: 'sap-exception', media: [] },
+      SAP_EVOLUTION: { layout: 'sap-evolution', media: [] },
     },
   },
   'antispace-berlin-case-study': {
