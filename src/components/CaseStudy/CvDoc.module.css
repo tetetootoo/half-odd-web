@@ -54,3 +54,7 @@
   .projectRow, .educationRow, .skillRow { grid-template-columns: 1fr; gap: 6px; }
   .year { text-align: left; }
 }
+
+@container (max-width: 700px) {
+  .section h3 { font-size: 16px; }
+}

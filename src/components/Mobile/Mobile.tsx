@@ -378,7 +378,7 @@ function TextDoc({
   onOpenApp: (id: string) => void;
 }) {
   return (
-    <div className={`${styles.docOverlay} ${app.plainText ? styles.plainTextOverlay : ''}`}>
+    <div className={`${styles.docOverlay} ${app.kind === 'markdown' ? styles.markdownOverlay : ''} ${app.plainText ? styles.plainTextOverlay : ''}`}>
       <div className={styles.docHeader}>
         <span className={styles.docTitle}>{app.label}</span>
         <button type="button" className={styles.docClose} onClick={onClose} aria-label="Close">
