@@ -18,7 +18,7 @@
 .media { margin: 0; min-width: 0; }
 .mediaFrame { overflow: hidden; background: #f6f2f4; }
 .mediaFrame img, .mediaFrame video { display: block; width: 100%; height: 100%; object-fit: contain; }
-.media figcaption { margin-top: 10px; }
+.media figcaption { margin-top: 10px; text-align: left; }
 .placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 8px; padding: 16px; color: #6b5a62; border: 1px solid #e9e2e5; }
 .placeholder span { font-size: 14px; }
 .placeholder small { font-size: 11px; }
@@ -53,7 +53,7 @@
 @container (max-width: 700px) {
   .page { padding: 40px 24px 56px; }
   .intimate .page { max-width: 728px; }
-  .block p, .projectLink, .navigation button { font-size: 15px; }
+  .block p, .projectLink, .navigation button { font-size: 16px; }
   .block .title { font-size: 28px; }
   .block .metadata, .block .eyebrow, .media figcaption { font-size: 12px; }
   .block .statement { font-size: 20px; }
@@ -94,8 +94,6 @@
 .wrestling .mediaFrame img, .wrestling .mediaFrame video { object-fit: contain; }
 .wrestling .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .wrestling .comparison .mediaFrame { aspect-ratio: 16 / 10 !important; }
-.labelAbove { display: flex; flex-direction: column; gap: 10px; }
-.labelAbove figcaption { margin: 0; }
 @container (max-width: 700px) {
   .intro { grid-template-columns: 1fr; gap: 24px; }
   .introStatus { grid-column: 1; grid-row: auto; }
@@ -123,3 +121,5 @@
 .table { width: 100%; min-width: 420px; border-collapse: collapse; font-size: 15px; line-height: 1.6; }
 .table th, .table td { padding: 12px; border-bottom: 1px solid #e9e2e5; vertical-align: top; }
 .table th { font-weight: 700; }
+
+.block h2.universitySapHeading { font-size: 22px; }

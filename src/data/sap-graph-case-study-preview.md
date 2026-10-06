@@ -26,8 +26,6 @@ For the first time, I was contributing to a production system larger than anythi
 
 <!-- COLLABORATION_DIAGRAM -->
 
-*Simplified illustration of the shift from individual academic projects to collaborative product development at enterprise scale.*
-
 <br><br><br><br>
 
 ---
@@ -56,9 +54,7 @@ I translated product designs into React and TypeScript interfaces, worked with e
 
 <br><br><br>
 
-A design system stopped being a collection of consistent-looking components.
-
-**It became shared infrastructure between design and engineering.**
+A design system stopped being a collection of consistent-looking components. **It became shared infrastructure between design and engineering.**
 
 <br><br><br><br>
 
@@ -104,10 +100,9 @@ SAP taught me to think beyond whether my code worked today: reusable components,
 
 <br><br><br>
 
-# I entered knowing how to program.
-
-# I left understanding much more about
-# how software survives change.
+**I entered knowing how to program.**\
+**I left understanding much more about**\
+**how software survives change.**
 
 <br><br><br><br><br>
 

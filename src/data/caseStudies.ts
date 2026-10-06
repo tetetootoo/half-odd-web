@@ -40,13 +40,13 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
         poster: '/media/wrestling-octopi-case-study/canva-design-and-post-scheduling-poster.jpg', respectReducedMotion: true, hideCaption: true,
       }] },
       BEFORE_AFTER: { layout: 'comparison', size: 'wide', media: [
-        { ...wo('landing-page-early-purple.png', 'Early direction', 'Early Wrestling Octopi landing page with purple headlines and buttons beside a colorful feed-grid simulation.', '1400 / 910'), labelAbove: true },
-        { ...wo('landing-page-current-monochrome.png', 'Current direction', 'Current black and white Wrestling Octopi landing page with a simplified headline and product preview.'), labelAbove: true },
+        { ...wo('landing-page-early-purple.png', 'Early direction', 'Early Wrestling Octopi landing page with purple headlines and buttons beside a colorful feed-grid simulation.', '1400 / 910') },
+        { ...wo('landing-page-current-monochrome.png', 'Current direction', 'Current black and white Wrestling Octopi landing page with a simplified headline and product preview.') },
       ] },
       FEED_PREVIEW: { layout: 'media', size: 'wide', media: [wo('instagram-feed-grid-preview.png', 'Feed Preview', 'Wrestling Octopi Feed Preview showing a three-column Instagram content grid.')] },
       PLANNING_PAIR: { layout: 'comparison', size: 'wide', media: [
-        { ...wo('post-column-caption-and-schedule.png', 'Column view', 'Wrestling Octopi Column view with a scheduled post, caption editor, publishing time, and image preview.', '2940 / 1606'), labelAbove: true },
-        { ...wo('post-calendar-october-2026.png', 'Calendar view', 'Wrestling Octopi calendar showing scheduled Instagram content in October 2026.'), labelAbove: true },
+        { ...wo('post-column-caption-and-schedule.png', 'Column view', 'Wrestling Octopi Column view with a scheduled post, caption editor, publishing time, and image preview.', '2940 / 1606') },
+        { ...wo('post-calendar-october-2026.png', 'Calendar view', 'Wrestling Octopi calendar showing scheduled Instagram content in October 2026.') },
       ] },
       ANALYTICS: { layout: 'media', size: 'wide', media: [wo('analytics-engagement-and-posting-times.png', 'Analytics', 'Wrestling Octopi analytics view showing engagement metrics and suggested posting times.')] },
       COMMENTS: { layout: 'media', size: 'wide', media: [wo('post-comments-and-replies.png', 'Comments', 'Wrestling Octopi comments interface showing posts, comment threads, and replies.', '2940 / 1600')] },
@@ -57,7 +57,7 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
   'sap-graph-case-study': {
     id: 'sap-graph-case-study', label: 'SAP Graph.md', markdown: sap, artDirection: 'system',
     directives: {
-      COLLABORATION_DIAGRAM: media(silent(slot('sap-graph-case-study', 'collaboration.svg', 'Design, engineering and product contribute to a shared system and release.', '640 / 738', '/media/sap-graph-case-study/collaboration.svg'))),
+      COLLABORATION_DIAGRAM: media(slot('sap-graph-case-study', 'collaboration.svg', 'Simplified illustration of the shift from individual academic projects to collaborative product development at enterprise scale.', '640 / 738', '/media/sap-graph-case-study/collaboration.svg')),
       COMPONENT_DIAGRAM: media(silent(slot('sap-graph-case-study', 'component-layers.svg', 'Fiori / UI5 primitives → wrappers → reusable product components → interface.', '640 / 636', '/media/sap-graph-case-study/component-layers.svg'))),
       TRADEOFF_DIAGRAM: media(silent(slot('sap-graph-case-study', 'engineering-tradeoff.svg', 'Internal workarounds add complexity; an external library enables the intended tooltip interaction.', '640 / 690', '/media/sap-graph-case-study/engineering-tradeoff.svg'))),
       CHANGE_DIAGRAM: media(silent(slot('sap-graph-case-study', 'software-change.svg', 'Reusability, testing, feature toggles, maintainability and collaboration support software that can change.', '640 / 544', '/media/sap-graph-case-study/software-change.svg'))),

@@ -13,13 +13,12 @@ export function CaseStudyMedia({ media }: { media: MediaSlot }) {
     return () => preference.removeEventListener('change', update);
   }, [media.respectReducedMotion]);
   const [failed, setFailed] = useState(false);
-  return <figure className={`${styles.media} ${media.labelAbove ? styles.labelAbove : ''}`}>
-    {media.labelAbove && <figcaption>{media.label}</figcaption>}
+  return <figure className={styles.media}>
     <div className={styles.mediaFrame} style={{ aspectRatio: media.ratio ?? '16 / 10' }}>
       {!media.src || failed ? <div className={styles.placeholder}><span>{media.label}</span><small>Media coming soon</small></div>
         : media.type === 'video' ? reduceMotion && media.poster ? <img src={media.poster} alt={media.alt ?? media.label} /> : <video src={media.src} poster={media.poster} autoPlay muted loop playsInline disablePictureInPicture disableRemotePlayback preload={media.respectReducedMotion ? 'metadata' : 'auto'} onError={() => setFailed(true)} aria-label={media.alt ?? media.label} />
           : <img src={media.src} alt={media.alt ?? media.label} loading="lazy" onError={() => setFailed(true)} />}
     </div>
-    {!media.hideCaption && !media.labelAbove && <figcaption>{media.label}</figcaption>}
+    {!media.hideCaption && <figcaption>{media.label}</figcaption>}
   </figure>;
 }

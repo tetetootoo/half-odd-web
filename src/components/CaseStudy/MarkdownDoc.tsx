@@ -79,7 +79,8 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
     } else if (token?.type === 'heading') {
       const t = token as Tokens.Heading;
       const Tag = role === 'title' ? 'h1' : role === 'eyebrow' || role === 'subtitle' || role === 'statement' ? 'p' : 'h2';
-      content = <Tag className={role ? styles[role] : undefined}>{inline(t.tokens)}</Tag>;
+      const headingClass = caseStudyId === 'sap-graph-case-study' && t.text === 'FROM UNIVERSITY → SAP GRAPH' ? styles.universitySapHeading : role ? styles[role] : undefined;
+      content = <Tag className={headingClass}>{inline(t.tokens)}</Tag>;
       wide = role === 'title' || role === 'statement';
     } else if (token?.type === 'paragraph') {
       const t = token as Tokens.Paragraph;
