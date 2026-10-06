@@ -1054,7 +1054,7 @@ export function Window({
               <span className={styles.fileName}>{item.windowTitle}</span>
             </div>
           ) : !isFlushDoc ? (
-            <span className={styles.title}>{item.windowTitle}</span>
+            <span className={`${styles.title} ${item.kind === 'markdown' ? styles.markdownTitle : ''}`}>{item.windowTitle}</span>
           ) : null}
         </div>
         <div

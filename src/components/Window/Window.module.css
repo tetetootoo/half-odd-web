@@ -1366,3 +1366,5 @@
 }
 .mailFormSend { transition: background-color var(--motion-fast) var(--ease-soft), scale var(--motion-instant) var(--ease-out); }
 .infoCardFloating:focus-within { opacity: 1; }
+
+.title.markdownTitle { font-weight: 400; }

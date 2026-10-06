@@ -1197,4 +1197,4 @@
   outline-offset: 2px;
 }
 
-.markdownOverlay .docTitle { font-size: 16px; }
+.markdownOverlay .docTitle { font-size: 16px; font-weight: 400; }
