@@ -82,7 +82,7 @@
 
 /* Centre the document itself, independently of the source tile and pink halo.
    The source paper bounds are x=460..777 and y=436..846. */
-.markdownTile.glyphContent {
+.markdownTile .glyphContent {
   position: relative;
   width: 54%;
   height: 69.84%;
