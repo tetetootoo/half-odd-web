@@ -6,7 +6,7 @@ export function SapDiagram({ kind }: { kind: string }) {
     <div className={styles.timelineRow}>
       <div className={styles.timelineState}><p className={styles.date}>2020-21</p><p className={`${styles.product} ${styles.productOrigin}`}><span>sap graph</span><span className={styles.timelineConnector} aria-hidden="true" /></p><p className={styles.status}>early access</p><small>my contribution</small></div>
       <div className={styles.timelineState}><p className={styles.date}>today</p><p className={styles.product}>graph / api composition</p><p className={styles.status}>generally available</p><small>sap integration suite</small></div>
-    </div><figcaption>the capability evolved after my time on the team</figcaption>
+    </div>
   </figure>;
   const exception = kind === 'sap-exception';
   const graph = kind === 'sap-graph';
