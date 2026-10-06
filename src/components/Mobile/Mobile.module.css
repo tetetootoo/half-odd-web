@@ -51,9 +51,8 @@
 .appGlyph {
   width: var(--app-icon-size);
   height: var(--app-icon-size);
+  display: block;
   object-fit: contain;
-  border-radius: 12px;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
 }
 
 .appGlyphOnWhite {
@@ -62,18 +61,25 @@
   box-sizing: border-box;
 }
 
-/* Crop the source's pink halo to the white Markdown tile. */
-.appGlyphWrapper:has(.appGlyph[src="/icons/md-icon-mobile.png"]) {
+/* Clip source-image edges before applying the tile shadow, including on load. */
+.appGlyphTile {
+  display: block;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   border-radius: 14px;
-  background: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  isolation: isolate;
 }
 
-.appGlyph[src="/icons/md-icon-mobile.png"] {
-  transform: translateY(-0.4px) scale(2.16);
-  border-radius: 0;
-  filter: none;
+.markdownTile {
+  background: #fff;
+}
+
+/* The source document is left and below the image centre; compensate while
+   cropping the pink halo to the white tile. */
+.markdownTile .appGlyph {
+  transform: translate(1px, -1.5px) scale(2.16);
 }
 
 .appGlyphOnGrey {
