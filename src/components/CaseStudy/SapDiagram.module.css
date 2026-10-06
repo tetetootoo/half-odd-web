@@ -2,7 +2,7 @@
 .caseStudy * { text-transform: none; }
 .caseStudy.caseStudy h1, .caseStudy.caseStudy h2 { font-weight: 600; text-transform: lowercase; letter-spacing: -.01em; }
 .caseStudy strong { font-weight: 600; }
-.caseStudy h2 { margin-top: 36px; }
+.caseStudy.caseStudy h2 { margin-top: 26px; }
 .diagram, .timeline { --sap-line: #b8c5cd; --sap-muted: #6b5a62; margin: 0; font-family: inherit; color: #1c1319; font-weight: 400; }
 .diagram { padding: 48px 32px; background: #f7f6f6; border-radius: 12px; text-align: center; }
 .diagram h3 { margin: 0 0 36px; font-size: 30px; font-weight: 600; line-height: 1.15; letter-spacing: -.01em; text-transform: lowercase; text-wrap: balance; }
