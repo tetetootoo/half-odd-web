@@ -4,8 +4,7 @@ const Node = ({ children }: { children: string }) => <div className={styles.node
 export function SapDiagram({ kind }: { kind: string }) {
   if (kind === 'sap-evolution') return <figure className={styles.timeline} aria-label="Product evolution after my contribution">
     <div className={styles.timelineRow}>
-      <div className={styles.timelineState}><p className={styles.date}>2020-21</p><p className={styles.product}>sap graph</p><p className={styles.status}>early access</p><small>my contribution</small></div>
-      <span className={styles.timelineConnector} aria-hidden="true" />
+      <div className={styles.timelineState}><p className={styles.date}>2020-21</p><p className={`${styles.product} ${styles.productOrigin}`}><span>sap graph</span><span className={styles.timelineConnector} aria-hidden="true" /></p><p className={styles.status}>early access</p><small>my contribution</small></div>
       <div className={styles.timelineState}><p className={styles.date}>today</p><p className={styles.product}>graph / api composition</p><p className={styles.status}>generally available</p><small>sap integration suite</small></div>
     </div><figcaption>the capability evolved after my time on the team</figcaption>
   </figure>;
