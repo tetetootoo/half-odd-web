@@ -11,10 +11,9 @@ Use the strongest combination of site and identity.
 
 Antispace was a Berlin longevity hub bringing together active classes, recovery treatments, and community experiences.
 
-Working from an identity created by **Evolvcraft**, I extended the visual language across posters, flyers, cards, social content, and a new digital experience.
+Working from an identity created by Evolvcraft, I extended the visual language across posters, flyers, cards, social content, and a new digital experience.
 
-# My job wasn't to redesign the identity.
-# It was to understand it well enough to make it live in new contexts.
+**My job wasn't to redesign the identity. It was to understand it well enough to make it live in new contexts.**
 
 <!-- BRAND_GALLERY
 Aligned bento grid:
@@ -38,7 +37,7 @@ I created the initial structure in Figma, then moved into Framer, where design a
 
 Typography carried much of the identity, while responsive tiles, hover states, and restrained scroll interactions gave an otherwise simple interface movement and character.
 
-# Interaction became a way to add personality without adding clutter.
+**Interaction became a way to add personality without adding clutter.**
 
 <!-- WEBSITE_VIDEO
 Full-width website recording.
@@ -67,5 +66,4 @@ Mobile: text first, visual second.
 
 The site launched successfully and the work led to additional website enquiries through people I met via Antispace.
 
-# Sometimes the design challenge isn't creating the perfect system.
-# It's creating the clearest experience around an imperfect one.
+**Sometimes the design challenge isn't creating the perfect system. It's creating the clearest experience around an imperfect one.**

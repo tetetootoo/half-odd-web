@@ -13,7 +13,7 @@ Half a Love Letter started with a small idea: an anonymous place to leave a thou
 
 I used the project to test something else I was curious about:
 
-# How good had AI actually become at designing an experience?
+**How good had AI actually become at designing an experience?**
 
 ---
 
@@ -36,7 +36,7 @@ On mobile, stack or horizontally scroll without making text unreadable.
 
 The Figma-to-Framer handoff fell short in a different way: Figma produced a static image for Framer instead of a working interface. It reproduced the appearance without delivering the interaction.
 
-# Strangely similar answers.
+**Strangely similar answers.**
 
 So I stopped asking AI for the finished answer and started treating its output as something to react against.
 
@@ -59,8 +59,7 @@ No framework. No elaborate architecture.
 
 It didn't need one.
 
-# AI shortened the distance to a possible answer.
-# It didn't remove the need to decide whether that answer was any good.
+**AI shortened the distance to a possible answer. It didn't remove the need to decide whether that answer was any good.**
 
 ---
 

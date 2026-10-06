@@ -14,8 +14,7 @@ For the first time, I was contributing to a production system larger than anythi
 
 <br><br><br><br>
 
-# University taught me how to write software.
-# SAP taught me how software gets built together.
+**University taught me how to write software. SAP taught me how software gets built together.**
 
 <br><br><br><br>
 
@@ -59,7 +58,7 @@ I translated product designs into React and TypeScript interfaces, worked with e
 
 A design system stopped being a collection of consistent-looking components.
 
-# It became shared infrastructure between design and engineering.
+**It became shared infrastructure between design and engineering.**
 
 <br><br><br><br>
 
@@ -85,8 +84,7 @@ It was understanding that engineering principles aren't rules to follow mechanic
 
 <br><br><br>
 
-# Consistency matters.
-# So does knowing when the cost of preserving it exceeds its value.
+**Consistency matters. So does knowing when the cost of preserving it exceeds its value.**
 
 <br><br><br><br>
 
