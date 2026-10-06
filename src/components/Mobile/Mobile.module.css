@@ -72,14 +72,32 @@
   isolation: isolate;
 }
 
+.glyphContent { display: block; width: 100%; height: 100%; }
+
 .markdownTile {
+  display: grid;
+  place-items: center;
   background: #fff;
 }
 
-/* The source document is left and below the image centre; compensate while
-   cropping the pink halo to the white tile. */
+/* Centre the document itself, independently of the source tile and pink halo.
+   The source paper bounds are x=460..777 and y=436..846. */
+.markdownTile.glyphContent {
+  position: relative;
+  width: 54%;
+  height: 69.84%;
+  overflow: hidden;
+  border-radius: 5px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.18));
+}
+
 .markdownTile .appGlyph {
-  transform: translate(1px, -1.5px) scale(2.16);
+  position: absolute;
+  width: 395.58%;
+  height: 305.85%;
+  max-width: none;
+  left: -145.11%;
+  top: -106.34%;
 }
 
 .appGlyphOnGrey {

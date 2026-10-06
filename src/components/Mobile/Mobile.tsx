@@ -77,7 +77,7 @@ function AppIcon({
     return (
       <a className={styles.appIcon} href={app.href} target="_blank" rel="noreferrer">
         <span className={styles.appGlyphWrapper}>
-          <span className={tileClass}><img className={glyphClass} src={app.iconSrc} alt="" /></span>
+          <span className={tileClass}><span className={styles.glyphContent}><img className={glyphClass} src={app.iconSrc} alt="" /></span></span>
           <span className={styles.linkBadge} aria-hidden="true">
             <svg viewBox="0 0 10 10" width="8" height="8">
               <path
@@ -99,7 +99,7 @@ function AppIcon({
   return (
     <button type="button" className={styles.appIcon} onClick={onOpen}>
       <span className={styles.appGlyphWrapper}>
-        <span className={tileClass}><img className={glyphClass} src={app.iconSrc} alt="" /></span>
+        <span className={tileClass}><span className={styles.glyphContent}><img className={glyphClass} src={app.iconSrc} alt="" /></span></span>
         {app.kind === 'audio' && (
           <span className={styles.playBadge} aria-hidden="true">
             {isPlaying ? (
