@@ -95,9 +95,13 @@
 }
 
 .trashGlyph {
-  width: 52px;
-  height: 52px;
+  width: 42px;
+  height: 42px;
 }
+
+/* Match the visible tile edges despite padding in the source artwork. */
+.glyphImage[src="/icons/notes.png"] { transform: scale(1.058); }
+.glyphImage[src="/icons/mail.png"] { transform: scale(1.048); }
 
 .externalBadge {
   position: absolute;
