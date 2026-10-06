@@ -1,4 +1,5 @@
-import { useState, type Ref } from 'react';
+import { type Ref } from 'react';
+import { useDockMotion } from '../../hooks/useDockMotion';
 import { dockLinks, type DesktopItem } from '../../data/desktopContent';
 import styles from './Dock.module.css';
 
@@ -11,11 +12,6 @@ const icons = {
   github: '/icons/github.png',
   trash: '/icons/trash.png',
 };
-
-// Restrained magnification: the hovered icon and its direct neighbours grow
-// via transform only, so the dock itself never changes size or shifts.
-const MAGNIFY_HOVERED = 1.18;
-const MAGNIFY_NEIGHBOUR = 1.07;
 
 interface DockProps {
   ref?: Ref<HTMLElement>;
@@ -74,7 +70,7 @@ export function Dock({
   onOpenWindow,
   onRestore,
 }: DockProps) {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const motion = useDockMotion();
 
   const permanent: DockEntry[] = [
     { key: 'about-me', label: 'About Me', iconSrc: icons.aboutMe, iconClass: styles.rounded, windowId: 'about-me' },
@@ -100,27 +96,19 @@ export function Dock({
     iconClass: styles.trashGlyph,
     windowId: 'trash',
   };
-  const entries = [...permanent, ...minimized, trash];
 
-  const scaleFor = (index: number) => {
-    if (hoveredIndex === null) return 1;
-    const distance = Math.abs(index - hoveredIndex);
-    return distance === 0 ? MAGNIFY_HOVERED : distance === 1 ? MAGNIFY_NEIGHBOUR : 1;
-  };
-
-  const renderEntry = (entry: DockEntry, index: number) => {
+  const renderEntry = (entry: DockEntry) => {
     const isTrash = entry.key === 'trash';
     const running = entry.windowId !== undefined && runningIds.has(entry.windowId);
     const className = `${styles.item} ${isTrash && trashDropActive ? styles.dropTarget : ''}`;
     const common = {
       className,
       'aria-label': entry.ariaLabel ?? entry.label,
-      onPointerEnter: (e: React.PointerEvent) => e.pointerType === 'mouse' && setHoveredIndex(index),
       'data-drop-target': isTrash ? 'trash' : undefined,
     };
     const face = (
       <>
-        <span className={`${styles.magnify} ${entry.key === 'linkedin' ? styles.linkedin : ''}`} style={{ scale: isTrash && trashDropActive ? 1.08 : scaleFor(index) }}>
+        <span className={`${styles.magnify} ${entry.key === 'linkedin' ? styles.linkedin : ''}`} data-dock-face="">
           <img className={`${styles.glyphImage} ${entry.iconClass ?? ''}`} src={entry.iconSrc} alt="" draggable={false} />
           {entry.href && <ExternalLinkBadge />}
         </span>
@@ -149,11 +137,11 @@ export function Dock({
   };
 
   return (
-    <nav ref={ref} className={styles.dock} aria-label="Dock" onPointerLeave={() => setHoveredIndex(null)}>
-      {permanent.map((entry, i) => renderEntry(entry, i))}
+    <nav ref={(element) => { motion.host.current = element; if (typeof ref === 'function') return ref(element); else if (ref) ref.current = element; }} className={styles.dock} aria-label="Dock" onPointerMove={motion.onPointerMove} onPointerLeave={motion.onPointerLeave}>
+      {permanent.map(renderEntry)}
       {minimized.length > 0 && <span className={styles.divider} aria-hidden="true" />}
-      {minimized.map((entry, i) => renderEntry(entry, permanent.length + i))}
-      {renderEntry(trash, entries.length - 1)}
+      {minimized.map(renderEntry)}
+      {renderEntry(trash)}
     </nav>
   );
 }

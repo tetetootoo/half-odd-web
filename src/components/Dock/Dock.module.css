@@ -49,7 +49,7 @@
   align-items: center;
   justify-content: center;
   transform-origin: 50% 100%;
-  transition: scale var(--motion-fast) var(--ease-out);
+  transition: none;
 }
 
 .dropTarget {
@@ -133,21 +133,21 @@
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transition: opacity var(--motion-instant) var(--ease-soft), translate var(--motion-instant) var(--ease-out);
+  transition: opacity 160ms var(--ease-soft), translate 160ms var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
 /* Delayed pointer labels; keyboard labels appear immediately. */
 .item:hover .tooltip {
   opacity: 1;
   translate: 0 0;
-  transition-duration: var(--motion-instant);
+  transition-duration: 160ms;
   transition-delay: var(--motion-tooltip-delay);
 }
 }
 .item:focus-visible .tooltip {
   opacity: 1;
   translate: 0 0;
-  transition-duration: var(--motion-instant);
+  transition-duration: 160ms;
   transition-delay: var(--motion-tooltip-delay);
 }
 
@@ -164,7 +164,7 @@
 
 .dock { transition: background-color var(--motion-fast) var(--ease-soft); }
 .item { transition: scale var(--motion-instant) var(--ease-out), background-color var(--motion-fast) var(--ease-soft); }
-.item:active { scale: .95; }
+.item:active { scale: .98; }
 .item:focus-visible .tooltip { transition-delay: 0ms; }
 .externalBadge svg { transition: translate var(--motion-fast) var(--ease-out); }
 @media (hover: hover) and (pointer: fine) {

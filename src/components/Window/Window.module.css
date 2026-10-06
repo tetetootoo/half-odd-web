@@ -48,15 +48,15 @@
   from {
     opacity: 0;
     scale: 0.985;
-    translate: 0 4px;
+    translate: var(--launch-x, 0px) var(--launch-y, 4px);
   }
 }
 
 @keyframes windowClose {
   to {
     opacity: 0;
-    scale: 0.99;
-    translate: 0 2px;
+    scale: 0.98;
+    translate: var(--launch-x, 0px) var(--launch-y, 4px);
   }
 }
 
@@ -106,6 +106,8 @@
   .animClose,
   .animMinimize {
     animation-duration: 1ms;
+    scale: 1 !important;
+    translate: none !important;
   }
 
   .geometryAnimating {

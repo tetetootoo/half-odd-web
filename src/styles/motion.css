@@ -1,15 +1,18 @@
 /* Shared interaction vocabulary. Lifecycle timers read these same values. */
 :root {
   --motion-instant: 80ms;
-  --motion-fast: 120ms;
-  --motion-standard: 180ms;
-  --motion-window: 220ms;
+  --motion-micro: 140ms;
+  --motion-ui: 210ms;
+  --motion-spatial: 260ms;
+  --motion-fast: var(--motion-micro);
+  --motion-standard: var(--motion-ui);
+  --motion-window: var(--motion-spatial);
   --motion-slow: 300ms;
-  --motion-close: 150ms;
-  --motion-tooltip-delay: 450ms;
+  --motion-close: 200ms;
+  --motion-tooltip-delay: 40ms;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-in-out: var(--ease-out);
+  --ease-soft: var(--ease-out);
 }
 
 :where(button, a, input, textarea, select):focus-visible {

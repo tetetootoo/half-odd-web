@@ -946,6 +946,20 @@ export function Window({
     windowRef.current?.focus({ preventScroll: true });
   }, [managed.focusToken]);
 
+  // A small cue toward the launching object; no long travel or dragging lag.
+  useLayoutEffect(() => {
+    const wrapper = wrapperRef.current;
+    const opener = managed.opener;
+    if (!wrapper || !opener?.isConnected) return;
+    const from = opener.getBoundingClientRect();
+    const to = wrapper.getBoundingClientRect();
+    const dx = from.left + from.width / 2 - (to.left + to.width / 2);
+    const dy = from.top + from.height / 2 - (to.top + to.height / 2);
+    const length = Math.hypot(dx, dy) || 1;
+    wrapper.style.setProperty('--launch-x', `${dx / length * 8}px`);
+    wrapper.style.setProperty('--launch-y', `${dy / length * 8}px`);
+  }, [managed.opener]);
+
   const { phase } = managed;
   const phaseClass =
     phase === 'closing'
