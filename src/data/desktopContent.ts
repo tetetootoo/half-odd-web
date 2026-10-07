@@ -1,3 +1,4 @@
+import aptitudeMarkdown from './aptitude.txt?raw';
 import cvMarkdown from '../../public/media/cv/CV.md?raw';
 import { CASE_STUDIES, MARKDOWN_DOCUMENT_ICON, type CaseStudyId } from './caseStudies';
 import type { TextBlock } from './textBlocks';
@@ -38,6 +39,7 @@ export interface NoteEntry {
 export interface DesktopItem {
   id: string;
   label: string;
+  preserveLabelCase?: boolean;
   kind: WindowKind;
   windowTitle: string;
   x: number;
@@ -279,6 +281,17 @@ export const desktopItems: DesktopItem[] = [
     link: { url: 'https://theresaschantz.com' },
     description: 'personal photography portfolio',
     iconSrc: '/media/photo-portfolio/icon.png',
+  },
+  {
+    id: 'aptitude',
+    label: 'aptitude.txt',
+    preserveLabelCase: true,
+    kind: 'markdown',
+    markdown: aptitudeMarkdown,
+    windowTitle: 'aptitude.txt',
+    iconSrc: MARKDOWN_DOCUMENT_ICON,
+    x: 68.3,
+    y: 81.1,
   },
   {
     id: 'cv',

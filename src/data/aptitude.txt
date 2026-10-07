@@ -1,0 +1,62 @@
+# how i think
+
+Years before I knew I would end up somewhere between design and software engineering, I took a professional cognitive aptitude assessment.
+
+Some of the strongest patterns it identified were logical reasoning, structured and systematic thinking, working memory, spatial reasoning, and the ability to recognise relationships across complex information.
+
+At the time, they were simply test results.
+
+Looking at the work I gravitated toward later, they make a little more sense.
+
+
+## patterns that stood out
+
+**logical reasoning**
+
+Recognising rules, relationships, and structure - and using them to work through complex problems systematically.
+
+**systems thinking**
+
+Breaking something complicated into understandable parts, seeing how those parts relate, and creating structure around them.
+
+**analytical transfer**
+
+Recognising a pattern in one context and applying what I learned from it somewhere else.
+
+**working memory**
+
+Holding and working with relatively large amounts of information while solving a problem.
+
+**spatial reasoning**
+
+Understanding visual and spatial relationships, alongside an interest in form, structure, and how things fit together.
+
+**technical understanding**
+
+Quickly understanding underlying principles, technical relationships, and structured processes.
+
+
+## where that shows up now
+
+I see those patterns most clearly in the work I enjoy doing.
+
+Understanding how a product fits together before deciding how it should look.
+
+Finding the reusable system underneath several individual interfaces.
+
+Moving between visual relationships and technical architecture.
+
+Following an interaction from an idea to the code that actually makes it behave.
+
+Taking something ambiguous apart, finding the structure inside it, and putting it back together in a way that feels simpler.
+
+Maybe that is why neither design nor engineering on its own ever felt quite complete.
+
+
+## a note on the assessment
+
+The assessment was conducted in 2014 and combined standardized cognitive tests, practical tasks, conversation, and behavioral observation.
+
+I don't treat it as a current measurement or a definition of what I can do.
+
+I kept it because, years later, some of the patterns it identified are surprisingly recognizable in the work I chose.

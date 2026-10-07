@@ -9,6 +9,7 @@ interface PlaybackControl {
 
 interface DesktopIconProps {
   label: string;
+  preserveLabelCase?: boolean;
   ariaLabel: string;
   xPercent: number;
   yPercent: number;
@@ -32,10 +33,11 @@ interface DesktopIconProps {
 
 function IconFace({
   label,
+  preserveLabelCase,
   iconSrc,
   playback,
   showLinkBadge,
-}: Pick<DesktopIconProps, 'label' | 'iconSrc' | 'playback' | 'showLinkBadge'>) {
+}: Pick<DesktopIconProps, 'label' | 'preserveLabelCase' | 'iconSrc' | 'playback' | 'showLinkBadge'>) {
   return (
     <>
       <span className={styles.glyphWrapper}>
@@ -73,7 +75,7 @@ function IconFace({
           </span>
         )}
       </span>
-      <span className={styles.label}>{capitalizeLabel(label)}</span>
+      <span className={styles.label}>{preserveLabelCase ? label : capitalizeLabel(label)}</span>
     </>
   );
 }
@@ -83,6 +85,7 @@ function IconFace({
 // instead (or drops it in the Trash).
 export function DesktopIcon({
   label,
+  preserveLabelCase,
   ariaLabel,
   xPercent,
   yPercent,
@@ -145,7 +148,7 @@ export function DesktopIcon({
     top: `${yPercent}%`,
     translate: `${offset.x + (exiting ? dropOffset.x : 0)}px ${offset.y + (exiting ? dropOffset.y : 0)}px`,
   };
-  const face = <IconFace label={label} iconSrc={iconSrc} playback={playback} showLinkBadge={showLinkBadge} />;
+  const face = <IconFace label={label} preserveLabelCase={preserveLabelCase} iconSrc={iconSrc} playback={playback} showLinkBadge={showLinkBadge} />;
 
   if (href) {
     return (
@@ -187,10 +190,10 @@ export function DesktopIcon({
 
 // Non-interactive stand-in that follows the pointer while an item is
 // dragged out of the Trash window onto the desktop.
-export function DesktopIconGhost({ label, iconSrc, imagePreview, left, top }: { label: string; iconSrc?: string; imagePreview?: boolean; left: number; top: number }) {
+export function DesktopIconGhost({ label, preserveLabelCase, iconSrc, imagePreview, left, top }: { label: string; preserveLabelCase?: boolean; iconSrc?: string; imagePreview?: boolean; left: number; top: number }) {
   return (
     <div className={`${styles.icon} ${imagePreview ? styles.imagePreview : ''} ${styles.selected} ${styles.ghost}`} style={{ left, top }} aria-hidden="true">
-      <IconFace label={label} iconSrc={iconSrc} />
+      <IconFace label={label} preserveLabelCase={preserveLabelCase} iconSrc={iconSrc} />
     </div>
   );
 }

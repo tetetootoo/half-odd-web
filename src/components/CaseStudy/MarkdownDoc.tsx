@@ -6,6 +6,7 @@ import { CASE_STUDIES, type CaseStudyId } from '../../data/caseStudies';
 import { CaseStudyMedia } from './CaseStudyMedia';
 import { compileCaseStudy, type CaseBlock } from './markdown';
 import styles from './MarkdownDoc.module.css';
+import textStyles from './MarkdownTextDoc.module.css';
 
 function safeUrl(url: string) {
   return /^(https?:\/\/|mailto:|\/[^/]|#)/i.test(url) ? url : undefined;
@@ -105,9 +106,9 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
 }
 
 export function MarkdownTextDoc({ markdown }: { markdown: string }) {
-  const tokens = useMemo(() => Lexer.lex(markdown), [markdown]);
-  return <article className={`${styles.document} ${styles.editorial}`}>
-    <div className={styles.page}>{tokens.map((token, i) => <div className={styles.block} key={i}>{renderToken(token)}</div>)}</div>
+  const tokens = useMemo(() => Lexer.lex(markdown).filter(token => token.type !== 'space'), [markdown]);
+  return <article className={`${styles.document} ${textStyles.document}`}>
+    <div className={`${styles.page} ${textStyles.page}`}>{tokens.map((token, i) => <Fragment key={i}>{renderToken(token)}</Fragment>)}</div>
   </article>;
 }
 

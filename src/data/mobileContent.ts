@@ -1,3 +1,4 @@
+import aptitudeMarkdown from './aptitude.txt?raw';
 import cvMarkdown from '../../public/media/cv/CV.md?raw';
 import { CASE_STUDIES, type CaseStudyId } from './caseStudies';
 import type { TextBlock } from './textBlocks';
@@ -275,6 +276,13 @@ export const gridApps: MobileAppItem[] = [
       'heated rivalry',
       'photo booth',
     ],
+  },
+  {
+    id: 'aptitude',
+    label: 'aptitude.txt',
+    kind: 'markdown',
+    markdown: aptitudeMarkdown,
+    iconSrc: '/icons/md-icon-mobile.png',
   },
   {
     id: 'cv',

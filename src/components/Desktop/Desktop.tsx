@@ -305,6 +305,7 @@ export function Desktop() {
               <DesktopIcon
                 key={item.id}
                 label={item.label}
+                preserveLabelCase={item.preserveLabelCase}
                 ariaLabel={ariaLabelFor(item, isAudioPlaying)}
                 xPercent={position.x}
                 yPercent={position.y}
@@ -366,6 +367,7 @@ export function Desktop() {
         {trashGhost && ghostItem && (
           <DesktopIconGhost
             label={ghostItem.label}
+            preserveLabelCase={ghostItem.preserveLabelCase}
             iconSrc={ghostItem.kind === 'audio' ? ghostItem.posterSrc : ghostItem.iconSrc}
             imagePreview={ghostItem.kind === 'image'}
             left={trashGhost.left}
