@@ -36,3 +36,14 @@ h1,h2,h3,.display{font-family:'Barlow Condensed',Impact,sans-serif;font-weight:8
 .cafe-intro .btn:hover,.cafe-intro .btn:focus-visible{background:var(--white);border-color:var(--white);color:var(--bg)}
 .cafe-intro .btn:focus-visible,.cafe-intro .visit:focus-visible{outline:2px solid var(--white);outline-offset:4px}
 @media(prefers-reduced-motion:reduce){.cafe-intro .btn,.cafe-intro .visit{transition:none}}
+
+/* Section labels and button copy share the footer typography. */
+footer,footer span,footer a,.eyebrow,.panel-label,.panel-label b,.btn,.visit,button,nav a{
+  font-family:'DM Sans',sans-serif!important;
+  font-size:14px!important;
+  font-weight:300!important;
+  font-style:normal;
+  letter-spacing:normal!important;
+  line-height:1.2!important;
+  text-transform:uppercase;
+}
