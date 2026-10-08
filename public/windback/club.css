@@ -25,3 +25,14 @@ h1,h2,h3,.display{font-family:'Barlow Condensed',Impact,sans-serif;font-weight:8
 .home-panel:hover .panel-fill,.home-panel:focus-visible .panel-fill{clip-path:inset(0 0 0 0)}
 .home-panel:focus-visible{outline:2px solid var(--pink);outline-offset:-3px}
 @media(prefers-reduced-motion:reduce){.home-panel .panel-fill{transition:none}}
+
+/* Balanced Café frame and matching calls to action. */
+.cafe-intro>div:first-child{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:24px;padding:clamp(24px,3vw,44px)}
+.cafe-intro h1,.cafe-intro p{margin:0}
+.cafe-intro p{line-height:1.7}
+.cafe-intro .btn,.cafe-intro .visit{display:inline-flex;align-items:center;justify-content:center;width:190px;max-width:100%;min-height:44px;padding:12px 18px;line-height:1.2;border:1px solid var(--pink);border-radius:30px;transition:background-color .25s ease,color .25s ease,border-color .25s ease}
+.cafe-intro .visit{background:transparent;color:var(--pink)}
+.cafe-intro .visit:hover,.cafe-intro .visit:focus-visible{background:var(--pink);color:var(--bg)}
+.cafe-intro .btn:hover,.cafe-intro .btn:focus-visible{background:var(--white);border-color:var(--white);color:var(--bg)}
+.cafe-intro .btn:focus-visible,.cafe-intro .visit:focus-visible{outline:2px solid var(--white);outline-offset:4px}
+@media(prefers-reduced-motion:reduce){.cafe-intro .btn,.cafe-intro .visit{transition:none}}
