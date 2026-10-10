@@ -2,7 +2,7 @@
 
 **frontend engineering · design systems · developer tools**
 
-SAP Graph was an early-stage developer platform inside SAP Technology & Innovation, designed to give developers a unified way to work with business data spread across otherwise disconnected enterprise systems.
+SAP Graph was an enterprise developer platform that provided a unified semantic API across fragmented business data.
 
 **Role**
 Front-End Developer / Software Engineer

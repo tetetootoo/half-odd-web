@@ -1,6 +1,6 @@
 # Wrestling Octopi
 
-## Designing and engineering a social media workspace from 0→1.
+## A social media management product designed and engineered to simplify complex content workflows.
 
 **Role**
 Founder · Product Designer · Software Engineer

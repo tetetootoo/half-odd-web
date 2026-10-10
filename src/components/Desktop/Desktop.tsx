@@ -23,8 +23,7 @@ const FREE_SPOT_SEARCH_RINGS = 12;
 
 const builtInTrash = systemWindows.find((w) => w.id === 'trash')?.trashItems ?? [];
 
-// Built from the same capitalized text the icon shows, so the accessible
-// name matches what's on screen.
+// Keep the visible filename; describe the document's purpose for assistive tech.
 function ariaLabelFor(item: DesktopItem, isPlaying: boolean): string {
   const label = capitalizeLabel(item.label);
   switch (item.kind) {
@@ -33,7 +32,8 @@ function ariaLabelFor(item: DesktopItem, isPlaying: boolean): string {
     case 'audio':
       return `${isPlaying ? 'Pause' : 'Play'} ${label}`;
     case 'markdown':
-      return item.caseStudyId ? `Open ${label.replace(/\.md$/, '')} case study` : `Open ${label}`;
+      if (item.caseStudyId === 'sap-graph-case-study') return 'Open SAP Graph engineering case study';
+      return item.caseStudyId ? `Open ${label.replace(/\.md$/, '')} project case study` : `Open ${label}`;
     default:
       return `Open ${label}`;
   }
@@ -80,6 +80,22 @@ export function Desktop() {
 
   const getIconPosition = (item: DesktopItem): Position =>
     layoutPositions[item.id] ?? { x: item.x, y: item.y };
+
+  // Absolute positioning does not determine tab order. Nearby tops belong
+  // to the same visual row; within each row, read left-to-right. Use the
+  // displayed layout, including dragged files, without moving any icons.
+  const rows: DesktopItem[][] = [];
+  const verticallyOrderedItems = [...visibleItems].sort((a, b) => {
+    const first = getIconPosition(a);
+    const second = getIconPosition(b);
+    return first.y - second.y || first.x - second.x;
+  });
+  for (const item of verticallyOrderedItems) {
+    const row = rows.at(-1);
+    if (row && getIconPosition(item).y - getIconPosition(row[0]).y <= 4) row.push(item);
+    else rows.push([item]);
+  }
+  const keyboardOrderedItems = rows.flatMap(row => row.sort((a, b) => getIconPosition(a).x - getIconPosition(b).x));
 
   const getWorkArea = (): WorkArea => {
     const desktop = desktopRef.current!.getBoundingClientRect();
@@ -307,7 +323,7 @@ export function Desktop() {
           onPointerDown={(e) => e.target === e.currentTarget && setSelectedId(null)}
         >
           {!compactDesktop && <IntroNote desktop />}
-          {visibleItems.map((item) => {
+          {keyboardOrderedItems.map((item) => {
             const position = getIconPosition(item);
             const isAudio = item.kind === 'audio';
             return (

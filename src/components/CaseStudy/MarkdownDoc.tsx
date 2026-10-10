@@ -106,7 +106,7 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
   };
   const ids = Object.keys(CASE_STUDIES) as CaseStudyId[];
   const next = CASE_STUDIES[ids[(ids.indexOf(caseStudyId) + 1) % ids.length]];
-  return <article className={`${styles.document} ${styles[config.artDirection]} ${caseStudyId === 'sap-graph-case-study' ? sapStyles.caseStudy : ''} ${caseStudyId === 'wrestling-octopi-case-study' ? styles.wrestling : ''}`}>
+  return <article tabIndex={0} aria-label={`${config.label.replace(/\.md$/, '')} document`} className={`${styles.document} ${styles[config.artDirection]} ${caseStudyId === 'sap-graph-case-study' ? sapStyles.caseStudy : ''} ${caseStudyId === 'wrestling-octopi-case-study' ? styles.wrestling : ''}`}>
     <div className={styles.page}>{blocks.map(renderBlock)}
       <nav className={styles.navigation} aria-label="Project navigation"><button onClick={() => onOpenItem(next.id)} type="button">Next: {next.label.replace('.md', '')} <span aria-hidden="true">↗</span></button></nav>
     </div>

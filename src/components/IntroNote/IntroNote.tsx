@@ -84,7 +84,7 @@ export function IntroNote({ desktop = false }: { desktop?: boolean }) {
       <div data-no-drag>
         <h1>hi, i'm theresa.</h1>
         <p>designer &amp; software engineer.</p>
-        <p>i design and build digital products, from the first idea to the working thing.</p>
+        <p>i design and build digital products, from idea to implementation.</p>
       </div>
     </aside>
   );
