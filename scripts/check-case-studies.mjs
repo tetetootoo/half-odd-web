@@ -21,7 +21,7 @@ try {
       assert(config.directives[name], `${config.id}: missing directive ${name}`);
       assert(!html.includes(name), `${config.id}: leaked directive ${name}`);
     }
-    for (const block of blocks.filter(b => b.directive?.layout === 'split' || b.directive?.layout === 'intro')) {
+    for (const block of blocks.filter(b => ['split', 'intro', 'overview'].includes(b.directive?.layout))) {
       assert.equal(block.children.length, block.directive.contentBlocks ?? block.directive.paragraphs, `${config.id}: split retains preceding copy`);
     }
     for (const directive of Object.values(config.directives)) {
@@ -29,18 +29,38 @@ try {
         if (media.src) assert(existsSync(`public${media.src}`), `Missing real media: ${media.src}`);
       }
     }
+    // Reduced motion pauses ambient media without removing playback access.
+    globalThis.window = { matchMedia: () => ({ matches: true }) };
+    try {
+      const reducedHtml = renderToStaticMarkup(createElement(MarkdownDoc, { caseStudyId: config.id, onOpenItem() {} }));
+      for (const [video] of reducedHtml.matchAll(/<video\b[^>]*>/g)) {
+        assert(video.includes('controls=""') && !video.includes('autoPlay'), 'Reduced-motion videos remain manually playable');
+      }
+    } finally { delete globalThis.window; }
     for (const entries of [desktopItems, gridApps]) {
       const matching = entries.filter(item => item.id === config.id);
       assert.equal(matching.length, 1);
       assert.equal(matching[0].kind, 'markdown');
       assert.equal(matching[0].label, config.label);
-      assert.equal(matching[0].iconSrc, MARKDOWN_DOCUMENT_ICON);
+      assert.equal(matching[0].iconSrc, entries === gridApps ? '/icons/md-icon-mobile.png' : MARKDOWN_DOCUMENT_ICON);
       assert.equal(matching[0].caseStudyId, config.id);
       assert(!matching[0].textLines, 'Old content must not remain wired');
     }
     if (config.artDirection === 'product') {
       assert(html.includes('Work in progress'));
       assert(html.includes('moving toward beta launch'));
+      const video = html.match(/<video\b[^>]*>/)?.[0];
+      assert(video?.includes('controls=""'), 'Working product video has native controls');
+      assert(video.includes('preload="none"'), 'Working product video avoids initial download');
+      assert(!video.includes('autoPlay') && !video.includes('loop=""'), 'Working product video is visitor controlled');
+      assert(html.indexOf('Project overview') < html.indexOf('the product in practice'));
+      assert(html.indexOf('the product in practice') < html.indexOf('working with ai'));
+      assert.equal((html.match(/canva-design-and-post-scheduling-workflow.mp4/g) ?? []).length, 1);
+    }
+    if (['wrestling-octopi-case-study', 'sap-graph-case-study'].includes(config.id)) {
+      assert.equal((html.match(/<dl\b/g) ?? []).length, 1, 'One consolidated overview');
+      assert.equal((html.match(/<dt>/g) ?? []).length, 4, 'Four labeled overview fields');
+      assert(html.includes('<dt>Role</dt>') && html.includes('<dt>Technology</dt>'));
     }
     console.log(`✓ ${config.label}: render, directives, assets, desktop/mobile registration`);
   }

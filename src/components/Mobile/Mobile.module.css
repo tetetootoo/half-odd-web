@@ -9,15 +9,28 @@
   overflow: hidden;
 }
 
-.grid {
+.activeOverlay { position: absolute; inset: 0; z-index: 10; outline: none; }
+
+.home {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+}
+
+.introduction {
+  display: flex;
+  justify-content: center;
+  padding-top: 36px;
+  padding-bottom: 24px;
+}
+
+.grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px 8px;
-  padding: 56px 12px 24px;
+  padding: 12px 12px 24px;
   align-content: start;
 }
 

@@ -10,8 +10,24 @@
 
 .iconLayer {
   position: relative;
-  flex: 1;
+  height: 100%;
   min-height: 0;
+}
+
+.files { flex: 1; min-height: 0; }
+
+/* Below 900px the scattered files leave no note-sized gap. Reserve a
+   compact introduction row rather than cover any of their links. */
+.introduction {
+  position: relative;
+  height: 216px;
+  margin: 8px 16px 0;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .files { overflow-y: auto; overflow-x: hidden; margin-bottom: 88px; }
+  .iconLayer { min-height: 600px; }
 }
 
 .layoutSaver {

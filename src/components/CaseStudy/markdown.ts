@@ -23,7 +23,7 @@ export function compileCaseStudy(config: CaseStudyConfig): CaseBlock[] {
       const directive = directiveName ? config.directives[directiveName] : undefined;
       if (directive) {
         const children: CaseBlock[] = [];
-        if (directive.layout === 'split' || directive.layout === 'intro') {
+        if (directive.layout === 'split' || directive.layout === 'intro' || directive.layout === 'overview') {
           for (let n = 0; n < (directive.contentBlocks ?? directive.paragraphs ?? 0); n++) {
             if (!blocks.length || (!directive.contentBlocks && blocks.at(-1)?.token?.type !== 'paragraph')) break;
             children.unshift(blocks.pop()!);

@@ -6,8 +6,8 @@ import letter from './half-a-love-letter-case-study.md?raw';
 // Shared "little preview" document glyph — same icon .txt files use.
 export const MARKDOWN_DOCUMENT_ICON = '/icons/doc-preview.svg';
 export type CaseStudyId = 'wrestling-octopi-case-study' | 'sap-graph-case-study' | 'antispace-berlin-case-study' | 'half-a-love-letter-case-study';
-export interface MediaSlot { label: string; path: string; src?: string; type?: 'video'; ratio?: string; hideCaption?: boolean; alt?: string; poster?: string; respectReducedMotion?: boolean; labelAbove?: boolean }
-export interface LayoutDirective { layout: 'media' | 'intro' | 'split' | 'gallery' | 'bento' | 'comparison' | 'architecture' | 'sap-graph' | 'sap-reuse' | 'sap-exception' | 'sap-evolution'; size?: 'wide' | 'standard' | 'secondary' | 'process'; contentBlocks?: number; media: MediaSlot[]; paragraphs?: number }
+export interface MediaSlot { label: string; path: string; src?: string; type?: 'video'; ratio?: string; hideCaption?: boolean; alt?: string; poster?: string; respectReducedMotion?: boolean; labelAbove?: boolean; controls?: boolean }
+export interface LayoutDirective { layout: 'media' | 'overview' | 'intro' | 'split' | 'gallery' | 'bento' | 'comparison' | 'architecture' | 'sap-graph' | 'sap-reuse' | 'sap-exception' | 'sap-evolution'; size?: 'wide' | 'standard' | 'secondary' | 'process'; contentBlocks?: number; media: MediaSlot[]; paragraphs?: number }
 export interface CaseStudyConfig {
   id: CaseStudyId;
   label: string;
@@ -35,9 +35,10 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
     id: 'wrestling-octopi-case-study', label: 'Wrestling Octopi.md', markdown: wrestling, artDirection: 'product',
     links: { 'View Wrestling Octopi ↗': 'https://www.wrestlingoctopi.com/', 'View GitHub ↗': 'https://github.com/tetetootoo' },
     directives: {
-      HERO_MEDIA: { layout: 'intro', contentBlocks: 4, media: [{
-        ...wo('canva-design-and-post-scheduling-workflow.mp4', 'Current product workflow', 'Wrestling Octopi workflow showing Canva design creation, return to the product, and post scheduling.', '2560 / 1380'),
-        poster: '/media/wrestling-octopi-case-study/canva-design-and-post-scheduling-poster.jpg', respectReducedMotion: true, hideCaption: true,
+      PROJECT_OVERVIEW: { layout: 'overview', paragraphs: 4, media: [] },
+      PRODUCT_WORKFLOW: { layout: 'media', size: 'wide', media: [{
+        ...wo('canva-design-and-post-scheduling-workflow.mp4', 'Design in Canva, return with the imported image, then confirm a schedule without rebuilding the post.', 'Recorded product workflow: editing a Canva design, returning to the Wrestling Octopi post editor, and confirming its schedule.', '2560 / 1380'),
+        poster: '/media/wrestling-octopi-case-study/canva-design-and-post-scheduling-poster.jpg', controls: true,
       }] },
       BEFORE_AFTER: { layout: 'comparison', size: 'wide', media: [
         { ...wo('landing-page-early-purple.png', 'Early direction', 'Early Wrestling Octopi landing page with purple headlines and buttons beside a colorful feed-grid simulation.', '1400 / 910') },
@@ -57,6 +58,7 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
   'sap-graph-case-study': {
     id: 'sap-graph-case-study', label: 'SAP Graph.md', markdown: sap, artDirection: 'system',
     directives: {
+      PROJECT_OVERVIEW: { layout: 'overview', paragraphs: 4, media: [] },
       SAP_GRAPH_DIAGRAM: { layout: 'sap-graph', media: [] },
       SAP_REUSE_DIAGRAM: { layout: 'sap-reuse', media: [] },
       SAP_EXCEPTION_DIAGRAM: { layout: 'sap-exception', media: [] },

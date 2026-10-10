@@ -11,6 +11,10 @@
 .block .metadata, .block .eyebrow, .media figcaption { font-size: 13px; line-height: 1.6; color: #6b5a62; }
 .media figcaption { font-family: inherit; font-weight: 400; letter-spacing: normal; }
 .metadata strong { font-weight: 400; }
+.overview { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; max-width: 680px; margin: 0; }
+.overview > div { min-width: 0; }
+.overview dt { font-size: 13px; line-height: 1.6; color: #6b5a62; margin-bottom: 4px; }
+.overview dd { margin: 0; font-size: 16px; line-height: 1.6; overflow-wrap: anywhere; }
 .eyebrow { letter-spacing: .1em; }
 .status { border-left: 2px solid #a8517a; padding-left: 20px; }
 .status p { font-size: 17px; }
@@ -51,6 +55,7 @@
 .document :focus-visible { outline: 2px solid #3b82f6; outline-offset: 4px; }
 .block pre { width: fit-content; max-width: 100%; overflow: auto; margin: 0 auto; font: 13px/1.5 Menlo, ui-monospace, monospace; }
 @container (max-width: 700px) {
+  .overview { grid-template-columns: 1fr; gap: 20px; }
   .page { padding: 40px 24px 56px; }
   .intimate .page { max-width: 728px; }
   .block p, .projectLink, .navigation button { font-size: 16px; }

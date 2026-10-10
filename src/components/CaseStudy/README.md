@@ -45,8 +45,10 @@ that slot's `src` to its `/media/...` URL. A different filename is also fine:
 update `path`, `src`, and `type` together. Existing Antispace assets already
 have `src` values. Failed image/video requests use the same stable placeholder.
 
-Videos autoplay muted on an infinite loop without playback controls. No
-scroll reveal hides content. Portrait print images use contain to preserve
+Ambient videos retain muted looping playback. The Wrestling Octopi working
+product recording uses native controls, a poster, no autoplay, and no initial
+video preload. Reduced-motion visitors can manually play every case-study
+video through native controls. No scroll reveal hides content. Portrait print images use contain to preserve
 whole designs. The old Half a Love Letter envelope emoji is deliberately
 not presented as evidence of the final hand-drawn interaction.
 
@@ -63,5 +65,30 @@ unique desktop/mobile entries, WIP status, and preservation of `:).txt`.
 
 For browser QA, open all four files at desktop, laptop, tablet and mobile
 widths. Check close/reopen and next-project navigation, vertically stacked
-splits/comparisons, the bento grid's mobile alignment, and SAP diagram legibility. Check continuous video looping and the absence of playback controls. Browser
+splits/comparisons, the bento grid's mobile alignment, and SAP diagram legibility. Check the controlled Wrestling Octopi workflow and ambient looping videos. Browser
 visual and interaction QA needs an available browser connection.
+
+## Project overviews and verified evidence
+
+`PROJECT_OVERVIEW` consumes the four preceding Markdown paragraphs, each with
+a bold field label on its first line and its value on the next. They render
+once as a semantic definition list, in two columns when the document has room
+and one column below its existing 700px container breakpoint.
+
+The Wrestling Octopi engineering example was checked against the local product
+repository: `apps/web/src/pages/FeedPage.tsx` (`handleDragEnd`, `saveOrder`,
+`handleBulkDelete`), `apps/api/src/routes/feed.ts`, `apps/api/prisma/schema.prisma`
+(`feedPosition`, `hiddenFromFeed`, `status`), and `apps/api/src/__tests__/feed.test.ts`.
+The architecture image is reused unchanged. Its existing Cloudinary / S3 label
+is supplied artwork; S3 implementation is not claimed by the new prose.
+
+The AI section builds on the author's existing account and existing early/current
+screenshots. No prompt, generated patch, numerical productivity claim, or specific
+undocumented debugging incident was added. To strengthen this further, capture
+one actual agent suggestion, the issue found during use, and the reviewed correction.
+
+Both the original workflow recording and its web conversion are 13.95 seconds.
+For a 20–40-second replacement, record one continuous sequence: open a draft,
+edit its design in Canva, return with the imported media, choose a date/time,
+confirm scheduling, and show the resulting scheduled post in Posts or Calendar.
+Use a staging/test post; successful external publication is not needed.

@@ -1,5 +1,46 @@
 # Interaction and motion audit — 5 October 2026
 
+## Portfolio refinement follow-up — 10 October 2026
+
+- Matching Markdown-backed definition-list overviews added to Wrestling Octopi
+  and SAP Graph. Existing 700px container breakpoint stacks their fields.
+- Existing 13.95-second Canva workflow reused once with native controls, poster,
+  no autoplay, and no video preload. Browser playback verified without errors.
+  Reduced-motion rendering keeps manual playback controls on all case-study videos.
+- Authored desktop coordinates retained wherever they fit. Colliding file footprints
+  are nudged to nearby free positions, without overwriting persisted coordinates.
+  Default window height now clears the measured dock; compact desktops use the menu
+  bar as the window work-area boundary, rather than the introductory note row.
+- Mobile overlays now announce dialogs, receive focus, contain keyboard Tab, make
+  background navigation inert, and restore opener focus. Dock buttons and contact
+  fields now have accessible names. Desktop message field also has an explicit name.
+- Existing case-study assertions updated for the established separate mobile glyph;
+  additional assertions cover consolidated overviews, workflow ordering, native
+  controls, one workflow embed, and manually playable reduced-motion media.
+- Lint excludes the vendored/minified Ipsen bundle rather than treating it as source.
+
+Browser checks: 1920×1080 wide desktop, 1280×800 laptop, 768×1024 tablet,
+390×844 mobile. Checked primary-case-study opening, keyboard activation, metadata
+legibility, document scrolling, no document horizontal overflow, measured file/note/
+dock clearance, window maximize/restore/drag/close and stacking, desktop/mobile CV
+and contact access, native video playback, mobile focus entry/return and visible
+keyboard focus. Dock proximity magnification and damped return to baseline were
+observed; its existing motion hook and tokens were retained. No messages submitted.
+External href/target handling was inspected. The application still has no URL router
+or project deep links; opening documents does not add browser-history entries.
+
+`npm run build` (including TypeScript), `npm run lint`, `npm run check:case-studies`,
+and `git diff --check` pass. Reduced-motion media was verified by server-rendered
+tests and motion CSS review; OS preference switching and physical touch hardware
+were not exercised. No live product publishing, exhaustive pointer performance
+profiling, or full browser-history navigation test is claimed.
+
+Remaining evidence: a 20–40-second replacement workflow showing the final scheduled
+state. The existing architecture diagram is preserved, including the supplied S3
+label that earlier source review did not substantiate. New engineering prose does
+not claim S3. A specific agent suggestion → observed issue → reviewed correction
+would strengthen the existing documented AI visual-refinement example.
+
 ## Inventory before implementation
 
 The frontend uses React and CSS modules, with no animation library or smooth-scroll dependency. Inspection covered every CSS transition, animation, keyframe, hover/active/focus rule and transform, and interaction handlers in Desktop, DesktopIcon, Dock, Window, WindowManager, Mobile, the shared hooks, markdown/editorial case studies, plain text, forms, notes, browser embeds and Trash.

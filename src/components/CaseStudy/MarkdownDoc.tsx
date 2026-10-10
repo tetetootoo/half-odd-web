@@ -66,6 +66,14 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
       wide = true;
       if (directive.layout.startsWith('sap-')) {
         content = <SapDiagram kind={directive.layout} />;
+      } else if (directive.layout === 'overview') {
+        content = <dl className={styles.overview} aria-label="Project overview">
+          {block.children?.map((child, index) => {
+            const text = (child.token as Tokens.Paragraph).text;
+            const [label, ...value] = text.split('\n');
+            return <div key={index}><dt>{label.replaceAll('**', '').trim()}</dt><dd>{inline(Lexer.lexInline(value.join('\n')))}</dd></div>;
+          })}
+        </dl>;
       } else if (directive.layout === 'intro') {
         content = <div className={styles.intro}>
           <div className={styles.introTitle}>{block.children?.slice(0, 1).map(renderBlock)}</div>

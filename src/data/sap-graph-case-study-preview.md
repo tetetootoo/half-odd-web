@@ -4,6 +4,27 @@
 
 SAP Graph was an early-stage developer platform inside SAP Technology & Innovation, designed to give developers a unified way to work with business data spread across otherwise disconnected enterprise systems.
 
+**Role**
+Front-End Developer / Software Engineer
+
+**Period**
+2020–2021 · SAP Graph early access
+
+**Focus**
+Production Frontend Engineering · Reusable Components · Automated Testing
+
+**Technology**
+React · TypeScript · SAP Fiori/UI5 · Jest · Cypress · Gauge
+
+<!-- PROJECT_OVERVIEW -->
+
+## my contribution
+
+- Built and maintained 10+ reusable UI components and wrappers within the SAP Fiori/UI5 ecosystem.
+- Translated product designs into production React and TypeScript interfaces.
+- Built and maintained automated frontend tests with Jest, Cypress and Gauge.
+- Collaborated across implementation, code review, documentation and Scrum workflows.
+
 I joined the team during its early-access phase, first as a software engineering intern and later as a working student.
 
 My work sat at the intersection of product design and frontend engineering: translating high-fidelity product designs into production software, building reusable interface infrastructure, and helping establish the quality and consistency of an evolving developer product.
@@ -69,7 +90,7 @@ In one case, the intended tooltip interaction was better supported by an externa
 
 Rather than treating that as a purely technical decision, I assessed the tradeoff together with a mentor: the value of preserving the intended interaction against introducing a local dependency outside the primary component system.
 
-We chose the exception deliberately.
+Together, we chose the external library to preserve the intended interaction, accepting the cost of a dependency outside the shared component system. Forcing the interaction through the internal primitives would have prioritised implementation uniformity over the behaviour the design called for. This was a specific, reviewed exception, rather than a decision to replace the wider system.
 
 That experience stayed with me because it reframed consistency for me. A design system is not valuable because every implementation is identical. It is valuable because it gives a team a shared default and makes deviations conscious, explainable decisions.
 

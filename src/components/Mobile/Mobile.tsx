@@ -2,7 +2,7 @@ import { CvDoc } from '../CaseStudy/CvDoc';
 import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
 import { MarkdownDoc, MarkdownTextDoc } from '../CaseStudy/MarkdownDoc';
 import { ConceptDiagram } from '../CaseStudy/ConceptDiagram';
-import { useRef, useState, type FormEvent } from 'react';
+import { useLayoutEffect, useRef, useState, type FormEvent } from 'react';
 import {
   aboutInfo,
   contactInfo,
@@ -20,6 +20,7 @@ import {
 } from '../../data/textBlocks';
 import styles from './Mobile.module.css';
 import { dockLinks } from '../../data/desktopContent';
+import { IntroNote } from '../IntroNote/IntroNote';
 
 const DOCK_ICONS = {
   about: '/icons/about-me.png',
@@ -700,12 +701,12 @@ function MailSheet({ onClose }: { onClose: () => void }) {
             <span>{contactInfo.mailTo}</span>
           </div>
           <div className={styles.mailFieldRow}>
-            <span className={styles.mailFieldLabel}>Name:</span>
-            <input className={styles.mailFieldInput} name="name" required />
+            <label className={styles.mailFieldLabel} htmlFor="mobile-contact-name">Name:</label>
+            <input id="mobile-contact-name" className={styles.mailFieldInput} name="name" autoComplete="name" required />
           </div>
           <div className={styles.mailFieldRow}>
-            <span className={styles.mailFieldLabel}>From:</span>
-            <input className={styles.mailFieldInput} name="email" type="email" required />
+            <label className={styles.mailFieldLabel} htmlFor="mobile-contact-email">From:</label>
+            <input id="mobile-contact-email" className={styles.mailFieldInput} name="email" type="email" autoComplete="email" required />
           </div>
           <div className={styles.mailFieldRow}>
             <span className={styles.mailFieldLabel}>Subject:</span>
@@ -714,6 +715,7 @@ function MailSheet({ onClose }: { onClose: () => void }) {
           <textarea
             className={styles.mailBody}
             name="message"
+            aria-label="Message"
             placeholder="hi theresa, ..."
             required
           />
@@ -731,6 +733,13 @@ function MailSheet({ onClose }: { onClose: () => void }) {
 
 export function Mobile() {
   const [openId, setOpenId] = useState<OverlayId | null>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    if (!openId) return;
+    const opener = document.activeElement as HTMLElement | null;
+    overlayRef.current?.focus({ preventScroll: true });
+    return () => { if (opener?.isConnected) opener.focus({ preventScroll: true }); };
+  }, [openId]);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const audioApp = gridApps.find((app) => app.kind === 'audio');
@@ -749,6 +758,8 @@ export function Mobile() {
 
   return (
     <div className={styles.phone}>
+      <div className={styles.home} inert={!!openId}>
+        <div className={styles.introduction}><IntroNote /></div>
       <div className={styles.grid}>
         {gridApps.map((app) => (
           <AppIcon
@@ -758,6 +769,7 @@ export function Mobile() {
             onOpen={() => (app.kind === 'audio' ? toggleAudio() : setOpenId(app.id))}
           />
         ))}
+      </div>
       </div>
       {audioApp && (
         <audio
@@ -769,14 +781,14 @@ export function Mobile() {
         />
       )}
 
-      <nav className={styles.dock} aria-label="Dock">
-        <button type="button" className={styles.dockItem} onClick={() => setOpenId('about')}>
+      <nav className={styles.dock} aria-label="Dock" inert={!!openId}>
+        <button type="button" className={styles.dockItem} onClick={() => setOpenId('about')} aria-label="About me">
           <img className={`${styles.dockGlyph} ${styles.rounded}`} src={DOCK_ICONS.about} alt="" />
         </button>
-        <button type="button" className={styles.dockItem} onClick={() => setOpenId('notes')}>
+        <button type="button" className={styles.dockItem} onClick={() => setOpenId('notes')} aria-label="Notes">
           <img className={styles.dockGlyph} src={DOCK_ICONS.notes} alt="" />
         </button>
-        <button type="button" className={styles.dockItem} onClick={() => setOpenId('mail')}>
+        <button type="button" className={styles.dockItem} onClick={() => setOpenId('mail')} aria-label="Contact">
           <img className={styles.dockGlyph} src={DOCK_ICONS.mail} alt="" />
         </button>
         <a className={styles.dockItem} href={dockLinks.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -789,6 +801,26 @@ export function Mobile() {
         </a>
       </nav>
 
+      {openId && <div
+        className={styles.activeOverlay}
+        ref={overlayRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={openApp?.label ?? (openId === 'mail' ? 'Contact' : openId === 'about' ? 'About me' : 'Notes')}
+        tabIndex={-1}
+        onKeyDown={event => {
+          if (event.key !== 'Tab') return;
+          const controls = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('button:not(:disabled), a[href], input, textarea, select, video[controls], [tabindex="0"]')).filter(element => element.getClientRects().length);
+          const first = controls[0];
+          const last = controls.at(-1);
+          if (!first) { event.preventDefault(); return; }
+          if (event.shiftKey && (document.activeElement === first || document.activeElement === event.currentTarget)) {
+            event.preventDefault(); last?.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault(); first.focus();
+          }
+        }}
+      >
       {openId === 'about' && <AboutOverlay onClose={() => setOpenId(null)} />}
       {openId === 'notes' && <NotesApp onClose={() => setOpenId(null)} />}
       {openId === 'mail' && <MailSheet onClose={() => setOpenId(null)} />}
@@ -804,6 +836,7 @@ export function Mobile() {
       {openApp && openApp.kind === 'trash' && (
         <TrashFolder onClose={() => setOpenId(null)} />
       )}
+      </div>}
     </div>
   );
 }

@@ -352,6 +352,7 @@ function MailFrame({ item }: { item: DesktopItem }) {
           </div>
           <textarea
             name="message"
+            aria-label="Message"
             className={styles.mailFormMessage}
             placeholder="Hi Theresa, ..."
             value={message}
@@ -835,6 +836,19 @@ export function Window({
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const windowRef = useRef<HTMLDivElement>(null);
+  const workAreaRef = useRef(getWorkArea);
+  workAreaRef.current = getWorkArea;
+  useLayoutEffect(() => {
+    const fit = () => {
+      const wrapper = wrapperRef.current;
+      if (!wrapper) return;
+      const area = workAreaRef.current();
+      wrapper.style.setProperty('--available-window-height', `${Math.max(160, area.bottom - wrapper.offsetTop - step - MAXIMIZE_INSET_PX)}px`);
+    };
+    fit();
+    window.addEventListener('resize', fit);
+    return () => window.removeEventListener('resize', fit);
+  }, [step]);
 
   // The window's on-screen box, relative to the desktop.
   const measure = (): Geometry => {

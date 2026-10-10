@@ -7,7 +7,7 @@
 
 .window {
   width: min(760px, 82vw);
-  max-height: 88vh;
+  max-height: min(88vh, var(--available-window-height, 88vh));
   display: flex;
   flex-direction: column;
   background: #f6f2f4;

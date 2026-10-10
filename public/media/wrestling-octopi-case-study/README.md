@@ -1,9 +1,9 @@
 # Wrestling Octopi case-study media
 
-Approved narrative lives in `src/data/wrestling-octopi-case-study.md`. Whole
-sections are ordered problem → design evolution → product → system → development
-process → current state. Existing prose is unchanged; the ending status label and
-product CTA follow the supplied layout request. No other case study was restyled.
+Narrative lives in `src/data/wrestling-octopi-case-study.md`. The project overview
+and controlled product workflow precede the deeper narrative. The engineering
+section describes verified feed ordering and visibility behavior; existing
+architecture and process images remain in place.
 
 ## Asset map (visually inspected)
 
@@ -38,11 +38,11 @@ retains its original Cloudinary / S3 label; this is the author's source graphic.
 
 ## Rendering
 
-The introduction places title/subtitle/metadata beside the existing status text.
-The workflow video spans the full content width below both columns. Mobile stacks
-the introductory text first and video below. Semantic media measures, borders, radii and spacing are scoped to this
+The introduction places title and short introduction above a four-field editorial
+overview. The workflow video spans the content width in “the product in practice”.
+Mobile stacks overview fields in one column. Semantic media measures, borders, radii and spacing are scoped to this
 document. Paired images use equal-height contain frames without clipping the UI.
 Mobile stacks all pairs; supplied diagrams occupy the full content width. No scroll reveals,
-new window chrome, screenshots as cards, or playback controls were added. Video
-uses metadata preload, muted autoplay, inline looping, and a static poster for
-reduced motion. The original MOV remains available as the source asset.
+new window chrome or screenshot cards were added. The workflow uses native
+playback controls, no initial video preload, no autoplay, and its existing poster.
+Playback remains available for reduced-motion visitors. The original MOV remains available as the source asset.

@@ -11,6 +11,9 @@ import type { Position } from '../../hooks/useDrag';
 import { useWindowManager } from '../../hooks/useWindowManager';
 import { useDesktopState } from '../../hooks/useDesktopState';
 import styles from './Desktop.module.css';
+import { IntroNote } from '../IntroNote/IntroNote';
+import { useIsMobile } from '../../hooks/useIsMobile';
+import { useDesktopLayout } from '../../hooks/useDesktopLayout';
 
 // Approximate desktop icon footprint (see DesktopIcon.module.css), used to
 // keep icons on screen and to find a free spot when putting one back.
@@ -45,6 +48,7 @@ function isOverTrash(pointer: Position): boolean {
 }
 
 export function Desktop() {
+  const compactDesktop = useIsMobile(900);
   const itemsById = useMemo(() => {
     const map = new Map<string, DesktopItem>();
     for (const item of [...desktopItems, ...systemWindows, ...builtInTrash]) {
@@ -72,16 +76,18 @@ export function Desktop() {
 
   const trashedIds = new Set(trash.map((entry) => entry.id));
   const visibleItems = desktopItems.filter((item) => !trashedIds.has(item.id));
+  const layoutPositions = useDesktopLayout(iconLayerRef, dockRef, visibleItems, iconPositions, compactDesktop);
 
   const getIconPosition = (item: DesktopItem): Position =>
-    iconPositions[item.id] ?? { x: item.x, y: item.y };
+    layoutPositions[item.id] ?? { x: item.x, y: item.y };
 
   const getWorkArea = (): WorkArea => {
     const desktop = desktopRef.current!.getBoundingClientRect();
     const layer = iconLayerRef.current!.getBoundingClientRect();
+    const menu = desktopRef.current!.querySelector('header')?.getBoundingClientRect();
     const dock = dockRef.current?.getBoundingClientRect();
     return {
-      top: layer.top - desktop.top,
+      top: (menu?.bottom ?? layer.top) - desktop.top,
       bottom: (dock?.top ?? desktop.bottom) - desktop.top,
       width: desktop.width,
       height: desktop.height,
@@ -291,13 +297,16 @@ export function Desktop() {
 
   return (
     <TrashContext.Provider value={trashContext}>
-      <div className={styles.desktop} ref={desktopRef}>
+      <div className={styles.desktop} ref={desktopRef} data-desktop>
         <MenuBar />
+        {compactDesktop && <div className={styles.introduction}><IntroNote desktop /></div>}
+        <div className={styles.files}>
         <div
           className={styles.iconLayer}
           ref={iconLayerRef}
           onPointerDown={(e) => e.target === e.currentTarget && setSelectedId(null)}
         >
+          {!compactDesktop && <IntroNote desktop />}
           {visibleItems.map((item) => {
             const position = getIconPosition(item);
             const isAudio = item.kind === 'audio';
@@ -327,6 +336,7 @@ export function Desktop() {
               />
             );
           })}
+        </div>
         </div>
         {audioItem && (
           <audio
