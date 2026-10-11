@@ -72,27 +72,19 @@ It was deciding when the user actually needed to see it.
 
 ## engineering the experience
 
-The frontend uses React and TypeScript, with shared components rather than separate implementations for each screen. The same typed Button component serves Feed Preview, Posts, and the post editor, exposing variants, sizes, and loading states. Vitest and React Testing Library tests exercise the feed interface; separate API tests check ordering and ownership rules.
+I built the frontend in React and TypeScript, using shared components to keep the experience consistent across different parts of the product. The same typed Button component serves Feed Preview, Posts, and the post editor, with variants, sizes, and loading states. Vitest and React Testing Library cover the feed interface, while separate API tests check ordering and ownership rules.
 
-**AI-assisted implementation, browser-tested refinement**
+### where ai needed direction
 
 I used an AI coding agent to implement the feed planner's initial drag-and-drop interaction. The first version had inconsistent tile sizes, dragging that didn't reliably update the order, too little visual feedback, and rearrangement animations that felt unnatural.
 
-I worked through several rounds of changes with the agent, testing in the browser after each round and identifying what still needed work. I refined tile sizing, feedback, and rearrangement behavior until the ordering and interaction matched the experience I intended. The current grid uses a consistent tile ratio and a separate drag preview; completing a drag updates the local order, while saving remains an explicit action. AI helped implement the functionality. Interaction design, evaluation, iteration, and final judgment remained my responsibility.
+I worked through several rounds of changes with the agent, testing in the browser after each round and identifying what still needed work. I refined tile sizing, feedback, and rearrangement behavior until the ordering and interaction matched the experience I intended.
+
+The current grid uses a consistent tile ratio and a separate drag preview. Completing a drag updates the local order, while saving remains an explicit action.
+
+AI helped me build the interaction, but getting it to feel right still depended on the decisions I made along the way.
 
 <!-- FEED_DRAG_ITERATION -->
-
-**The challenge**
-
-The feed planner needed to let me experiment with a visual order without confusing that order with a post's publishing status. Removing a draft from the preview also needed to leave it available in Posts. An unset position already meant “not manually ordered”; using it to mean “hidden” would have removed untouched drafts from the grid.
-
-**The decision**
-
-I kept preview order, preview visibility, and publishing status separate. Completing a drag updates the local array and marks the order as unsaved. A separate save sends the ordered post IDs to the API, which verifies ownership and writes positions in a database transaction. Hiding a draft uses its own flag rather than deleting the post or repurposing its position. Failed and publishing posts remain visible so they can still be found. API tests cover transactional ordering and rejection of posts belonging to another user.
-
-**The tradeoff**
-
-This makes rearranging the grid responsive without a write on every drag. It also makes saving an explicit responsibility: an unsaved arrangement is local, and a failed save needs retrying. Visual order doesn't change scheduled publishing times. Keeping these concerns separate gives the interface room to simplify without making the underlying data ambiguous.
 
 <!-- ARCHITECTURE -->
 
