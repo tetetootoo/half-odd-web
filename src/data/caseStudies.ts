@@ -45,6 +45,10 @@ export const CASE_STUDIES: Record<CaseStudyId, CaseStudyConfig> = {
         { ...wo('landing-page-current-monochrome.png', 'Current direction', 'Current black and white Wrestling Octopi landing page with a simplified headline and product preview.') },
       ] },
       FEED_PREVIEW: { layout: 'media', size: 'wide', media: [wo('instagram-feed-grid-preview.png', 'Feed Preview', 'Wrestling Octopi Feed Preview showing a three-column Instagram content grid.')] },
+      FEED_DRAG_ITERATION: { layout: 'split', paragraphs: 3, media: [{
+        ...wo('screenrecord-feed-preview-drag-drop.mov', 'Feed Preview · drag and drop', 'Screen recording of rearranging tiles in the Wrestling Octopi Feed Preview.', '1138 / 1202'),
+        controls: true,
+      }] },
       PLANNING_PAIR: { layout: 'comparison', size: 'wide', media: [
         { ...wo('post-column-caption-and-schedule.png', 'Column view', 'Wrestling Octopi Column view with a scheduled post, caption editor, publishing time, and image preview.', '2940 / 1606') },
         { ...wo('post-calendar-october-2026.png', 'Calendar view', 'Wrestling Octopi calendar showing scheduled Instagram content in October 2026.') },
