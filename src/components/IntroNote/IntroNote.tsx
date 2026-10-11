@@ -31,7 +31,7 @@ export function IntroNote({ desktop = false }: { desktop?: boolean }) {
     const layer = note.parentElement!;
     const place = () => {
       const { bounds, maxX, maxY, fits } = geometry();
-      const preferred = draggedPosition.current ?? { x: bounds.width * 0.64, y: bounds.height * 0.36 };
+      const preferred = draggedPosition.current ?? { x: bounds.width * 0.026, y: bounds.height * 0.059 };
       const origin = { x: Math.min(maxX, Math.max(8, preferred.x)), y: Math.min(maxY, Math.max(8, preferred.y)) };
       if (fits(origin)) {
         setPosition(previous => previous?.x === origin.x && previous.y === origin.y ? previous : origin);
@@ -78,7 +78,7 @@ export function IntroNote({ desktop = false }: { desktop?: boolean }) {
       ref={ref}
       aria-label="introduction"
       className={`${styles.note} ${desktop ? styles.desktop : ''}`}
-      style={desktop ? { left: position?.x ?? '64%', top: position?.y ?? '36%', translate: `${offset.x}px ${offset.y}px` } : undefined}
+      style={desktop ? { left: position?.x ?? '2.6%', top: position?.y ?? '5.9%', translate: `${offset.x}px ${offset.y}px` } : undefined}
       {...handlers}
     >
       <div data-no-drag>

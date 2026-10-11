@@ -14,6 +14,7 @@ export interface TrashEntry {
 }
 
 interface StoredDesktop {
+  layoutRevision: string;
   // Only icons the visitor has moved; everything else keeps its default from
   // desktopContent, so layout changes shipped later still reach them.
   positions: Record<string, Position>;
@@ -22,6 +23,8 @@ interface StoredDesktop {
 
 const STORAGE_KEY = 'half-odd:desktop:v1';
 const knownIds = new Set(desktopItems.map((item) => item.id));
+// Old browser overrides must not mask a newly published desktop arrangement.
+const layoutRevision = JSON.stringify(desktopItems.map(({ id, x, y }) => [id, x, y]));
 
 function isPosition(value: unknown): value is Position {
   const p = value as Position;
@@ -34,15 +37,15 @@ function load(): StoredDesktop {
   try {
     const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? 'null') as Partial<StoredDesktop> | null;
     const positions = Object.fromEntries(
-      Object.entries(raw?.positions ?? {}).filter(([id, p]) => knownIds.has(id) && isPosition(p)),
+      Object.entries(raw?.layoutRevision === layoutRevision ? raw.positions ?? {} : {}).filter(([id, p]) => knownIds.has(id) && isPosition(p)),
     );
     const trash = (Array.isArray(raw?.trash) ? raw.trash : []).filter(
       (entry, i, all) =>
         knownIds.has(entry?.id) && isPosition(entry) && all.findIndex((e) => e.id === entry.id) === i,
     );
-    return { positions, trash };
+    return { layoutRevision, positions, trash };
   } catch {
-    return { positions: {}, trash: [] };
+    return { layoutRevision, positions: {}, trash: [] };
   }
 }
 
@@ -53,7 +56,7 @@ export function useDesktopState() {
 
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ positions: iconPositions, trash }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ layoutRevision, positions: iconPositions, trash }));
     } catch {
       // Private mode or full storage: the desktop still works, it just won't remember.
     }
