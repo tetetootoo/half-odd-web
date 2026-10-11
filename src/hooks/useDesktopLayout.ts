@@ -2,8 +2,8 @@ import { useLayoutEffect, useMemo, useState, type RefObject } from 'react';
 import type { DesktopItem } from '../data/desktopContent';
 import type { Position } from './useDrag';
 
-// Keep the authored scattered layout; only nudge files that would collide
-// after a viewport change. Normalized positions never overwrite saved ones.
+// Adapt the authored layout to the viewport, then honor manual placements.
+// Dropping an icon must not trigger collision correction or move other files.
 export function useDesktopLayout(
   layerRef: RefObject<HTMLDivElement | null>,
   dockRef: RefObject<HTMLElement | null>,
@@ -37,7 +37,7 @@ export function useDesktopLayout(
     const result: Record<string, Position> = {};
     const fits = (p: Position) => placed.every(other => Math.abs(other.x - p.x) >= width || Math.abs(other.y - p.y) >= height);
     for (const item of items) {
-      const desired = saved[item.id] ?? item;
+      const desired = item;
       const origin = { x: Math.max(0, Math.min(maxX, desired.x / 100 * size.width)), y: Math.max(0, Math.min(maxY, desired.y / 100 * (layerRef.current?.clientHeight ?? size.height))) };
       let position = origin;
       if (!fits(origin)) {
@@ -50,6 +50,14 @@ export function useDesktopLayout(
       }
       placed.push(position);
       result[item.id] = { x: position.x / size.width * 100, y: position.y / (layerRef.current?.clientHeight ?? size.height) * 100 };
+    }
+    for (const item of items) {
+      const manual = saved[item.id];
+      if (!manual) continue;
+      result[item.id] = {
+        x: Math.max(0, Math.min(maxX, manual.x / 100 * size.width)) / size.width * 100,
+        y: Math.max(0, Math.min(maxY, manual.y / 100 * (layerRef.current?.clientHeight ?? size.height))) / (layerRef.current?.clientHeight ?? size.height) * 100,
+      };
     }
     return result;
   }, [items, saved, size, layerRef]);
