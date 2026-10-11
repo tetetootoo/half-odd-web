@@ -108,7 +108,7 @@ export const desktopItems: DesktopItem[] = [
     label: ':).txt',
     kind: 'text',
     windowTitle: ':).txt',
-    x: 76.2,
+    x: 68.8,
     y: 72.7,
     iconSrc: '/icons/doc-preview.svg',
     plainText: [
@@ -238,7 +238,7 @@ export const desktopItems: DesktopItem[] = [
     caseStudyId: 'antispace-berlin-case-study',
     iconSrc: MARKDOWN_DOCUMENT_ICON,
     windowTitle: CASE_STUDIES['antispace-berlin-case-study'].label,
-    x: 68.9,
+    x: 77.5,
     y: 8.4,
   },
   {
@@ -258,7 +258,7 @@ export const desktopItems: DesktopItem[] = [
     caseStudyId: 'sap-graph-case-study',
     iconSrc: MARKDOWN_DOCUMENT_ICON,
     windowTitle: CASE_STUDIES['sap-graph-case-study'].label,
-    x: 50,
+    x: 67.2,
     y: 8.4,
   },
   {
@@ -268,7 +268,7 @@ export const desktopItems: DesktopItem[] = [
     caseStudyId: 'wrestling-octopi-case-study',
     iconSrc: MARKDOWN_DOCUMENT_ICON,
     windowTitle: CASE_STUDIES['wrestling-octopi-case-study'].label,
-    x: 31.1,
+    x: 56.9,
     y: 8.4,
   },
   {
@@ -290,7 +290,7 @@ export const desktopItems: DesktopItem[] = [
     markdown: aptitudeMarkdown,
     windowTitle: 'aptitude.txt',
     iconSrc: MARKDOWN_DOCUMENT_ICON,
-    x: 82.8,
+    x: 79.1,
     y: 72.7,
   },
   {
@@ -300,7 +300,7 @@ export const desktopItems: DesktopItem[] = [
     windowTitle: 'CV.md',
     iconSrc: MARKDOWN_DOCUMENT_ICON,
     markdown: cvMarkdown,
-    x: 69.6,
+    x: 58.5,
     y: 72.7,
   },
 ];

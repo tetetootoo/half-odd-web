@@ -36,7 +36,8 @@ export function useDesktopLayout(
     const placed: Position[] = [];
     const result: Record<string, Position> = {};
     const fits = (p: Position) => placed.every(other => Math.abs(other.x - p.x) >= width || Math.abs(other.y - p.y) >= height);
-    for (const item of items) {
+    // Reserve upper rows first so lower objects cannot displace their icons.
+    for (const item of [...items].sort((a, b) => a.y - b.y || a.x - b.x)) {
       const desired = item;
       const origin = { x: Math.max(0, Math.min(maxX, desired.x / 100 * size.width)), y: Math.max(0, Math.min(maxY, desired.y / 100 * (layerRef.current?.clientHeight ?? size.height))) };
       let position = origin;

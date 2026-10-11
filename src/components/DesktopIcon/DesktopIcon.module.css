@@ -64,7 +64,7 @@
 .glyphWrapper {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: 54px;
   height: 54px;
