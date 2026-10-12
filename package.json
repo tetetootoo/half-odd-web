@@ -9,7 +9,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "check:case-studies": "node scripts/check-case-studies.mjs"
+    "check:case-studies": "node scripts/check-case-studies.mjs",
+    "check:accessibility": "node scripts/check-accessibility.mjs"
   },
   "dependencies": {
     "marked": "^18.0.14",

@@ -1,3 +1,4 @@
+import { AccessibleVideo } from '../AccessibleVideo';
 import { CvDoc } from '../CaseStudy/CvDoc';
 import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
 import { MarkdownDoc, MarkdownTextDoc } from '../CaseStudy/MarkdownDoc';
@@ -98,7 +99,7 @@ function AppIcon({
   }
 
   return (
-    <button type="button" className={styles.appIcon} onClick={onOpen}>
+    <button type="button" className={styles.appIcon} onClick={onOpen} aria-pressed={app.kind === 'audio' ? !!isPlaying : undefined} aria-label={app.kind === 'audio' ? `${isPlaying ? 'Pause' : 'Play'} ${app.label}` : undefined}>
       <span className={styles.appGlyphWrapper}>
         <span className={tileClass}><span className={styles.glyphContent}><img className={glyphClass} src={app.iconSrc} alt="" /></span></span>
         {app.kind === 'audio' && (
@@ -137,7 +138,7 @@ function SiteFrame({ app, onBack }: { app: MobileAppItem; onBack: () => void }) 
           <iframe key={reloadKey} className={styles.siteIframe} src={app.embedUrl} title={app.label} />
         ) : app.mediaSrc ? (
           app.mediaType === 'video' ? (
-            <video
+            <AccessibleVideo
               key={reloadKey}
               className={styles.siteMediaVideo}
               src={app.mediaSrc}
@@ -228,7 +229,7 @@ function SplitSectionMedia({ data }: { data: SplitMediaSection }) {
     );
   }
   return (
-    <video
+    <AccessibleVideo
       className={styles.splitVisualMedia}
       src={data.visualSrc}
       autoPlay
@@ -720,9 +721,9 @@ function MailSheet({ onClose }: { onClose: () => void }) {
             required
           />
         </form>
-        {status === 'sent' && <p className={styles.mailStatus}>sent ✓</p>}
+        <p className={status === 'sent' ? styles.mailStatus : 'srOnly'} role="status">{status === 'sending' ? 'Sending message.' : status === 'sent' ? 'sent ✓' : ''}</p>
         {status === 'error' && (
-          <p className={styles.mailStatusError}>
+          <p className={styles.mailStatusError} role="alert">
             something went wrong — email {contactInfo.mailTo} directly.
           </p>
         )}
@@ -757,7 +758,7 @@ export function Mobile() {
   const openApp = gridApps.find((app) => app.id === openId);
 
   return (
-    <div className={styles.phone}>
+    <main className={styles.phone} aria-label="Half Odd portfolio">
       <div className={styles.home} inert={!!openId}>
         <div className={styles.introduction}><IntroNote /></div>
       <div className={styles.grid}>
@@ -809,8 +810,9 @@ export function Mobile() {
         aria-label={openApp?.label ?? (openId === 'mail' ? 'Contact' : openId === 'about' ? 'About me' : 'Notes')}
         tabIndex={-1}
         onKeyDown={event => {
+          if (event.key === 'Escape') { event.preventDefault(); setOpenId(null); return; }
           if (event.key !== 'Tab') return;
-          const controls = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('button:not(:disabled), a[href], input, textarea, select, video[controls], [tabindex="0"]')).filter(element => element.getClientRects().length);
+          const controls = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('button:not(:disabled), a[href], input, textarea, select, iframe, video[controls], [tabindex="0"]')).filter(element => element.getClientRects().length && !element.matches(':disabled, [type=hidden], [tabindex="-1"]'));
           const first = controls[0];
           const last = controls.at(-1);
           if (!first) { event.preventDefault(); return; }
@@ -837,6 +839,6 @@ export function Mobile() {
         <TrashFolder onClose={() => setOpenId(null)} />
       )}
       </div>}
-    </div>
+    </main>
   );
 }

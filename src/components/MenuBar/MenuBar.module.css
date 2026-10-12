@@ -8,7 +8,7 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   font-size: 14px;
-  color: #fff;
+  color: #2b1b24;
   user-select: none;
   flex-shrink: 0;
 }
@@ -26,7 +26,7 @@
 }
 
 .battery {
-  color: #fff;
+  color: #2b1b24;
 }
 
 .clock {

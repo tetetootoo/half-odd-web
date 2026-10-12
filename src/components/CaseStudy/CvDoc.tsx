@@ -33,7 +33,7 @@ export function CvDoc({ markdown }: { markdown: string }) {
     if (t.type === 'heading' && (t as Tokens.Heading).depth === 2) sections.push({ title: t, tokens: [] });
     else sections.at(-1)?.tokens.push(t);
   }
-  return <article className={styles.document} aria-label="Curriculum vitae"><div className={styles.page}>
+  return <article tabIndex={0} className={styles.document} aria-label="Curriculum vitae"><div className={styles.page}>
     <header className={styles.header}>
       <div><h1>{content(tokens[0])}</h1><p className={styles.subtitle}>{content(tokens[1])}</p></div>
       <div className={styles.contacts}>{content(tokens[2])}</div>

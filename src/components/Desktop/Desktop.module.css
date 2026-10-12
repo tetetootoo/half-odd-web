@@ -54,3 +54,11 @@
   opacity: 0.4;
   cursor: default;
 }
+
+.arrange { position: absolute; top: 5px; left: 44px; z-index: 2000; color: #2b1b24; font-size: 13px; }
+.arrange summary { cursor: pointer; min-height: 26px; padding: 4px; }
+.arrange > div { display: grid; gap: 8px; max-width: 280px; padding: 12px; background: #f6f2f4; border: 1px solid #6b5a62; border-radius: 8px; }
+.arrange select { max-width: 100%; font: inherit; min-height: 28px; }
+.arrange button { min-height: 28px; font: inherit; }
+.moveButtons { display: flex; gap: 8px; }
+.moveButtons button { min-width: 32px; }

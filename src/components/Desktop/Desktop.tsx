@@ -67,6 +67,9 @@ export function Desktop() {
     return () => timers.forEach((timer) => window.clearTimeout(timer));
   }, []);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [arrangeId, setArrangeId] = useState('introduction');
+  const [moveNote, setMoveNote] = useState<{ x: number; y: number; sequence: number } | null>(null);
+  const [arrangementStatus, setArrangementStatus] = useState('');
   const [trashDropActive, setTrashDropActive] = useState(false);
   const [trashGhost, setTrashGhost] = useState<{ id: string; left: number; top: number } | null>(null);
 
@@ -233,6 +236,20 @@ export function Desktop() {
     setIconPositions((prev) => ({ ...prev, [item.id]: next }));
   };
 
+  const nudgeObject = (x: number, y: number) => {
+    if (arrangeId === 'introduction') {
+      setMoveNote(previous => ({ x, y, sequence: (previous?.sequence ?? 0) + 1 }));
+    } else {
+      const item = visibleItems.find(entry => entry.id === arrangeId);
+      const layer = iconLayerRef.current?.getBoundingClientRect();
+      if (!item || !layer) return;
+      const current = getIconPosition(item);
+      const next = clampToLayer(current.x / 100 * layer.width + x, current.y / 100 * layer.height + y, layer);
+      setIconPositions(previous => ({ ...previous, [item.id]: next }));
+    }
+    setArrangementStatus(`${arrangeId === 'introduction' ? 'Introduction' : itemsById.get(arrangeId)?.label} moved ${x < 0 ? 'left' : x > 0 ? 'right' : y < 0 ? 'up' : 'down'}.`);
+  };
+
   // Keyboard trashing removes the focused icon, so hand focus to a neighbour.
   const trashFromKeyboard = (item: DesktopItem) => {
     const current = document.activeElement;
@@ -313,16 +330,40 @@ export function Desktop() {
 
   return (
     <TrashContext.Provider value={trashContext}>
-      <div className={styles.desktop} ref={desktopRef} data-desktop>
+      <main className={styles.desktop} ref={desktopRef} data-desktop aria-label="Half Odd desktop">
         <MenuBar />
-        {compactDesktop && <div className={styles.introduction}><IntroNote desktop /></div>}
+        <details className={styles.arrange} onKeyDown={event => {
+          if (event.key === 'Escape') {
+            event.preventDefault(); event.stopPropagation();
+            event.currentTarget.open = false;
+            event.currentTarget.querySelector('summary')?.focus();
+          }
+        }}>
+          <summary>Arrange desktop</summary>
+          <div>
+            <label htmlFor="arrange-object">Object</label>
+            <select id="arrange-object" value={arrangeId} onChange={event => setArrangeId(event.target.value)}>
+              <option value="introduction">Introduction</option>
+              {keyboardOrderedItems.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
+            </select>
+            <div className={styles.moveButtons}>
+              <button type="button" onClick={() => nudgeObject(-24, 0)} aria-label="Move object left">←</button>
+              <button type="button" onClick={() => nudgeObject(24, 0)} aria-label="Move object right">→</button>
+              <button type="button" onClick={() => nudgeObject(0, -24)} aria-label="Move object up">↑</button>
+              <button type="button" onClick={() => nudgeObject(0, 24)} aria-label="Move object down">↓</button>
+            </div>
+            <button type="button" disabled={arrangeId === 'introduction' || itemsById.get(arrangeId)?.trashable === false || !visibleItems.some(item => item.id === arrangeId)} onClick={() => { const item = itemsById.get(arrangeId); if (item) { moveToTrash(item); setArrangementStatus(`${item.label} moved to Trash.`); } }}>Move to Trash</button>
+          </div>
+        </details>
+        <p className="srOnly" role="status">{arrangementStatus}</p>
+        {compactDesktop && <div className={styles.introduction}><IntroNote desktop moveRequest={moveNote} /></div>}
         <div className={styles.files}>
         <div
           className={styles.iconLayer}
           ref={iconLayerRef}
           onPointerDown={(e) => e.target === e.currentTarget && setSelectedId(null)}
         >
-          {!compactDesktop && <IntroNote desktop />}
+          {!compactDesktop && <IntroNote desktop moveRequest={moveNote} />}
           {keyboardOrderedItems.map((item) => {
             const position = getIconPosition(item);
             const isAudio = item.kind === 'audio';
@@ -400,7 +441,7 @@ export function Desktop() {
             top={trashGhost.top}
           />
         )}
-      </div>
+      </main>
     </TrashContext.Provider>
   );
 }

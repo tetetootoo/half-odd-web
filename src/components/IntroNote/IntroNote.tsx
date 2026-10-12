@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { useDrag, type Position } from '../../hooks/useDrag';
 import styles from './IntroNote.module.css';
 
-export function IntroNote({ desktop = false }: { desktop?: boolean }) {
+export function IntroNote({ desktop = false, moveRequest }: { desktop?: boolean; moveRequest?: { x: number; y: number; sequence: number } | null }) {
   const ref = useRef<HTMLElement>(null);
   const [position, setPosition] = useState<Position | null>(null);
   const draggedPosition = useRef<Position | null>(null);
@@ -55,6 +55,17 @@ export function IntroNote({ desktop = false }: { desktop?: boolean }) {
     mutations.observe(layer, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
     return () => { observer.disconnect(); mutations.disconnect(); };
   }, [desktop]);
+
+  useLayoutEffect(() => {
+    if (!desktop || !moveRequest) return;
+    const { maxX, maxY } = geometry();
+    setPosition(previous => {
+      if (!previous) return previous;
+      const next = { x: Math.max(8, Math.min(maxX, previous.x + moveRequest.x)), y: Math.max(8, Math.min(maxY, previous.y + moveRequest.y)) };
+      draggedPosition.current = next;
+      return next;
+    });
+  }, [moveRequest, desktop]);
 
   const { offset, handlers } = useDrag({
     disabled: !desktop,

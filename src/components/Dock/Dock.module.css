@@ -177,3 +177,9 @@
   .item:active { scale: none; }
   .tooltip, .externalBadge svg { translate: none !important; }
 }
+
+/* A pointer can cross the gap and inspect the label without dismissing it. */
+.tooltip { pointer-events: auto; visibility: hidden; }
+.tooltip::after { content: ''; position: absolute; top: 100%; left: 0; width: 100%; height: 12px; }
+.item:hover .tooltip, .item:focus-visible .tooltip { visibility: visible; }
+.tooltip[hidden] { display: none; }

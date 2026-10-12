@@ -1,3 +1,4 @@
+import { AccessibleVideo } from '../AccessibleVideo';
 import { CvDoc } from '../CaseStudy/CvDoc';
 import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
 import { MarkdownDoc, MarkdownTextDoc } from '../CaseStudy/MarkdownDoc';
@@ -82,7 +83,7 @@ function MediaFrame({ item }: { item: DesktopItem }) {
   }
   if (item.mediaType === 'video') {
     return (
-      <video
+      <AccessibleVideo
         className={styles.media}
         src={item.mediaSrc}
         poster={item.posterSrc}
@@ -177,7 +178,7 @@ function ImageOverlayFrame({ item }: { item: DesktopItem }) {
       {!item.mediaSrc ? (
         <div className={styles.imageBoxPlaceholder}>Image / video placeholder</div>
       ) : item.mediaType === 'video' ? (
-        <video
+        <AccessibleVideo
           className={styles.imageBoxMedia}
           src={item.mediaSrc}
           autoPlay
@@ -228,6 +229,7 @@ function NotesFrame({ item }: { item: DesktopItem }) {
             className={`${styles.noteListItem} ${
               note.id === selected.id ? styles.noteListItemActive : ''
             }`}
+            aria-pressed={note.id === selected.id}
             onClick={() => setSelectedId(note.id)}
           >
             <span className={styles.noteListTitle}>{note.title}</span>
@@ -329,6 +331,7 @@ function MailFrame({ item }: { item: DesktopItem }) {
             </label>
             <input
               id="mail-name"
+              autoComplete="name"
               name="name"
               className={styles.mailFormInput}
               value={name}
@@ -342,6 +345,7 @@ function MailFrame({ item }: { item: DesktopItem }) {
             </label>
             <input
               id="mail-email"
+              autoComplete="email"
               name="email"
               type="email"
               className={styles.mailFormInput}
@@ -359,12 +363,13 @@ function MailFrame({ item }: { item: DesktopItem }) {
             onChange={(e) => setMessage(e.target.value)}
             required
           />
+          <p role="status" className="srOnly">{status === 'sending' ? 'Sending message.' : status === 'sent' ? 'Message sent.' : ''}</p>
           <div className={styles.mailFormFooter}>
             <button type="submit" className={styles.mailFormSend} disabled={status === 'sending'}>
               {status === 'sending' ? 'Sending...' : status === 'sent' ? 'Sent ✓' : 'Send'}
             </button>
             {status === 'error' && (
-              <span className={styles.mailFormError}>
+              <span className={styles.mailFormError} role="alert">
                 Something went wrong — try again or email {item.mailTo} directly.
               </span>
             )}
@@ -514,7 +519,7 @@ function SplitSectionMedia({ data }: { data: SplitMediaSection }) {
     );
   }
   return (
-    <video
+    <AccessibleVideo
       className={styles.splitVisualMedia}
       src={data.visualSrc}
       autoPlay
@@ -869,6 +874,7 @@ export function Window({
   const [geometry, setGeometry] = useState<Geometry | null>(null);
   const [geometryAnimating, setGeometryAnimating] = useState(false);
   const [maximized, setMaximized] = useState(false);
+  const [moveStatus, setMoveStatus] = useState('');
   const restoreGeometryRef = useRef<Geometry | null>(null);
   const pendingGeometryRef = useRef<Geometry | null>(null);
   const geometryTimerRef = useRef<number | undefined>(undefined);
@@ -902,6 +908,16 @@ export function Window({
         setGeometry(null);
       }, motionDuration('--motion-window') + 40);
     }
+  };
+
+  const moveWindow = (x: number, y: number) => {
+    const box = measure();
+    const area = getWorkArea();
+    const dx = Math.max(TITLE_BAR_REACH_PX - box.width - box.left, Math.min(area.width - TITLE_BAR_REACH_PX - box.left, x));
+    const dy = Math.max(area.top - box.top, Math.min(area.bottom - TITLE_BAR_HEIGHT_PX - box.top, y));
+    if (geometry) setGeometry({ ...geometry, left: geometry.left + dx, top: geometry.top + dy });
+    else setBasePosition(previous => ({ x: previous.x + dx, y: previous.y + dy }));
+    setMoveStatus(`Window moved ${x < 0 ? 'left' : x > 0 ? 'right' : y < 0 ? 'up' : 'down'}.`);
   };
 
   // Second half of maximizing: the start box is committed, so flush it and
@@ -1084,6 +1100,22 @@ export function Window({
           ) : !isFlushDoc ? (
             <span className={`${styles.title} ${item.kind === 'markdown' ? styles.markdownTitle : ''}`}>{item.windowTitle}</span>
           ) : null}
+          <details className={styles.moveWindow} data-no-drag onKeyDown={event => {
+            if (event.key === 'Escape') {
+              event.preventDefault(); event.stopPropagation();
+              event.currentTarget.open = false;
+              event.currentTarget.querySelector('summary')?.focus();
+            }
+          }}>
+            <summary aria-label="Move window">↔</summary>
+            <div>
+              <button type="button" disabled={geometryAnimating} onClick={() => moveWindow(-24, 0)} aria-label="Move window left">←</button>
+              <button type="button" disabled={geometryAnimating} onClick={() => moveWindow(24, 0)} aria-label="Move window right">→</button>
+              <button type="button" disabled={geometryAnimating} onClick={() => moveWindow(0, -24)} aria-label="Move window up">↑</button>
+              <button type="button" disabled={geometryAnimating} onClick={() => moveWindow(0, 24)} aria-label="Move window down">↓</button>
+            </div>
+          </details>
+          <span role="status" className="srOnly">{moveStatus}</span>
         </div>
         <div
           className={`${styles.content} ${isFlushDoc || isImageKind || isProject || isMailKind || isTrashKind || isBrowserKind ? styles.contentFlush : ''}`}

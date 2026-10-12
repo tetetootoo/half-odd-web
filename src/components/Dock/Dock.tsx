@@ -1,4 +1,4 @@
-import { type Ref } from 'react';
+import { useEffect, useState, type Ref } from 'react';
 import { useDockMotion } from '../../hooks/useDockMotion';
 import { dockLinks, type DesktopItem } from '../../data/desktopContent';
 import styles from './Dock.module.css';
@@ -36,9 +36,9 @@ interface DockEntry {
   onClick?: (el: HTMLElement) => void;
 }
 
-function Tooltip({ label }: { label: string }) {
+function Tooltip({ label, dismissed }: { label: string; dismissed: boolean }) {
   return (
-    <span className={styles.tooltip} aria-hidden="true">
+    <span className={styles.tooltip} aria-hidden="true" hidden={dismissed}>
       {label}
     </span>
   );
@@ -71,6 +71,12 @@ export function Dock({
   onRestore,
 }: DockProps) {
   const motion = useDockMotion();
+  const [tooltipDismissed, setTooltipDismissed] = useState(false);
+  useEffect(() => {
+    const dismiss = (event: KeyboardEvent) => { if (event.key === 'Escape') setTooltipDismissed(true); };
+    window.addEventListener('keydown', dismiss);
+    return () => window.removeEventListener('keydown', dismiss);
+  }, []);
 
   const permanent: DockEntry[] = [
     { key: 'about-me', label: 'About Me', iconSrc: icons.aboutMe, iconClass: styles.rounded, windowId: 'about-me' },
@@ -105,6 +111,8 @@ export function Dock({
       className,
       'aria-label': entry.ariaLabel ?? entry.label,
       'data-drop-target': isTrash ? 'trash' : undefined,
+      onPointerEnter: () => setTooltipDismissed(false),
+      onFocus: () => setTooltipDismissed(false),
     };
     const face = (
       <>
@@ -112,7 +120,7 @@ export function Dock({
           <img className={`${styles.glyphImage} ${entry.iconClass ?? ''}`} src={entry.iconSrc} alt="" draggable={false} />
           {entry.href && <ExternalLinkBadge />}
         </span>
-        <Tooltip label={entry.label} />
+        <Tooltip label={entry.label} dismissed={tooltipDismissed} />
         {running && <span className={styles.runningDot} aria-hidden="true" />}
       </>
     );

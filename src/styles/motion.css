@@ -15,8 +15,8 @@
   --ease-soft: var(--ease-out);
 }
 
-:where(button, a, input, textarea, select):focus-visible {
-  outline: 2px solid #0a84ff;
+:is(button, a, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid #2b1b24;
   outline-offset: 2px;
 }
 
