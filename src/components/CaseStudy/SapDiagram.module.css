@@ -15,7 +15,7 @@
 .branches .node::before { content: ''; position: absolute; height: 18px; border-left: 1px solid var(--sap-line); top: -19px; left: 50%; }
 .diagram .support, .interaction p { font-size: 15px; line-height: 1.45; font-weight: 400; }
 .diagram .support { margin: 32px 0 0; }
-.diagram small, .timeline small, .timeline figcaption { display: block; font-size: 13px; line-height: 1.4; font-weight: 400; color: var(--sap-muted); }
+.diagram small, .timeline small, .timeline figcaption { display: block; font-size: 14px; line-height: 1.4; font-weight: 400; color: var(--sap-muted); }
 .diagram small { margin-top: 10px; }
 .interaction { display: grid; grid-template-columns: minmax(0, 1fr) 90px minmax(0, 1fr); align-items: start; gap: 16px; }
 .interaction .node { min-width: 0; }
@@ -37,7 +37,7 @@
 .timeline.timeline .date { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
 .timeline.timeline .product { font-size: 17px; font-weight: 600; color: #1c1319; }
 .timeline.timeline .status { font-weight: 400; color: var(--sap-muted); }
-.timeline small { margin-top: 4px; font-size: 13px; font-weight: 400; color: var(--sap-muted); }
+.timeline small { margin-top: 4px; font-size: 14px; font-weight: 400; color: var(--sap-muted); }
 .timeline figcaption { margin-top: 16px; text-align: center; font-weight: 400; }
 .productOrigin { display: flex; align-items: center; gap: 26px; }
 .productOrigin > span:first-child { flex-shrink: 0; }

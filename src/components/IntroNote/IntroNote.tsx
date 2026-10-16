@@ -8,7 +8,7 @@ export function IntroNote({ desktop = false, moveRequest }: { desktop?: boolean;
   const draggedPosition = useRef<Position | null>(null);
 
   // Measure actual icon labels as well as their glyphs. Leave room for the
-  // rotated paper corners and keep the dock outside the available area.
+  // widget edges and keep the dock outside the available area.
   const geometry = () => {
     const note = ref.current!;
     const layer = note.parentElement!;
@@ -92,7 +92,15 @@ export function IntroNote({ desktop = false, moveRequest }: { desktop?: boolean;
       style={desktop ? { left: position?.x ?? '2.6%', top: position?.y ?? '5.9%', translate: `${offset.x}px ${offset.y}px` } : undefined}
       {...handlers}
     >
-      <div data-no-drag>
+      <div className={styles.surface} aria-hidden="true" />
+      <div className={styles.field} aria-hidden="true">
+        <span className={styles.animal}><span>🐕</span></span>
+        <span className={styles.animal}><span>🐘</span></span>
+        <span className={styles.animal}><span>🐄</span></span>
+        <span className={styles.animal}><span>🐎</span></span>
+        <span className={styles.animal}><span>🐕</span></span>
+      </div>
+      <div className={styles.content} data-no-drag>
         <h1>hi, i'm theresa.</h1>
         <p>designer &amp; software engineer.</p>
         <p>i design and build digital products, from idea to implementation.</p>

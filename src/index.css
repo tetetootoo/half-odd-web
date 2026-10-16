@@ -1,5 +1,9 @@
 @import './styles/motion.css';
 
+:root {
+  --home-label-size: 14px;
+}
+
 * {
   box-sizing: border-box;
   text-transform: lowercase;

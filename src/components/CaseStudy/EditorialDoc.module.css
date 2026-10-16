@@ -31,7 +31,7 @@
 .university { width: 70%; margin: auto; }
 .node { display: inline-block; padding: 10px 24px; border: 1px solid #cdbcc4; }
 .arrow { display: block; color: #6b5a62; margin: 12px 0; }
-.annotation { margin: 0; color: #6b5a62; font-size: 13px; }
+.annotation { margin: 0; color: #6b5a62; font-size: 14px; }
 .longArrow { display: block; text-align: center; margin: 36px auto; color: #6b5a62; }
 .enterprise > .node { min-width: 180px; }
 .branches { width: 100%; display: grid; grid-template-columns: 1fr 1.3fr 1fr; margin: 36px 0; position: relative; }
@@ -64,7 +64,7 @@
 .tooltip { border: 1px solid #6b5a62; padding: 4px 12px; font-size: 12px; }
 .comparison { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; margin-top: 56px; text-align: center; }
 .versus { color: #6b5a62; font-size: 12px; align-self: center; }
-.chain { list-style: none; padding: 0; margin: 0; font-size: 13px; }
+.chain { list-style: none; padding: 0; margin: 0; font-size: 14px; }
 .chain li + li::before { content: '↓'; display: block; margin: 10px; color: #6b5a62; }
 .convergence { display: grid; grid-template-columns: 1fr 48px 1fr; align-items: center; width: 100%; }
 .convergence ul { list-style: none; padding: 0; margin: 0; }
