@@ -8,6 +8,7 @@ import { WindowManager } from '../WindowManager/WindowManager';
 import { TrashContext } from '../Trash/TrashContext';
 import type { WorkArea } from '../Window/Window';
 import type { Position } from '../../hooks/useDrag';
+import { useOverlayLink } from '../../hooks/useOverlayLink';
 import { useWindowManager } from '../../hooks/useWindowManager';
 import { useDesktopState } from '../../hooks/useDesktopState';
 import styles from './Desktop.module.css';
@@ -58,6 +59,12 @@ export function Desktop() {
   }, []);
 
   const manager = useWindowManager();
+  useOverlayLink(manager.activeId, id => {
+    const item = itemsById.get(id === 'about' ? 'about-me' : id);
+    return item && item.kind !== 'link' && item.kind !== 'audio' ? item.id : null;
+  }, manager.open, () => {
+    if (manager.activeId) manager.close(manager.activeId);
+  });
   const { iconPositions, setIconPositions, trash, setTrash } = useDesktopState();
   const [exitingIds, setExitingIds] = useState<Set<string>>(new Set());
   const [restoredIds, setRestoredIds] = useState<Set<string>>(new Set());

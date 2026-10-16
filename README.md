@@ -44,6 +44,40 @@ On smaller screens, the same work is reorganized into a simpler mobile-first fil
 - Marked for Markdown rendering
 - Oxlint for linting
 
+## Overlay links
+
+Append a hash suffix to the site URL to open an overlay directly, for example
+`https://www.halfodd.com/#wrestling-octopi-case-study` or `https://www.halfodd.com/#cv`.
+Opening or focusing an overlay updates the address bar; copy that URL to share it.
+Links work on desktop and mobile, including reloads and hash navigation.
+Closing an overlay updates the URL to the next active window, or removes the suffix.
+Unknown or malformed suffixes are ignored. Audio and external-link icons have no desktop overlay.
+
+Available overlay suffixes:
+
+- `#body-hommage`
+- `#smiley-txt`
+- `#mom-spaghetti`
+- `#antispace-poster`
+- `#antispace`
+- `#awake`
+- `#antispace-flyer`
+- `#half-a-love-letter`
+- `#bramlen`
+- `#antispace-berlin-case-study`
+- `#half-a-love-letter-case-study`
+- `#sap-graph-case-study`
+- `#wrestling-octopi-case-study`
+- `#photo-portfolio`
+- `#cv`
+- `#about-me`
+- `#notes`
+- `#mail`
+- `#trash`
+- `#body-hommage-logo`
+
+`#about` also works as an alias for `#about-me`.
+
 ## Live
 
 [halfodd.com](https://www.halfodd.com/)

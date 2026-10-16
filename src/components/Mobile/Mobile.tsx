@@ -1,3 +1,4 @@
+import { useOverlayLink } from '../../hooks/useOverlayLink';
 import { AccessibleVideo } from '../AccessibleVideo';
 import { CvDoc } from '../CaseStudy/CvDoc';
 import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
@@ -734,6 +735,12 @@ function MailSheet({ onClose }: { onClose: () => void }) {
 
 export function Mobile() {
   const [openId, setOpenId] = useState<OverlayId | null>(null);
+  useOverlayLink(openId, id => {
+    if (id === 'about-me' || id === 'about') return 'about';
+    if (id === 'notes' || id === 'mail' || id === 'trash') return id;
+    const app = [...gridApps, ...trashItems].find(app => app.id === id);
+    return app && app.kind !== 'audio' && app.kind !== 'link' ? app.id : null;
+  }, setOpenId, () => setOpenId(null));
   const overlayRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     if (!openId) return;
@@ -755,7 +762,7 @@ export function Mobile() {
     }
   };
 
-  const openApp = gridApps.find((app) => app.id === openId);
+  const openApp = [...gridApps, ...trashItems].find((app) => app.id === openId);
 
   return (
     <main className={styles.phone} aria-label="Half Odd portfolio">
@@ -835,7 +842,7 @@ export function Mobile() {
       {openApp && openApp.kind === 'image' && (
         <ImageDoc app={openApp} onClose={() => setOpenId(null)} />
       )}
-      {openApp && openApp.kind === 'trash' && (
+      {(openId === 'trash' || openApp?.kind === 'trash') && (
         <TrashFolder onClose={() => setOpenId(null)} />
       )}
       </div>}
