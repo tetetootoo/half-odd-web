@@ -1,18 +1,6 @@
-import { useEffect, useRef, useState, type VideoHTMLAttributes } from 'react';
+import type { VideoHTMLAttributes } from 'react';
 
-// Keep native playback controls available, including when motion is reduced.
-export function AccessibleVideo({ autoPlay, loop, ...props }: VideoHTMLAttributes<HTMLVideoElement>) {
-  const ref = useRef<HTMLVideoElement>(null);
-  const [reduced, setReduced] = useState(() => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  useEffect(() => {
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => {
-      setReduced(preference.matches);
-      if (preference.matches) ref.current?.pause();
-    };
-    update();
-    preference.addEventListener('change', update);
-    return () => preference.removeEventListener('change', update);
-  }, []);
-  return <video aria-label="Project video preview" {...props} ref={ref} controls autoPlay={!!autoPlay && !reduced} loop={!!loop && !reduced} />;
+// Use the same silent, continuous playback for every project video.
+export function AccessibleVideo(props: VideoHTMLAttributes<HTMLVideoElement>) {
+  return <video aria-label="Project video preview" {...props} controls={false} autoPlay muted loop playsInline />;
 }

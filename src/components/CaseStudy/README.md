@@ -45,10 +45,8 @@ that slot's `src` to its `/media/...` URL. A different filename is also fine:
 update `path`, `src`, and `type` together. Existing Antispace assets already
 have `src` values. Failed image/video requests use the same stable placeholder.
 
-Ambient videos retain muted looping playback. The Wrestling Octopi working
-product recording uses native controls, a poster, no autoplay, and no initial
-video preload. Reduced-motion visitors can manually play every case-study
-video through native controls. No scroll reveal hides content. Portrait print images use contain to preserve
+All case-study videos autoplay muted on loop with native player controls hidden.
+No scroll reveal hides content. Portrait print images use contain to preserve
 whole designs. The old Half a Love Letter envelope emoji is deliberately
 not presented as evidence of the final hand-drawn interaction.
 
@@ -65,7 +63,7 @@ unique desktop/mobile entries, WIP status, and preservation of `:).txt`.
 
 For browser QA, open all four files at desktop, laptop, tablet and mobile
 widths. Check close/reopen and next-project navigation, vertically stacked
-splits/comparisons, the bento grid's mobile alignment, and SAP diagram legibility. Check the controlled Wrestling Octopi workflow and ambient looping videos. Browser
+splits/comparisons, the bento grid's mobile alignment, and SAP diagram legibility. Check silent autoplay and looping for every video, including Wrestling Octopi. Browser
 visual and interaction QA needs an available browser connection.
 
 ## Project overviews and verified evidence

@@ -29,12 +29,12 @@ try {
         if (media.src) assert(existsSync(`public${media.src}`), `Missing real media: ${media.src}`);
       }
     }
-    // Reduced motion pauses ambient media without removing playback access.
+    // All project videos use silent looping playback for every preference.
     globalThis.window = { matchMedia: () => ({ matches: true }) };
     try {
       const reducedHtml = renderToStaticMarkup(createElement(MarkdownDoc, { caseStudyId: config.id, onOpenItem() {} }));
       for (const [video] of reducedHtml.matchAll(/<video\b[^>]*>/g)) {
-        assert(video.includes('controls=""') && !video.includes('autoPlay'), 'Reduced-motion videos remain manually playable');
+        assert(!video.includes('controls=') && video.includes('autoPlay') && video.includes('muted=""') && video.includes('loop=""'), 'Videos autoplay muted on loop without controls');
       }
     } finally { delete globalThis.window; }
     for (const entries of [desktopItems, gridApps]) {
@@ -50,9 +50,9 @@ try {
       assert(html.includes('Work in progress'));
       assert(html.includes('moving toward beta launch'));
       const video = html.match(/<video\b[^>]*>/)?.[0];
-      assert(video?.includes('controls=""'), 'Working product video has native controls');
-      assert(video.includes('preload="none"'), 'Working product video avoids initial download');
-      assert(!video.includes('autoPlay') && !video.includes('loop=""'), 'Working product video is visitor controlled');
+      assert(video && !video.includes('controls='), 'Working product video hides native controls');
+      assert(video.includes('preload="auto"'), 'Working product video preloads for autoplay');
+      assert(video.includes('autoPlay') && video.includes('loop=""') && video.includes('muted=""'), 'Working product video autoplays muted on loop');
       assert(html.indexOf('Project overview') < html.indexOf('the product in practice'));
       assert(html.indexOf('the product in practice') < html.indexOf('working with ai'));
       assert.equal((html.match(/canva-design-and-post-scheduling-workflow.mp4/g) ?? []).length, 1);

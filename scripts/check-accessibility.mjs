@@ -35,9 +35,10 @@ try {
   for (const reduced of [false, true]) {
     globalThis.window.matchMedia = () => ({ matches: reduced });
     const html = renderToStaticMarkup(createElement(AccessibleVideo, { src: '/preview.mp4', autoPlay: true, loop: true }));
-    assert(html.includes('controls=""'), 'Pause controls available for every preference');
-    assert.equal(html.includes('autoPlay'), !reduced, 'Reduced motion prevents autoplay');
-    assert.equal(html.includes('loop=""'), !reduced, 'Reduced motion prevents looping');
+    assert(!html.includes('controls='), 'Video player controls are hidden');
+    assert(html.includes('autoPlay'), 'Videos autoplay');
+    assert(html.includes('loop=""'), 'Videos loop');
+    assert(html.includes('muted=""') && html.includes('playsInline=""'), 'Videos stay muted and inline');
   }
   const luminance = hex => {
     const c = hex.match(/\w\w/g).map(value => parseInt(value, 16) / 255).map(value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4);
