@@ -41,15 +41,26 @@ try {
     assert(html.includes('muted=""') && html.includes('playsInline=""'), 'Videos stay muted and inline');
   }
   const luminance = hex => {
+    assert(/^(?:[\da-f]{3}|[\da-f]{6})$/i.test(hex), `Unsupported hex color: ${hex}`);
+    if (hex.length === 3) hex = [...hex].map(value => value.repeat(2)).join('');
     const c = hex.match(/\w\w/g).map(value => parseInt(value, 16) / 255).map(value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4);
     return .2126 * c[0] + .7152 * c[1] + .0722 * c[2];
   };
   const contrast = (a,b) => (Math.max(luminance(a),luminance(b)) + .05) / (Math.min(luminance(a),luminance(b)) + .05);
+  const hexDeclaration = (css, selector, property) => {
+    const declarations = css.match(new RegExp(`${selector}\\s*\\{([^}]*)\\}`))?.[1];
+    const hex = declarations?.match(new RegExp(`(?:^|;)\\s*${property}:\\s*#([\\da-f]{6}|[\\da-f]{3})(?=\\s*[;}]|\\s*$)`, 'i'))?.[1];
+    assert(hex, `Expected a hex ${property} declaration for ${selector}`);
+    return hex;
+  };
+  assert.equal(contrast('fff', '000'), 21, 'Shorthand hex colors are supported');
   const iconCss = readFileSync('src/components/DesktopIcon/DesktopIcon.module.css','utf8');
-  const labelColor = /\.label\s*\{[^}]*color:\s*#([\da-f]{6})/i.exec(iconCss)[1];
-  assert(contrast(labelColor, 'f2a7cb') >= 4.5, 'Desktop labels meet minimum text contrast on pink');
+  const labelColor = hexDeclaration(iconCss, '\\.label', 'color');
+  const desktopCss = readFileSync('src/components/Desktop/Desktop.module.css','utf8');
+  const desktopColor = hexDeclaration(desktopCss, '\\.desktop', 'background');
+  assert(contrast(labelColor, desktopColor) >= 4.5, 'Desktop labels meet minimum text contrast on the desktop background');
   const linkCss = readFileSync('src/index.css','utf8');
-  const linkColor = /a\s*\{[^}]*color:\s*#([\da-f]{6})/i.exec(linkCss)[1];
+  const linkColor = hexDeclaration(linkCss, 'a', 'color');
   assert(contrast(linkColor, 'ffffff') >= 4.5 && contrast(linkColor, 'f6f2f4') >= 4.5, 'Link color meets contrast on document surfaces');
   console.log('✓ Landmarks, native movement alternatives, non-modal windows, contact semantics, video preferences and contrast');
 } finally {
