@@ -41,12 +41,6 @@
   align-content: start;
 }
 
-/* Give the live projects and personal work rows extra breathing room. */
-.grid > .appIcon:nth-child(n + 5):nth-child(-n + 8),
-.grid > .appIcon:nth-child(n + 13):nth-child(-n + 16) {
-  margin-top: 16px;
-}
-
 .appIcon {
   display: flex;
   flex-direction: column;
