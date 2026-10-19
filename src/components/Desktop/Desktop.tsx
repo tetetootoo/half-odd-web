@@ -63,7 +63,9 @@ export function Desktop() {
     const item = itemsById.get(id === 'about' ? 'about-me' : id);
     return item && item.kind !== 'link' && item.kind !== 'audio' ? item.id : null;
   }, manager.open, () => {
-    if (manager.activeId) manager.close(manager.activeId);
+    for (const window of manager.windows) {
+      if (window.phase === 'open') manager.close(window.id);
+    }
   });
   const { iconPositions, setIconPositions, trash, setTrash } = useDesktopState();
   const [exitingIds, setExitingIds] = useState<Set<string>>(new Set());
