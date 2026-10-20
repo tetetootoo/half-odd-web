@@ -1,0 +1,9 @@
+UPLOAD
+
+Diese index.html enthält das Layout, die Funktionen, KI-Renderings und Originalfotos direkt.
+
+Die Datei als vollständige HTML-Seite bereitstellen, nicht als Text in einen bestehenden Seiteneditor einfügen.
+
+Für /tischlerei-michalak/ die index.html in diesen Ordner hochladen oder die Hosting-Route auf diese Datei setzen.
+
+Die Schrift DM Sans wird weiterhin von Google Fonts geladen; bei fehlender Verbindung greift die Systemschrift.
