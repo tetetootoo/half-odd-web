@@ -163,6 +163,7 @@ function SiteFrame({ app, onBack }: { app: MobileAppItem; onBack: () => void }) 
             className={styles.siteInfoToggle}
             onClick={() => setShowInfo((v) => !v)}
             aria-label="Info"
+            aria-expanded={showInfo}
           >
             info
           </button>
@@ -734,6 +735,31 @@ function MailSheet({ onClose }: { onClose: () => void }) {
 }
 
 export function Mobile() {
+  const phoneRef = useRef<HTMLElement>(null);
+  // VisualViewport also follows the iOS keyboard, which does not resize 100dvh.
+  useLayoutEffect(() => {
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+    let frame = 0;
+    const resize = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        // Keep browser pinch-to-zoom independent from the application layout.
+        if (viewport.scale !== 1) return;
+        phoneRef.current?.style.setProperty('--mobile-viewport-height', `${viewport.height}px`);
+        const active = document.activeElement;
+        if (active instanceof HTMLElement && active.matches('input, textarea') && phoneRef.current?.contains(active)) {
+          active.scrollIntoView({ block: 'nearest', behavior: 'instant' });
+        }
+      });
+    };
+    resize();
+    viewport.addEventListener('resize', resize);
+    return () => {
+      cancelAnimationFrame(frame);
+      viewport.removeEventListener('resize', resize);
+    };
+  }, []);
   const [openId, setOpenId] = useState<OverlayId | null>(null);
   useOverlayLink(openId, id => {
     if (id === 'about-me' || id === 'about') return 'about';
@@ -765,7 +791,7 @@ export function Mobile() {
   const openApp = [...gridApps, ...trashItems].find((app) => app.id === openId);
 
   return (
-    <main className={styles.phone} aria-label="Half Odd portfolio">
+    <main ref={phoneRef} className={styles.phone} aria-label="Half Odd portfolio">
       <div className={styles.home} inert={!!openId}>
         <div className={styles.introduction}><IntroNote /></div>
       <div className={styles.grid}>

@@ -10,10 +10,12 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "check:case-studies": "node scripts/check-case-studies.mjs",
+    "check:window-motion": "node scripts/check-window-motion.mjs",
     "check:accessibility": "node scripts/check-accessibility.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
+    "gsap": "^3.15.0",
     "marked": "^18.0.14",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"

@@ -33,6 +33,7 @@ interface DockEntry {
   iconClass?: string;
   href?: string;
   windowId?: string;
+  restoreId?: string;
   onClick?: (el: HTMLElement) => void;
 }
 
@@ -88,6 +89,7 @@ export function Dock({
   ];
   const minimized: DockEntry[] = minimizedItems.map((item) => ({
     key: `minimized-${item.id}`,
+    restoreId: item.id,
     label: item.label,
     ariaLabel: `Restore ${item.label}`,
     iconSrc: (item.kind === 'audio' ? item.posterSrc : item.iconSrc) ?? '',
@@ -109,6 +111,7 @@ export function Dock({
     const className = `${styles.item} ${isTrash && trashDropActive ? styles.dropTarget : ''}`;
     const common = {
       className,
+      'data-dock-window': entry.windowId ?? entry.restoreId,
       'aria-label': entry.ariaLabel ?? entry.label,
       'data-drop-target': isTrash ? 'trash' : undefined,
       onPointerEnter: () => setTooltipDismissed(false),

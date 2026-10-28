@@ -26,6 +26,7 @@ export function WindowManager({ manager, itemsById, getWorkArea, onOpenItem }: W
             getWorkArea={getWorkArea}
             onFocus={() => manager.focus(id)}
             onClose={() => manager.close(id)}
+            onMinimize={() => manager.minimize(id)}
             onFinishClose={(hadFocus) => manager.finishClose(id, hadFocus)}
             onFinishMinimize={(hadFocus) => manager.finishMinimize(id, hadFocus)}
             onOpenItem={onOpenItem}

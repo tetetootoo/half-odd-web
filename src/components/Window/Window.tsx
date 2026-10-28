@@ -12,6 +12,7 @@ import {
   type SplitMediaSection,
   type TextTier,
 } from '../../data/textBlocks';
+import { useWindowDockTransition } from '../../hooks/useWindowDockTransition';
 import { useDrag, type Position } from '../../hooks/useDrag';
 import type { ManagedWindow } from '../../hooks/useWindowManager';
 import { useTrash } from '../Trash/TrashContext';
@@ -59,6 +60,7 @@ interface WindowProps {
   getWorkArea: () => WorkArea;
   onFocus: () => void;
   onClose: () => void;
+  onMinimize?: () => void;
   onFinishClose: (hadFocus: boolean) => void;
   onFinishMinimize: (hadFocus: boolean) => void;
   onOpenItem: (id: string) => void;
@@ -822,6 +824,7 @@ export function Window({
   getWorkArea,
   onFocus,
   onClose,
+  onMinimize,
   onFinishClose,
   onFinishMinimize,
   onOpenItem,
@@ -991,21 +994,21 @@ export function Window({
   }, [managed.opener]);
 
   const { phase } = managed;
+  useWindowDockTransition(windowRef, item.id, phase, onFinishMinimize);
   const phaseClass =
     phase === 'closing'
       ? styles.animClose
       : phase === 'minimizing'
-        ? styles.animMinimize
+        ? styles.minimizing
         : phase === 'minimized'
           ? styles.minimized
           : managed.restored
-            ? styles.animRestore
+            ? ''
             : styles.animOpen;
 
   const finishExit = () => {
     const hadFocus = wrapperRef.current?.contains(document.activeElement) ?? false;
     if (phase === 'closing') onFinishClose(hadFocus);
-    else if (phase === 'minimizing') onFinishMinimize(hadFocus);
   };
 
   const handleAnimationEnd = (e: React.AnimationEvent) => {
@@ -1018,8 +1021,8 @@ export function Window({
   const finishExitRef = useRef(finishExit);
   finishExitRef.current = finishExit;
   useEffect(() => {
-    if (phase !== 'closing' && phase !== 'minimizing') return;
-    const timer = window.setTimeout(() => finishExitRef.current(), motionDuration(phase === 'closing' ? '--motion-close' : '--motion-window') + 80);
+    if (phase !== 'closing') return;
+    const timer = window.setTimeout(() => finishExitRef.current(), motionDuration('--motion-close') + 80);
     return () => window.clearTimeout(timer);
   }, [phase]);
 
@@ -1046,6 +1049,7 @@ export function Window({
     >
       <div
         ref={windowRef}
+        inert={phase === 'minimized' || phase === 'minimizing'}
         role="dialog"
         aria-label={item.windowTitle}
         tabIndex={-1}
@@ -1070,9 +1074,8 @@ export function Window({
             <button
               type="button"
               className={`${styles.light} ${styles.yellow}`}
-              onClick={maximized ? toggleMaximize : undefined}
-              disabled={!maximized}
-              aria-label="Restore default size"
+              onClick={onMinimize}
+              aria-label="Minimize"
             >
               <svg className={styles.lightIcon} viewBox="0 0 10 10" width="7" height="7" aria-hidden="true">
                 <path d="M1.5 5H8.5" stroke="#7a4d00" strokeWidth="1.4" strokeLinecap="round" />

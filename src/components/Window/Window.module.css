@@ -60,28 +60,8 @@
   }
 }
 
-@keyframes windowMinimize {
-  to {
-    opacity: 0;
-    scale: 0.96;
-    translate: 0 12px;
-  }
-}
-
-@keyframes windowRestore {
-  from {
-    opacity: 0;
-    scale: 0.96;
-    translate: 0 12px;
-  }
-}
-
 .animOpen {
   animation: windowOpen var(--motion-window) var(--ease-out) backwards;
-}
-
-.animRestore {
-  animation: windowRestore var(--motion-window) var(--ease-out) backwards;
 }
 
 .animClose {
@@ -89,8 +69,7 @@
   pointer-events: none;
 }
 
-.animMinimize {
-  animation: windowMinimize var(--motion-window) var(--ease-soft) forwards;
+.minimizing {
   pointer-events: none;
 }
 
@@ -102,9 +81,7 @@
 /* Reduced motion keeps the lifecycle (animationend still fires) but skips the motion. */
 @media (prefers-reduced-motion: reduce) {
   .animOpen,
-  .animRestore,
-  .animClose,
-  .animMinimize {
+  .animClose {
     animation-duration: 1ms;
     scale: 1 !important;
     translate: none !important;
@@ -1356,7 +1333,7 @@
   .light:not(:disabled):hover { filter: brightness(1.06); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .animOpen, .animRestore, .animClose, .animMinimize { scale: 1 !important; translate: none !important; }
+  .animOpen, .animClose { scale: 1 !important; translate: none !important; }
   .light:not(:disabled):active { scale: none; }
 }
 
