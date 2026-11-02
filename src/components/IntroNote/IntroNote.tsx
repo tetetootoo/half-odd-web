@@ -7,6 +7,9 @@ export function IntroNote({ desktop = false, moveRequest }: { desktop?: boolean;
   const [position, setPosition] = useState<Position | null>(null);
   const draggedPosition = useRef<Position | null>(null);
 
+  const dragOrigin = useRef<Position | null>(null);
+  const dragBounds = useRef({ maxX: 8, maxY: 8 });
+
   // Measure actual icon labels as well as their glyphs. Leave room for the
   // widget edges and keep the dock outside the available area.
   const geometry = () => {
@@ -30,10 +33,11 @@ export function IntroNote({ desktop = false, moveRequest }: { desktop?: boolean;
     const note = ref.current!;
     const layer = note.parentElement!;
     const place = () => {
+      if (dragOrigin.current) return;
       const { bounds, maxX, maxY, fits } = geometry();
       const preferred = draggedPosition.current ?? { x: bounds.width * 0.026, y: bounds.height * 0.059 };
       const origin = { x: Math.min(maxX, Math.max(8, preferred.x)), y: Math.min(maxY, Math.max(8, preferred.y)) };
-      if (fits(origin)) {
+      if (draggedPosition.current || fits(origin)) {
         setPosition(previous => previous?.x === origin.x && previous.y === origin.y ? previous : origin);
         return;
       }
@@ -69,19 +73,25 @@ export function IntroNote({ desktop = false, moveRequest }: { desktop?: boolean;
 
   const { offset, handlers } = useDrag({
     disabled: !desktop,
-    clamp: delta => {
+    onDragStart: () => {
       const { maxX, maxY } = geometry();
-      const base = position ?? { x: 8, y: 8 };
+      dragOrigin.current = position ?? { x: 8, y: 8 };
+      dragBounds.current = { maxX, maxY };
+    },
+    clamp: delta => {
+      const { maxX, maxY } = dragBounds.current;
+      const base = dragOrigin.current ?? position ?? { x: 8, y: 8 };
       return { x: Math.min(maxX - base.x, Math.max(8 - base.x, delta.x)), y: Math.min(maxY - base.y, Math.max(8 - base.y, delta.y)) };
     },
     onDragEnd: delta => {
-      if (!position) return;
-      const next = { x: position.x + delta.x, y: position.y + delta.y };
-      if (geometry().fits(next)) {
-        draggedPosition.current = next;
-        setPosition(next);
-      }
+      const base = dragOrigin.current;
+      dragOrigin.current = null;
+      if (!base) return;
+      const next = { x: base.x + delta.x, y: base.y + delta.y };
+      draggedPosition.current = next;
+      setPosition(next);
     },
+    onDragCancel: () => { dragOrigin.current = null; },
   });
 
   return (
@@ -100,7 +110,7 @@ export function IntroNote({ desktop = false, moveRequest }: { desktop?: boolean;
         <span className={styles.animal}><span>🐎</span></span>
         <span className={styles.animal}><span>🐕</span></span>
       </div>
-      <div className={styles.content} data-no-drag>
+      <div className={styles.content}>
         <h1>hi, i'm theresa.</h1>
         <p>designer &amp; software engineer.</p>
         <p>i design and build digital products, from idea to implementation.</p>

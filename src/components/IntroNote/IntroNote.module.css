@@ -154,4 +154,4 @@
 }
 .note p:last-child { margin-bottom: 0; }
 .note [data-no-drag] { user-select: text; cursor: text; }
-.desktop { position: absolute; cursor: grab; touch-action: none; }
+.desktop { position: absolute; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
