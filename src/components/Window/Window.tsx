@@ -895,8 +895,8 @@ export function Window({
     window.clearTimeout(geometryTimerRef.current);
     if (!maximized) {
       const current = measure();
-      // Mid-restore, the box saved before maximizing is still the right one.
-      if (!geometry || !geometryAnimating) restoreGeometryRef.current = current;
+      // Preserve the restore target if a maximize interrupts restoration.
+      if (!geometryAnimating) restoreGeometryRef.current = current;
       setGeometryAnimating(false);
       setGeometry(current);
       pendingGeometryRef.current = maximizedGeometry();
@@ -907,7 +907,6 @@ export function Window({
       setMaximized(false);
       geometryTimerRef.current = window.setTimeout(() => {
         setGeometryAnimating(false);
-        setGeometry(null);
       }, motionDuration('--motion-window') + 40);
     }
   };
@@ -944,7 +943,9 @@ export function Window({
       onFocus();
       let box = measure();
       const area = getWorkArea();
-      dragGeometryRef.current = geometry;
+      // Freeze the measured box for the whole gesture. CSS layout and
+      // maximize/restore must not change the drag origin under the pointer.
+      dragGeometryRef.current = box;
       if (maximized && restoreGeometryRef.current) {
         const desktop = (wrapperRef.current!.offsetParent as HTMLElement).getBoundingClientRect();
         const pointerX = origin.x - desktop.left;
@@ -963,6 +964,7 @@ export function Window({
         setGeometry(box);
         dragGeometryRef.current = box;
       }
+      setGeometry(box);
       // Keep enough title bar reachable to grab again, and never above the
       // menu bar. Bounds never pull a window that already sits outside them.
       boundsRef.current = {
