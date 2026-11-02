@@ -114,7 +114,7 @@
   height: 14px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
-  color: #2b1b24;
+  color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
   pointer-events: none;
 }

@@ -877,7 +877,6 @@ export function Window({
   const [geometry, setGeometry] = useState<Geometry | null>(null);
   const [geometryAnimating, setGeometryAnimating] = useState(false);
   const [maximized, setMaximized] = useState(false);
-  const [moveStatus, setMoveStatus] = useState('');
   const restoreGeometryRef = useRef<Geometry | null>(null);
   const pendingGeometryRef = useRef<Geometry | null>(null);
   const geometryTimerRef = useRef<number | undefined>(undefined);
@@ -897,7 +896,7 @@ export function Window({
     if (!maximized) {
       const current = measure();
       // Mid-restore, the box saved before maximizing is still the right one.
-      if (!geometry) restoreGeometryRef.current = current;
+      if (!geometry || !geometryAnimating) restoreGeometryRef.current = current;
       setGeometryAnimating(false);
       setGeometry(current);
       pendingGeometryRef.current = maximizedGeometry();
@@ -911,16 +910,6 @@ export function Window({
         setGeometry(null);
       }, motionDuration('--motion-window') + 40);
     }
-  };
-
-  const moveWindow = (x: number, y: number) => {
-    const box = measure();
-    const area = getWorkArea();
-    const dx = Math.max(TITLE_BAR_REACH_PX - box.width - box.left, Math.min(area.width - TITLE_BAR_REACH_PX - box.left, x));
-    const dy = Math.max(area.top - box.top, Math.min(area.bottom - TITLE_BAR_HEIGHT_PX - box.top, y));
-    if (geometry) setGeometry({ ...geometry, left: geometry.left + dx, top: geometry.top + dy });
-    else setBasePosition(previous => ({ x: previous.x + dx, y: previous.y + dy }));
-    setMoveStatus(`Window moved ${x < 0 ? 'left' : x > 0 ? 'right' : y < 0 ? 'up' : 'down'}.`);
   };
 
   // Second half of maximizing: the start box is committed, so flush it and
@@ -947,14 +936,33 @@ export function Window({
 
   useEffect(() => () => window.clearTimeout(geometryTimerRef.current), []);
 
+  const dragGeometryRef = useRef<Geometry | null>(null);
   const { offset, isDragging, handlers: dragHandlers } = useDrag({
-    // A full-screen window still drags (keeping its size); only the
-    // maximize/restore animation itself blocks dragging.
+    // Only the maximize/restore animation blocks dragging.
     disabled: geometryAnimating,
-    onDragStart: () => {
+    onDragStart: (_event, origin) => {
       onFocus();
-      const box = measure();
+      let box = measure();
       const area = getWorkArea();
+      dragGeometryRef.current = geometry;
+      if (maximized && restoreGeometryRef.current) {
+        const desktop = (wrapperRef.current!.offsetParent as HTMLElement).getBoundingClientRect();
+        const pointerX = origin.x - desktop.left;
+        const pointerY = origin.y - desktop.top;
+        const grabRatio = Math.max(0, Math.min(1, (pointerX - box.left) / box.width));
+        const restored = restoreGeometryRef.current;
+        box = {
+          ...restored,
+          left: pointerX - restored.width * grabRatio,
+          top: Math.max(area.top, pointerY - Math.min(TITLE_BAR_HEIGHT_PX, pointerY - box.top)),
+        };
+        window.clearTimeout(geometryTimerRef.current);
+        pendingGeometryRef.current = null;
+        setGeometryAnimating(false);
+        setMaximized(false);
+        setGeometry(box);
+        dragGeometryRef.current = box;
+      }
       // Keep enough title bar reachable to grab again, and never above the
       // menu bar. Bounds never pull a window that already sits outside them.
       boundsRef.current = {
@@ -968,10 +976,11 @@ export function Window({
       const b = boundsRef.current;
       return { x: Math.min(Math.max(x, b.minX), b.maxX), y: Math.min(Math.max(y, b.minY), b.maxY) };
     },
-    onDragEnd: (dragOffset) =>
-      geometry
-        ? setGeometry({ ...geometry, left: geometry.left + dragOffset.x, top: geometry.top + dragOffset.y })
-        : setBasePosition((prev) => ({ x: prev.x + dragOffset.x, y: prev.y + dragOffset.y })),
+    onDragEnd: (dragOffset) => {
+      const box = dragGeometryRef.current;
+      if (box) setGeometry({ ...box, left: box.left + dragOffset.x, top: box.top + dragOffset.y });
+      else setBasePosition(prev => ({ x: prev.x + dragOffset.x, y: prev.y + dragOffset.y }));
+    },
   });
 
   // Move keyboard focus in whenever the manager asks (open, restore, reopen).
@@ -1103,22 +1112,6 @@ export function Window({
           ) : !isFlushDoc ? (
             <span className={`${styles.title} ${item.kind === 'markdown' ? styles.markdownTitle : ''}`}>{item.windowTitle}</span>
           ) : null}
-          <details className={styles.moveWindow} data-no-drag onKeyDown={event => {
-            if (event.key === 'Escape') {
-              event.preventDefault(); event.stopPropagation();
-              event.currentTarget.open = false;
-              event.currentTarget.querySelector('summary')?.focus();
-            }
-          }}>
-            <summary aria-label="Move window">↔</summary>
-            <div>
-              <button type="button" disabled={geometryAnimating} onClick={() => moveWindow(-24, 0)} aria-label="Move window left">←</button>
-              <button type="button" disabled={geometryAnimating} onClick={() => moveWindow(24, 0)} aria-label="Move window right">→</button>
-              <button type="button" disabled={geometryAnimating} onClick={() => moveWindow(0, -24)} aria-label="Move window up">↑</button>
-              <button type="button" disabled={geometryAnimating} onClick={() => moveWindow(0, 24)} aria-label="Move window down">↓</button>
-            </div>
-          </details>
-          <span role="status" className="srOnly">{moveStatus}</span>
         </div>
         <div
           className={`${styles.content} ${isFlushDoc || isImageKind || isProject || isMailKind || isTrashKind || isBrowserKind ? styles.contentFlush : ''}`}

@@ -1348,9 +1348,3 @@
 .infoCardFloating:focus-within { opacity: 1; }
 
 .title.markdownTitle { font-weight: 400; }
-
-.moveWindow { position: relative; margin-left: auto; font-size: 14px; color: #2b1b24; }
-.moveWindow summary { cursor: pointer; list-style: none; padding: 4px; min-width: 24px; min-height: 24px; text-align: center; }
-.moveWindow summary::-webkit-details-marker { display: none; }
-.moveWindow > div { position: absolute; top: 100%; right: 0; z-index: 5; display: flex; gap: 6px; padding: 8px; background: #f6f2f4; border: 1px solid #6b5a62; border-radius: 6px; }
-.moveWindow button { min-width: 28px; min-height: 28px; font: inherit; }
