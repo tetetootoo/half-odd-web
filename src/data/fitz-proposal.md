@@ -60,8 +60,8 @@ Die Hauptnavigation führt direkt zu den Bereichsseiten. Auf längeren Seiten ma
 | **05** | **Redaktionszugang** | Bearbeitungsoberfläche für bis zu drei vereinbarte Bereiche, etwa Öffnungszeiten, Preise und einen Hinweis auf der Startseite. Inklusive Einrichtung und Einweisung. | **600 €** |
 | **06a**\* | **Playtomic-Terminliste im FITZ-Design** | Kommende öffentliche Racket-Termine nach Tagen gruppiert, mit Uhrzeit, Sportart, Platz und Titel, soweit verfügbar. | **650 €** |
 | **06b**\* | **Playtomic-Terminliste und Wochenkalender im FITZ-Design** | Terminliste plus Sieben-Tage-Ansicht mit Wochenwechsel. Besucher können zwischen Liste und Kalender wechseln und in beiden Ansichten nach Padel, Pickleball oder Badminton filtern. | **850 €** |
-| **07** | **Spezialisierte Anfrageformulare** | Eigene Formulare für Probetraining, Beratungstermine, Gruppen- und Firmenanfragen oder Events. Je Anfrageart stimmen wir Felder, Bestätigung und E-Mail-Empfänger ab. | **Nach Umfang** |
-| **08** | **Erweiterte lokale Suchmaschinenoptimierung** | Recherche lokaler Suchbegriffe und Ergänzung passender strukturierter Daten. Mit den nötigen Zugängen aktualisiere ich das Google-Unternehmensprofil zum Rebrand und gleiche Name, Adresse, Öffnungszeiten und Website-Link auf den vereinbarten Plattformen ab. Angebots- und Standortinformationen bereite ich auch für KI-Suchdienste klar auf. | **Nach Umfang** |
+| **07** | **Spezialisierte Anfrageformulare** | Je ein einfacher Anfrageweg mit abgestimmten Feldern, Bestätigung und E-Mail-Empfänger. Zum Beispiel Probetraining, Beratung und Firmenanfragen. Kalenderbuchung, Datei-Uploads und mehrstufige Abläufe separat. | **250 € pro Formular** oder **650 € für drei** |
+| **08** | **Erweiterte lokale Suchmaschinenoptimierung** | Lokale Suchbegriffe für die vereinbarten Sportangebote, passende strukturierte Daten, Aktualisierung eines Google-Unternehmensprofils und Abgleich von bis zu drei vereinbarten Plattformeinträgen. | **650 € einmalig** |
 | **12** | **Textredaktion für die Website** | Aus euren Stichpunkten oder Entwürfen formuliere oder überarbeite ich die Texte für die vereinbarten Seiten. Bei Bedarf können auch redaktionelle Bildunterschriften oder ausführlichere Bildbeschreibungen vereinbart werden. Welche Inhalte ich übernehme, stimmen wir vorab ab. | **Nach Umfang** |
 
 **\* Zu Pos. 06a und 06b**
@@ -76,11 +76,11 @@ Wenn ihr Preise, Öffnungszeiten oder aktuelle Hinweise nach dem Livegang selbst
 
 Sobald das Branding steht, kann ich euch auch bei der Ankündigung und Einführung des neuen FITZ-Auftritts begleiten.
 
-| Pos. | Leistung | Was ich für euch umsetze | Aufpreis netto |
+| Pos. | Leistung | Umfang | Aufpreis netto |
 | --- | --- | --- | --- |
-| 09 | Coming-soon-Seite mit Warteliste | Ich passe eure bestehende Vorabseite an das FITZ-Design an und ergänze ein Anmeldeformular. Interessierte können sich vormerken lassen und per E-Mail erfahren, sobald die Website live ist und die Racketsportarten buchbar sind. Einrichtung und Versand stimmen wir gemeinsam ab. | Nach Umfang |
-| 10 | Print und Merchandise im FITZ-Design | Auf Basis eures Logos, eurer Farben und Schriften gestalte ich ausgewählte Anwendungen wie Visitenkarten, Briefpapier, Kugelschreiber oder T-Shirts. Druck und Herstellung werden separat kalkuliert. | Nach Umfang |
-| 11 | Instagram-Startgrid für den Rebrand | Ich konzipiere und gestalte die ersten neun Beiträge als zusammenhängenden Feed. Sie stellen den neuen Club und seine Sportangebote vor und zeigen, wie Interessierte buchen oder euch erreichen. Das Team erhält eine abgestimmte Reihenfolge für die Veröffentlichung. | Nach Umfang |
+| **09** | **Coming-soon-Seite mit Warteliste** | Ich passe die bestehende Vorabseite an das FITZ-Branding an und binde ein Anmeldeformular an das vereinbarte E-Mail-Tool an. Ich teste die Anmeldung und die Bestätigung. Einrichtung und Versand der späteren Startbenachrichtigung sind für **150 € netto** separat buchbar. Etwaige Toolkosten trägt FITZ. | **350 €** |
+| **10** | **Print und Merchandise im FITZ-Design** | Zum Beispiel Visitenkarte, Briefpapier und ein einfaches Shirtmotiv auf Basis des bestehenden Brandings. Je Anwendung ein Format und eine gebündelte Korrekturrunde. Druck, Herstellung und aufwendigere Motive separat. | **Ab 150 € pro Motiv** oder **450 € für drei einfache Anwendungen** |
+| **11** | **Instagram-Startgrid für den Rebrand** | Ich plane und gestalte neun statische Einzelposts im FITZ-Design auf Basis eures Bildmaterials. Ihr erhaltet kurze Captions, eine Feed-Vorschau und die empfohlene Reihenfolge zur Veröffentlichung. | **600 €** |
 
 Für diese Leistungen bestätige ich Umfang, Preis und Zeitplan separat.
 
