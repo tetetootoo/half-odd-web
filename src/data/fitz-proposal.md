@@ -82,9 +82,7 @@ FITZ stellt zum Projektstart die **finalen deutschen Texte, Bilder, Branding-Dat
 
 Alle Preise sind Nettopreise in Euro. Die Zahlung erfolgt zu **50 % bei Beauftragung und zu 50 % nach Abnahme**, jeweils mit 14 Tagen Zahlungsziel. Hosting, Domain und gegebenenfalls erforderliche Anbietertarife trägt FITZ. Die laufenden Kosten stimmen wir vor der Einrichtung ab. Auch nach dem Livegang bin ich bei Bedarf eure Ansprechpartnerin für Anpassungen und Erweiterungen. Umfang und Kosten stimmen wir vorab ab.
 
-Für euren Start Mitte Dezember empfehle ich das **Basispaket für 3.500 € netto**. Wenn ihr zur Wiedereröffnung eine eigene Kampagnenseite möchtet, liegt ihr zusammen bei **3.750 € netto**. Falls ihr für den Launch einen anderen Budgetrahmen oder andere Prioritäten habt, können wir den Umfang gemeinsam darauf abstimmen.
-
-Wenn der Grundumfang für euch passt, stimmen wir in einem kurzen Gespräch den Projektstart und die Inhalte ab, die ich zuerst von euch brauche.
+Für euren Start Mitte Dezember empfehle ich das beschriebene Basispaket für 3.500 € netto. Wenn das für euch passt, stimmen wir in einem kurzen Gespräch den Projektstart ab und klären, welche Inhalte ich zuerst von euch brauche. Falls ihr zur Wiedereröffnung andere Prioritäten habt, passen wir den Umfang gemeinsam daran an.
 
 Ich freue mich darauf, den neuen FITZ-Auftritt gemeinsam mit euch zu gestalten.
 
