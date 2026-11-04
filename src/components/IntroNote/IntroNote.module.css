@@ -1,5 +1,5 @@
 .note {
-  --landscape: url('/media/intro-widget/glass-meadow-pastel.png');
+  --landscape: url('/media/intro-widget/glass-meadow-pastel.jpg');
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -26,7 +26,6 @@
   z-index: 0;
   overflow: hidden;
   border-radius: inherit;
-  background: var(--landscape) center / cover;
   transform: scaleX(-1);
   pointer-events: none;
 }
@@ -155,3 +154,12 @@
 .note p:last-child { margin-bottom: 0; }
 .note [data-no-drag] { user-select: text; cursor: text; }
 .desktop { position: absolute; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+
+.landscape {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
