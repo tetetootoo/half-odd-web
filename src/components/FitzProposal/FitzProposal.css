@@ -365,3 +365,5 @@ html.fitz-document,.fitz-document body,.fitz-document #root {height:100%;min-hei
  padding:6px 20px;
 }
 .fitz-primary-action:hover {background:#292929;}
+
+.fitz-copy .fitz-note + p:not(.fitz-note) {margin-top:28px;}
