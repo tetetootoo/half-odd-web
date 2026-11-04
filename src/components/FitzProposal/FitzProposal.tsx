@@ -10,7 +10,13 @@ const phaseLayout = [[0, 5], [7, 3], [10, 7], [17, 2], [21, 10], [31, 5], [36, 0
 const sections = content.split(/^## /m);
 const contactHref = `mailto:${aboutInfo.mail}?subject=${encodeURIComponent('FITZ-Website · Projektstart abstimmen')}`;
 const actionMarker = '**Projektstart abstimmen**';
-const html = (value: string) => ({ __html: marked.parse(value, { async: false }) as string });
+const html = (value: string) => {
+  const markup = marked.parse(value, { async: false }) as string;
+  return { __html: markup
+    .replace('<p><strong>* Zu Pos. 06a und 06b</strong></p>', '<p class="fitz-note-heading"><strong>* Zu Pos. 06a und 06b</strong></p>')
+    .replace('<p>Ich habe mir die Playtomic-API angesehen.', '<p class="fitz-note">Ich habe mir die Playtomic-API angesehen.')
+    .replace('<p>Pos. 06a und 06b stehen alternativ zur Auswahl.', '<p class="fitz-note">Pos. 06a und 06b stehen alternativ zur Auswahl.') };
+};
 
 const navigation = [
   ['proposal', 'Überblick'],

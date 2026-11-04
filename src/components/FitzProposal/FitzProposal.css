@@ -353,3 +353,15 @@ html.fitz-document,.fitz-document body,.fitz-document #root {height:100%;min-hei
  .fitz-copy table:has(th:nth-child(4)) th:nth-child(3),.fitz-copy table:has(th:nth-child(4)) td:nth-child(3) {width:52%;}
  .fitz-copy table:has(th:nth-child(4)) th:last-child,.fitz-copy table:has(th:nth-child(4)) td:last-child {width:18%;}
 }
+
+.fitz-copy .fitz-note-heading {margin-bottom:6px;}
+.fitz-copy .fitz-note {font-size:14px;line-height:1.6;margin-bottom:10px;}
+@media(max-width:700px) {.fitz-copy .fitz-note {font-size:15px;}}
+
+.fitz-primary-action {
+ background:#000;
+ border-radius:999px;
+ min-height:44px;
+ padding:6px 20px;
+}
+.fitz-primary-action:hover {background:#292929;}
