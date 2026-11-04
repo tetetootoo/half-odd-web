@@ -280,3 +280,43 @@ html.fitz-document,.fitz-document body,.fitz-document #root {height:100%;min-hei
  .fitz-eyebrow {flex-direction:column;align-items:flex-start;gap:16px;}
  .fitz-date-mobile {font-size:12px;line-height:1.5;color:#6b5a62;}
 }
+
+/* German proposal copy keeps its original capitalization; window chrome stays unchanged. */
+.fitz main,.fitz main * {text-transform:none;}
+.fitz-hero {margin-bottom:24px;}
+.fitz-intro {margin-bottom:36px;}
+.fitz-intro-text p {margin-bottom:18px;}
+.fitz-key-facts p {line-height:1.7;margin-bottom:10px;}
+.fitz-launch-condition p {font-size:14px;line-height:1.6;color:#6b5a62;margin-bottom:14px;}
+.fitz-reference p {margin-bottom:0;}
+.fitz-reference a,.fitz-copy a {text-underline-offset:3px;}
+.fitz-options {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:24px 0;}
+.fitz-option {padding:20px;border:1px solid #e9e2e5;border-radius:12px;background:#faf9f9;}
+.fitz-option h4 {font-size:18px;line-height:1.4;margin:0 0 14px;}
+.fitz-option p {font-size:16px;margin:0;}
+.fitz-actions {display:flex;align-items:center;flex-wrap:wrap;gap:16px 28px;margin-top:32px;}
+.fitz-actions .fitz-download {margin:0;}
+.fitz-primary-action {display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:12px 20px;border-radius:12px;background:#35402f;color:#fff!important;text-decoration:none;font-size:16px;transition:background-color 180ms ease;}
+.fitz-primary-action:hover {background:#46533f;}
+@media(max-width:700px) {
+ .fitz-options {grid-template-columns:1fr;gap:12px;}
+ .fitz-option {padding:18px;}
+ .fitz-option p {font-size:17px;}
+ .fitz-launch-condition p {font-size:15px;}
+ .fitz-actions {align-items:flex-start;flex-direction:column;gap:12px;}
+ .fitz-primary-action {font-size:17px;}
+}
+@media(prefers-reduced-motion:reduce) {.fitz-primary-action {transition:none;}}
+
+@media(max-width:700px) {
+ .fitz-copy th,.fitz-copy td {hyphens:auto;overflow-wrap:break-word;}
+ /* Long extension descriptions use the available width on narrow screens. */
+ .fitz-copy table:has(th:nth-child(3)) {display:block;border:0;}
+ .fitz-copy table:has(th:nth-child(3)) thead {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+ .fitz-copy table:has(th:nth-child(3)) tbody {display:block;}
+ .fitz-copy table:has(th:nth-child(3)) tbody tr {display:grid;grid-template-columns:minmax(0,1fr) minmax(80px,35%);gap:12px;border:1px solid #e9e2e5;border-radius:10px;padding:16px;margin-bottom:12px;}
+ .fitz-copy table:has(th:nth-child(3)) td {display:block!important;width:auto!important;padding:0;border:0;text-align:left;}
+ .fitz-copy table:has(th:nth-child(3)) td:first-child {grid-column:1;grid-row:1;}
+ .fitz-copy table:has(th:nth-child(3)) td:nth-child(2) {grid-column:1 / -1;grid-row:2;}
+ .fitz-copy table:has(th:nth-child(3)) td:last-child {grid-column:2;grid-row:1;text-align:right;}
+}

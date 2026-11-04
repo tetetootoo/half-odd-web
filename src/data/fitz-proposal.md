@@ -3,85 +3,94 @@
 **Angebot von Theresa Schantz · half odd**  
 4. November 2026
 
-Die neue Website bringt Fitness & Gesundheit und Racketsport unter einem gemeinsamen FITZ-Auftritt zusammen. Wer zum Fitnesskurs möchte, findet schnell den aktuellen Kursplan. Wer Padel, Pickleball oder Badminton spielen will, gelangt von der passenden Sportart direkt zur Platzbuchung. Interessierte können sich über den Club informieren und unkompliziert ein Probetraining anfragen.
+Ein gemeinsamer Auftritt für **Fitness & Gesundheit und Racketsport**. Mitglieder finden schnell den aktuellen Kursplan. Neue Besucher sehen auf einen Blick, was FITZ bietet, und gelangen direkt zur Probetrainingsanfrage oder zur Platzbuchung.
 
-| Mein Vorschlag für den Start | |
+**3.500 € netto · Festpreis für den beschriebenen Umfang**  
+**15. Dezember 2026 · geplanter Livegang**
+
+Der Zieltermin setzt den Projektstart am 9. November, die vereinbarten Inhalte und Zugänge sowie zügige Freigaben voraus.
+
+Ich begleite euch persönlich vom ersten Entwurf bis zur Veröffentlichung. Für **Anti Space Berlin** habe ich bereits einen Studioauftritt gestaltet und den Weg zur Kursbuchung eingebunden. [Arbeitsprobe ansehen](https://halfodd.com/#antispace-berlin-case-study)
+
+## Basispaket
+
+Ich entwickle die Seitenstruktur und Navigation aus eurem Sportangebot, dem neuen FITZ-Branding und den bereitgestellten Inhalten. Darauf aufbauend gestalte und programmiere ich eine eigenständige Website mit klaren Wegen zum Kursplan, zur Anfrage und zur Buchung.
+
+### Vorläufige Seitenstruktur
+
+Diese Aufteilung ist mein Vorschlag auf Basis unseres Gesprächs. Zum Projektstart stimmen wir die Seitennamen, die Reihenfolge und die Zuordnung der Inhalte gemeinsam ab.
+
+| Seite | Vorgesehene Inhalte |
 |---|---|
-| **Website-Relaunch** | **3.500 € netto als Festpreis** für Konzeption, individuelles Design, Programmierung und Veröffentlichung der deutschsprachigen Website. |
-| **Zieltermin für den Livegang** | **15. Dezember 2026** bei Projektstart am 9. November und rechtzeitiger Bereitstellung der Inhalte und Zugänge. Ein früherer Start ist möglich. |
+| **Startseite** | FITZ vorstellen und klare Einstiege in beide Sportbereiche schaffen. |
+| **Fitness & Gesundheit** | Training, Ausstattung, Rehasport, Wellness und Mitgliedschaft. |
+| **Kurse & Kursplan** | Kursangebot und aktueller Fitness-Kursplan. |
+| **Racketsport** | Padel, Pickleball, Badminton, Plätze, Preise und Platzbuchung. |
+| **Club** | Anlage, Team und Einblicke ins Studio. |
+| **Kontakt** | Öffnungszeiten, Anfahrt, Kontaktformular und WhatsApp. |
+| **Impressum und Datenschutz** | Zwei eigene Seiten mit euren bereitgestellten Rechtstexten. |
 
-Ich begleite euch persönlich von der Konzeption bis zum Livegang. Ein verwandtes Projekt ist die Website für [Anti Space Berlin](https://halfodd.com/#antispace-berlin-case-study), bei der ich den Studioauftritt gestaltet und den Weg zur Kursbuchung eingebunden habe. [Arbeitsproben auf halfodd.com](https://halfodd.com)
-
-## Basispaket · 3.500 € netto
-
-Ich entwickle die Seitenstruktur und Navigation auf Basis eures Sportangebots, des neuen Brandings und der bereitgestellten Inhalte. Gemeinsam legen wir fest, welche Informationen Besucher zuerst brauchen und wie sie vom jeweiligen Angebot zum Kursplan, zur Anfrage oder zur Buchung gelangen. Darauf aufbauend gestalte ich die Website und setze sie als eigenständig programmierte Website um.
-
-### Vorschlag für die Seitenstruktur
-
-Die folgende Übersicht zeigt meinen vorläufigen Vorschlag auf Basis unseres Gesprächs. Zum Projektstart stimmen wir Seitennamen, Reihenfolge und die Zuordnung der Inhalte gemeinsam ab. Kalkuliert sind sechs Inhaltsseiten sowie je eine Seite für Impressum und Datenschutz.
-
-| Seite | Inhalt |
-|---|---|
-| **Startseite** | FITZ vorstellen und klare Einstiege in Fitness & Gesundheit und Racketsport schaffen. |
-| **Fitness & Gesundheit** | Training, Ausstattung, Rehasport, Wellness und Mitgliedschaft vorstellen. |
-| **Kurse & Kursplan** | Das Kursangebot erklären und den aktuellen CenterCom-Kursplan einbinden. |
-| **Racketsport** | Padel, Pickleball, Badminton, Plätze und Preise vorstellen und zur Buchung führen. |
-| **Club** | Anlage, Team und Einblicke ins Studio zeigen. |
-| **Kontakt** | Öffnungszeiten, Anfahrt, Kontaktformular und WhatsApp bündeln. |
-| **Impressum und Datenschutz** | Die von FITZ bereitgestellten Rechtstexte auf zwei eigenen Seiten einbinden. |
-
-Die Hauptnavigation führt direkt auf die Bereichsseiten. Auf längeren Seiten markiert eine seitliche Navigation den aktuellen Abschnitt und führt gezielt zum gewünschten Thema. Auf dem Smartphone steht dafür eine kompakte Abschnittsauswahl zur Verfügung.
+Die Hauptnavigation führt direkt zu den Bereichsseiten. Auf längeren Seiten markiert eine seitliche Navigation den aktuellen Abschnitt und ermöglicht den direkten Sprung zum gewünschten Thema. Auf dem Smartphone übernimmt eine kompakte Abschnittsauswahl diese Funktion.
 
 ### Im Festpreis enthalten
 
-- **Gestaltung und Programmierung** für Desktop, Tablet und Smartphone, inklusive dezenter Animationen und Einpflege der gelieferten Inhalte. Kalkuliert sind bis zu 40 Inhaltsabschnitte und 40 Bilder.
-- **CenterCom-Kursplan zur Ansicht** und **offizielle Playtomic-Buchungsansicht** mit direktem Link zur Clubseite. Ihr pflegt die Termine weiterhin in den jeweiligen Systemen. Platzbuchung und Zahlung erfolgen über Playtomic.
-- **Kontaktformular** mit E-Mail-Zustellung und Spam-Schutz sowie ein **WhatsApp-Button** für direkte Anfragen.
-- **Technische SEO-Grundlagen** mit Seitentiteln, Meta-Beschreibungen, Bildoptimierung, Sitemap und bis zu 30 Weiterleitungen bisheriger URLs, sofern die nötigen Zugänge vorliegen.
-- **Tests, Domainanbindung und Veröffentlichung** sowie Übergabe von Quellcode, kurzer technischer Dokumentation und Einweisung.
+- **Individuelles Design und Programmierung** für Desktop, Tablet und Smartphone, inklusive dezenter Animationen. Ich pflege die gelieferten Inhalte für sechs Inhaltsseiten und zwei rechtliche Seiten ein, mit bis zu 40 Inhaltsabschnitten und 40 Bildern.
+- **CenterCom und Playtomic.** Ich binde den Fitness-Kursplan zur Ansicht und die offizielle Playtomic-Buchungsansicht mit direktem Club-Link ein. Ihr pflegt die Termine in euren bestehenden Systemen. Platzbuchung und Zahlung erfolgen über Playtomic.
+- **Kontaktformular und WhatsApp.** Das Formular sendet Anfragen per E-Mail an das Studio und erhält einen Spam-Schutz. Der WhatsApp-Button öffnet direkt den Chat.
+- **Technische SEO-Grundlagen.** Seitentitel, Meta-Beschreibungen, Bildoptimierung, Sitemap und bis zu 30 Weiterleitungen bisheriger URLs bei vorhandenen Zugängen.
+- **Tests, Veröffentlichung und Übergabe.** Ich prüfe Darstellung, Navigation, Formular und Einbettungen, verbinde die Domain und übergebe euch den Quellcode mit kurzer technischer Dokumentation und Einweisung.
 
 ## Optionale Erweiterungen
 
 | Erweiterung | Leistung | Aufpreis netto |
 |---|---|---:|
-| **Kampagnenseite zur Wiedereröffnung** | Eine zusätzliche Seite mit bis zu fünf Abschnitten für ein Eröffnungsangebot, eine Probetrainingsaktion oder einen Tag der offenen Tür. Mit direktem Link zur Anfrage oder Buchung. | **250 €** |
-| **Englische Website** | Englische Version der vereinbarten Seiten mit Sprachumschalter, eigenen Sprachadressen sowie englischer Navigation, Formularmeldungen und Metadaten. FITZ liefert die freigegebenen Übersetzungen einschließlich der Rechtstexte. Die Sprache der eingebetteten Ansichten richtet sich nach dem jeweiligen Anbieter. | **400 €** |
-| **CenterCom-Kursplan im FITZ-Design** | Eigene Wochenübersicht für die Fitnesskurse in der Gestaltung der Website. Die Kurstermine werden weiterhin in CenterCom gepflegt. | **650 €** bei bestätigtem Datenzugriff |
-| **Playtomic-Terminübersicht im FITZ-Design** | **Terminliste:** Kommende öffentliche Racket-Termine nach Tagen gruppiert, mit Uhrzeit, Sportart, Platz und Titel, soweit verfügbar. **Terminliste und Wochenkalender:** Zusätzlich eine Sieben-Tage-Ansicht mit Wochenwechsel und Umschaltung zwischen Liste und Kalender. In beiden Ansichten kann nach Padel, Pickleball oder Badminton gefiltert werden. | **650 €** für die Liste oder **850 €** mit Wochenkalender und Filtern, jeweils bei bestätigtem Datenzugriff |
-| **Redaktionszugang** | Bearbeitungsoberfläche für bis zu drei vereinbarte Bereiche, etwa Öffnungszeiten, Preise und einen aktuellen Hinweis auf der Startseite. Inklusive Einrichtung und Einweisung. | **600 €** |
+| **Kampagnenseite zur Wiedereröffnung** | Zusätzliche Seite mit bis zu fünf Abschnitten für ein Eröffnungsangebot, eine Probetrainingsaktion oder einen Tag der offenen Tür. Inklusive Link zur Anfrage oder Buchung. | **250 €** |
+| **Englische Website** | Englische Version der vereinbarten Seiten mit Sprachumschalter, eigenen Sprachadressen, englischer Navigation, Formularmeldungen und Metadaten. FITZ liefert die freigegebenen Übersetzungen einschließlich der Rechtstexte. Die Sprache der eingebetteten Ansichten richtet sich nach dem jeweiligen Anbieter. | **400 €** |
+| **CenterCom-Kursplan im FITZ-Design** | Eigene Wochenübersicht für die Fitnesskurse. Ihr pflegt die Termine in CenterCom, und die Website übernimmt die verfügbaren Kursdaten. | **650 €** bei bestätigtem Datenzugriff |
+| **Redaktionszugang** | Bearbeitungsoberfläche für bis zu drei vereinbarte Bereiche, etwa Öffnungszeiten, Preise oder einen Hinweis auf der Startseite. Inklusive Einrichtung und Einweisung. | **600 €** |
 
-Ich habe mir die **Playtomic-API** angesehen. Wenn der Clubzugang die benötigten Daten liefert, kann ich ausgewählte Racket-Termine in einer eigenen Ansicht gestalten, die Farben, Typografie und Bedienung der FITZ-Website aufgreift. Zur verbindlichen Platzverfügbarkeit, Buchung und Zahlung gelangen Besucher weiterhin zu Playtomic.
+### Playtomic-Termine im FITZ-Design
 
-Für eine eigene **CenterCom-Ansicht** prüfe ich mit Einblick in euren Studiozugang, ob CenterCom die benötigten Kursdaten bereitstellt. Nach der technischen Prüfung bestätige ich jeweils Umfang, Preis und Termin der gewählten Erweiterung. Die Standard-Einbettungen sind im Basispaket für den Livegang eingeplant.
+Ich habe mir die Playtomic-API angesehen. Mit den passenden Clubdaten kann ich eine Terminübersicht gestalten, die Farben, Typografie und Bedienung der FITZ-Website aufgreift. So können Besucher ausgewählte Racket-Termine direkt im Racketsportbereich ansehen. Für aktuelle Platzverfügbarkeit, Buchung und Zahlung gelangen sie zu Playtomic.
+
+| Variante | Leistung | Aufpreis netto |
+|---|---|---:|
+| **Terminliste** | Kommende öffentliche Racket-Termine nach Tagen gruppiert, mit Uhrzeit, Sportart, Platz und Titel, soweit verfügbar. | **650 €** |
+| **Terminliste + Wochenkalender** | Zusätzlich eine Sieben-Tage-Ansicht mit Wochenwechsel und Umschaltung zwischen Liste und Kalender. In beiden Ansichten kann nach Padel, Pickleball oder Badminton gefiltert werden. | **850 €** |
+
+Die beiden Playtomic-Varianten stehen alternativ zur Auswahl. Für die individuellen Ansichten prüfe ich, welche Daten eure Clubzugänge liefern, und bestätige anschließend Umfang, Preis und Termin. Bei CenterCom kann ich das prüfen, sobald ich Einblick in euren Studiozugang habe. Die offiziellen Einbettungen sind für den Launch im Basispaket eingeplant. Individuelle Ansichten können bei Bedarf später dazukommen.
 
 ## Geplanter Ablauf bis Mitte Dezember
 
-Im ersten Designtermin zeige ich euch den Entwurf der neuen Startseite. Wir gehen ihn gemeinsam aus zwei Perspektiven durch: Ein Mitglied möchte schnell zum Fitness-Kursplan, während jemand zum ersten Mal bei FITZ einen Padelplatz buchen will. Am Entwurf seht ihr, wie beide Wege im neuen FITZ-Design aussehen. Gemeinsam entscheiden wir, was beim ersten Besuch ins Auge fallen soll. Aus dieser Entscheidung entwickle ich die weiteren Seiten.
+Im ersten Designtermin schauen wir gemeinsam auf den Startseitenentwurf. Wir gehen zwei typische Wege durch: Ein Mitglied möchte schnell zum Fitness-Kursplan, während jemand zum ersten Mal bei FITZ einen Padelplatz buchen will. Am Entwurf seht ihr, wie beide Wege im neuen FITZ-Design funktionieren. Gemeinsam entscheiden wir, was auf der Startseite zuerst ins Auge fallen soll. Daraus entwickle ich die weiteren Seiten.
 
-Der Zeitplan dient als Orientierung. Ich gehe von einem Projektstart am **9. November** und einem Livegang am **15. Dezember 2026** aus. Sobald die Beauftragung abgeschlossen ist und die Inhalte und Zugänge vorliegen, kann ich auch früher anfangen. Ich stelle euch die Entwürfe und die Vorschauseite zur Verfügung, sobald sie fertig sind. Wenn die Freigaben früher erfolgen, können wir den Livegang entsprechend vorziehen.
+Der Zeitplan dient als Orientierung. Sobald die Beauftragung abgeschlossen ist und die Inhalte und Zugänge vorliegen, kann ich auch früher beginnen. Ich teile die Entwürfe und die Vorschauseite, sobald sie bereit sind. Bei früheren Freigaben können wir den Livegang entsprechend vorziehen.
 
 | Zeitraum | Arbeitsschritt |
 |---|---|
-| **9.–15. November** | Angebote und Inhalte strukturieren, Seitenkonzept abstimmen und Einbettungen auf der vorgesehenen Domain prüfen. Bei Interesse an individuellen Ansichten kläre ich den Datenzugriff. |
-| **16.–22. November** | Ersten Startseitenentwurf gemeinsam besprechen und die Designrichtung festlegen. Danach arbeite ich die weiteren Layouts aus. Es folgt die erste Korrekturrunde zum Design. |
-| **23. November–6. Dezember** | Website programmieren, Inhalte einpflegen, die vereinbarten Funktionen integrieren und die Vorschauseite bereitstellen. |
-| **7.–13. Dezember** | Vorschauseite gemeinsam prüfen, die zweite Korrekturrunde umsetzen und Darstellung, Formulare und Einbettungen testen. |
+| **9.–15. November** | Angebote und Inhalte strukturieren, Seitenkonzept abstimmen und Einbettungen prüfen. Bei Interesse an individuellen Ansichten kläre ich den Datenzugriff. |
+| **16.–22. November** | Startseitenentwurf besprechen, Designrichtung festlegen und die weiteren Layouts ausarbeiten. Erste Korrekturrunde zum ausgearbeiteten Design. |
+| **23. November–6. Dezember** | Website programmieren, Inhalte einpflegen, die vereinbarten Funktionen integrieren und eine Vorschauseite bereitstellen. |
+| **7.–13. Dezember** | Vorschauseite gemeinsam prüfen, zweite Korrekturrunde umsetzen und Website sowie Einbettungen testen. |
 | **14.–15. Dezember** | Finale Freigabe, Veröffentlichung und Übergabe. |
 
-**Nach der Besprechung des ersten Startseitenentwurfs sind zwei gebündelte Korrekturrunden enthalten.** Die erste bezieht sich auf das ausgearbeitete Design und die Seitenlayouts, die zweite auf die programmierte Vorschauseite.
+Nach der Besprechung des Startseitenentwurfs sind **zwei gebündelte Korrekturrunden** enthalten. Die erste gilt dem ausgearbeiteten Design, die zweite der programmierten Vorschauseite.
 
-Für den geplanten Termin stellt FITZ zum Projektstart die **finalen deutschen Texte, Bilder, Branding-Dateien, Rechtstexte sowie die nötigen Zugänge und Einbettungslinks** bereit. Bei Auswahl der englischen Version benötige ich die freigegebenen Übersetzungen bis zum **23. November**. Für die Freigaben plane ich mit gebündeltem Feedback innerhalb von zwei Werktagen. Individuelle Kalenderansichten können bei Bedarf nach dem Livegang ergänzt werden.
+FITZ stellt zum Projektstart die **finalen deutschen Texte, Bilder, Branding-Dateien, Rechtstexte, Zugänge und Einbettungslinks** bereit. Für die englische Version benötige ich die freigegebenen Übersetzungen bis zum **23. November**. Für die Freigaben plane ich mit gebündeltem Feedback innerhalb von zwei Werktagen.
 
-## Honorar und Beauftragung
+## Honorar und nächster Schritt
 
-Alle Preise sind **Nettopreise in Euro**. Wenn ihr für Dezember einen anderen Budgetrahmen oder andere Prioritäten habt, können wir den Leistungsumfang gemeinsam darauf abstimmen.
+Alle Preise sind Nettopreise in Euro. Die Zahlung erfolgt zu **50 % bei Beauftragung und zu 50 % nach Abnahme**, jeweils mit 14 Tagen Zahlungsziel. Hosting, Domain und gegebenenfalls erforderliche Anbietertarife trägt FITZ. Die laufenden Kosten stimmen wir vor der Einrichtung ab. Auch nach dem Livegang bin ich bei Bedarf eure Ansprechpartnerin für Anpassungen und Erweiterungen. Umfang und Kosten stimmen wir vorab ab.
 
-Die Zahlung erfolgt zu **50 % bei Beauftragung und zu 50 % nach Abnahme**, jeweils mit 14 Tagen Zahlungsziel. Hosting, Domain und gegebenenfalls erforderliche Anbietertarife trägt FITZ. Die laufenden Kosten stimmen wir vor der Einrichtung ab. Auch nach dem Livegang bin ich bei Bedarf eure Ansprechpartnerin für Anpassungen und Erweiterungen. Umfang und Kosten stimmen wir vorab gemeinsam ab.
+Für euren Start Mitte Dezember empfehle ich das **Basispaket für 3.500 € netto**. Wenn ihr zur Wiedereröffnung eine eigene Kampagnenseite möchtet, liegt ihr zusammen bei **3.750 € netto**. Falls ihr für den Launch einen anderen Budgetrahmen oder andere Prioritäten habt, können wir den Umfang gemeinsam darauf abstimmen.
 
-**Passt der vorgeschlagene Grundumfang für euren Dezemberstart?** Dann reicht eine kurze Rückmeldung. Wir stimmen den Projektstart und die gewünschten Erweiterungen ab, und ich bestätige euch den vereinbarten Umfang und das Honorar schriftlich.
+Wenn der Grundumfang für euch passt, stimmen wir in einem kurzen Gespräch den Projektstart und die Inhalte ab, die ich zuerst von euch brauche.
 
 Ich freue mich darauf, den neuen FITZ-Auftritt gemeinsam mit euch zu gestalten.
 
 **Theresa Schantz**  
 Design Engineer · half odd  
 halfodd.com
+
+**Projektstart abstimmen**  
+Angebot als PDF herunterladen
