@@ -6,7 +6,7 @@ import { MenuBar } from '../MenuBar/MenuBar';
 import { aboutInfo } from '../../data/mobileContent';
 import './FitzProposal.css';
 
-const phaseLayout = [[0, 5], [7, 3], [10, 7], [17, 2], [21, 10], [31, 5], [36, 0]];
+const phaseLayout = [[0, 10], [10, 7], [17, 8], [25, 6], [31, 5], [36, 0]];
 const sections = content.split(/^## /m);
 const contactHref = `mailto:${aboutInfo.mail}?subject=${encodeURIComponent('FITZ-Website · Projektstart abstimmen')}`;
 const actionMarker = '**Projektstart abstimmen**';
@@ -38,7 +38,7 @@ export default function FitzProposal() {
   };
   useEffect(() => {
     const initialId = window.location.hash.slice(1);
-    if (navigation.some(([id]) => id === initialId) || /^phase-[0-6]$/.test(initialId)) navigateToSection(initialId);
+    if (navigation.some(([id]) => id === initialId) || /^phase-[0-5]$/.test(initialId)) navigateToSection(initialId);
     const root = scrollRef.current;
     if (!root) return;
     let settleTimer: ReturnType<typeof setTimeout> | undefined;

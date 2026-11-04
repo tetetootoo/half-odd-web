@@ -367,3 +367,5 @@ html.fitz-document,.fitz-document body,.fitz-document #root {height:100%;min-hei
 .fitz-primary-action:hover {background:#292929;}
 
 .fitz-copy .fitz-note + p:not(.fitz-note) {margin-top:28px;}
+
+@media(min-width:701px) {.fitz-timeline {height:660px;}}

@@ -92,12 +92,11 @@ Der Zeitplan dient als Orientierung. Sobald die Beauftragung abgeschlossen ist u
 
 | Zeitraum | Phase | Was wir in dieser Phase erreichen |
 |---|---|---|
-| **9.–13. November** | **Konzept und Struktur** | Wir stimmen Ziele, Zielgruppen und Inhalte ab. Ich entwickle die Seitenstruktur und lege die Wege zum Kursplan, zur Anfrage und zur Buchung fest. |
-| **16.–18. November** | **Designrichtung** | Ich zeige euch den ersten Startseitenentwurf. Gemeinsam legen wir Bildsprache, Typografie und die Gewichtung der Angebote fest. |
-| **19.–25. November** | **Design und erste Feedbackrunde** | Ich arbeite die weiteren Seitenlayouts aus. Ihr gebt mir gebündeltes Feedback, das ich in die Entwürfe einarbeite. |
-| **26.–27. November** | **Zweite Design-Feedbackrunde und Freigabe** | Wir besprechen die überarbeiteten Layouts, klären letzte Designanpassungen und geben die Gestaltung für die Umsetzung frei. |
-| **30. November–9. Dezember** | **Entwicklung** | Ich programmiere die Website, pflege die Inhalte ein, integriere die vereinbarten Funktionen und stelle euch die Vorschauseite bereit. |
-| **10.–14. Dezember** | **Prüfung der Vorschauseite und Tests** | Ihr probiert die Website aus und gebt mir Rückmeldung zur Umsetzung. Ich nehme letzte Anpassungen vor und teste Darstellung, Navigation, Formulare, Buchungslinks und Einbettungen. |
+| **9.–18. November** | **Konzept, Struktur und Designrichtung** | Wir stimmen Ziele, Zielgruppen und Inhalte ab. Ich entwickle die Seitenstruktur und zeige euch einen ersten Startseitenentwurf. Anhand des Entwurfs legen wir gemeinsam die Bildsprache, Typografie und Gewichtung der Angebote fest. |
+| **19.–25. November** | **Erste Designrunde** | Ich arbeite die Seitenlayouts auf Basis der abgestimmten Designrichtung aus. Ihr gebt mir gebündeltes Feedback zu den Entwürfen. |
+| **26. November–3. Dezember** | **Zweite Designrunde und Freigabe** | Ich arbeite euer Feedback ein und zeige euch die überarbeiteten Layouts. Wir stimmen letzte Designanpassungen ab und geben die Gestaltung für die Programmierung frei. |
+| **4.–9. Dezember** | **Implementierung und Programmierung** | Ich programmiere die Website, pflege die Inhalte ein, integriere die vereinbarten Funktionen und stelle euch die Vorschauseite bereit. |
+| **10.–14. Dezember** | **Prüfung der Vorschauseite und Tests** | Wir prüfen gemeinsam, ob die Website wie vereinbart umgesetzt ist. Ich nehme letzte Anpassungen vor und teste Darstellung, Navigation, Formulare, Buchungslinks und Einbettungen. |
 | **15. Dezember** | **Livegang und Übergabe** | Nach eurer finalen Freigabe veröffentliche ich die Website, kontrolliere sie auf der Live-Domain und übergebe euch den Projektstand. |
 
 Die Besprechung des ersten Startseitenentwurfs dient der gemeinsamen Festlegung der Designrichtung. Danach folgen **zwei gebündelte Feedbackrunden zum Design**. Auf der programmierten Vorschauseite prüfen wir anschließend gemeinsam, ob das freigegebene Design und die vereinbarten Funktionen wie vorgesehen umgesetzt sind.
