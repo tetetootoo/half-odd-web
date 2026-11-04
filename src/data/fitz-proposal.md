@@ -54,26 +54,23 @@ Die Hauptnavigation führt direkt zu den Bereichsseiten. Auf längeren Seiten ma
 
 | Pos. | Erweiterung | Leistung | Aufpreis netto |
 | --- | --- | --- | --- |
-| 02 | Kampagnenseite zur Wiedereröffnung | Zusätzliche Seite auf der neuen Website mit bis zu fünf Abschnitten für ein Eröffnungsangebot, eine Probetrainingsaktion oder einen Tag der offenen Tür. Mit direktem Link zur Anfrage oder Buchung. | 250 € |
-| 03 | Englische Website | Englische Version der vereinbarten Seiten mit Sprachumschalter, eigenen Sprachadressen, englischer Navigation, Formularmeldungen und Metadaten. FITZ liefert die freigegebenen Übersetzungen einschließlich der Rechtstexte. Die Sprache externer Einbettungen richtet sich nach dem jeweiligen Anbieter. | 400 € |
-| 04 | CenterCom-Kursplan im FITZ-Design | Eigene Wochenübersicht für die Fitnesskurse. Ihr pflegt die Termine in CenterCom, und die Website übernimmt die verfügbaren Kursdaten. | 650 € bei bestätigtem Datenzugriff |
-| 05 | Redaktionszugang | Bearbeitungsoberfläche für bis zu drei vereinbarte Bereiche, etwa Öffnungszeiten, Preise und einen Hinweis auf der Startseite. Inklusive Einrichtung und Einweisung. | 600 € |
-| 07 | Spezialisierte Anfrageformulare | Eigene Formulare für Probetraining, Beratungstermine, Gruppen- und Firmenanfragen oder Events. Je Anfrageart stimmen wir Felder, Bestätigung und E-Mail-Empfänger ab. | Nach Umfang |
-| 08 | Erweiterte lokale Suchmaschinenoptimierung | Recherche lokaler Suchbegriffe und Ergänzung passender strukturierter Daten. Mit den nötigen Zugängen aktualisiere ich das Google-Unternehmensprofil zum Rebrand und gleiche Name, Adresse, Öffnungszeiten und Website-Link auf den vereinbarten Plattformen ab. Angebots- und Standortinformationen bereite ich auch für KI-Suchdienste klar auf. | Nach Umfang |
-| 12 | Textredaktion für die Website | Aus euren Stichpunkten oder Entwürfen formuliere oder überarbeite ich die Texte für die vereinbarten Seiten. Bei Bedarf können auch redaktionelle Bildunterschriften oder ausführlichere Bildbeschreibungen vereinbart werden. Welche Inhalte ich übernehme, stimmen wir vorab ab. | Nach Umfang |
+| **02** | **Kampagnenseite zur Wiedereröffnung** | Zusätzliche Seite mit bis zu fünf Abschnitten für ein Eröffnungsangebot, eine Probetrainingsaktion oder einen Tag der offenen Tür. Mit direktem Link zur Anfrage oder Buchung. | **250 €** |
+| **03** | **Englische Website** | Englische Version der vereinbarten Seiten mit Sprachumschalter, eigenen Sprachadressen, englischer Navigation, Formularmeldungen und Metadaten. FITZ liefert die freigegebenen Übersetzungen einschließlich der Rechtstexte. Die Sprache externer Einbettungen richtet sich nach dem jeweiligen Anbieter. | **400 €** |
+| **04** | **CenterCom-Kursplan im FITZ-Design** | Eigene Wochenübersicht für die Fitnesskurse. Ihr pflegt die Termine in CenterCom, und die Website übernimmt die verfügbaren Kursdaten. | **650 €** bei bestätigtem Datenzugriff |
+| **05** | **Redaktionszugang** | Bearbeitungsoberfläche für bis zu drei vereinbarte Bereiche, etwa Öffnungszeiten, Preise und einen Hinweis auf der Startseite. Inklusive Einrichtung und Einweisung. | **600 €** |
+| **06a**\* | **Playtomic-Terminliste im FITZ-Design** | Kommende öffentliche Racket-Termine nach Tagen gruppiert, mit Uhrzeit, Sportart, Platz und Titel, soweit verfügbar. | **650 €** |
+| **06b**\* | **Playtomic-Terminliste und Wochenkalender im FITZ-Design** | Terminliste plus Sieben-Tage-Ansicht mit Wochenwechsel. Besucher können zwischen Liste und Kalender wechseln und in beiden Ansichten nach Padel, Pickleball oder Badminton filtern. | **850 €** |
+| **07** | **Spezialisierte Anfrageformulare** | Eigene Formulare für Probetraining, Beratungstermine, Gruppen- und Firmenanfragen oder Events. Je Anfrageart stimmen wir Felder, Bestätigung und E-Mail-Empfänger ab. | **Nach Umfang** |
+| **08** | **Erweiterte lokale Suchmaschinenoptimierung** | Recherche lokaler Suchbegriffe und Ergänzung passender strukturierter Daten. Mit den nötigen Zugängen aktualisiere ich das Google-Unternehmensprofil zum Rebrand und gleiche Name, Adresse, Öffnungszeiten und Website-Link auf den vereinbarten Plattformen ab. Angebots- und Standortinformationen bereite ich auch für KI-Suchdienste klar auf. | **Nach Umfang** |
+| **12** | **Textredaktion für die Website** | Aus euren Stichpunkten oder Entwürfen formuliere oder überarbeite ich die Texte für die vereinbarten Seiten. Bei Bedarf können auch redaktionelle Bildunterschriften oder ausführlichere Bildbeschreibungen vereinbart werden. Welche Inhalte ich übernehme, stimmen wir vorab ab. | **Nach Umfang** |
 
-Wenn ihr Preise, Öffnungszeiten oder aktuelle Hinweise nach dem Livegang selbst ändern möchtet, empfehle ich Pos. 01 und 05 für insgesamt 4.100 € netto.
-
-### Pos. 06 · Playtomic-Termine im FITZ-Design
+**\* Zu Pos. 06a und 06b**
 
 Ich habe mir die Playtomic-API angesehen. Wenn der Clubzugang die benötigten Daten liefert, kann ich ausgewählte Racket-Termine in einer eigenen Ansicht darstellen, die Farben, Typografie und Bedienung der FITZ-Website aufgreift. Für aktuelle Platzverfügbarkeit, Buchung und Zahlung gelangen Besucher weiterhin zu Playtomic.
 
-| Pos. | Variante | Leistung | Aufpreis netto |
-| --- | --- | --- | --- |
-| 06a | Terminliste | Kommende öffentliche Racket-Termine nach Tagen gruppiert, mit Uhrzeit, Sportart, Platz und Titel, soweit verfügbar. | 650 € |
-| 06b | Terminliste + Wochenkalender | Zusätzlich eine Sieben-Tage-Ansicht mit Wochenwechsel und Umschaltung zwischen Liste und Kalender. In beiden Ansichten kann nach Padel, Pickleball oder Badminton gefiltert werden. | 850 € |
-
 Pos. 06a und 06b stehen alternativ zur Auswahl. Für die individuellen Ansichten unter Pos. 04 und 06 prüfe ich die verfügbaren Daten und bestätige anschließend Umfang, Preis und Termin. Bei CenterCom kann ich das prüfen, sobald ich Einblick in euren Studiozugang habe. Für den Livegang sind die offiziellen Einbettungen im Basispaket vorgesehen. Eigene Ansichten können später ergänzt werden.
+
+Wenn ihr Preise, Öffnungszeiten oder aktuelle Hinweise nach dem Livegang selbst ändern möchtet, empfehle ich **Pos. 01 und 05 für insgesamt 4.100 € netto**.
 
 ### Auf Wunsch zur Wiedereröffnung
 

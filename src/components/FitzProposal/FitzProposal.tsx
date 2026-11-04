@@ -126,10 +126,6 @@ export default function FitzProposal() {
           const newline = section.indexOf('\n');
           const title = section.slice(0, newline);
           const body = section.slice(newline + 1).split(actionMarker)[0].trim();
-          const playtomicStart = i === 1 ? body.indexOf('### Pos. 06 · Playtomic-Termine im FITZ-Design') : -1;
-          const playtomicBody = playtomicStart >= 0 ? body.slice(playtomicStart) : '';
-          const playtomicTable = Lexer.lex(playtomicBody).find((token): token is Tokens.Table => token.type === 'table');
-          const playtomicTableStart = playtomicTable ? playtomicBody.indexOf(playtomicTable.raw) : -1;
           const timeline = i === 2;
           const timelineTable = timeline ? Lexer.lex(body).find((token): token is Tokens.Table => token.type === 'table') : undefined;
           const tableStart = timelineTable ? body.indexOf(timelineTable.raw) : -1;
@@ -138,17 +134,7 @@ export default function FitzProposal() {
           const afterTimeline = timelineTable ? body.slice(tableStart + timelineTable.raw.length) : body;
           return <section className={`fitz-section ${timeline ? 'fitz-schedule' : ''}`} id={['umfang', 'erweiterungen', 'zeitplan', 'honorar'][i]} key={title}>
             <div className="fitz-section-head"><div><span className="fitz-label">{['LEISTUNGSUMFANG', 'MEHR MÖGLICHKEITEN', 'GEMEINSAM ZUM LAUNCH', 'DIE RAHMENBEDINGUNGEN'][i]}</span><h2>{title}</h2></div><span className="fitz-number">0{i + 1}/</span></div>
-            {timeline ? <><div className="fitz-copy" dangerouslySetInnerHTML={html(beforeTimeline)} /><div className="fitz-timeline" aria-label="Projektzeitplan vom 9. November bis 15. Dezember 2026"><div className="fitz-grid" />{phases.map(([date, name, description], index) => <a id={`phase-${index}`} href={`#phase-detail-${index}`} onClick={(event) => { if (window.matchMedia("(max-width:700px)").matches) { event.preventDefault(); navigateToSection(`phase-${index}`); } }} className={`fitz-bar fitz-bar-${index}`} data-short={phaseLayout[index][1] < 4 || undefined} data-final={index === phases.length - 1 || undefined} style={{ "--phase-start": `${phaseLayout[index][0] / 36 * 100}%`, "--phase-duration": `${phaseLayout[index][1] / 36 * 100}%`, "--phase-row": index } as CSSProperties} key={date}><span>{name}</span><small>{date}</small><div className="fitz-timeline-description" dangerouslySetInnerHTML={html(description)} /></a>)}<div className="fitz-axis"><span>09. NOV</span><span>16. NOV</span><span>23. NOV</span><span>30. NOV</span><span>07. DEZ</span><span>15. DEZ ↗</span></div></div><div className="fitz-phases">{phases.map(([date, name, description], index) => <article id={`phase-detail-${index}`} key={date}><span>{date}</span><h3>{name}</h3><div dangerouslySetInnerHTML={html(description)} /></article>)}</div><div className="fitz-copy" dangerouslySetInnerHTML={html(afterTimeline)} /></> : playtomicTable ? <>
-              <div className="fitz-copy" dangerouslySetInnerHTML={html(body.slice(0, playtomicStart))} />
-              <section className="fitz-playtomic" aria-label="Playtomic-Alternativen">
-                <div className="fitz-copy" dangerouslySetInnerHTML={html(playtomicBody.slice(0, playtomicTableStart))} />
-                <div className="fitz-options">{playtomicTable.rows.map((row) => <article className="fitz-option" key={row[0].text}>
-                  <h4>Pos. {row[0].text.replaceAll('**', '')} · {row[1].text.replaceAll('**', '')} · {row[3].text.replaceAll('**', '')}</h4>
-                  <div dangerouslySetInnerHTML={html(row[2].text)} />
-                </article>)}</div>
-                <div className="fitz-copy" dangerouslySetInnerHTML={html(playtomicBody.slice(playtomicTableStart + playtomicTable.raw.length))} />
-              </section>
-            </> : <div className="fitz-copy" dangerouslySetInnerHTML={html(body)} />}
+            {timeline ? <><div className="fitz-copy" dangerouslySetInnerHTML={html(beforeTimeline)} /><div className="fitz-timeline" aria-label="Projektzeitplan vom 9. November bis 15. Dezember 2026"><div className="fitz-grid" />{phases.map(([date, name, description], index) => <a id={`phase-${index}`} href={`#phase-detail-${index}`} onClick={(event) => { if (window.matchMedia("(max-width:700px)").matches) { event.preventDefault(); navigateToSection(`phase-${index}`); } }} className={`fitz-bar fitz-bar-${index}`} data-short={phaseLayout[index][1] < 4 || undefined} data-final={index === phases.length - 1 || undefined} style={{ "--phase-start": `${phaseLayout[index][0] / 36 * 100}%`, "--phase-duration": `${phaseLayout[index][1] / 36 * 100}%`, "--phase-row": index } as CSSProperties} key={date}><span>{name}</span><small>{date}</small><div className="fitz-timeline-description" dangerouslySetInnerHTML={html(description)} /></a>)}<div className="fitz-axis"><span>09. NOV</span><span>16. NOV</span><span>23. NOV</span><span>30. NOV</span><span>07. DEZ</span><span>15. DEZ ↗</span></div></div><div className="fitz-phases">{phases.map(([date, name, description], index) => <article id={`phase-detail-${index}`} key={date}><span>{date}</span><h3>{name}</h3><div dangerouslySetInnerHTML={html(description)} /></article>)}</div><div className="fitz-copy" dangerouslySetInnerHTML={html(afterTimeline)} /></> : <div className="fitz-copy" dangerouslySetInnerHTML={html(body)} />}
           </section>;
         })}
       <div className="fitz-actions"><a className="fitz-primary-action" href={contactHref}>Projektstart abstimmen <span aria-hidden="true">↗</span></a><div className="fitz-download"><a href="/downloads/fitz-angebot.pdf" download="FITZ-Angebot-half-odd.pdf">Angebot als PDF herunterladen  ↓</a></div></div>
