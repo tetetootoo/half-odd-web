@@ -320,3 +320,36 @@ html.fitz-document,.fitz-document body,.fitz-document #root {height:100%;min-hei
  .fitz-copy table:has(th:nth-child(3)) td:nth-child(2) {grid-column:1 / -1;grid-row:2;}
  .fitz-copy table:has(th:nth-child(3)) td:last-child {grid-column:2;grid-row:1;text-align:right;}
 }
+
+/* The seven project phases use their actual calendar positions. */
+@media(min-width:701px) {
+ .fitz-timeline {height:760px;}
+ .fitz-timeline .fitz-bar {left:var(--phase-start);right:auto;top:calc(var(--phase-row) * 100px);width:var(--phase-duration);min-height:88px;padding:12px 10px;background:var(--ink);border:0;border-radius:12px;}
+ .fitz-timeline .fitz-bar::before {display:none;}
+ .fitz-timeline .fitz-bar>span,.fitz-timeline .fitz-bar>small {position:static;width:auto;right:auto;transform:none;text-align:left;color:#fff;}
+ .fitz-timeline .fitz-bar>small {opacity:.7;}
+ .fitz-timeline .fitz-bar[data-short] {min-height:80px;}
+ .fitz-timeline .fitz-bar[data-short]>span,.fitz-timeline .fitz-bar[data-short]>small {position:absolute;left:calc(100% + 12px);width:280px;color:#1c1319;}
+ .fitz-timeline .fitz-bar[data-short]>span {top:10px;}
+ .fitz-timeline .fitz-bar[data-short]>small {top:55px;}
+ .fitz-timeline .fitz-bar[data-final] {padding:0;min-height:80px;border-left:2px solid #35402f;border-radius:0;background:transparent;}
+ .fitz-timeline .fitz-bar[data-final]::before {display:block;content:'';position:absolute;left:-6px;top:0;width:10px;height:10px;background:#35402f;transform:rotate(45deg);}
+ .fitz-timeline .fitz-bar[data-final]>span,.fitz-timeline .fitz-bar[data-final]>small {left:auto;right:12px;width:180px;text-align:right;color:#35402f;}
+}
+@media(max-width:700px) {
+ .fitz-timeline .fitz-bar {background:var(--ink);}
+ .fitz-timeline .fitz-bar[data-final] {background:#35402f;}
+ .fitz-copy table:has(th:nth-child(4)) tbody tr {grid-template-columns:minmax(0,1fr) minmax(80px,35%);}
+ .fitz-copy table:has(th:nth-child(4)) td:first-child {grid-column:1;grid-row:1;font-size:13px;color:#6b5a62;}
+ .fitz-copy table:has(th:nth-child(4)) td:first-child::before {content:'Pos. ';}
+ .fitz-copy table:has(th:nth-child(4)) td:nth-child(2) {grid-column:1 / -1;grid-row:2;font-weight:600;}
+ .fitz-copy table:has(th:nth-child(4)) td:nth-child(3) {grid-column:1 / -1;grid-row:3;}
+ .fitz-copy table:has(th:nth-child(4)) td:last-child {grid-column:2;grid-row:1;text-align:right;}
+}
+
+@media(min-width:701px) {
+ .fitz-copy table:has(th:nth-child(4)) th:first-child,.fitz-copy table:has(th:nth-child(4)) td:first-child {width:6%;}
+ .fitz-copy table:has(th:nth-child(4)) th:nth-child(2),.fitz-copy table:has(th:nth-child(4)) td:nth-child(2) {width:24%;}
+ .fitz-copy table:has(th:nth-child(4)) th:nth-child(3),.fitz-copy table:has(th:nth-child(4)) td:nth-child(3) {width:52%;}
+ .fitz-copy table:has(th:nth-child(4)) th:last-child,.fitz-copy table:has(th:nth-child(4)) td:last-child {width:18%;}
+}

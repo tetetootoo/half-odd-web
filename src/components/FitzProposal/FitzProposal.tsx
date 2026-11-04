@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { marked, Lexer, type Tokens } from 'marked';
 import content from '../../data/fitz-proposal.md?raw';
 import windowStyles from '../Window/Window.module.css';
@@ -6,7 +6,7 @@ import { MenuBar } from '../MenuBar/MenuBar';
 import { aboutInfo } from '../../data/mobileContent';
 import './FitzProposal.css';
 
-const phaseNames = ['Konzept & Struktur', 'Designrichtung', 'Entwicklung', 'Feedback & Tests', 'Livegang & Übergabe'];
+const phaseLayout = [[0, 5], [7, 3], [10, 7], [17, 2], [21, 10], [31, 5], [36, 0]];
 const sections = content.split(/^## /m);
 const contactHref = `mailto:${aboutInfo.mail}?subject=${encodeURIComponent('FITZ-Website · Projektstart abstimmen')}`;
 const actionMarker = '**Projektstart abstimmen**';
@@ -32,7 +32,7 @@ export default function FitzProposal() {
   };
   useEffect(() => {
     const initialId = window.location.hash.slice(1);
-    if (navigation.some(([id]) => id === initialId) || /^phase-[0-4]$/.test(initialId)) navigateToSection(initialId);
+    if (navigation.some(([id]) => id === initialId) || /^phase-[0-6]$/.test(initialId)) navigateToSection(initialId);
     const root = scrollRef.current;
     if (!root) return;
     let settleTimer: ReturnType<typeof setTimeout> | undefined;
@@ -126,25 +126,25 @@ export default function FitzProposal() {
           const newline = section.indexOf('\n');
           const title = section.slice(0, newline);
           const body = section.slice(newline + 1).split(actionMarker)[0].trim();
-          const playtomicStart = i === 1 ? body.indexOf('### Playtomic-Termine im FITZ-Design') : -1;
+          const playtomicStart = i === 1 ? body.indexOf('### Pos. 06 · Playtomic-Termine im FITZ-Design') : -1;
           const playtomicBody = playtomicStart >= 0 ? body.slice(playtomicStart) : '';
           const playtomicTable = Lexer.lex(playtomicBody).find((token): token is Tokens.Table => token.type === 'table');
           const playtomicTableStart = playtomicTable ? playtomicBody.indexOf(playtomicTable.raw) : -1;
           const timeline = i === 2;
           const timelineTable = timeline ? Lexer.lex(body).find((token): token is Tokens.Table => token.type === 'table') : undefined;
           const tableStart = timelineTable ? body.indexOf(timelineTable.raw) : -1;
-          const phases = timelineTable?.rows.map((row, index) => [row[0].text.replaceAll('**', ''), phaseNames[index], row[1].text]) ?? [];
+          const phases = timelineTable?.rows.map((row) => [row[0].text.replaceAll('**', ''), row[1].text.replaceAll('**', ''), row[2].text]) ?? [];
           const beforeTimeline = tableStart >= 0 ? body.slice(0, tableStart) : '';
           const afterTimeline = timelineTable ? body.slice(tableStart + timelineTable.raw.length) : body;
           return <section className={`fitz-section ${timeline ? 'fitz-schedule' : ''}`} id={['umfang', 'erweiterungen', 'zeitplan', 'honorar'][i]} key={title}>
             <div className="fitz-section-head"><div><span className="fitz-label">{['LEISTUNGSUMFANG', 'MEHR MÖGLICHKEITEN', 'GEMEINSAM ZUM LAUNCH', 'DIE RAHMENBEDINGUNGEN'][i]}</span><h2>{title}</h2></div><span className="fitz-number">0{i + 1}/</span></div>
-            {timeline ? <><div className="fitz-copy" dangerouslySetInnerHTML={html(beforeTimeline)} /><div className="fitz-timeline" aria-label="Projektzeitplan vom 9. November bis 15. Dezember 2026"><div className="fitz-grid" />{phases.map(([date, name, description], index) => <a id={`phase-${index}`} href={`#phase-detail-${index}`} onClick={(event) => { if (window.matchMedia("(max-width:700px)").matches) { event.preventDefault(); navigateToSection(`phase-${index}`); } }} className={`fitz-bar fitz-bar-${index}`} key={date}><span>{name}</span><small>{date}</small><div className="fitz-timeline-description" dangerouslySetInnerHTML={html(description)} /></a>)}<div className="fitz-axis"><span>09. NOV</span><span>16. NOV</span><span>23. NOV</span><span>30. NOV</span><span>07. DEZ</span><span>15. DEZ ↗</span></div></div><div className="fitz-phases">{phases.map(([date, name, description], index) => <article id={`phase-detail-${index}`} key={date}><span>{date}</span><h3>{name}</h3><div dangerouslySetInnerHTML={html(description)} /></article>)}</div><div className="fitz-copy" dangerouslySetInnerHTML={html(afterTimeline)} /></> : playtomicTable ? <>
+            {timeline ? <><div className="fitz-copy" dangerouslySetInnerHTML={html(beforeTimeline)} /><div className="fitz-timeline" aria-label="Projektzeitplan vom 9. November bis 15. Dezember 2026"><div className="fitz-grid" />{phases.map(([date, name, description], index) => <a id={`phase-${index}`} href={`#phase-detail-${index}`} onClick={(event) => { if (window.matchMedia("(max-width:700px)").matches) { event.preventDefault(); navigateToSection(`phase-${index}`); } }} className={`fitz-bar fitz-bar-${index}`} data-short={phaseLayout[index][1] < 4 || undefined} data-final={index === phases.length - 1 || undefined} style={{ "--phase-start": `${phaseLayout[index][0] / 36 * 100}%`, "--phase-duration": `${phaseLayout[index][1] / 36 * 100}%`, "--phase-row": index } as CSSProperties} key={date}><span>{name}</span><small>{date}</small><div className="fitz-timeline-description" dangerouslySetInnerHTML={html(description)} /></a>)}<div className="fitz-axis"><span>09. NOV</span><span>16. NOV</span><span>23. NOV</span><span>30. NOV</span><span>07. DEZ</span><span>15. DEZ ↗</span></div></div><div className="fitz-phases">{phases.map(([date, name, description], index) => <article id={`phase-detail-${index}`} key={date}><span>{date}</span><h3>{name}</h3><div dangerouslySetInnerHTML={html(description)} /></article>)}</div><div className="fitz-copy" dangerouslySetInnerHTML={html(afterTimeline)} /></> : playtomicTable ? <>
               <div className="fitz-copy" dangerouslySetInnerHTML={html(body.slice(0, playtomicStart))} />
               <section className="fitz-playtomic" aria-label="Playtomic-Alternativen">
                 <div className="fitz-copy" dangerouslySetInnerHTML={html(playtomicBody.slice(0, playtomicTableStart))} />
                 <div className="fitz-options">{playtomicTable.rows.map((row) => <article className="fitz-option" key={row[0].text}>
-                  <h4>{row[0].text.replaceAll('**', '')} · {row[2].text.replaceAll('**', '')}</h4>
-                  <div dangerouslySetInnerHTML={html(row[1].text)} />
+                  <h4>Pos. {row[0].text.replaceAll('**', '')} · {row[1].text.replaceAll('**', '')} · {row[3].text.replaceAll('**', '')}</h4>
+                  <div dangerouslySetInnerHTML={html(row[2].text)} />
                 </article>)}</div>
                 <div className="fitz-copy" dangerouslySetInnerHTML={html(playtomicBody.slice(playtomicTableStart + playtomicTable.raw.length))} />
               </section>
