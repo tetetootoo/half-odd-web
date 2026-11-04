@@ -109,9 +109,9 @@ export default function FitzProposal() {
       <div className="fitz-document-scroll" ref={scrollRef}>
       <main id="proposal">
         <section className="fitz-hero">
-          <div className="fitz-eyebrow"><img className="fitz-club-logo" src="/media/fitz/logo.svg" alt="FITZ Sports Club" /><span>04. NOVEMBER 2026</span></div>
+          <div className="fitz-eyebrow"><img className="fitz-club-logo" src="/media/fitz/logo.svg" alt="FITZ Sports Club" /><span className="fitz-date-desktop">04. NOVEMBER 2026</span></div>
           <h1>{sections[0].split("\n")[0].replace(/^# /, "")}</h1>
-          <div className="fitz-hero-bottom"><p>Angebot von Theresa Schantz · half odd</p></div>
+          <div className="fitz-hero-bottom"><p>Angebot von Theresa Schantz · half odd</p><p className="fitz-date-mobile">04. November 2026</p></div>
         </section>
         <section className="fitz-intro fitz-copy"><span className="fitz-label">DIE IDEE</span><div dangerouslySetInnerHTML={html(intro)} /></section>
         {sections.slice(1).map((section, i) => {
@@ -129,7 +129,7 @@ export default function FitzProposal() {
             {timeline ? <><div className="fitz-copy" dangerouslySetInnerHTML={html(beforeTimeline)} /><div className="fitz-timeline" aria-label="Projektzeitplan vom 9. November bis 15. Dezember 2026"><div className="fitz-grid" />{phases.map(([date, name, description], index) => <a href={`#phase-${index}`} className={`fitz-bar fitz-bar-${index}`} key={date}><span>{name}</span><small>{date}</small><span className="fitz-timeline-description" dangerouslySetInnerHTML={html(description)} /></a>)}<div className="fitz-axis"><span>09. NOV</span><span>16. NOV</span><span>23. NOV</span><span>30. NOV</span><span>07. DEZ</span><span>15. DEZ ↗</span></div></div><div className="fitz-phases">{phases.map(([date, name, description], index) => <article id={`phase-${index}`} key={date}><span>{date}</span><h3>{name}</h3><div dangerouslySetInnerHTML={html(description)} /></article>)}</div><div className="fitz-copy" dangerouslySetInnerHTML={html(afterTimeline)} /></> : <div className="fitz-copy" dangerouslySetInnerHTML={html(body)} />}
           </section>;
         })}
-      <div className="fitz-download"><a href="/downloads/fitz-angebot.pdf" download="FITZ-Angebot-half-odd.pdf">Angebot als PDF herunterladen <span aria-hidden="true">↓</span></a></div>
+      <div className="fitz-download"><a href="/downloads/fitz-angebot.pdf" download="FITZ-Angebot-half-odd.pdf">Angebot als PDF herunterladen  ↓</a></div>
       </main>
       <footer className="fitz-footer"><span>FITZ × half odd</span><a href="https://halfodd.com">halfodd.com ↗</a><span>Konzept · Design · Entwicklung</span></footer>
       </div>
