@@ -275,3 +275,8 @@ html.fitz-document,.fitz-document body,.fitz-document #root {height:100%;min-hei
  .fitz-date-desktop {display:none;}
  .fitz-date-mobile {display:block;}
 }
+
+@media(max-width:700px) {
+ .fitz-eyebrow {flex-direction:column;align-items:flex-start;gap:16px;}
+ .fitz-date-mobile {font-size:12px;line-height:1.5;color:#6b5a62;}
+}

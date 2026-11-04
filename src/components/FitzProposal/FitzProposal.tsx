@@ -109,9 +109,9 @@ export default function FitzProposal() {
       <div className="fitz-document-scroll" ref={scrollRef}>
       <main id="proposal">
         <section className="fitz-hero">
-          <div className="fitz-eyebrow"><img className="fitz-club-logo" src="/media/fitz/logo.svg" alt="FITZ Sports Club" /><span className="fitz-date-desktop">04. NOVEMBER 2026</span></div>
+          <div className="fitz-eyebrow"><span className="fitz-date-mobile">04. November 2026</span><img className="fitz-club-logo" src="/media/fitz/logo.svg" alt="FITZ Sports Club" /><span className="fitz-date-desktop">04. NOVEMBER 2026</span></div>
           <h1>{sections[0].split("\n")[0].replace(/^# /, "")}</h1>
-          <div className="fitz-hero-bottom"><p>Angebot von Theresa Schantz · half odd</p><p className="fitz-date-mobile">04. November 2026</p></div>
+          <div className="fitz-hero-bottom"><p>Angebot von Theresa Schantz · half odd</p></div>
         </section>
         <section className="fitz-intro fitz-copy"><span className="fitz-label">DIE IDEE</span><div dangerouslySetInnerHTML={html(intro)} /></section>
         {sections.slice(1).map((section, i) => {

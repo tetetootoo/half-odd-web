@@ -9,7 +9,6 @@ Die neue Website bringt Fitness & Gesundheit und Racketsport unter einem gemeins
 |---|---|
 | **Website-Relaunch** | **3.500 € netto als Festpreis** für Konzeption, individuelles Design, Programmierung und Veröffentlichung der deutschsprachigen Website. |
 | **Zieltermin für den Livegang** | **15. Dezember 2026** bei Projektstart am 9. November und rechtzeitiger Bereitstellung der Inhalte und Zugänge. Ein früherer Start ist möglich. |
-| **Option zur Wiedereröffnung** | Eine eigene Kampagnenseite für **250 € netto**. Zusammen mit dem Basispaket **3.750 € netto**. |
 
 Ich begleite euch persönlich von der Konzeption bis zum Livegang. Ein verwandtes Projekt ist die Website für [Anti Space Berlin](https://halfodd.com/#antispace-berlin-case-study), bei der ich den Studioauftritt gestaltet und den Weg zur Kursbuchung eingebunden habe. [Arbeitsproben auf halfodd.com](https://halfodd.com)
 
