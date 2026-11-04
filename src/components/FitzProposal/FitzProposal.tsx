@@ -13,9 +13,9 @@ const actionMarker = '**Projektstart abstimmen**';
 const html = (value: string) => {
   const markup = marked.parse(value, { async: false }) as string;
   return { __html: markup
-    .replace('<p><strong>* Zu Pos. 06a und 06b</strong></p>', '<p class="fitz-note-heading"><strong>* Zu Pos. 06a und 06b</strong></p>')
+    .replace('<p><strong>* Zu Pos. 07a und 07b</strong></p>', '<p class="fitz-note-heading"><strong>* Zu Pos. 07a und 07b</strong></p>')
     .replace('<p>Ich habe mir die Playtomic-API angesehen.', '<p class="fitz-note">Ich habe mir die Playtomic-API angesehen.')
-    .replace('<p>Pos. 06a und 06b stehen alternativ zur Auswahl.', '<p class="fitz-note">Pos. 06a und 06b stehen alternativ zur Auswahl.') };
+    .replace('<p>Pos. 07a und 07b stehen alternativ zur Auswahl.', '<p class="fitz-note">Pos. 07a und 07b stehen alternativ zur Auswahl.') };
 };
 
 const navigation = [

@@ -54,35 +54,31 @@ Die Hauptnavigation führt direkt zu den Bereichsseiten. Auf längeren Seiten ma
 
 | Pos. | Erweiterung | Leistung | Aufpreis netto |
 | --- | --- | --- | --- |
-| **02** | **Kampagnenseite zur Wiedereröffnung** | Zusätzliche Seite mit bis zu fünf Abschnitten für ein Eröffnungsangebot, eine Probetrainingsaktion oder einen Tag der offenen Tür. Mit direktem Link zur Anfrage oder Buchung. | **250 €** |
-| **03** | **Englische Website** | Englische Version der vereinbarten Seiten mit Sprachumschalter, eigenen Sprachadressen, englischer Navigation, Formularmeldungen und Metadaten. FITZ liefert die freigegebenen Übersetzungen einschließlich der Rechtstexte. Die Sprache externer Einbettungen richtet sich nach dem jeweiligen Anbieter. | **400 €** |
-| **04** | **CenterCom-Kursplan im FITZ-Design** | Eigene Wochenübersicht für die Fitnesskurse. Ihr pflegt die Termine in CenterCom, und die Website übernimmt die verfügbaren Kursdaten. | **650 €** bei bestätigtem Datenzugriff |
+| **02** | **Coming-soon-Seite mit E-Mail-Warteliste** | Bestehende Vorabseite ans FITZ-Branding anpassen, Anmeldeformular ans vereinbarte E-Mail-Tool anbinden und Anmeldung sowie Bestätigung testen. Einrichtung und Versand einer Startbenachrichtigung für **150 € netto** separat buchbar. Toolkosten trägt FITZ. | **350 €** |
+| **03** | **Kampagnenseite zur Wiedereröffnung** | Zusätzliche Seite auf der neuen Website mit bis zu fünf Abschnitten für ein Eröffnungsangebot, eine Probetrainingsaktion oder einen Tag der offenen Tür. Mit direktem Link zur Anfrage oder Buchung. | **250 €** |
+| **04** | **Englische Website** | Englische Version der vereinbarten Seiten mit Sprachumschalter, eigenen Sprachadressen, englischer Navigation, Formularmeldungen und Metadaten. FITZ liefert die freigegebenen Übersetzungen einschließlich der Rechtstexte. Die Sprache externer Einbettungen richtet sich nach dem jeweiligen Anbieter. | **400 €** |
 | **05** | **Redaktionszugang** | Bearbeitungsoberfläche für bis zu drei vereinbarte Bereiche, etwa Öffnungszeiten, Preise und einen Hinweis auf der Startseite. Inklusive Einrichtung und Einweisung. | **600 €** |
-| **06a**\* | **Playtomic-Terminliste im FITZ-Design** | Kommende öffentliche Racket-Termine nach Tagen gruppiert, mit Uhrzeit, Sportart, Platz und Titel, soweit verfügbar. | **650 €** |
-| **06b**\* | **Playtomic-Terminliste und Wochenkalender im FITZ-Design** | Terminliste plus Sieben-Tage-Ansicht mit Wochenwechsel. Besucher können zwischen Liste und Kalender wechseln und in beiden Ansichten nach Padel, Pickleball oder Badminton filtern. | **850 €** |
-| **07** | **Zentrales Anfrageformular mit Weiterleitung** | Als Upgrade zum allgemeinen Kontaktformular aus dem Basispaket. Besucher wählen im Formular, worum es geht, etwa Probetraining, Beratung, Mitgliedschaft, Firmen- oder Gruppenanfragen, Events oder allgemeine Informationen. Je nach Auswahl erscheinen passende Felder. Die Anfrage geht automatisch an das zuständige E-Mail-Postfach. Enthalten sind bis zu sieben Anfragearten, bis zu drei Empfängerpostfächer, Spam-Schutz, eine Bestätigung auf der Website und ein Zustelltest pro Anfrageart. Eine interne Übersicht zur Bearbeitung und Verwaltung der Anfragen kann separat ergänzt werden. | **550 €** |
-| **08** | **Lokale Sichtbarkeit für FITZ** | Ich recherchiere, wie Interessierte nach euren Sportangeboten in Stahnsdorf und Umgebung suchen, und passe die relevanten Seiten darauf an. Mit den nötigen Zugängen aktualisiere ich euer bestehendes Google-Unternehmensprofil und gleiche Name, Adresse, Öffnungszeiten und Website-Link auf bis zu drei weiteren vereinbarten Plattformen ab. Auf der Website ergänze ich strukturierte Daten und bereite Standort und Angebote so auf, dass Suchmaschinen und KI-Suchdienste sie leichter einordnen können. | **650 € einmalig** |
-| **12** | **Textredaktion für die Website** | Ich überarbeite eure Entwürfe oder formuliere aus euren Stichpunkten verständliche Website-Texte im FITZ-Ton. Dazu gehören Überschriften, kurze Einleitungen und passende Handlungsaufforderungen. Pro vereinbarter Seite ist eine gebündelte Korrekturrunde enthalten. Redaktionelle Bildunterschriften oder ausführliche Bildbeschreibungen können wir ergänzend vereinbaren. | **Ab 120 € pro Seite** |
+| **06** | **CenterCom-Kursplan im FITZ-Design** | Eigene Wochenübersicht für die Fitnesskurse. Ihr pflegt die Termine in CenterCom, und die Website übernimmt die verfügbaren Kursdaten. Farben, Typografie und Layout greifen das FITZ-Design auf, sodass sich der Kursplan in die Website einfügt. | **650 €** bei bestätigtem Datenzugriff |
+| **07a**\* | **Playtomic-Terminliste im FITZ-Design** | Kommende öffentliche Racket-Termine nach Tagen gruppiert, mit Uhrzeit, Sportart, Platz und Titel, soweit verfügbar. | **650 €** |
+| **07b**\* | **Playtomic-Terminliste und Wochenkalender im FITZ-Design** | Terminliste plus Sieben-Tage-Ansicht mit Wochenwechsel. Besucher können zwischen Liste und Kalender wechseln und in beiden Ansichten nach Padel, Pickleball oder Badminton filtern. | **850 €** |
+| **08** | **Zentrales Anfrageformular mit Weiterleitung** | Ersetzt das allgemeine Kontaktformular aus dem Basispaket. Je nach Thema erscheinen passende Felder, und die Anfrage geht ans zuständige Postfach. Bis zu sieben Anfragearten und drei Postfächer, inklusive Spam-Schutz, Bestätigung auf der Website und Zustelltest je Anfrageart. Eine interne Anfrageübersicht ist separat buchbar. | **550 €** |
+| **09** | **Lokale Sichtbarkeit für FITZ** | Lokale Suchbegriffe recherchieren, relevante Seiten für Suchmaschinen und KI-Suchdienste aufbereiten, strukturierte Daten ergänzen und das Google-Unternehmensprofil sowie bis zu drei weitere Plattformeinträge aktualisieren. | **650 € einmalig** |
+| **10** | **Textredaktion für die Website** | Website-Texte aus euren Stichpunkten oder Entwürfen, inklusive Überschriften und Handlungsaufforderungen. Eine Korrekturrunde pro Seite. Bildunterschriften und ausführliche Bildbeschreibungen nach Absprache. | **Ab 120 € pro Seite** |
 
-**\* Zu Pos. 06a und 06b**
+**\* Zu Pos. 07a und 07b**
 
 Ich habe mir die Playtomic-API angesehen. Wenn der Clubzugang die benötigten Daten liefert, kann ich ausgewählte Racket-Termine in einer eigenen Ansicht darstellen, die Farben, Typografie und Bedienung der FITZ-Website aufgreift. Für aktuelle Platzverfügbarkeit, Buchung und Zahlung gelangen Besucher weiterhin zu Playtomic.
 
-Pos. 06a und 06b stehen alternativ zur Auswahl. Für die individuellen Ansichten unter Pos. 04 und 06 prüfe ich die verfügbaren Daten und bestätige anschließend Umfang, Preis und Termin. Bei CenterCom kann ich das prüfen, sobald ich Einblick in euren Studiozugang habe. Für den Livegang sind die offiziellen Einbettungen im Basispaket vorgesehen. Eigene Ansichten können später ergänzt werden.
+Pos. 07a und 07b stehen alternativ zur Auswahl. Für die individuellen Ansichten unter **Pos. 06, 07a und 07b** prüfe ich die verfügbaren Daten und bestätige anschließend Umfang, Preis und Termin. Bei CenterCom kann ich das prüfen, sobald ich Einblick in euren Studiozugang habe. Für den Livegang sind die offiziellen Einbettungen im Basispaket vorgesehen. Eigene Ansichten können später ergänzt werden.
 
 Wenn ihr Preise, Öffnungszeiten oder aktuelle Hinweise nach dem Livegang selbst ändern möchtet, empfehle ich **Pos. 01 und 05 für insgesamt 4.100 € netto**.
 
 ### Auf Wunsch zur Wiedereröffnung
 
-Sobald das Branding steht, kann ich euch auch bei der Ankündigung und Einführung des neuen FITZ-Auftritts begleiten.
-
-| Pos. | Leistung | Umfang | Aufpreis netto |
+| Pos. | Erweiterung | Leistung | Aufpreis netto |
 | --- | --- | --- | --- |
-| **09** | **Coming-soon-Seite mit E-Mail-Warteliste** | Ich passe eure bestehende Vorabseite an das neue FITZ-Branding an und ergänze ein Formular für die E-Mail-Warteliste. So können sich Interessierte vormerken lassen, um vom Buchungsstart zu erfahren. Ich binde das Formular an das vereinbarte E-Mail-Tool an und teste Anmeldung und Bestätigung. Einrichtung und Versand einer Startbenachrichtigung sind für **150 € netto** separat buchbar. Etwaige Toolkosten trägt FITZ. | **350 €** |
-| **10** | **Print und Merchandise im FITZ-Design** | Zum Beispiel Visitenkarte, Briefpapier und ein einfaches Shirtmotiv auf Basis des bestehenden Brandings. Je Anwendung ein Format und eine gebündelte Korrekturrunde. Druck, Herstellung und aufwendigere Motive separat. | **Ab 150 € pro Motiv** oder **450 € für drei einfache Anwendungen** |
-| **11** | **Instagram-Startgrid für den Rebrand** | Ich plane und gestalte neun statische Einzelposts im FITZ-Design auf Basis eures Bildmaterials. Ihr erhaltet kurze Captions, eine Feed-Vorschau und die empfohlene Reihenfolge zur Veröffentlichung. | **600 €** |
-
-Für diese Leistungen bestätige ich Umfang, Preis und Zeitplan separat.
+| **11** | **Print und Merchandise im FITZ-Design** | Gestaltung auf Basis des bestehenden Brandings, etwa für Visitenkarte, Briefpapier oder ein einfaches Shirtmotiv. Je Anwendung ein Format und eine Korrekturrunde. Druck, Herstellung und aufwendigere Motive separat. | **Ab 150 € pro Motiv oder 450 € für drei einfache Anwendungen** |
+| **12** | **Instagram-Startgrid für den Rebrand** | Neun statische Einzelposts im FITZ-Design auf Basis eures Bildmaterials, inklusive kurzer Captions, Feed-Vorschau und empfohlener Veröffentlichungsreihenfolge. | **600 €** |
 
 ## Geplanter Ablauf bis Mitte Dezember
 
