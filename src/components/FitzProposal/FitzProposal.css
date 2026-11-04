@@ -1,6 +1,6 @@
 html.fitz-document,.fitz-document body,.fitz-document #root {height:auto;min-height:100%;overflow:visible;background:#fff}
 html.fitz-document {scroll-behavior:smooth;scroll-padding-top:101px}
-.fitz,.fitz * {text-transform:lowercase;box-sizing:border-box}
+.fitz,.fitz * {text-transform:none;box-sizing:border-box}
 .fitz {color:#1c1319;background:#fff;font:16px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--ink:#1c1319;--muted:#6b5a62}
 .fitz a {color:#1759ab}
 .fitz-titlebar {position:relative;top:auto;z-index:10;cursor:default!important;height:38px!important}
@@ -72,7 +72,7 @@ html.fitz-document {scroll-behavior:smooth;scroll-padding-top:101px}
 .fitz-desktop-menu {height:36px;flex-shrink:0;background:#f2a7cb;}
 .fitz-desktop-menu>header {height:36px;margin:0;}
 .fitz-chrome>.fitz-titlebar {margin:0;border-radius:0;}
-.fitz-desktop-menu * { text-transform:lowercase; }
+.fitz-desktop-menu * { text-transform:none; }
 
 .fitz-copy h3 {font-size:18px;line-height:1.4;margin:32px 0 20px;}
 .fitz-copy td:last-child {white-space:normal;}
