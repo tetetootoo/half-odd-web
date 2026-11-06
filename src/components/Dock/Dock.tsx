@@ -1,5 +1,6 @@
 import { useEffect, useState, type Ref } from 'react';
 import { useDockMotion } from '../../hooks/useDockMotion';
+import { useDockLayoutMotion } from '../../hooks/useDockLayoutMotion';
 import { dockLinks, type DesktopItem } from '../../data/desktopContent';
 import styles from './Dock.module.css';
 
@@ -72,6 +73,7 @@ export function Dock({
   onRestore,
 }: DockProps) {
   const motion = useDockMotion();
+  useDockLayoutMotion(motion.host, minimizedItems.map(item => item.id).join('|'));
   const [tooltipDismissed, setTooltipDismissed] = useState(false);
   useEffect(() => {
     const dismiss = (event: KeyboardEvent) => { if (event.key === 'Escape') setTooltipDismissed(true); };
@@ -111,6 +113,7 @@ export function Dock({
     const className = `${styles.item} ${isTrash && trashDropActive ? styles.dropTarget : ''}`;
     const common = {
       className,
+      'data-dock-key': entry.key,
       'data-dock-window': entry.windowId ?? entry.restoreId,
       'aria-label': entry.ariaLabel ?? entry.label,
       'data-drop-target': isTrash ? 'trash' : undefined,
@@ -150,7 +153,7 @@ export function Dock({
   return (
     <nav ref={(element) => { motion.host.current = element; if (typeof ref === 'function') return ref(element); else if (ref) ref.current = element; }} className={styles.dock} aria-label="Dock" onPointerMove={motion.onPointerMove} onPointerLeave={motion.onPointerLeave}>
       {permanent.map(renderEntry)}
-      {minimized.length > 0 && <span className={styles.divider} aria-hidden="true" />}
+      {minimized.length > 0 && <span className={styles.divider} data-dock-key="divider" aria-hidden="true" />}
       {minimized.map(renderEntry)}
       {renderEntry(trash)}
     </nav>
