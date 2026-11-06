@@ -1,5 +1,5 @@
 .note {
-  --landscape: url('/media/intro-widget/glass-meadow-pastel.jpg');
+  --landscape: url('/media/intro-widget/glass-meadow-pastel.webp');
   position: relative;
   isolation: isolate;
   overflow: hidden;

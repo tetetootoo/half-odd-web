@@ -103,7 +103,7 @@ export function IntroNote({ desktop = false, moveRequest }: { desktop?: boolean;
       {...handlers}
     >
       <div className={styles.surface} aria-hidden="true">
-        <img className={styles.landscape} src="/media/intro-widget/glass-meadow-pastel.jpg" alt="" width="1000" height="500" loading="eager" fetchPriority="high" decoding="async" />
+        <img className={styles.landscape} src="/media/intro-widget/glass-meadow-pastel.webp" alt="" width="680" height="340" loading="eager" fetchPriority="high" decoding="async" />
       </div>
       <div className={styles.field} aria-hidden="true">
         <span className={styles.animal}><span>🐕</span></span>
