@@ -8,12 +8,35 @@
   gap: 10px;
   padding: 8px 12px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background-color: #eee8eb;
+  background-image: linear-gradient(165deg, #ffffff80, #ffffff14 45%, #ffffff38);
+  box-shadow:
+    inset 0 0 0 1px #ffffff80,
+    inset 0 2px 4px #ffffff70,
+    inset 0 -2px 5px #42303b26,
+    0 8px 24px #25192033;
   /* Above windows, so it stays reachable for restoring minimized ones. */
   z-index: 1000;
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .dock {
+    background-color: #f8eff440;
+    -webkit-backdrop-filter: blur(14px) saturate(145%);
+    backdrop-filter: blur(14px) saturate(145%);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .dock:hover { background-color: #f8eff45c; }
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .dock, .dock:hover {
+    background-color: #eee8eb;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 .item {
@@ -168,7 +191,6 @@
 .item:focus-visible .tooltip { transition-delay: 0ms; }
 .externalBadge svg { transition: translate var(--motion-fast) var(--ease-out); }
 @media (hover: hover) and (pointer: fine) {
-  .dock:hover { background: rgba(255, 255, 255, .39); }
   .item:hover { text-decoration: none; }
   .item:hover .externalBadge svg { translate: 1px -1px; }
 }

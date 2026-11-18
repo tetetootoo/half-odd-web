@@ -19,7 +19,6 @@ export function MenuBar() {
       <img className={styles.logo} src="/icons/logo.png" alt="" aria-hidden="true" />
       <div className={styles.right}>
         <svg
-          className={styles.battery}
           width="22"
           height="11"
           viewBox="0 0 22 11"
