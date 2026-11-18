@@ -1,6 +1,21 @@
 import { useEffect, useRef } from 'react';
+import { pageview } from '@vercel/analytics';
 
 const historyKey = 'halfOddOverlay';
+let lastView: string | null = null;
+
+function canonicalOverlayId(id: string | null) {
+  return id === 'about' ? 'about-me' : id;
+}
+
+function trackView(id: string | null) {
+  const canonicalId = canonicalOverlayId(id);
+  const path = canonicalId ? `/overlay/${encodeURIComponent(canonicalId)}` : window.location.pathname;
+  if (path === lastView) return;
+  // Closing an overlay returns to the existing page rather than adding a view.
+  if (id || lastView === null) pageview({ path });
+  lastView = path;
+}
 
 // Hash routes work on static hosting without server-side rewrite rules.
 export function useOverlayLink(
@@ -41,15 +56,20 @@ export function useOverlayLink(
       if (navigation.current.target !== activeId) return;
       navigation.current = null;
       previousId.current = activeId;
+      trackView(activeId);
       return;
     }
-    if (previousId.current === activeId) return;
+    if (previousId.current === activeId) {
+      trackView(activeId);
+      return;
+    }
     const wasOpen = previousId.current !== null;
     previousId.current = activeId;
-    const canonicalId = activeId === 'about' ? 'about-me' : activeId;
+    const canonicalId = canonicalOverlayId(activeId);
     const url = new URL(window.location.href);
     url.hash = canonicalId ? encodeURIComponent(canonicalId) : '';
     if (!activeId && window.history.state?.[historyKey]) {
+      trackView(null);
       window.history.back();
       return;
     }
@@ -60,5 +80,6 @@ export function useOverlayLink(
     } else {
       window.history.replaceState(window.history.state, '', url);
     }
+    trackView(activeId);
   }, [activeId]);
 }

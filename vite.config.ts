@@ -1,8 +1,32 @@
-import { readFileSync, writeFileSync } from 'node:fs'
+import { globSync, readFileSync, writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 
 const DESKTOP_CONTENT_PATH = new URL('./src/data/desktopContent.ts', import.meta.url)
+
+// Vite copies public HTML without running its HTML transform hooks.
+function trackStandalonePages(): Plugin {
+  let pages: string[] = []
+  return {
+    name: 'track-standalone-pages',
+    apply: 'build',
+    configResolved(config) {
+      if (config.publicDir && config.build.copyPublicDir) {
+        pages = globSync('**/*.html', { cwd: config.publicDir })
+      }
+    },
+    writeBundle({ dir }) {
+      if (!dir) return
+      for (const page of pages) {
+        const path = resolve(dir, page)
+        const html = readFileSync(path, 'utf8')
+        const analytics = '<script defer src="/_vercel/insights/script.js"></script>'
+        writeFileSync(path, html.replace(/<\/head>/i, `${analytics}\n</head>`))
+      }
+    },
+  }
+}
 
 // Dev-only endpoint behind the desktop's "Save layout" button: rewrites the
 // x/y of each dragged icon in desktopContent.ts so the arrangement ships.
@@ -44,5 +68,5 @@ function saveIconLayout(): Plugin {
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), saveIconLayout()],
+  plugins: [react(), trackStandalonePages(), saveIconLayout()],
 })
