@@ -261,12 +261,12 @@ html.fitz-document,.fitz-document body,.fitz-document #root {height:100%;min-hei
  .fitz-copy th,.fitz-copy td,
  .fitz-copy td:nth-child(2),.fitz-copy th:nth-child(2) {min-width:0;width:auto;white-space:normal;overflow-wrap:anywhere;padding:10px 6px;}
  .fitz-copy td:first-child,.fitz-copy th:first-child {width:32%;}
- .fitz-copy table:has(th:nth-child(3)) th:first-child,
- .fitz-copy table:has(th:nth-child(3)) td:first-child {width:27%;}
- .fitz-copy table:has(th:nth-child(3)) th:nth-child(2),
- .fitz-copy table:has(th:nth-child(3)) td:nth-child(2) {width:45%;}
- .fitz-copy table:has(th:nth-child(3)) th:last-child,
- .fitz-copy table:has(th:nth-child(3)) td:last-child {width:28%;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) th:first-child,
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) td:first-child {width:27%;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) th:nth-child(2),
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) td:nth-child(2) {width:45%;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) th:last-child,
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) td:last-child {width:28%;}
  .fitz-copy td p {font-size:16px;}
 }
 
@@ -311,14 +311,14 @@ html.fitz-document,.fitz-document body,.fitz-document #root {height:100%;min-hei
 @media(max-width:700px) {
  .fitz-copy th,.fitz-copy td {hyphens:auto;overflow-wrap:break-word;}
  /* Long extension descriptions use the available width on narrow screens. */
- .fitz-copy table:has(th:nth-child(3)) {display:block;border:0;}
- .fitz-copy table:has(th:nth-child(3)) thead {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
- .fitz-copy table:has(th:nth-child(3)) tbody {display:block;}
- .fitz-copy table:has(th:nth-child(3)) tbody tr {display:grid;grid-template-columns:minmax(0,1fr) minmax(80px,35%);gap:12px;border:1px solid #e9e2e5;border-radius:10px;padding:16px;margin-bottom:12px;}
- .fitz-copy table:has(th:nth-child(3)) td {display:block!important;width:auto!important;padding:0;border:0;text-align:left;}
- .fitz-copy table:has(th:nth-child(3)) td:first-child {grid-column:1;grid-row:1;}
- .fitz-copy table:has(th:nth-child(3)) td:nth-child(2) {grid-column:1 / -1;grid-row:2;}
- .fitz-copy table:has(th:nth-child(3)) td:last-child {grid-column:2;grid-row:1;text-align:right;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) {display:block;border:0;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) thead {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) tbody {display:block;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) tbody tr {display:grid;grid-template-columns:minmax(0,1fr) minmax(80px,35%);gap:12px;border:1px solid #e9e2e5;border-radius:10px;padding:16px;margin-bottom:12px;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) td {display:block!important;width:auto!important;padding:0;border:0;text-align:left;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) td:first-child {grid-column:1;grid-row:1;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) td:nth-child(2) {grid-column:1 / -1;grid-row:2;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(3)) td:last-child {grid-column:2;grid-row:1;text-align:right;}
 }
 
 /* The seven project phases use their actual calendar positions. */
@@ -339,19 +339,19 @@ html.fitz-document,.fitz-document body,.fitz-document #root {height:100%;min-hei
 @media(max-width:700px) {
  .fitz-timeline .fitz-bar {background:var(--ink);}
  .fitz-timeline .fitz-bar[data-final] {background:#35402f;}
- .fitz-copy table:has(th:nth-child(4)) tbody tr {grid-template-columns:minmax(0,1fr) minmax(80px,35%);}
- .fitz-copy table:has(th:nth-child(4)) td:first-child {grid-column:1;grid-row:1;font-size:13px;color:#6b5a62;}
- .fitz-copy table:has(th:nth-child(4)) td:first-child::before {content:'Pos. ';}
- .fitz-copy table:has(th:nth-child(4)) td:nth-child(2) {grid-column:1 / -1;grid-row:2;font-weight:600;}
- .fitz-copy table:has(th:nth-child(4)) td:nth-child(3) {grid-column:1 / -1;grid-row:3;}
- .fitz-copy table:has(th:nth-child(4)) td:last-child {grid-column:2;grid-row:1;text-align:right;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) tbody tr {grid-template-columns:minmax(0,1fr) minmax(80px,35%);}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) td:first-child {grid-column:1;grid-row:1;font-size:13px;color:#6b5a62;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) td:first-child::before {content:'Pos. ';}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) td:nth-child(2) {grid-column:1 / -1;grid-row:2;font-weight:600;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) td:nth-child(3) {grid-column:1 / -1;grid-row:3;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) td:last-child {grid-column:2;grid-row:1;text-align:right;}
 }
 
 @media(min-width:701px) {
- .fitz-copy table:has(th:nth-child(4)) th:first-child,.fitz-copy table:has(th:nth-child(4)) td:first-child {width:6%;}
- .fitz-copy table:has(th:nth-child(4)) th:nth-child(2),.fitz-copy table:has(th:nth-child(4)) td:nth-child(2) {width:24%;}
- .fitz-copy table:has(th:nth-child(4)) th:nth-child(3),.fitz-copy table:has(th:nth-child(4)) td:nth-child(3) {width:52%;}
- .fitz-copy table:has(th:nth-child(4)) th:last-child,.fitz-copy table:has(th:nth-child(4)) td:last-child {width:18%;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) th:first-child,.fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) td:first-child {width:6%;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) th:nth-child(2),.fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) td:nth-child(2) {width:24%;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) th:nth-child(3),.fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) td:nth-child(3) {width:52%;}
+ .fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) th:last-child,.fitz:not(.totti) .fitz-copy table:has(th:nth-child(4)) td:last-child {width:18%;}
 }
 
 .fitz-copy .fitz-note-heading {margin-bottom:6px;}
@@ -369,3 +369,14 @@ html.fitz-document,.fitz-document body,.fitz-document #root {height:100%;min-hei
 .fitz-copy .fitz-note + p:not(.fitz-note) {margin-top:28px;}
 
 @media(min-width:701px) {.fitz-timeline {height:660px;}}
+
+.totti .fitz-copy > ol {max-width:680px;padding-left:22px;margin:24px 0}
+.totti-table {overflow-x:auto;margin:28px 0 36px}
+.totti-table:focus-visible {outline:2px solid #1759ab;outline-offset:2px}
+.totti .totti-table table {margin:0}
+@media(max-width:700px) {
+ .totti .fitz-mobile-sections {justify-content:flex-start;gap:16px;padding-inline:16px}
+ .totti .totti-table table {display:table;font-size:14px}
+ .totti .totti-table th,.totti .totti-table td {min-width:116px}
+ .totti .totti-table th:first-child,.totti .totti-table td:first-child {min-width:150px}
+}

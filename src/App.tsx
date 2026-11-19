@@ -9,9 +9,13 @@ const Mobile = lazy(() =>
 );
 
 const FitzProposal = lazy(() => import('./components/FitzProposal/FitzProposal'));
+const TottiProposal = lazy(() => import('./components/FitzProposal/TottiProposal'));
 
 function App() {
   const isMobile = useIsMobile();
+  if (/^\/angebot\/totti\/?$/.test(window.location.pathname)) {
+    return <Suspense fallback={null}><TottiProposal /></Suspense>;
+  }
   if (/^\/proposal\/fitz\/?$/.test(window.location.pathname)) {
     return <Suspense fallback={null}><FitzProposal /></Suspense>;
   }

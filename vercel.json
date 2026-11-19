@@ -1,6 +1,8 @@
 {
   "rewrites": [
     { "source": "/proposal/fitz", "destination": "/index.html" },
-    { "source": "/proposal/fitz/", "destination": "/index.html" }
+    { "source": "/proposal/fitz/", "destination": "/index.html" },
+    { "source": "/angebot/totti", "destination": "/index.html" },
+    { "source": "/angebot/totti/", "destination": "/index.html" }
   ]
 }
