@@ -50,10 +50,10 @@ Wenn ihr die Planung und Veröffentlichung abgeben möchtet, könnt ihr die lauf
 | Eigenständig erstellte Instagram-Story-Frames | 12 | 20 | 24 |
 | TikTok-Posts inkl. angepasster Reels und Fotokarussells | 6 | 8 | 12 |
 | Grafik für den monatlichen Eventkalender | 1 | 1 | 1 |
-| Community Management | Bis zu 1 Std./Woche | Bis zu 1 Std./Woche | Bis zu 1 Std./Woche |
+| Community Management | Bis zu 1 Std./Woche | Bis zu 1 Std./Woche | Bis zu 2 Std./Woche |
 | Monatsauswertung | Inklusive | Inklusive | Inklusive |
 
-Dreimonatige Startphase. Die Betreuung startet mit einer verbindlichen Laufzeit von drei Monaten zum Preis des gewählten Pakets. Bei Essential sind das insgesamt 1.770 € netto für die Betreuung. Im ersten Monat richten wir den Redaktionskalender und die Freigaben ein. Im zweiten passen wir Themen und Formate anhand der ersten Ergebnisse an. Zwei Wochen vor Ende der Startphase besprechen wir die Zusammenarbeit und entscheiden, ob und mit welchem Paket ihr weitermachen möchtet.
+Dreimonatige Startphase. Die Betreuung startet mit einer verbindlichen Laufzeit von drei Monaten zum Preis des gewählten Pakets. Im ersten Monat richten wir den Redaktionskalender und die Freigaben ein. Im zweiten passen wir Themen und Formate anhand der ersten Ergebnisse an. Zwei Wochen vor Ende der Startphase besprechen wir die Zusammenarbeit und entscheiden, ob und mit welchem Paket ihr weitermachen möchtet.
 
 Ein Story-Frame ist eine einzelne Story-Seite. Das Teilen eigener Posts und passende Reposts von Gäste-Stories kommen zusätzlich dazu. Wenn dasselbe Reel auf beiden Kanälen erscheint, zählt es als ein Instagram-Post und ein TikTok-Post.
 
@@ -74,7 +74,7 @@ Zusätzlicher Videoschnitt. Einfache Videos, die sich direkt veröffentlichen la
 
 **Einmaliger Festpreis · 370 € netto**
 
-Ich prüfe, wie Totti auf Instagram wirkt und wie schnell Gäste von dort zur Karte, zu den Öffnungszeiten oder zu den Eventinfos finden. Ihr bekommt konkrete Verbesserungen, Ausgangswerte für die spätere Auswertung und zwei Stilvorschläge für euren Instagram-Auftritt.
+Ich prüfe und optimiere euren Auftritt auf Instagram und auf der Website. Gemeinsam legen wir fest, wie Totti künftig auf Instagram aussehen soll.
 
 - **Instagram-Audit und Wettbewerbsblick.** Ich prüfe Bio, Profilbild, Links, Highlights, angepinnte Beiträge und bisherige Inhalte. Dazu schaue ich mir vergleichbare Accounts an und leite Empfehlungen für Totti ab.
 - **Website-Audit und Optimierung.** Ich prüfe den mobilen Weg von Instagram zu Karte, Öffnungszeiten, Adresse und Events. Kleine Verbesserungen an Links, Buttons oder der Platzierung wichtiger Informationen setze ich direkt um.
@@ -83,9 +83,11 @@ Ich prüfe, wie Totti auf Instagram wirkt und wie schnell Gäste von dort zur Ka
 
 ## Buchung und Zahlung
 
-Den Content-Dreh und den Instagram- und Website-Check könnt ihr einzeln buchen. Die Rechnung erhaltet ihr vorab. Die Zahlung erfolgt vor Leistungsbeginn. Falls für den Dreh eine eigene Anreise aus Kopenhagen nötig ist, stimme ich die Reisekosten vor der Buchung mit euch ab.
+Die Rechnung für den Content-Dreh oder den Instagram- und Website-Check erhaltet ihr vorab. Die Zahlung erfolgt vor Leistungsbeginn. Alternativ können wir vereinbaren, dass ihr **50 % vor Beginn und 50 % nach Abschluss der Leistung** zahlt.
 
-Die laufende Betreuung beginnt zum vereinbarten Termin, sobald die Accountzugänge und ausreichend fertige Inhalte vorliegen. Ich stelle die Monatspauschale jeweils vor Beginn des Betreuungsmonats in Rechnung. Sie ist im Voraus zahlbar. Die Startphase endet nach drei Monaten. Wenn ihr weitermachen möchtet, bestätigen wir die Fortsetzung schriftlich. Anschließend läuft die Betreuung monatlich weiter und kann mit einer Frist von 30 Tagen gekündigt werden.
+Die laufende Betreuung beginnt zum vereinbarten Termin, sobald die Accountzugänge und ausreichend fertige Inhalte vorliegen. Die Monatspauschale stelle ich jeweils vor Beginn des Betreuungsmonats in Rechnung. Sie ist im Voraus zahlbar. Die Startphase endet nach drei Monaten. Wenn ihr weitermachen möchtet, bestätigen wir die Fortsetzung schriftlich. Anschließend läuft die Betreuung monatlich weiter und kann mit einer Frist von 30 Tagen gekündigt werden.
+
+Wenn ihr den Content-Dreh mit der laufenden Betreuung oder dem Audit kombinieren möchtet, stelle ich euch gern ein Paket mit einem passenden Gesamtpreis zusammen.
 
 Liebe Grüße\
 Theresa\
