@@ -176,6 +176,11 @@ export default function FitzProposal({ tottiContent }: { tottiContent?: string }
         })}
       <div className="fitz-actions"><a className="fitz-primary-action" href={contactHref}>Projektstart abstimmen <span aria-hidden="true">↗</span></a><div className="fitz-download"><a href="/downloads/fitz-angebot.pdf" download="FITZ-Angebot-half-odd.pdf">Angebot als PDF herunterladen  ↓</a></div></div>
         </>}
+        {isTotti && <div className="fitz-actions">
+          <a className="fitz-primary-action" href="/downloads/totti-angebot.pdf" download="Totti-Angebot-half-odd.pdf">
+            Angebot als PDF herunterladen
+          </a>
+        </div>}
       </main>
       <footer className="fitz-footer"><span>{isTotti ? 'Alimentari Totti × half odd' : 'FITZ × half odd'}</span><a href="https://halfodd.com">halfodd.com ↗</a>{!isTotti && <span>Konzept · Design · Entwicklung</span>}</footer>
       </div>
