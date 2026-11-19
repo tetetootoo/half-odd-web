@@ -11,24 +11,20 @@ danke dir fürs Gespräch und für die Reels! Hier findest du meine Vorschläge 
 | Pro Dreh | 5 Reels | 8 Reels | 10 Reels |
 | --- | --- | --- | --- |
 | Einmaliger Festpreis netto | 790 € | 1.150 € | 1.390 € |
-| Kurze Reels | 4 | 6 | 8 |
-| Storytelling / längeres Reel | 1 | 2 | 2 |
+| Kurze Reels/TikToks | 4 | 6 | 8 |
+| Storytelling / längere Reels/TikToks | 1 | 2 | 2 |
 | Bearbeitete Fotos | 10 | 15 | 20 |
 | Geplante Drehzeit vor Ort | ca. 3,5 Std. | ca. 5 Std. | ca. 6 Std. |
 
 ### Beispiele für eure Veröffentlichungsplanung
 
-**Acht Reels könnt ihr flexibel einplanen.** Wenn ihr zwei Reels pro Woche postet, reicht das Material für vier Wochen. Wenn ihr ein Reel pro Woche veröffentlicht und dazwischen zum Beispiel Foto-Karussells postet, habt ihr Videomaterial für acht Wochen.
-
-Fünf Reels reichen bei einem Reel pro Woche für fünf Wochen. Zehn Reels reichen bei zwei Reels pro Woche für fünf Wochen. Clips zu Events könnt ihr passend zum Termin einplanen.
+**Acht Reels könnt ihr flexibel einplanen.** Wenn ihr zwei Reels pro Woche postet, reicht das Material für vier Wochen. Wenn ihr ein Reel pro Woche veröffentlicht und dazwischen zum Beispiel Foto-Karussells postet, habt ihr Videomaterial für acht Wochen, usw.
 
 Ihr könnt jeden Dreh einzeln buchen und die fertigen Inhalte selbst veröffentlichen. Welcher Dreh passt für euch? Dann schicke ich dir zwei mögliche Termine und einen ersten Themenvorschlag.
 
 ### Welche Inhalte entstehen
 
-#### Kurze Reels/TikTok-Videos · ca. 10–25 Sekunden
-
-Jeder Clip zeigt einen konkreten Moment. Wir könnten eine Pizza vom Belegen bis zum Anschnitt begleiten, einen Drink am Hahn zeigen oder einen kurzen Ausblick auf ein Event geben.
+**Kurze Reels/TikTok-Videos · ca. 10–25 Sekunden.** In diesen Clips steht die Atmosphäre bei Totti im Vordergrund. Ich schneide mehrere kurze Aufnahmen zu einem stimmungsvollen Video zusammen, etwa wie die Pizza aus dem Ofen kommt, ein Drink gezapft wird und sich der Laden langsam füllt.
 
 #### Storytelling-Reels · ca. 45–60 Sekunden
 
@@ -39,7 +35,7 @@ Ich bereite ein kurzes Interview oder eine direkte Ansprache in die Kamera vor. 
 1. **Konzeption, Trend-Recherche und Planung.** Ich recherchiere aktuelle Reels- und TikTok-Formate, Einstiege und Erzählweisen, die zu Totti passen. Daraus entwickle ich die Videoideen und Interviewfragen. Gemeinsam stimmen wir die Motive und den Drehablauf ab. Ihr bestätigt, welche Personen, Gerichte und Getränke am Drehtag verfügbar sind.
 2. **Dreh vor Ort.** Ich bringe meine Kamera, einen Blitz, DJI-Mikrofone und eine kleine Digitalkamera mit. Die geplante Drehzeit ist ein Richtwert. Wenn wir länger brauchen, bleibe ich vor Ort, bis wir alle vorab vereinbarten Motive und Interviews aufgenommen haben.
 3. **Schnitt und Nachbearbeitung.** Ich wähle die Fotos aus und bearbeite sie. Bei den Videos übernehme ich Schnitt, Farb- und Tonbearbeitung sowie Untertitel für gesprochene Passagen.
-4. **Feedback und Übergabe.** Innerhalb von sieben Werktagen nach dem Dreh bekommt ihr die ersten Schnittfassungen und die bearbeiteten Fotos zur Durchsicht. Eine gebündelte Korrekturrunde ist enthalten. Die finalen Dateien liefere ich innerhalb von vier Kalendertagen nach Eingang eures gebündelten Feedbacks.
+4. **Feedback und Übergabe.** Innerhalb von sieben Werktagen nach dem Dreh bekommt ihr die ersten Schnittfassungen und die bearbeiteten Fotos zur Durchsicht. Eine gebündelte Korrekturrunde ist enthalten. Die finalen Dateien liefere ich spätestens bis vier Kalendertagen nach Eingang eures gebündelten Feedbacks.
 
 Ihr erhaltet die bearbeiteten Fotos und pro Video eine fertige Hochkantdatei für Instagram und TikTok. Beim einzeln gebuchten Dreh übernimmt euer Team den Veröffentlichungsplan, das Posten und die Auswertung.
 
