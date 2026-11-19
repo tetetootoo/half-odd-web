@@ -28,8 +28,8 @@ const fitzNavigation = [
 const tottiNavigation = [
   ['ueberblick', 'Überblick'],
   ['inhaltsproduktion', 'Content-Dreh'],
-  ['erstpruefung', 'Initiales Audit'],
   ['betreuung-soziale-medien', 'Social Media Management'],
+  ['erstpruefung', 'Instagram- und Website-Check'],
   ['buchung-und-zahlung', 'Buchung'],
 ];
 
@@ -107,6 +107,7 @@ export default function FitzProposal({ tottiContent }: { tottiContent?: string }
     return () => { document.documentElement.classList.remove('fitz-document'); document.title = previousTitle; document.documentElement.lang = previousLang; };
   }, [isTotti, title]);
   const introParagraphs = sections[0].split('\n\n').slice(2);
+  const tottiSubtitle = isTotti ? sections[0].split('\n\n')[1] : undefined;
   return (
     <div className={isTotti ? "fitz totti" : "fitz"}>
       <div className="fitz-desktop-menu"><MenuBar /></div>
@@ -142,10 +143,10 @@ export default function FitzProposal({ tottiContent }: { tottiContent?: string }
         <section className="fitz-hero">
           {!isTotti && <div className="fitz-eyebrow"><span className="fitz-date-mobile">4. November 2026</span><img className="fitz-club-logo" src="/media/fitz/logo.svg" alt="FITZ Sports Club" /><span className="fitz-date-desktop">4. November 2026</span></div>}
           <h1>{title}</h1>
-          <div className="fitz-hero-bottom"><p>Angebot von Theresa Schantz · half odd</p></div>
+          <div className="fitz-hero-bottom"><p>{tottiSubtitle ?? 'Angebot von Theresa Schantz · half odd'}</p></div>
         </section>
         {isTotti ? <>
-          <div className="fitz-intro fitz-copy" dangerouslySetInnerHTML={tottiHtml(sections[0].slice(sections[0].indexOf('\n') + 1))} />
+          <div className="fitz-intro fitz-copy" dangerouslySetInnerHTML={tottiHtml(introParagraphs.join('\n\n'))} />
           {sections.slice(1).map((section, index) => {
             const newline = section.indexOf('\n');
             const [id] = navigation[index + 1];
