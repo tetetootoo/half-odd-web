@@ -81,7 +81,7 @@ Ich prüfe und optimiere euren Auftritt auf Instagram und auf der Website. Gemei
 
 ## Buchung und Zahlung
 
-Die Rechnung für den Content-Dreh oder den Instagram- und Website-Check erhaltet ihr vorab. Die Zahlung erfolgt vor Leistungsbeginn. Alternativ können wir vereinbaren, dass ihr 50 % vor Beginn und 50 % nach Abschluss der Leistung zahlt.
+Die Rechnung für den Content-Dreh oder den Instagram- und Website-Check erhaltet ihr vorab. Die Zahlung erfolgt vor Leistungsbeginn. Alternativ können wir vereinbaren, dass ihr 50% vor Beginn und 50% nach Abschluss der Leistung zahlt.
 
 Die laufende Betreuung beginnt zum vereinbarten Termin, sobald die Accountzugänge und ausreichend fertige Inhalte vorliegen. Die Monatspauschale stelle ich jeweils vor Beginn des Betreuungsmonats in Rechnung. Sie ist im Voraus zahlbar. Die Startphase endet nach drei Monaten. Wenn ihr weitermachen möchtet, bestätigen wir die Fortsetzung schriftlich. Anschließend läuft die Betreuung monatlich weiter und kann mit einer Frist von 30 Tagen gekündigt werden.
 
