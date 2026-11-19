@@ -24,7 +24,7 @@ Ihr könnt jeden Dreh einzeln buchen und die fertigen Inhalte selbst veröffentl
 
 ### Welche Inhalte entstehen
 
-**Kurze Reels/TikTok-Videos · ca. 10–25 Sekunden.** In diesen Clips steht die Atmosphäre bei Totti im Vordergrund. Ich schneide mehrere kurze Aufnahmen zu einem stimmungsvollen Video zusammen, etwa wie die Pizza aus dem Ofen kommt, ein Drink gezapft wird und sich der Laden langsam füllt.
+**Kurze Reels/TikTok-Videos · ca. 7–25 Sekunden.** In diesen Clips steht die Atmosphäre bei Totti im Vordergrund. Ich schneide mehrere kurze Aufnahmen zu einem stimmungsvollen Video zusammen, etwa wie die Pizza aus dem Ofen kommt, ein Drink gezapft wird und sich der Laden langsam füllt.
 
 #### Storytelling-Reels · ca. 45–60 Sekunden
 
@@ -39,7 +39,7 @@ Ich bereite ein kurzes Interview oder eine direkte Ansprache in die Kamera vor. 
 
 Ihr erhaltet die bearbeiteten Fotos und pro Video eine fertige Hochkantdatei für Instagram und TikTok. Beim einzeln gebuchten Dreh übernimmt euer Team den Veröffentlichungsplan, das Posten und die Auswertung.
 
-## 2. Optional · Monatliche Betreuung für Instagram und TikTok
+## 2. Social Media Management
 
 Wenn ihr die Planung und Veröffentlichung abgeben möchtet, könnt ihr die laufende Betreuung dazubuchen. Die Monatspakete basieren auf vorhandenen Fotos und fertigen Videos. Content-Drehs sind separat buchbar.
 
@@ -70,7 +70,7 @@ Vor dem Start stimmen wir ab, welche fertigen Inhalte für die dreimonatige Star
 
 Zusätzlicher Videoschnitt. Einfache Videos, die sich direkt veröffentlichen lassen, sind im Monatspaket enthalten. Für ein längeres Reel, das ich aus mehreren gelieferten Clips zusammenschneide, berechne ich 95 € netto pro Reel. Bei einem separat gebuchten Content-Dreh ist der Schnitt der vereinbarten Reels im Drehpreis enthalten.
 
-## 3. Optional · Instagram- und Website-Check
+## 3. Initiales Audit / Instagram- und Website-Check
 
 **Einmaliger Festpreis · 370 € netto**
 
