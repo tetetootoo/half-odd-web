@@ -85,7 +85,7 @@ Die Rechnung für den Content-Dreh oder den Instagram- und Website-Check erhalte
 
 Die laufende Betreuung beginnt zum vereinbarten Termin, sobald die Accountzugänge und ausreichend fertige Inhalte vorliegen. Die Monatspauschale stelle ich jeweils vor Beginn des Betreuungsmonats in Rechnung. Sie ist im Voraus zahlbar. Die Startphase endet nach drei Monaten. Wenn ihr weitermachen möchtet, bestätigen wir die Fortsetzung schriftlich. Anschließend läuft die Betreuung monatlich weiter und kann mit einer Frist von 30 Tagen gekündigt werden.
 
-Wenn ihr den Content-Dreh mit der laufenden Betreuung oder dem Audit kombinieren möchtet, stelle ich euch gern ein Paket mit einem passenden Gesamtpreis zusammen.
+Wenn ihr den Content-Dreh mit der laufenden Betreuung oder dem Audit kombinieren möchtet, komme ich euch preislich gern entgegen.
 
 Toller Laden! Ich freu mich sehr auf das Projekt :)
 
