@@ -11,14 +11,16 @@ danke dir fürs Gespräch und für die Reels! Hier findest du meine Vorschläge 
 | Pro Dreh | 5 Reels | 8 Reels | 10 Reels |
 | --- | --- | --- | --- |
 | Einmaliger Festpreis netto | 790 € | 1.150 € | 1.390 € |
-| Davon kurze Reels/TikTok-Videos | 4 | 6 | 8 |
-| Davon längere Storytelling-Reels | 1 | 2 | 2 |
+| Kurze Reels | 4 | 6 | 8 |
+| Storytelling / längeres Reel | 1 | 2 | 2 |
 | Bearbeitete Fotos | 10 | 15 | 20 |
-| Geplante Zeit vor Ort | ca. 3,5 Std. | ca. 5 Std. | ca. 6 Std. |
+| Geplante Drehzeit vor Ort | ca. 3,5 Std. | ca. 5 Std. | ca. 6 Std. |
 
 ### Beispiele für eure Veröffentlichungsplanung
 
-Fünf Reels reichen bei einem Reel pro Woche für fünf Wochen. Acht Reels könnt ihr über vier Wochen mit zwei Reels pro Woche oder über acht Wochen mit einem Reel pro Woche verteilen. Zehn Reels reichen bei zwei Reels pro Woche für fünf Wochen. Clips zu Events könnt ihr passend zum Termin einplanen.
+**Acht Reels könnt ihr flexibel einplanen.** Wenn ihr zwei Reels pro Woche postet, reicht das Material für vier Wochen. Wenn ihr ein Reel pro Woche veröffentlicht und dazwischen zum Beispiel Foto-Karussells postet, habt ihr Videomaterial für acht Wochen.
+
+Fünf Reels reichen bei einem Reel pro Woche für fünf Wochen. Zehn Reels reichen bei zwei Reels pro Woche für fünf Wochen. Clips zu Events könnt ihr passend zum Termin einplanen.
 
 Ihr könnt jeden Dreh einzeln buchen und die fertigen Inhalte selbst veröffentlichen. Welcher Dreh passt für euch? Dann schicke ich dir zwei mögliche Termine und einen ersten Themenvorschlag.
 
