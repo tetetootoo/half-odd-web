@@ -29,7 +29,7 @@ const tottiNavigation = [
   ['ueberblick', 'Überblick'],
   ['inhaltsproduktion', 'Content-Dreh'],
   ['betreuung-soziale-medien', 'Social Media Management'],
-  ['erstpruefung', 'Instagram- und Website-Check'],
+  ['erstpruefung', 'Initiales Audit'],
   ['buchung-und-zahlung', 'Buchung'],
 ];
 
