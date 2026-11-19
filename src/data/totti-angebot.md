@@ -4,9 +4,7 @@ half odd · Angebot für Valentin
 
 Hi Valentin,
 
-danke dir fürs Gespräch und für die Reels! Für eure zwei Videos pro Woche würde ich mit einem Dreh bei euch starten. Für 1.150 € netto bekommt ihr acht fertige Reels für Instagram und TikTok und 15 bearbeitete Fotos. Damit habt ihr Videomaterial für vier Wochen.
-
-Zwei Reels würde ich den Menschen hinter Totti und der Geschichte des Ladens widmen. In den sechs kürzeren Clips können wir zeigen, was bei euch gerade los ist, von Pizza und Drinks vom Hahn bis zum nächsten Event. Ihr könnt den Dreh einzeln buchen und die Inhalte selbst veröffentlichen.
+danke dir fürs Gespräch und für die Reels! Hier findest du meine Vorschläge für die Content-Produktion und die laufende Social-Media-Betreuung für Totti.
 
 ## 1. Content-Dreh bei Totti
 
