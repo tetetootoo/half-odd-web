@@ -18,7 +18,7 @@ Zwei Reels würde ich den Menschen hinter Totti und der Geschichte des Ladens wi
 | Bearbeitete Fotos | 10 | 15 | 20 |
 | Geplante Zeit vor Ort | ca. 3,5 Std. | ca. 5 Std. | ca. 6 Std. |
 
-Passt der 8er-Dreh für euch? Dann schicke ich dir zwei mögliche Drehtermine und einen ersten Themenvorschlag. Wenn ihr mit weniger Material starten möchtet, könnt ihr auch den 5er-Dreh buchen.
+**Wollt ihr mit acht Reels für vier Wochen starten oder passt der kleinere Dreh mit fünf Reels besser zu euch?** Sag mir gern, welches Paket für euch passt. Dann schicke ich dir zwei mögliche Drehtermine und einen ersten Themenvorschlag.
 
 Kurze Reels/TikTok-Videos · ca. 10–25 Sekunden. Jeder Clip zeigt ein konkretes Motiv oder einen Moment. Wir könnten etwa eine Pizza vom Belegen bis zum Anschnitt begleiten, einen Drink am Hahn zeigen oder einen kurzen Ausblick auf ein Event geben.
 
