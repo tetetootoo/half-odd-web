@@ -26,9 +26,7 @@ Ihr könnt jeden Dreh einzeln buchen und die fertigen Inhalte selbst veröffentl
 
 **Kurze Reels/TikTok-Videos · ca. 7–25 Sekunden.** In diesen Clips steht die Atmosphäre bei Totti im Vordergrund. Ich schneide mehrere kurze Aufnahmen zu einem stimmungsvollen Video zusammen, etwa wie die Pizza aus dem Ofen kommt, ein Drink gezapft wird und sich der Laden langsam füllt.
 
-#### Storytelling-Reels · ca. 45–60 Sekunden
-
-Ich bereite ein kurzes Interview oder eine direkte Ansprache in die Kamera vor. Im Schnitt verbinde ich die Aussagen mit passenden Szenen aus dem Laden und ergänze Untertitel. Mögliche Geschichten wären, wer hinter Totti steckt, was vorher in dem Laden war oder mit wem ihr zusammenarbeitet. Die Storytelling-Reels zählen zur Gesamtzahl des gewählten Pakets.
+**Storytelling-Reels · ca. 45–60 Sekunden.** Ich bereite ein kurzes Interview oder eine direkte Ansprache in die Kamera vor. Im Schnitt verbinde ich die Aussagen mit passenden Szenen aus dem Laden und ergänze Untertitel. Mögliche Geschichten wären, wer hinter Totti steckt, was vorher in dem Laden war oder mit wem ihr zusammenarbeitet. Die Storytelling-Reels zählen zur Gesamtzahl des gewählten Pakets.
 
 ### Vorbereitung, Dreh und Lieferung
 
@@ -53,7 +51,7 @@ Wenn ihr die Planung und Veröffentlichung abgeben möchtet, könnt ihr die lauf
 | Community Management | Bis zu 1 Std./Woche | Bis zu 1 Std./Woche | Bis zu 2 Std./Woche |
 | Monatsauswertung | Inklusive | Inklusive | Inklusive |
 
-Dreimonatige Startphase. Die Betreuung startet mit einer verbindlichen Laufzeit von drei Monaten zum Preis des gewählten Pakets. Im ersten Monat richten wir den Redaktionskalender und die Freigaben ein. Im zweiten passen wir Themen und Formate anhand der ersten Ergebnisse an. Zwei Wochen vor Ende der Startphase besprechen wir die Zusammenarbeit und entscheiden, ob und mit welchem Paket ihr weitermachen möchtet.
+**Dreimonatige Startphase.** Die Betreuung startet mit einer verbindlichen Laufzeit von drei Monaten zum Preis des gewählten Pakets. Im ersten Monat richten wir den Redaktionskalender und die Freigaben ein. Im zweiten passen wir Themen und Formate anhand der ersten Ergebnisse an. Zwei Wochen vor Ende der Startphase besprechen wir die Zusammenarbeit und entscheiden, ob und mit welchem Paket ihr weitermachen möchtet.
 
 Ein Story-Frame ist eine einzelne Story-Seite. Das Teilen eigener Posts und passende Reposts von Gäste-Stories kommen zusätzlich dazu. Wenn dasselbe Reel auf beiden Kanälen erscheint, zählt es als ein Instagram-Post und ein TikTok-Post.
 
@@ -88,6 +86,8 @@ Die Rechnung für den Content-Dreh oder den Instagram- und Website-Check erhalte
 Die laufende Betreuung beginnt zum vereinbarten Termin, sobald die Accountzugänge und ausreichend fertige Inhalte vorliegen. Die Monatspauschale stelle ich jeweils vor Beginn des Betreuungsmonats in Rechnung. Sie ist im Voraus zahlbar. Die Startphase endet nach drei Monaten. Wenn ihr weitermachen möchtet, bestätigen wir die Fortsetzung schriftlich. Anschließend läuft die Betreuung monatlich weiter und kann mit einer Frist von 30 Tagen gekündigt werden.
 
 Wenn ihr den Content-Dreh mit der laufenden Betreuung oder dem Audit kombinieren möchtet, stelle ich euch gern ein Paket mit einem passenden Gesamtpreis zusammen.
+
+Toller Laden! Ich freu mich sehr auf das Projekt :)
 
 Liebe Grüße\
 Theresa\
