@@ -214,6 +214,16 @@ export const gridApps: MobileAppItem[] = [
     tags: ['visual branding', 'website design', 'web development with framer'],
   },
   {
+    id: 'casa-flow-studio',
+    label: 'Casa Flow Studio',
+    iconSrc: '/media/casa-flow-studio/icon.png',
+    kind: 'site',
+    link: { url: 'https://www.casaflow.de/' },
+    description: 'yoga studio website design and development',
+    mediaSrc: '/media/casa-flow-studio/preview.webp',
+    mediaType: 'image',
+  },
+  {
     id: 'photo-portfolio',
     label: 'Photography',
     iconSrc: '/media/photo-portfolio/icon.png',
