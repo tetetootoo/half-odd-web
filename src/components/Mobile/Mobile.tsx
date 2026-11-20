@@ -134,13 +134,17 @@ function SiteFrame({ app, onBack }: { app: MobileAppItem; onBack: () => void }) 
 
   return (
     <div className={styles.siteFrame}>
-      <div className={styles.siteContent}>
+      <div
+        key={reloadKey}
+        className={styles.siteContent}
+        tabIndex={!app.embedUrl && app.mediaType === 'image' ? 0 : undefined}
+        aria-label={!app.embedUrl && app.mediaType === 'image' ? `${app.label} website preview` : undefined}
+      >
         {app.embedUrl ? (
-          <iframe key={reloadKey} className={styles.siteIframe} src={app.embedUrl} title={app.label} />
+          <iframe className={styles.siteIframe} src={app.embedUrl} title={app.label} />
         ) : app.mediaSrc ? (
           app.mediaType === 'video' ? (
             <AccessibleVideo
-              key={reloadKey}
               className={styles.siteMediaVideo}
               src={app.mediaSrc}
               autoPlay

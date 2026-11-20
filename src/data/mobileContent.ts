@@ -220,7 +220,7 @@ export const gridApps: MobileAppItem[] = [
     kind: 'site',
     link: { url: 'https://www.casaflow.de/' },
     description: 'yoga studio website design and development',
-    mediaSrc: '/media/casa-flow-studio/preview.webp',
+    mediaSrc: '/media/casa-flow-studio/mobile-preview.jpg',
     mediaType: 'image',
   },
   {

@@ -106,14 +106,14 @@ export const desktopItems: DesktopItem[] = [
   {
     id: 'casa-flow-studio',
     label: 'Casa Flow Studio',
-    kind: 'project',
+    kind: 'browser',
     windowTitle: 'casa flow studio',
     x: 23.2,
     y: 44.9,
     link: { url: 'https://www.casaflow.de/' },
     description: 'yoga studio website design and development',
     iconSrc: '/media/casa-flow-studio/icon.png',
-    mediaSrc: '/media/casa-flow-studio/preview.webp',
+    mediaSrc: '/media/casa-flow-studio/desktop-preview.webp',
     mediaType: 'image',
   },
   {

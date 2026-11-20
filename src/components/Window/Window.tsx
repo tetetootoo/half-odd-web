@@ -143,12 +143,24 @@ function BrowserFrame({ item }: { item: DesktopItem }) {
         </span>
       </div>
       <div className={styles.browserViewport}>
-        <iframe
-          key={reloadKey}
-          className={styles.browserIframe}
-          src={url}
-          title={item.windowTitle}
-        />
+        {item.mediaSrc ? (
+          <div
+            key={reloadKey}
+            className={styles.browserPreview}
+            role="region"
+            aria-label={`${item.label} website preview`}
+            tabIndex={0}
+          >
+            <img src={item.mediaSrc} alt={`Screenshot of the ${item.label} homepage`} />
+          </div>
+        ) : (
+          <iframe
+            key={reloadKey}
+            className={styles.browserIframe}
+            src={url}
+            title={item.windowTitle}
+          />
+        )}
         {item.showScrollHint && (
           <span className={styles.scrollHint} aria-hidden="true">
             <svg viewBox="0 0 16 16" width="14" height="14">
