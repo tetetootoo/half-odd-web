@@ -37,7 +37,9 @@ Take your 11 years of health tracking across four wearables. In a Reel, you coul
 | Instagram Story sequences | 2 | 3 |
 | Performance review | Monthly written summary | Monthly written summary and review call |
 
-I’ll provide filming briefs, edit the footage and publish the finished content. You can film from the briefs or book a filming session under position 4 or 5. Package 2 includes six finished Reels per month, each published on Instagram and TikTok. Reels made from a booked shoot count toward those six.
+I provide filming briefs and edit and publish the Reels. You supply the footage or book an optional filming session under position 4 or 5.
+
+Package 2 includes six finished Reels per month, each published on Instagram and TikTok. Reels made from a booked shoot count toward those six.
 
 The one-time setup fee covers the initial strategy and first content calendar. The monthly fee covers production and publishing, with a new calendar included from month two onward.
 
@@ -116,13 +118,15 @@ We’ll confirm the build platform before work begins. Website fees exclude phot
 **Recommended for the first three months · Positions 2, 2.1 and 3**\
 Grow the Personal Brand, one-time strategy and setup, and LinkedIn editorial support.
 
+### Three-month investment for positions 2, 2.1 and 3
+
 | Investment | Fee excl. moms |
 | --- | ---: |
 | Month 1, including strategy and setup | 19,900 DKK |
 | Months 2 and 3 | 14,400 DKK/month |
 | Total for the initial three months | 48,700 DKK |
 
-Invoiced monthly in advance. Optional filming, Substack, branding and website work are priced separately.
+Invoiced monthly in advance. Filming, Substack, and brand and website work are priced separately.
 
 If you’d like to start with this combination, reply with **positions 2, 2.1 and 3**, plus any add-ons you’d like. I’ll confirm the scope, send the first invoice and suggest a kickoff date.
 
