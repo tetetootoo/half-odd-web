@@ -16,9 +16,9 @@ Take your 11 years of health tracking across four wearables. In a Reel, you coul
 | --- | ---: | ---: |
 | Monthly fee | 6,900 DKK | 10,900 DKK |
 | One-time strategy and setup | 4,500 DKK | 5,500 DKK |
-| Reels published on Instagram and TikTok | 3 | 6 |
-| Additional Instagram posts or carousels | 1 | 2 |
 | Total Instagram feed posts, including Reels | 4 | 8 |
+| &nbsp;&nbsp;&nbsp;&nbsp;Reels published on Instagram and TikTok | 3 | 6 |
+| &nbsp;&nbsp;&nbsp;&nbsp;Additional Instagram posts or carousels | 1 | 2 |
 | Instagram Story sequences | 2 | 3 |
 | Performance review | Monthly written summary | Monthly written summary and review call |
 
