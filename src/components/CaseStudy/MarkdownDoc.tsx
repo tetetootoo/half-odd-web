@@ -156,6 +156,9 @@ export function MarkdownTextDoc({ markdown, sectionNavigation = false }: {
       <div className={`${styles.page} ${textStyles.page}`}>
         {tokens.map((token, i) => {
           const section = sections.find(item => item.index === i);
+          if (sectionNavigation && token.type === 'paragraph' && token.text === 'All prices are in DKK, excl. moms.') {
+            return <p key={i} className={textStyles.pricingNote}>{inline(token.tokens)}</p>;
+          }
           return section
             ? <h2 key={i} id={section.id}>{inline((token as Tokens.Heading).tokens)}</h2>
             : <Fragment key={i}>{renderToken(token)}</Fragment>;

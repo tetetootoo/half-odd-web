@@ -2,6 +2,10 @@
 
 Suzaan Sauerman x Theresa Schantz · half odd
 
+Hi Suzaan,
+
+I really enjoyed our conversation. I’ve put together a few ways we could work together to bring more of your perspective into your content and make it easier for people to book you for talks and advisory work.
+
 All prices are in DKK, excl. moms.
 
 ## 1. What we’re building
