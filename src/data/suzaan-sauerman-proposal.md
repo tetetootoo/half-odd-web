@@ -47,13 +47,10 @@ The one-time setup fee covers the initial strategy and first content calendar. T
 
 ### One-time strategy and setup
 
-- Package 1 · 4,500 DKK
-  - Kickoff, Instagram profile and content audit, review of the route from Instagram to your website and contact details
-  - Initial audience and niche definition, bio recommendations, recurring format shortlist, filming guide, first four-week calendar
-- Package 2 · 5,500 DKK
-  - Everything in Package 1
-  - Review of three comparable accounts, Instagram analytics baseline, pinned-post recommendations, first-month plan to test topics and hooks
-  - Review of how easily event organisers and prospective clients can find your speaking and advisory information
+| Package | What’s included | Fee excl. moms |
+| --- | --- | ---: |
+| **Package 1** | Kickoff, Instagram profile and content audit, review of the route from Instagram to your website and contact details. Initial audience and niche definition, bio recommendations, recurring format shortlist, filming guide, first four-week calendar. | **4,500 DKK** |
+| **Package 2** | Everything in Package 1. Review of three comparable accounts, Instagram analytics baseline, pinned-post recommendations, first-month plan to test topics and hooks. Review of how easily event organisers and prospective clients can find your speaking and advisory information. | **5,500 DKK** |
 
 ## 3. Optional content add-ons
 
