@@ -8,7 +8,7 @@ All prices are in DKK, excl. moms.
 
 We’ll build your content around your experience with wearables, women’s health and AI. On Instagram and TikTok, you’ll help people make more informed choices about health technology. On LinkedIn, we’ll develop your perspective for product teams and event organisers and give them a clear way to contact you about advisory work, keynotes and panel discussions.
 
-Your story about tracking your health across four wearables could become a Reel about what you still have to piece together, a carousel showing where the data lives, and a LinkedIn post asking product teams what they could build differently.
+Take your 11 years of health tracking across four wearables. In a Reel, you could show what you still have to piece together by hand. A carousel could map where your data ends up. On LinkedIn, we could turn that experience into a question for product teams: **what would it take to give people a clear picture of their health without a spreadsheet?**
 
 ## 2. Instagram and TikTok packages
 
