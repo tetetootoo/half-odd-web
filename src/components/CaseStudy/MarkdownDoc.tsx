@@ -42,6 +42,7 @@ function renderToken(token: Token): ReactNode {
     }
     case 'table': {
       const table = token as Tokens.Table;
+      const includedColumn = table.header.findIndex(cell => cell.text === 'What’s included');
       return <div className={styles.tableScroll} tabIndex={0} role="region" aria-label="Scrollable table">
         <table className={styles.table}>
           <thead><tr>{table.header.map((cell, i) => <th key={i} scope="col" style={{ textAlign: table.align[i] ?? 'left' }}>{inline(cell.tokens)}</th>)}</tr></thead>
@@ -49,7 +50,11 @@ function renderToken(token: Token): ReactNode {
             const indent = '&nbsp;'.repeat(4);
             const indented = j === 0 && cell.text.startsWith(indent);
             return <td key={j} className={indented ? styles.indentedCell : undefined} style={{ textAlign: table.align[j] ?? 'left' }}>
-              {inline(indented ? Lexer.lexInline(cell.text.slice(indent.length)) : cell.tokens)}
+              {j === includedColumn ? (
+                <ul className={styles.tableList}>
+                  {cell.text.split('<br>').map((entry, index) => <li key={index}>{inline(Lexer.lexInline(entry.trim()))}</li>)}
+                </ul>
+              ) : inline(indented ? Lexer.lexInline(cell.text.slice(indent.length)) : cell.tokens)}
             </td>;
           })}</tr>)}</tbody>
         </table>

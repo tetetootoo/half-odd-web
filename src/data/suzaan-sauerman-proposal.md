@@ -48,17 +48,17 @@ The one-time setup fee covers the initial strategy and first content calendar. T
 
 | Package | What’s included | Fee excl. moms |
 | --- | --- | ---: |
-| **1.1 · Required strategy and setup for Build the Presence** | Kickoff, Instagram and content audit, and a review of how people find your website and contact details from Instagram. Includes initial audience and niche recommendations, bio suggestions, a shortlist of recurring formats, a filming guide and the first four-week calendar. | **4,500 DKK** |
-| **2.1 · Required strategy and setup for Grow the Personal Brand** | Includes Package 1 setup, plus a review of three comparable accounts, an Instagram performance baseline, recommendations for pinned posts and a first-month plan to test topics and hooks. I’ll also review how easily visitors can find your speaking and advisory information. | **5,500 DKK** |
+| **1.1 · Required strategy and setup for Build the Presence** | Kickoff, Instagram and content audit, and a review of how people find your website and contact details from Instagram.<br>Initial audience and niche recommendations and bio suggestions.<br>A shortlist of recurring formats, a filming guide and the first four-week calendar. | **4,500 DKK** |
+| **2.1 · Required strategy and setup for Grow the Personal Brand** | Includes Package 1 setup.<br>Review of three comparable accounts and an Instagram performance baseline.<br>Recommendations for pinned posts and a first-month plan to test topics and hooks.<br>I’ll also review how easily visitors can find your speaking and advisory information. | **5,500 DKK** |
 
 ## Optional content add-ons
 
 | Position | Service | What’s included | Fee excl. moms |
 | --- | --- | --- | --- |
-| **3** | **LinkedIn editorial support** | One-time review of your headline, About section, and Featured links, with suggested updates. Four original posts per month written in your voice, up to two supporting graphics including charts from supplied data, one consolidated revision per post, and scheduling after approval. | **3,500 DKK/month** |
-| **4** | **Batch video filming · one shoot** | One three-hour shoot for direct-to-camera takes, product demonstrations, and supporting footage. Includes editing into finished Reels within your package’s monthly video allowance and publishing on Instagram and TikTok after approval. | **3,000 DKK** |
+| **3** | **LinkedIn editorial support** | One-time review of your headline, About section, and Featured links, with suggested updates.<br>Four original posts per month written in your voice.<br>Up to two supporting graphics including charts from supplied data.<br>One consolidated revision per post.<br>Scheduling after approval. | **3,500 DKK/month** |
+| **4** | **Batch video filming · one shoot** | One three-hour shoot for direct-to-camera takes, product demonstrations, and supporting footage.<br>Includes editing into finished Reels within your package’s monthly video allowance and publishing on Instagram and TikTok after approval. | **3,000 DKK** |
 | **5** | **Batch video filming · two shoots** | Same as position 4, for two three-hour shoots in the same month. | **5,000 DKK** |
-| **6** | **Substack support · one article per month** | You supply the finished draft. I proofread it, lightly optimise the title, subtitle, and headings with relevant keywords, format it in Substack, add approved images and credits, and schedule it on request after approval. Includes one consolidated revision per article. | **1,000 DKK/month** |
+| **6** | **Substack support · one article per month** | You supply the finished draft.<br>Proofreading and light keyword optimisation of the title, subtitle and headings.<br>Formatting in Substack, with approved images and credits.<br>Scheduling on request after approval.<br>Includes one consolidated revision per article. | **1,000 DKK/month** |
 | **7** | **Substack support · two articles per month** | Same as position 6, for two articles per month. | **1,800 DKK/month** |
 
 Batch video filming is available with an active social media package and can be booked month by month.
@@ -67,10 +67,10 @@ Batch video filming is available with an active social media package and can be 
 
 | Position | Service | What’s included | Fee excl. moms |
 | --- | --- | --- | --- |
-| **8** | **Personal brand strategy** | Review of your website, social profiles, and strongest content, followed by a 60–75 minute strategy session. Includes a personal-brand guide covering positioning, priority audiences, key messages, tone of voice, colour palette, typography, and imagery, with examples for your website and social posts. One consolidated revision. | **9,500 DKK** |
-| **9** | **Website redesign and rebuild** | Redesign and rebuild of up to five pages, guided by your existing positioning, messaging, and brand assets. Includes site structure, copy adapted from existing materials, responsive design, light animations, a Speaking page with approved clips where available, a standard inquiry form, basic SEO, and launch checks. Two consolidated feedback rounds, one on the design and one on the built site before launch. | **20,000 DKK** |
-| **10** | **Personal brand strategy + website redesign and rebuild** | Positions 8 and 9 combined. We define your positioning, messaging, and visual direction first, then use the agreed strategy to guide the new website’s structure, copy, and design. | **27,000 DKK** |
-| **11** | **Branding photography** | One 60-minute branding shoot at a location we agree on. Includes a curated selection of edited portraits and candid images, light retouching, and vertical and horizontal compositions for your website, social channels, LinkedIn, and paid ads for your own brand. Available with either website option (positions 9 and 10). | **2,000 DKK** |
+| **8** | **Personal brand strategy** | Review of your website, social profiles, and strongest content, followed by a 60–75 minute strategy session.<br>Includes a personal-brand guide covering positioning, priority audiences, key messages, tone of voice, colour palette, typography, and imagery, with examples for your website and social posts.<br>One consolidated revision. | **9,500 DKK** |
+| **9** | **Website redesign and rebuild** | Redesign and rebuild of up to five pages, guided by your existing positioning, messaging, and brand assets.<br>Site structure and copy adapted from existing materials.<br>Responsive design and light animations.<br>A Speaking page with approved clips where available and a standard inquiry form.<br>Basic SEO and launch checks.<br>Two consolidated feedback rounds, one on the design and one on the built site before launch. | **20,000 DKK** |
+| **10** | **Personal brand strategy + website redesign and rebuild** | Positions 8 and 9 combined.<br>We define your positioning, messaging, and visual direction first, then use the agreed strategy to guide the new website’s structure, copy, and design. | **27,000 DKK** |
+| **11** | **Branding photography** | One 60-minute branding shoot at a location we agree on.<br>A curated selection of edited portraits and candid images with light retouching.<br>Vertical and horizontal compositions for your website, social channels, LinkedIn and paid ads for your own brand.<br>Available with either website option (positions 9 and 10). | **2,000 DKK** |
 
 We’ll confirm the build platform before work begins. Website fees exclude photography, showreel production, platform subscriptions, and hosting. Any photography location hire or travel costs are agreed in advance.
 

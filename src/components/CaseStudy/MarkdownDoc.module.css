@@ -127,6 +127,7 @@
 .table { width: 100%; min-width: 420px; border-collapse: collapse; font-size: 15px; line-height: 1.6; }
 .table th, .table td { padding: 12px; border-bottom: 1px solid #e9e2e5; vertical-align: top; }
 .table th { font-weight: 700; }
+.table td > .tableList { margin: 0; padding-inline-start: 1.15em; }
 .table .indentedCell { padding-inline-start: calc(12px + 1em); }
 
 .block h2.universitySapHeading { font-size: 22px; }
