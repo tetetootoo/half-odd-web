@@ -23,6 +23,7 @@ export function useOverlayLink(
   resolve: (id: string) => string | null,
   open: (id: string) => void,
   close: () => void,
+  enabled = true,
 ) {
   const callbacks = useRef({ resolve, open, close });
   callbacks.current = { resolve, open, close };
@@ -30,6 +31,7 @@ export function useOverlayLink(
   const navigation = useRef<{ target: string | null } | null>(null);
 
   useEffect(() => {
+    if (!enabled) return;
     const navigate = () => {
       let id: string;
       try { id = decodeURIComponent(window.location.hash.slice(1)); }
@@ -47,9 +49,10 @@ export function useOverlayLink(
       window.removeEventListener('popstate', navigate);
       window.removeEventListener('hashchange', navigate);
     };
-  }, []);
+  }, [enabled]);
 
   useEffect(() => {
+    if (!enabled) return;
     // History navigation updates React state asynchronously. Wait for it before
     // allowing state changes to write a new URL back into history.
     if (navigation.current) {
@@ -81,5 +84,5 @@ export function useOverlayLink(
       window.history.replaceState(window.history.state, '', url);
     }
     trackView(activeId);
-  }, [activeId]);
+  }, [activeId, enabled]);
 }

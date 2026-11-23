@@ -7,9 +7,10 @@ interface WindowManagerProps {
   itemsById: Map<string, DesktopItem>;
   getWorkArea: () => WorkArea;
   onOpenItem: (id: string) => void;
+  onFinishClose: (id: string, hadFocus: boolean) => void;
 }
 
-export function WindowManager({ manager, itemsById, getWorkArea, onOpenItem }: WindowManagerProps) {
+export function WindowManager({ manager, itemsById, getWorkArea, onOpenItem, onFinishClose }: WindowManagerProps) {
   return (
     <>
       {manager.windows.map((managed) => {
@@ -27,7 +28,7 @@ export function WindowManager({ manager, itemsById, getWorkArea, onOpenItem }: W
             onFocus={() => manager.focus(id)}
             onClose={() => manager.close(id)}
             onMinimize={() => manager.minimize(id)}
-            onFinishClose={(hadFocus) => manager.finishClose(id, hadFocus)}
+            onFinishClose={(hadFocus) => onFinishClose(id, hadFocus)}
             onFinishMinimize={(hadFocus) => manager.finishMinimize(id, hadFocus)}
             onOpenItem={onOpenItem}
           />

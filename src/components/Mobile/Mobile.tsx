@@ -738,7 +738,10 @@ function MailSheet({ onClose }: { onClose: () => void }) {
   );
 }
 
-export function Mobile() {
+export function Mobile({ initialDocument, onDocumentClose }: {
+  initialDocument?: MobileAppItem;
+  onDocumentClose?: () => void;
+}) {
   const phoneRef = useRef<HTMLElement>(null);
   // VisualViewport also follows the iOS keyboard, which does not resize 100dvh.
   useLayoutEffect(() => {
@@ -764,13 +767,17 @@ export function Mobile() {
       viewport.removeEventListener('resize', resize);
     };
   }, []);
-  const [openId, setOpenId] = useState<OverlayId | null>(null);
+  const [openId, setOpenId] = useState<OverlayId | null>(initialDocument?.id ?? null);
+  const closeDocument = () => {
+    setOpenId(null);
+    if (openId === initialDocument?.id) onDocumentClose?.();
+  };
   useOverlayLink(openId, id => {
     if (id === 'about-me' || id === 'about') return 'about';
     if (id === 'notes' || id === 'mail' || id === 'trash') return id;
     const app = [...gridApps, ...trashItems].find(app => app.id === id);
     return app && app.kind !== 'audio' && app.kind !== 'link' ? app.id : null;
-  }, setOpenId, () => setOpenId(null));
+  }, setOpenId, () => setOpenId(null), !initialDocument);
   const overlayRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     if (!openId) return;
@@ -792,7 +799,9 @@ export function Mobile() {
     }
   };
 
-  const openApp = [...gridApps, ...trashItems].find((app) => app.id === openId);
+  const openApp = openId === initialDocument?.id
+    ? initialDocument
+    : [...gridApps, ...trashItems].find((app) => app.id === openId);
 
   return (
     <main ref={phoneRef} className={styles.phone} aria-label="Half Odd portfolio">
@@ -847,7 +856,7 @@ export function Mobile() {
         aria-label={openApp?.label ?? (openId === 'mail' ? 'Contact' : openId === 'about' ? 'About me' : 'Notes')}
         tabIndex={-1}
         onKeyDown={event => {
-          if (event.key === 'Escape') { event.preventDefault(); setOpenId(null); return; }
+          if (event.key === 'Escape') { event.preventDefault(); closeDocument(); return; }
           if (event.key !== 'Tab') return;
           const controls = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('button:not(:disabled), a[href], input, textarea, select, iframe, video[controls], [tabindex="0"]')).filter(element => element.getClientRects().length && !element.matches(':disabled, [type=hidden], [tabindex="-1"]'));
           const first = controls[0];
@@ -867,7 +876,7 @@ export function Mobile() {
         <SiteFrame app={openApp} onBack={() => setOpenId(null)} />
       )}
       {openApp && (openApp.kind === 'text' || openApp.kind === 'markdown') && (
-        <TextDoc app={openApp} onClose={() => setOpenId(null)} onOpenApp={(id) => setOpenId(id)} />
+        <TextDoc app={openApp} onClose={closeDocument} onOpenApp={(id) => setOpenId(id)} />
       )}
       {openApp && openApp.kind === 'image' && (
         <ImageDoc app={openApp} onClose={() => setOpenId(null)} />

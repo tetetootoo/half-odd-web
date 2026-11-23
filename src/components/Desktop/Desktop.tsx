@@ -48,17 +48,25 @@ function isOverTrash(pointer: Position): boolean {
   return !!hit?.closest('[data-drop-target="trash"]');
 }
 
-export function Desktop() {
+export function Desktop({ initialDocument, onDocumentClose }: {
+  initialDocument?: DesktopItem;
+  onDocumentClose?: () => void;
+}) {
   const compactDesktop = useIsMobile(900);
   const itemsById = useMemo(() => {
     const map = new Map<string, DesktopItem>();
     for (const item of [...desktopItems, ...systemWindows, ...builtInTrash]) {
       map.set(item.id, item);
     }
+    if (initialDocument) map.set(initialDocument.id, initialDocument);
     return map;
-  }, []);
+  }, [initialDocument]);
 
   const manager = useWindowManager();
+  const openWindow = manager.open;
+  useEffect(() => {
+    if (initialDocument) openWindow(initialDocument.id);
+  }, [initialDocument, openWindow]);
   useOverlayLink(manager.activeId, id => {
     const item = itemsById.get(id === 'about' ? 'about-me' : id);
     return item && item.kind !== 'link' && item.kind !== 'audio' ? item.id : null;
@@ -66,7 +74,7 @@ export function Desktop() {
     for (const window of manager.windows) {
       if (window.phase === 'open') manager.close(window.id);
     }
-  });
+  }, !initialDocument);
   const { iconPositions, setIconPositions, trash, setTrash } = useDesktopState();
   const [exitingIds, setExitingIds] = useState<Set<string>>(new Set());
   const [restoredIds, setRestoredIds] = useState<Set<string>>(new Set());
@@ -389,6 +397,10 @@ export function Desktop() {
           itemsById={itemsById}
           getWorkArea={getWorkArea}
           onOpenItem={openFromContent}
+          onFinishClose={(id, hadFocus) => {
+            manager.finishClose(id, hadFocus);
+            if (id === initialDocument?.id) onDocumentClose?.();
+          }}
         />
         <Dock
           ref={dockRef}

@@ -1,5 +1,21 @@
 {
+  "headers": [
+    {
+      "source": "/proposal/suzaan-sauerman/",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/proposal/suzaan-sauerman",
+      "headers": [
+    {
+      "source": "/proposal/suzaan-sauerman/",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },{ "key": "X-Robots-Tag", "value": "noindex" }]
+    }
+  ],
   "rewrites": [
+    { "source": "/proposal/suzaan-sauerman", "destination": "/index.html" },
+    { "source": "/proposal/suzaan-sauerman/", "destination": "/index.html" },
     { "source": "/proposal/fitz", "destination": "/index.html" },
     { "source": "/proposal/fitz/", "destination": "/index.html" },
     { "source": "/angebot/totti", "destination": "/index.html" },

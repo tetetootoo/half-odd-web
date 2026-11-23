@@ -20,3 +20,16 @@
   .page h1 { font-size: 28px; }
   .page h2 { font-size: 18px; }
 }
+
+.page h3 {
+  margin: 32px 0 12px;
+  font-size: 17px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+.page :is(ul, ol) { margin-block: 16px; padding-inline-start: 24px; }
+.page li + li { margin-top: 8px; }
+.page li > :is(ul, ol) { margin-block: 6px 12px; }
+.page [role="region"] { margin-block: 24px; }
+
+:global(.suzaan-proposal) .page * { text-transform: none; }
