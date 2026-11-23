@@ -112,7 +112,7 @@ Grow the Personal Brand, one-time strategy and setup, and LinkedIn editorial sup
 | Investment | Fee excl. moms |
 | --- | ---: |
 | Month 1, including strategy and setup | 19,900 DKK |
-| Months 2 and 3 | 14,400 DKK/month |
+| Months 2 and 3 · Instagram, TikTok and LinkedIn. | 14,400 DKK/month |
 | Total for the initial three months | 48,700 DKK |
 
 Invoiced monthly in advance. Filming, Substack, and brand and website work are priced separately.
