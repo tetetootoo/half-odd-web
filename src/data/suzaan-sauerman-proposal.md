@@ -70,13 +70,16 @@ We’ll build your content around your experience with wearables, women’s heal
 - Up to two accompanying graphics per month, including charts created or rebuilt from supplied data
 - One consolidated revision per post, scheduling after approval
 
-### Substack proofreading and formatting · 1,250 DKK/article
+### Substack proofreading and formatting
 
-- You write and supply the finished draft
-- Proofreading for spelling, grammar and readability
-- Light keyword optimisation of the title, subtitle and headings where relevant terms fit naturally
-- Formatting in Substack, placement of supplied or approved imagery with appropriate usage rights and credits
-- One consolidated revision, scheduling on request after approval
+**1 article per month · 1,000 DKK**\
+**2 articles per month · 1,800 DKK**\
+*Both prices excl. moms.*
+
+- You write and supply the finished drafts.
+- I proofread for spelling, grammar, and readability, and lightly optimise titles, subtitles, and headings with relevant keywords.
+- I format each article in Substack, add supplied or approved images with appropriate credits, and schedule it on request after approval.
+- One consolidated revision round per article is included.
 
 ### Batch video filming and Reel editing
 
