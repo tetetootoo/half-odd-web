@@ -119,8 +119,6 @@ Invoiced monthly in advance. Filming, Substack, and brand and website work are p
 
 If you’d like to start with this combination, reply with **positions 2, 2.1 and 3**, plus any add-ons you’d like. I’ll confirm the scope, send the first invoice and suggest a kickoff date.
 
-[Email Theresa](mailto:ts@halfodd.com?subject=Suzaan%20Sauerman%20proposal)
-
 Speak soon,\
 **Theresa · half odd**
 
