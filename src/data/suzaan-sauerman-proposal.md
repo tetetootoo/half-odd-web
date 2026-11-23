@@ -91,9 +91,6 @@ We’ll confirm the build platform before work begins. Website fees exclude phot
 - Social media payment — Strategy setup and the first publishing month are invoiced before work begins. The second and third months, and any continuation, are invoiced in advance.
 - Website payment and timeline — 50% at booking and 50% after final approval. We agree on the schedule before work begins, based on platform access and delivery of materials. After final payment, I hand over the site and relevant access. Ongoing maintenance can be agreed separately.
 - Content responsibilities — You supply account access, source material, usable footage and imagery, and approve factual and health-related claims and third-party material. You handle replies and conversations with prospective clients and event organisers.
-- Feedback and delays — Two business days for consolidated social content feedback. Late footage or approvals move affected posts to the next mutually available slot. We confirm in writing whether unfinished deliverables carry into a later month.
-- Revisions and additional work — One consolidated revision per social deliverable for adjustments within the agreed brief. New concepts, reshoots, additional revisions and other work outside scope are billed at 650 DKK/hour, excl. moms, with prior written approval.
-- Continuation and handover — The initial engagement ends after three publishing months unless we confirm continuation in writing. Any ongoing monthly arrangement can end with 30 days’ written notice. Before the end date, we agree how to complete approved work underway. At handover, I share final paid deliverables and remove my delegated account access.
 
 ## Next steps
 
