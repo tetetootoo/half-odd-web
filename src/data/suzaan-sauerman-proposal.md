@@ -101,6 +101,8 @@ After the strategy session, I’ll deliver a concise personal-brand guide coveri
 
 ### Website redesign and rebuild · 20,000 DKK
 
+I’ll use your existing positioning, messaging, and brand assets to guide the site structure, copy, and visual design.
+
 - **Up to five pages** — Home, Speaking, Advisory, About and Writing
 - **Design and build**
   - Modern editorial design that reflects your consumer tech background
@@ -113,6 +115,8 @@ After the strategy session, I’ll deliver a concise personal-brand guide coveri
 The website includes two consolidated feedback rounds, one on the design and one on the built site before launch. We’ll confirm the build platform before work begins.
 
 ### Personal brand strategy + website redesign and rebuild · 27,000 DKK
+
+We’ll define your positioning, priority audiences, tone of voice, and visual direction first. I’ll then use the agreed personal brand strategy to shape the website’s structure, copy, typography, colours, and imagery, with clear paths for speaking and advisory inquiries.
 
 - Full personal brand strategy, guide, website redesign and rebuild described above
 - One brand direction carried through the website and social content
