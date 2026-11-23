@@ -78,10 +78,16 @@ We’ll confirm the build platform before work begins. Website fees exclude phot
 
 ## 5. How we’ll work together
 
-1. Strategy week. Once payment, access and existing materials are in place, I spend the first week reviewing your content and preparing the strategy. At kickoff, we agree on the first filming date or footage deadline.
-2. Strategy discussion. I present recurring formats and sample topics. We go through them together and decide what to lead with, what to test later and what feels natural for you to film.
-3. Production and approval. I finalise the calendar and briefs. You supply footage and approved imagery or book a filming session. I prepare the first batch for approval.
-4. Three-month initial engagement. The first publishing month starts when the first approved post goes live. We use each monthly review to adjust what we make next. At the end of month three, we decide which formats to continue, revise or drop, and whether to increase the cadence or adjust the scope. We confirm any continuation in writing.
+1. **Strategy week**\
+   I review your content and prepare the initial direction. We agree on your first filming date or footage deadline.
+2. **Strategy discussion**\
+   We review the proposed formats and topics together and decide what to start with.
+3. **First batch and approval**\
+   You supply footage or book a shoot. I prepare the first posts and send them to you for approval.
+4. **Three months of publishing**\
+   The first month starts when the first approved post goes live. We use each monthly review to adjust what we publish next.
+5. **End-of-term review**\
+   We decide which formats to continue, revise, or drop, and whether to adjust the publishing cadence or scope.
 
 ### Payment, approvals and handover
 
