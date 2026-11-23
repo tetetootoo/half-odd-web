@@ -87,7 +87,7 @@ We’ll confirm the build platform before work begins. Website fees exclude phot
 5. **End-of-term review**\
    After three months, we’ll review what performed well, which formats to keep and whether to change the posting frequency or scope.
 
-### Payment, approvals and handover
+## Payment, approvals and handover
 
 - Social media payment — Strategy setup and the first publishing month are invoiced before work begins. The second and third months, and any continuation, are invoiced in advance.
 - Website payment and timeline — 50% at booking and 50% after final approval. We agree on the schedule before work begins, based on platform access and delivery of materials. After final payment, I hand over the site and relevant access. Ongoing maintenance can be agreed separately.
