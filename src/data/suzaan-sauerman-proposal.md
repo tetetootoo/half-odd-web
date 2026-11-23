@@ -14,17 +14,6 @@ On Instagram and TikTok, we’ll turn your experience with health technology int
 
 Take your 11 years of health tracking across four wearables. In a Reel, you could show what you still have to piece together by hand. A carousel could map where your data ends up. On LinkedIn, we could turn that experience into a question for product teams: what would it take to give people a clear picture of their health without a spreadsheet?
 
-### Sample carousel
-
-> **11 years. Four wearables. One spreadsheet.**\
-> What it takes to see my health data in one place.
->
-> **What I still piece together by hand**\
-> The wearables collect the data. I pull it into one spreadsheet to compare it across devices and over time.\
-> Each device gives me one view. The spreadsheet is where I see them together.
-
-[See how I extended Antispace Berlin’s identity across print, social content and web](/#antispace-berlin-case-study)
-
 ## Instagram and TikTok packages
 
 | Monthly deliverables | 1 · Build the Presence | 2 · Grow the Personal Brand |

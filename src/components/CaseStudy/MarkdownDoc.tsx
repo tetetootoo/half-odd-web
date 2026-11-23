@@ -39,15 +39,7 @@ function renderToken(token: Token, proposalLayout = false): ReactNode {
       return <Tag>{inline(t.tokens)}</Tag>;
     }
     case 'paragraph': case 'text': return <p>{inline(t.tokens ?? Lexer.lexInline(t.text))}</p>;
-    case 'blockquote': {
-      if (proposalLayout) {
-        const slides = (token as Tokens.Blockquote).tokens.filter(child => child.type === 'paragraph');
-        return <figure className={textStyles.carousel} aria-label="Two-slide carousel concept">
-          {slides.map((slide, index) => <div key={index}>{renderToken(slide)}</div>)}
-        </figure>;
-      }
-      return <aside className={styles.status}>{(t.tokens ?? []).map((child: Token, i: number) => <Fragment key={i}>{renderToken(child)}</Fragment>)}</aside>;
-    }
+    case 'blockquote': return <aside className={styles.status}>{(t.tokens ?? []).map((child: Token, i: number) => <Fragment key={i}>{renderToken(child)}</Fragment>)}</aside>;
     case 'list': {
       const Tag = t.ordered ? 'ol' : 'ul';
       return <Tag>{t.items.map((item: Tokens.ListItem, i: number) => <li key={i}>{item.tokens.map((child, n) => <Fragment key={n}>{renderToken(child)}</Fragment>)}</li>)}</Tag>;
