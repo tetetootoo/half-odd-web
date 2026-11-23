@@ -144,10 +144,4 @@ Website fees exclude photography, showreel production, platform subscriptions an
 
 I’d start with **Package 2 + LinkedIn editorial support**. Six monthly Reels give us room to test product guidance and firsthand stories across Instagram and TikTok. The additional Instagram posts let us explain an idea visually or show you at an event. LinkedIn gives those ideas a route to product teams and event organisers.
 
-| Investment | Fee excl. moms |
-|---|---:|
-| **Month 1, including strategy and setup** | **19,900 DKK** |
-| **Months 2 and 3** | **14,400 DKK/month** |
-| **Total for the initial three months** | **48,700 DKK** |
-
 Filming and Substack support can be booked as needed. The personal brand strategy, website and photography can be booked separately.
