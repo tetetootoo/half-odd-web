@@ -98,14 +98,13 @@ We’ll confirm the build platform before work begins. Website fees exclude phot
 - Revisions and additional work — One consolidated revision per social deliverable for adjustments within the agreed brief. New concepts, reshoots, additional revisions and other work outside scope are billed at 650 DKK/hour, excl. moms, with prior written approval.
 - Continuation and handover — The initial engagement ends after three publishing months unless we confirm continuation in writing. Any ongoing monthly arrangement can end with 30 days’ written notice. Before the end date, we agree how to complete approved work underway. At handover, I share final paid deliverables and remove my delegated account access.
 
-## 6. My recommendation and investment
+## Next steps
 
-I’d start with Package 2 + LinkedIn editorial support. Six monthly Reels give us room to test product guidance and firsthand stories on Instagram and TikTok, while LinkedIn brings those ideas to product teams and event organisers.
+I’d start with **Package 2 + LinkedIn**. It gives us room to test what people respond to on Instagram and TikTok, while using LinkedIn to make your speaking topics and advisory work more visible to the people who can book you.
 
-| Investment | Fee excl. moms |
-| --- | ---: |
-| Month 1, including strategy and setup | 19,900 DKK |
-| Months 2 and 3 | 14,400 DKK/month |
-| Total for the initial three months | 48,700 DKK |
+If that feels like the right starting point, let me know which package and any add-ons you’d like to go ahead with. We’ll agree on a kickoff date, and I’ll send you a short list of what I need for strategy week.
 
-Filming and Substack support can be booked as needed. If you’d also like to update the website, I’d start with the brand strategy so the new site reflects the same positioning we’ll use in your content.
+Looking very forward to working with you,
+
+best,\
+**Theresa**
