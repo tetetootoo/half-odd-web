@@ -120,9 +120,10 @@ export function MarkdownTextDoc({ markdown, sectionNavigation = false }: {
   const tokens = useMemo(() => Lexer.lex(markdown).filter(token => token.type !== 'space'), [markdown]);
   const sections = useMemo(() => sectionNavigation ? tokens.flatMap((token, index) => {
     if (token.type !== 'heading' || token.depth !== 2) return [];
-    const label = token.text.replace(/^\d+\.\s+/, '');
+    const number = token.text.match(/^\d+\./)?.[0];
+    const label = number ? token.text.slice(number.length).trimStart() : token.text;
     const id = label.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]+/g, '-');
-    return [{ id, label, index }];
+    return [{ id, label, number, index }];
   }) : [], [tokens, sectionNavigation]);
   const scrollRef = useRef<HTMLElement>(null);
   const [activeId, setActiveId] = useState(sections[0]?.id);
@@ -158,16 +159,16 @@ export function MarkdownTextDoc({ markdown, sectionNavigation = false }: {
   );
   if (!sectionNavigation) return doc;
 
-  const navigation = (className: string, numbered: boolean) => (
+  const navigation = (className: string, separateNumber: boolean) => (
     <nav className={className} aria-label="Proposal sections">
-      {sections.map(({ id, label }, index) => (
+      {sections.map(({ id, label, number }) => (
         <a key={id} href={`#${id}`} aria-current={activeId === id ? 'location' : undefined}
           onClick={event => {
             event.preventDefault();
             window.history.replaceState(null, '', `#${id}`);
             document.getElementById(id)?.scrollIntoView({ block: 'start' });
           }}>
-          {numbered && <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>}{label}
+          {number && (separateNumber ? <><span>{number}</span>{' '}</> : number + ' ')}{label}
         </a>
       ))}
     </nav>
