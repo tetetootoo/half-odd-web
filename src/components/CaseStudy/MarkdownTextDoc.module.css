@@ -43,6 +43,7 @@
   min-height: 0;
   min-width: 0;
 }
+.withNavigation .page { padding-block-end: clamp(112px, 12cqi, 160px); }
 .withNavigation .page h2[id] { margin-block-start: clamp(64px, 8cqi, 96px); }
 .withNavigation nav a { text-transform: none; }
 .withNavigation :global(.fitz-section-nav) a { align-items: baseline; }
