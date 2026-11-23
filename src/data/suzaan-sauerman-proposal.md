@@ -117,9 +117,12 @@ Grow the Personal Brand, one-time strategy and setup, and LinkedIn editorial sup
 
 Invoiced monthly in advance. Filming, Substack, and brand and website work are priced separately.
 
-If you’d like to start with this combination, reply with **positions 2, 2.1 and 3**, plus any add-ons you’d like. I’ll confirm the scope, send the first invoice and suggest a kickoff date.
 
-Speak soon,\
-**Theresa · half odd**
+If that feels like the right starting point, let me know which package and any add-ons you’d like to go ahead with. We’ll agree on a kickoff date, and I’ll send you a short list of what I need for strategy week.
+
+Looking very forward to working with you,
+
+best,
+Theresa
 
 [Download offer as PDF](/downloads/suzaan-sauerman-proposal.pdf)
