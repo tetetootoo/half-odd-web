@@ -57,31 +57,13 @@ The one-time setup fee covers the initial strategy and first content calendar. T
 
 ## 3. Optional content add-ons
 
-### LinkedIn editorial support · 3,500 DKK/month
-
-- One-time kickoff review of your headline, About section and Featured links, with suggested copy and link updates for speaking and advisory work
-- Four standalone posts per month written in your voice from your articles, voice notes, product observations or event takeaways
-- Full post copy, relevant industry terms where they fit naturally and invitations to get in touch about advisory work, keynotes or panels where appropriate
-- Up to two accompanying graphics per month, including charts created or rebuilt from supplied data
-- One consolidated revision per post, scheduling after approval
-
-### Batch video filming and Reel editing
-
-- 3,000 DKK for one three-hour shoot, or 5,000 DKK for two three-hour shoots in the same month
-- Available with an active social media package and bookable month by month
-- Direct-to-camera takes, product demonstrations and supporting footage from the agreed content calendar
-- Editing into finished Reels included. Each finished Reel counts toward the monthly video allowance and is published on Instagram and TikTok after approval.
-
-### Substack proofreading and formatting
-
-**1 article per month · 1,000 DKK**\
-**2 articles per month · 1,800 DKK**\
-*Both prices excl. moms.*
-
-- You write and supply the finished drafts.
-- I proofread for spelling, grammar, and readability, and lightly optimise titles, subtitles, and headings with relevant keywords.
-- I format each article in Substack, add supplied or approved images with appropriate credits, and schedule it on request after approval.
-- One consolidated revision round per article is included.
+| Position | Service | What’s included | Fee excl. moms |
+| --- | --- | --- | --- |
+| **3.1** | **LinkedIn editorial support** | One-time review of your headline, About section, and Featured links, with suggested updates. Four original posts per month written in your voice, up to two supporting graphics including charts from supplied data, one consolidated revision per post, and scheduling after approval. | **3,500 DKK/month** |
+| **3.2** | **Batch video filming · one shoot** | One three-hour shoot for direct-to-camera takes, product demonstrations, and supporting footage. Includes editing into finished Reels within your package’s monthly video allowance and publishing on Instagram and TikTok after approval. | **3,000 DKK** |
+| **3.3** | **Batch video filming · two shoots** | Same as position 3.2, for two three-hour shoots in the same month. | **5,000 DKK** |
+| **3.4** | **Substack support · one article** | You supply the finished draft. I proofread it, lightly optimise the title, subtitle, and headings with relevant keywords, format it in Substack, add approved images and credits, and schedule it on request after approval. Includes one consolidated revision per article. | **1,000 DKK/month** |
+| **3.5** | **Substack support · two articles** | Same as position 3.4, for two articles per month. | **1,800 DKK/month** |
 
 ## 4. Personal brand, website and photography
 
