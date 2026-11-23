@@ -96,7 +96,7 @@ We’ll confirm the build platform before work begins. Website fees exclude phot
 - Website payment and timeline — 50% at booking and 50% after final approval. We agree on the schedule before work begins, based on platform access and delivery of materials. After final payment, I hand over the site and relevant access. Ongoing maintenance can be agreed separately.
 - Content responsibilities — You supply account access, source material, usable footage and imagery, and approve factual and health-related claims and third-party material. You handle replies and conversations with prospective clients and event organisers.
 
-## Next steps
+## 6. Next steps
 
 I’d start with **Package 2 + LinkedIn**. It gives us room to test what people respond to on Instagram and TikTok, while using LinkedIn to make your speaking topics and advisory work more visible to the people who can book you.
 
