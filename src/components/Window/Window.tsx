@@ -3,7 +3,7 @@ import { CvDoc } from '../CaseStudy/CvDoc';
 import { PlainTextDoc } from '../PlainTextDoc/PlainTextDoc';
 import { MarkdownDoc, MarkdownTextDoc } from '../CaseStudy/MarkdownDoc';
 import { ConceptDiagram } from '../CaseStudy/ConceptDiagram';
-import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useCallback, useLayoutEffect, useRef, useState, type FormEvent } from 'react';
 import { desktopItems, dockLinks, type DesktopItem } from '../../data/desktopContent';
 import {
   layoutTextDoc,
@@ -871,11 +871,11 @@ export function Window({
   }, [step]);
 
   // The window's on-screen box, relative to the desktop.
-  const measure = (): Geometry => {
+  const measure = useCallback((): Geometry => {
     const win = windowRef.current!.getBoundingClientRect();
     const desktop = (wrapperRef.current!.offsetParent as HTMLElement).getBoundingClientRect();
     return { left: win.left - desktop.left, top: win.top - desktop.top, width: win.width, height: win.height };
-  };
+  }, []);
 
   // Drag distance persists here across pointer-ups; useDrag's own offset
   // resets to zero right after each drag ends, so without folding it into
@@ -888,20 +888,26 @@ export function Window({
   // it measured before handing layout back to the CSS defaults.
   const [geometry, setGeometry] = useState<Geometry | null>(null);
   const [geometryAnimating, setGeometryAnimating] = useState(false);
-  const [maximized, setMaximized] = useState(false);
+  const [maximized, setMaximized] = useState(item.initiallyMaximized ?? false);
   const restoreGeometryRef = useRef<Geometry | null>(null);
   const pendingGeometryRef = useRef<Geometry | null>(null);
   const geometryTimerRef = useRef<number | undefined>(undefined);
 
-  const maximizedGeometry = (): Geometry => {
-    const area = getWorkArea();
+  const maximizedGeometry = useCallback((): Geometry => {
+    const area = workAreaRef.current();
     return {
       left: MAXIMIZE_INSET_PX,
       top: area.top + MAXIMIZE_INSET_PX,
       width: area.width - MAXIMIZE_INSET_PX * 2,
       height: area.bottom - area.top - MAXIMIZE_INSET_PX * 2,
     };
-  };
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!item.initiallyMaximized || restoreGeometryRef.current) return;
+    restoreGeometryRef.current = measure();
+    setGeometry(maximizedGeometry());
+  }, [item.initiallyMaximized, measure, maximizedGeometry]);
 
   const toggleMaximize = () => {
     window.clearTimeout(geometryTimerRef.current);

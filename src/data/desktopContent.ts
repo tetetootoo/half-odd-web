@@ -42,6 +42,7 @@ export interface DesktopItem {
   preserveLabelCase?: boolean;
   kind: WindowKind;
   windowTitle: string;
+  initiallyMaximized?: boolean;
   x: number;
   y: number;
   // Desktop items can be dragged to the Trash unless this is false.

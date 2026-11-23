@@ -18,6 +18,7 @@ const document = {
 const desktopDocument: DesktopItem = {
   ...document,
   windowTitle: document.label,
+  initiallyMaximized: true,
   x: 0,
   y: 0,
 };
