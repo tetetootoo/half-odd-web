@@ -84,12 +84,7 @@
   border-inline-start: 1px solid #cdbcc4;
 }
 
-.withNavigation .page a[href="#next-steps"] {
-  color: #1759ab;
-  text-underline-offset: .2em;
-}
-
-.withNavigation .page a[href^="mailto:"] {
+.withNavigation .page :is(a[href^="mailto:"], a[download]) {
   display: inline-flex;
   min-height: 44px;
   align-items: center;

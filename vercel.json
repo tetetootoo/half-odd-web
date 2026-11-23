@@ -1,6 +1,10 @@
 {
   "headers": [
     {
+      "source": "/downloads/suzaan-sauerman-proposal.pdf",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
       "source": "/proposal/suzaan-sauerman/",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     },

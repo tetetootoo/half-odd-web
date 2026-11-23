@@ -22,8 +22,9 @@ function inline(tokens: Token[] = []): ReactNode {
       case 'br': return <br key={i} />;
       case 'link': {
         const href = safeUrl(t.href);
-        const opensNewTab = href && !href.startsWith('#') && !href.toLowerCase().startsWith('mailto:');
-        return <a key={i} href={href} target={opensNewTab ? '_blank' : undefined} rel={opensNewTab ? 'noreferrer' : undefined}>{inline(t.tokens)}</a>;
+        const download = href?.startsWith('/downloads/') && href.endsWith('.pdf');
+        const opensNewTab = href && !download && !href.startsWith('#') && !href.toLowerCase().startsWith('mailto:');
+        return <a key={i} href={href} download={download || undefined} target={opensNewTab ? '_blank' : undefined} rel={opensNewTab ? 'noreferrer' : undefined}>{inline(t.tokens)}</a>;
       }
       case 'image': return <img key={i} src={safeUrl(t.href)} alt={t.text} loading="lazy" />;
       case 'html': return null;

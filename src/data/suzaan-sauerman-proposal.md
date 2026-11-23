@@ -4,7 +4,7 @@ Suzaan Sauerman x Theresa Schantz · half odd
 
 Hi Suzaan, I enjoyed hearing how you think about wearables, women’s health and AI, and where you’d like to take your speaking work. I’ve put together a few ways we could work together.
 
-[See recommendation and pricing](#next-steps)
+[Download offer as PDF](/downloads/suzaan-sauerman-proposal.pdf)
 
 All prices are in DKK, excl. moms.
 
@@ -123,3 +123,5 @@ If you’d like to start with this combination, reply with **positions 2, 2.1 an
 
 Speak soon,\
 **Theresa · half odd**
+
+[Download offer as PDF](/downloads/suzaan-sauerman-proposal.pdf)
