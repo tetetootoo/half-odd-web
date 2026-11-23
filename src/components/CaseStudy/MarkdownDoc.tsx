@@ -45,7 +45,13 @@ function renderToken(token: Token): ReactNode {
       return <div className={styles.tableScroll} tabIndex={0} role="region" aria-label="Scrollable table">
         <table className={styles.table}>
           <thead><tr>{table.header.map((cell, i) => <th key={i} scope="col" style={{ textAlign: table.align[i] ?? 'left' }}>{inline(cell.tokens)}</th>)}</tr></thead>
-          <tbody>{table.rows.map((row, i) => <tr key={i}>{row.map((cell, j) => <td key={j} style={{ textAlign: table.align[j] ?? 'left' }}>{inline(cell.tokens)}</td>)}</tr>)}</tbody>
+          <tbody>{table.rows.map((row, i) => <tr key={i}>{row.map((cell, j) => {
+            const indent = '&nbsp;'.repeat(4);
+            const indented = j === 0 && cell.text.startsWith(indent);
+            return <td key={j} className={indented ? styles.indentedCell : undefined} style={{ textAlign: table.align[j] ?? 'left' }}>
+              {inline(indented ? Lexer.lexInline(cell.text.slice(indent.length)) : cell.tokens)}
+            </td>;
+          })}</tr>)}</tbody>
         </table>
       </div>;
     }
