@@ -63,6 +63,8 @@ export function Desktop({ initialDocument, onDocumentClose }: {
   }, [initialDocument]);
 
   const manager = useWindowManager();
+  const dockHidden = manager.windows.some(({ id, phase }) =>
+    (phase === 'open' || phase === 'closing') && itemsById.get(id)?.hideDockWhenOpen);
   const openWindow = manager.open;
   useEffect(() => {
     if (initialDocument) openWindow(initialDocument.id);
@@ -118,10 +120,10 @@ export function Desktop({ initialDocument, onDocumentClose }: {
     const desktop = desktopRef.current!.getBoundingClientRect();
     const layer = iconLayerRef.current!.getBoundingClientRect();
     const menu = desktopRef.current!.querySelector('header')?.getBoundingClientRect();
-    const dock = dockRef.current?.getBoundingClientRect();
+    const dock = dockHidden ? undefined : dockRef.current?.getBoundingClientRect();
     return {
       top: (menu?.bottom ?? layer.top) - desktop.top,
-      bottom: (dock?.top ?? desktop.bottom) - desktop.top,
+      bottom: (dock?.top ?? desktop.bottom) - desktop.top - (dockHidden ? 14 : 0),
       width: desktop.width,
       height: desktop.height,
     };
@@ -404,6 +406,7 @@ export function Desktop({ initialDocument, onDocumentClose }: {
         />
         <Dock
           ref={dockRef}
+          hidden={dockHidden}
           runningIds={runningIds}
           minimizedItems={minimizedItems}
           trashCount={trash.length + builtInTrash.length}

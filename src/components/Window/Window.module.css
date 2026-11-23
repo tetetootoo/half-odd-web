@@ -147,6 +147,8 @@
   height: 640px;
 }
 
+.dockFreeDocument { height: var(--available-window-height, 88vh); }
+
 .titleBar {
   position: relative;
   display: flex;

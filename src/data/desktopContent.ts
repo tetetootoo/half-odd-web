@@ -43,6 +43,7 @@ export interface DesktopItem {
   kind: WindowKind;
   windowTitle: string;
   initiallyMaximized?: boolean;
+  hideDockWhenOpen?: boolean;
   x: number;
   y: number;
   // Desktop items can be dragged to the Trash unless this is false.

@@ -16,7 +16,8 @@ export function useDesktopLayout(
     const layer = layerRef.current!;
     const measure = () => {
       const bounds = layer.getBoundingClientRect();
-      const dock = dockRef.current?.getBoundingClientRect();
+      const dockElement = dockRef.current;
+      const dock = dockElement?.hidden ? undefined : dockElement?.getBoundingClientRect();
       setSize({ width: bounds.width, height: scrollable ? bounds.height : Math.min(bounds.height, dock ? dock.top - bounds.top - 12 : bounds.height) });
     };
     measure();

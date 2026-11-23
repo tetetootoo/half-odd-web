@@ -21,6 +21,7 @@ const desktopDocument: DesktopItem = {
   ...document,
   windowTitle: document.label,
   initiallyMaximized: true,
+  hideDockWhenOpen: true,
   x: 0,
   y: 0,
 };

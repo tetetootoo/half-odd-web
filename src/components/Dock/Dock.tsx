@@ -16,6 +16,7 @@ const icons = {
 
 interface DockProps {
   ref?: Ref<HTMLElement>;
+  hidden?: boolean;
   // Windows that are logically open (visible or minimized).
   runningIds: Set<string>;
   // Minimized windows with no permanent dock item of their own.
@@ -65,6 +66,7 @@ function ExternalLinkBadge() {
 
 export function Dock({
   ref,
+  hidden,
   runningIds,
   minimizedItems,
   trashCount,
@@ -151,7 +153,7 @@ export function Dock({
   };
 
   return (
-    <nav ref={(element) => { motion.host.current = element; if (typeof ref === 'function') return ref(element); else if (ref) ref.current = element; }} className={styles.dock} aria-label="Dock" onPointerMove={motion.onPointerMove} onPointerLeave={motion.onPointerLeave}>
+    <nav ref={(element) => { motion.host.current = element; if (typeof ref === 'function') return ref(element); else if (ref) ref.current = element; }} className={styles.dock} hidden={hidden} aria-label="Dock" onPointerMove={motion.onPointerMove} onPointerLeave={motion.onPointerLeave}>
       {permanent.map(renderEntry)}
       {minimized.length > 0 && <span className={styles.divider} data-dock-key="divider" aria-hidden="true" />}
       {minimized.map(renderEntry)}

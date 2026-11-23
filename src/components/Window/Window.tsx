@@ -1083,7 +1083,7 @@ export function Window({
         aria-label={item.windowTitle}
         tabIndex={-1}
         data-drop-target={isTrashKind ? 'trash' : undefined}
-        className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''} ${isTrashKind ? styles.windowTrash : ''} ${isBrowserKind ? styles.windowBrowser : ''} ${isTextKind ? item.plainText ? styles.windowPlainText : styles.windowTextDoc : ''} ${geometry ? styles.windowFill : ''} ${isTrashKind && trash.dropActive ? styles.windowDropTarget : ''}`}
+        className={`${styles.window} ${isImageKind ? styles.windowFixed : ''} ${isAboutKind ? styles.windowAbout : ''} ${isNotesKind ? styles.windowNotes : ''} ${isMailKind ? styles.windowMail : ''} ${isTrashKind ? styles.windowTrash : ''} ${isBrowserKind ? styles.windowBrowser : ''} ${isTextKind ? item.plainText ? styles.windowPlainText : styles.windowTextDoc : ''} ${item.hideDockWhenOpen ? styles.dockFreeDocument : ''} ${geometry ? styles.windowFill : ''} ${isTrashKind && trash.dropActive ? styles.windowDropTarget : ''}`}
       >
         <div
           className={`${styles.titleBar} ${isFlushDoc ? styles.titleBarText : ''} ${isDragging ? styles.titleBarDragging : ''}`}
