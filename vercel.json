@@ -6,11 +6,7 @@
     },
     {
       "source": "/proposal/suzaan-sauerman",
-      "headers": [
-    {
-      "source": "/proposal/suzaan-sauerman/",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
-    },{ "key": "X-Robots-Tag", "value": "noindex" }]
     }
   ],
   "rewrites": [
