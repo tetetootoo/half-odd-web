@@ -2,15 +2,13 @@
 
 Suzaan Sauerman x Theresa Schantz · half odd
 
-Hi Suzaan,
-
-I really enjoyed our conversation. I’ve put together a few ways we could work together to bring more of your perspective into your content and make it easier for people to book you for talks and advisory work.
+Hi Suzaan, I enjoyed hearing how you think about wearables, women’s health and AI, and where you’d like to take your speaking work. I’ve put together a few ways we could turn those ideas into content and make it easier for event organisers and product teams to get in touch.
 
 All prices are in DKK, excl. moms.
 
 ## What we’re building
 
-We’ll build your content around your experience with wearables, women’s health and AI. On Instagram and TikTok, you’ll help people make more informed choices about health technology. On LinkedIn, we’ll develop your perspective for product teams and event organisers and give them a clear way to contact you about advisory work, keynotes and panel discussions.
+On Instagram and TikTok, we’ll turn your experience with health technology into practical guidance. On LinkedIn, we’ll develop your ideas for product teams and event organisers who might book you for advisory work, keynotes or panels.
 
 Take your 11 years of health tracking across four wearables. In a Reel, you could show what you still have to piece together by hand. A carousel could map where your data ends up. On LinkedIn, we could turn that experience into a question for product teams: what would it take to give people a clear picture of their health without a spreadsheet?
 
@@ -33,7 +31,7 @@ The one-time setup fee covers the initial strategy and first content calendar. T
 - Strategy and planning
   - Topic suggestions based on your product experience, existing articles, event footage, upcoming talks and previous post performance
   - A four-week calendar with an angle, format, opening hook and filming or image brief for each piece
-  - A shortlist of recurring formats we discuss together, for example, wearable guidance, personal experiments with health data, product-design commentary and Before I Buy episodes on air purifiers, water filters, red-light devices, etc.
+  - A shortlist of recurring formats we discuss together, including wearable guidance, personal experiments with health data, and *Before I Buy* episodes on everyday health tech such as air purifiers, water filters and red-light devices.
 - Production and publishing
   - Caption writing for Reels, carousels and photo posts
   - Custom graphics where useful, including new charts or redesigns of existing charts from supplied data and sources
@@ -44,17 +42,14 @@ The one-time setup fee covers the initial strategy and first content calendar. T
   - One consolidated revision round per deliverable
   - Scheduling and publishing after approval
   - One finished edit per Reel, published on Instagram and TikTok, with post copy adapted where useful
-- Monthly reporting
-  - What performed well and what I recommend testing next
-  - Reach, watch time, saves, shares and profile or speaking-page clicks where available
-  - Speaking invitations and advisory inquiries you receive through your content, based on what you share with me
+- Monthly performance summary, recommendations for what to test next, and any speaking or advisory inquiries you tell me came through the content.
 
 ### One-time strategy and setup
 
 | Package | What’s included | Fee excl. moms |
 | --- | --- | ---: |
-| **1.1 · Required strategy and setup for Build the Presence** | Kickoff, Instagram profile and content audit, review of the route from Instagram to your website and contact details. Initial audience and niche definition, bio recommendations, recurring format shortlist, filming guide, first four-week calendar. | **4,500 DKK** |
-| **2.1 · Required strategy and setup for Grow the Personal Brand** | Everything in position 1.1. Review of three comparable accounts, Instagram analytics baseline, pinned-post recommendations, first-month plan to test topics and hooks. Review of how easily event organisers and prospective clients can find your speaking and advisory information. | **5,500 DKK** |
+| **1.1 · Required strategy and setup for Build the Presence** | Kickoff, Instagram and content audit, and a review of how people find your website and contact details from Instagram. Includes initial audience and niche recommendations, bio suggestions, a shortlist of recurring formats, a filming guide and the first four-week calendar. | **4,500 DKK** |
+| **2.1 · Required strategy and setup for Grow the Personal Brand** | Includes Package 1 setup, plus a review of three comparable accounts, an Instagram performance baseline, recommendations for pinned posts and a first-month plan to test topics and hooks. I’ll also review how easily visitors can find your speaking and advisory information. | **5,500 DKK** |
 
 ## Optional content add-ons
 
@@ -90,7 +85,7 @@ We’ll confirm the build platform before work begins. Website fees exclude phot
 4. **Three months of publishing**\
    The first month starts when the first approved post goes live. We use each monthly review to adjust what we publish next.
 5. **End-of-term review**\
-   We decide which formats to continue, revise, or drop, and whether to adjust the publishing cadence or scope.
+   After three months, we’ll review what performed well, which formats to keep and whether to change the posting frequency or scope.
 
 ### Payment, approvals and handover
 
@@ -103,7 +98,7 @@ We’ll confirm the build platform before work begins. Website fees exclude phot
 
 ## Next steps
 
-I’d start with **Grow the Personal Brand (position 2) + LinkedIn editorial support (position 3)**, with the required first-month setup under **position 2.1**. It gives us room to test what people respond to on Instagram and TikTok, while using LinkedIn to make your speaking topics and advisory work more visible to the people who can book you.
+I’d start with **Grow the Personal Brand and LinkedIn editorial support (positions 2 and 3)**, with the first-month setup under **position 2.1**. That gives us room to test several formats on Instagram and TikTok while making your speaking and advisory work more visible on LinkedIn.
 
 | Investment | Fee excl. moms |
 | --- | ---: |
@@ -111,8 +106,7 @@ I’d start with **Grow the Personal Brand (position 2) + LinkedIn editorial sup
 | Months 2 and 3 | 14,400 DKK/month |
 | Total for the initial three months | 48,700 DKK |
 
-If that feels like the right starting point, let me know which package and any add-ons you’d like to go ahead with. We’ll agree on a kickoff date, and I’ll send you a short list of what I need for strategy week.
+If this feels like the right starting point, send me the positions you’d like to go ahead with and we’ll agree on a kickoff date.
 
-Looking forward to hearing what feels like the right starting point for you.
-
-Theresa · half odd
+Speak soon,\
+**Theresa · half odd**
