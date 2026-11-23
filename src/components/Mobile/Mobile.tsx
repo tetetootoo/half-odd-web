@@ -394,7 +394,7 @@ function TextDoc({
         </button>
       </div>
       <div className={app.markdown || app.caseStudyId || app.plainText ? `${styles.docScroll} ${styles.editorialScroll}` : styles.docScroll}>
-        {app.markdown ? app.id === 'cv' ? <CvDoc markdown={app.markdown} /> : <MarkdownTextDoc markdown={app.markdown} /> : app.plainText ? <PlainTextDoc lines={app.plainText} /> : app.caseStudyId ? <MarkdownDoc caseStudyId={app.caseStudyId} onOpenItem={onOpenApp} /> : <div className={styles.textPad}>
+        {app.markdown ? app.id === 'cv' ? <CvDoc markdown={app.markdown} /> : <MarkdownTextDoc markdown={app.markdown} sectionNavigation={app.sectionNavigation} /> : app.plainText ? <PlainTextDoc lines={app.plainText} /> : app.caseStudyId ? <MarkdownDoc caseStudyId={app.caseStudyId} onOpenItem={onOpenApp} /> : <div className={styles.textPad}>
           {app.textLines &&
             layoutTextDoc(app.textLines).map((entry, i) => {
               switch (entry.kind) {

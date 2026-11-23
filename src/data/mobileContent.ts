@@ -20,6 +20,7 @@ export interface MobileAppItem {
   textLines?: TextBlock[];
   caseStudyId?: CaseStudyId;
   markdown?: string;
+  sectionNavigation?: boolean;
   plainText?: string[];
   link?: { url: string };
   embedUrl?: string;

@@ -692,7 +692,7 @@ function WindowBody({
     case 'image':
       return <ImageOverlayFrame item={item} />;
     case 'markdown':
-      return item.markdown ? item.id === 'cv' ? <CvDoc markdown={item.markdown} /> : <MarkdownTextDoc markdown={item.markdown} /> : item.caseStudyId ? <MarkdownDoc caseStudyId={item.caseStudyId} onOpenItem={onOpenItem} /> : null;
+      return item.markdown ? item.id === 'cv' ? <CvDoc markdown={item.markdown} /> : <MarkdownTextDoc markdown={item.markdown} sectionNavigation={item.sectionNavigation} /> : item.caseStudyId ? <MarkdownDoc caseStudyId={item.caseStudyId} onOpenItem={onOpenItem} /> : null;
     case 'text':
       if (item.plainText) return <PlainTextDoc lines={item.plainText} />;
       return (

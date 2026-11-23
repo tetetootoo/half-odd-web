@@ -4,13 +4,6 @@ Suzaan Sauerman x Theresa Schantz · half odd
 
 All prices are in DKK, excl. moms.
 
-- What we’re building
-- Instagram and TikTok packages
-- Optional content add-ons
-- Personal brand, website and photography
-- How we’ll work together
-- My recommendation and investment
-
 ## 1. What we’re building
 
 We’ll build your content around your experience with wearables, women’s health and AI. On Instagram and TikTok, you’ll help people make more informed choices about health technology. On LinkedIn, we’ll develop your perspective for product teams and event organisers and give them a clear way to contact you about advisory work, keynotes and panel discussions.

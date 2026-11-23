@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+import './FitzProposal/FitzProposal.css';
 import markdown from '../data/suzaan-sauerman-proposal.md?raw';
 import { MARKDOWN_DOCUMENT_ICON } from '../data/caseStudies';
 import type { DesktopItem } from '../data/desktopContent';
@@ -13,6 +14,7 @@ const document = {
   kind: 'markdown',
   iconSrc: MARKDOWN_DOCUMENT_ICON,
   markdown,
+  sectionNavigation: true,
 } satisfies MobileAppItem;
 
 const desktopDocument: DesktopItem = {

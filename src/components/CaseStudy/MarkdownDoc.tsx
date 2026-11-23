@@ -1,6 +1,6 @@
 import { SapDiagram } from './SapDiagram';
 import sapStyles from './SapDiagram.module.css';
-import { Fragment, useMemo, type CSSProperties, type ReactNode } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { Lexer, type Token, type Tokens } from 'marked';
 import { CASE_STUDIES, type CaseStudyId } from '../../data/caseStudies';
 import { CaseStudyMedia } from './CaseStudyMedia';
@@ -113,11 +113,75 @@ export function MarkdownDoc({ caseStudyId, onOpenItem }: { caseStudyId: CaseStud
   </article>;
 }
 
-export function MarkdownTextDoc({ markdown }: { markdown: string }) {
+export function MarkdownTextDoc({ markdown, sectionNavigation = false }: {
+  markdown: string;
+  sectionNavigation?: boolean;
+}) {
   const tokens = useMemo(() => Lexer.lex(markdown).filter(token => token.type !== 'space'), [markdown]);
-  return <article className={`${styles.document} ${textStyles.document}`}>
-    <div className={`${styles.page} ${textStyles.page}`}>{tokens.map((token, i) => <Fragment key={i}>{renderToken(token)}</Fragment>)}</div>
-  </article>;
+  const sections = useMemo(() => sectionNavigation ? tokens.flatMap((token, index) => {
+    if (token.type !== 'heading' || token.depth !== 2) return [];
+    const label = token.text.replace(/^\d+\.\s+/, '');
+    const id = label.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]+/g, '-');
+    return [{ id, label, index }];
+  }) : [], [tokens, sectionNavigation]);
+  const scrollRef = useRef<HTMLElement>(null);
+  const [activeId, setActiveId] = useState(sections[0]?.id);
+
+  useEffect(() => {
+    const target = sections.find(section => '#' + section.id === window.location.hash);
+    if (target) document.getElementById(target.id)?.scrollIntoView({ block: 'start', behavior: 'instant' });
+  }, [sections]);
+
+  const updateSection = () => {
+    const scroll = scrollRef.current;
+    if (!scroll || !sections.length) return;
+    const threshold = scroll.getBoundingClientRect().top + 90;
+    const atEnd = scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 4;
+    const current = atEnd ? sections.at(-1) : sections.findLast(section =>
+      (document.getElementById(section.id)?.getBoundingClientRect().top ?? Infinity) <= threshold);
+    setActiveId(current?.id ?? sections[0].id);
+  };
+
+  const doc = (
+    <article ref={scrollRef} onScroll={sectionNavigation ? updateSection : undefined}
+      tabIndex={sectionNavigation ? 0 : undefined}
+      className={`${styles.document} ${textStyles.document} ${sectionNavigation ? 'fitz-document-scroll' : ''}`}>
+      <div className={`${styles.page} ${textStyles.page}`}>
+        {tokens.map((token, i) => {
+          const section = sections.find(item => item.index === i);
+          return section
+            ? <h2 key={i} id={section.id}>{inline((token as Tokens.Heading).tokens)}</h2>
+            : <Fragment key={i}>{renderToken(token)}</Fragment>;
+        })}
+      </div>
+    </article>
+  );
+  if (!sectionNavigation) return doc;
+
+  const navigation = (className: string, numbered: boolean) => (
+    <nav className={className} aria-label="Proposal sections">
+      {sections.map(({ id, label }, index) => (
+        <a key={id} href={`#${id}`} aria-current={activeId === id ? 'location' : undefined}
+          onClick={event => {
+            event.preventDefault();
+            window.history.replaceState(null, '', `#${id}`);
+            document.getElementById(id)?.scrollIntoView({ block: 'start' });
+          }}>
+          {numbered && <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>}{label}
+        </a>
+      ))}
+    </nav>
+  );
+
+  return (
+    <div className={textStyles.withNavigation}>
+      {navigation(`fitz-mobile-sections ${textStyles.mobileNavigation}`, false)}
+      <div className="fitz-document-body">
+        {navigation('fitz-section-nav', true)}
+        {doc}
+      </div>
+    </div>
+  );
 }
 
 export function MarkdownInline({ tokens }: { tokens: Token[] }) {

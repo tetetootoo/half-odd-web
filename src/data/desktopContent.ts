@@ -55,6 +55,7 @@ export interface DesktopItem {
   textLines?: TextBlock[];
   caseStudyId?: CaseStudyId;
   markdown?: string;
+  sectionNavigation?: boolean;
   plainText?: string[];
   mediaSrc?: string;
   mediaType?: 'image' | 'video';

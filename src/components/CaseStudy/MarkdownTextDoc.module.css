@@ -33,3 +33,21 @@
 .page [role="region"] { margin-block: 24px; }
 
 :global(.suzaan-proposal) .page * { text-transform: none; }
+
+.withNavigation {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+.withNavigation nav a { text-transform: none; }
+
+@media (max-width: 700px) {
+  .withNavigation .mobileNavigation {
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 0 16px;
+  }
+}
