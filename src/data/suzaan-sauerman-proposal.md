@@ -66,6 +66,8 @@ The one-time setup fee covers the initial strategy and first content calendar. T
 | **6** | **Substack support · one article per month** | You supply the finished draft. I proofread it, lightly optimise the title, subtitle, and headings with relevant keywords, format it in Substack, add approved images and credits, and schedule it on request after approval. Includes one consolidated revision per article. | **1,000 DKK/month** |
 | **7** | **Substack support · two articles per month** | Same as position 6, for two articles per month. | **1,800 DKK/month** |
 
+Batch video filming is available with an active social media package and can be booked month by month.
+
 ## Personal brand, website and photography
 
 | Position | Service | What’s included | Fee excl. moms |
@@ -95,14 +97,22 @@ We’ll confirm the build platform before work begins. Website fees exclude phot
 - Social media payment — Strategy setup and the first publishing month are invoiced before work begins. The second and third months, and any continuation, are invoiced in advance.
 - Website payment and timeline — 50% at booking and 50% after final approval. We agree on the schedule before work begins, based on platform access and delivery of materials. After final payment, I hand over the site and relevant access. Ongoing maintenance can be agreed separately.
 - Content responsibilities — You supply account access, source material, usable footage and imagery, and approve factual and health-related claims and third-party material. You handle replies and conversations with prospective clients and event organisers.
+- Late footage or approvals may shift the publishing schedule. We’ll agree on new dates for the affected posts.
+- The initial engagement ends after three publishing months unless we agree in writing to continue.
+- The included revision round for each social deliverable covers adjustments within the agreed brief.
 
 ## Next steps
 
 I’d start with **Grow the Personal Brand (position 2) + LinkedIn editorial support (position 3)**, with the required first-month setup under **position 2.1**. It gives us room to test what people respond to on Instagram and TikTok, while using LinkedIn to make your speaking topics and advisory work more visible to the people who can book you.
 
+| Investment | Fee excl. moms |
+| --- | ---: |
+| Month 1, including strategy and setup | 19,900 DKK |
+| Months 2 and 3 | 14,400 DKK/month |
+| Total for the initial three months | 48,700 DKK |
+
 If that feels like the right starting point, let me know which package and any add-ons you’d like to go ahead with. We’ll agree on a kickoff date, and I’ll send you a short list of what I need for strategy week.
 
-Looking very forward to working with you,
+Looking forward to hearing what feels like the right starting point for you.
 
-best,\
-**Theresa**
+Theresa · half odd
