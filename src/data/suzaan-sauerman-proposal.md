@@ -3,7 +3,10 @@
 Suzaan Sauerman x Theresa Schantz · half odd
 
 Hi Suzaan, I enjoyed chatting with you last week. I’ve put together a few ways we could work together.
+
+
 [Download offer as PDF](/downloads/suzaan-sauerman-proposal.pdf)
+
 
 All prices are in DKK, excl. moms.
 
@@ -123,5 +126,6 @@ Looking very forward to working with you,
 
 best,
 Theresa
+
 
 [Download offer as PDF](/downloads/suzaan-sauerman-proposal.pdf)
