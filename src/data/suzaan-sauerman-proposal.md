@@ -67,52 +67,14 @@ The one-time setup fee covers the initial strategy and first content calendar. T
 
 ## 4. Personal brand, website and photography
 
-| If you want… | Choose… | Fee excl. moms |
-| --- | --- | ---: |
-| To clarify how you present yourself across channels | Personal brand strategy | 9,500 DKK |
-| To rebuild the site around your existing positioning and brand assets | Website redesign and rebuild | 20,000 DKK |
-| To define the brand direction first and carry it through the new website | Personal brand strategy + website redesign and rebuild | 27,000 DKK |
+| Position | Service | What’s included | Fee excl. moms |
+| --- | --- | --- | --- |
+| **4.1** | **Personal brand strategy** | Review of your website, social profiles, and strongest content, followed by a 60–75 minute strategy session. Includes a personal-brand guide covering positioning, priority audiences, key messages, tone of voice, colour palette, typography, and imagery, with examples for your website and social posts. One consolidated revision. | **9,500 DKK** |
+| **4.2** | **Website redesign and rebuild** | Redesign and rebuild of up to five pages, guided by your existing positioning, messaging, and brand assets. Includes site structure, copy adapted from existing materials, responsive design, light animations, a Speaking page with approved clips where available, a standard inquiry form, basic SEO, and launch checks. Two consolidated feedback rounds, one on the design and one on the built site before launch. | **20,000 DKK** |
+| **4.3** | **Personal brand strategy + website redesign and rebuild** | Positions 4.1 and 4.2 combined. We define your positioning, messaging, and visual direction first, then use the agreed strategy to guide the new website’s structure, copy, and design. | **27,000 DKK** |
+| **4.4** | **Branding photography** | One 60-minute branding shoot at a location we agree on. Includes a curated selection of edited portraits and candid images, light retouching, and vertical and horizontal compositions for your website, social channels, LinkedIn, and paid ads for your own brand. Available with either website option. | **2,000 DKK** |
 
-### Personal brand strategy
-
-- Brand review — Existing website, social profiles, public messaging and strongest content
-- 60–75 minute strategy session — What you want to be known for, who you most want to reach, what you want to be booked for and which stories demonstrate your expertise
-- Brand direction — One recommended positioning and visual direction, niche definition, audience priorities, key messages, short bio, brand story and tone-of-voice examples
-- One consolidated revision to the brand direction
-
-After the strategy session, I’ll deliver a concise personal-brand guide covering your positioning, key messages, tone of voice, colour palette, typography and imagery, with examples for your website and social posts.
-
-### Website redesign and rebuild
-
-I’ll use your existing positioning, messaging, and brand assets to guide the site structure, copy, and visual design.
-
-- Up to five pages — Home, Speaking, Advisory, About and Writing
-- Design and build
-  - Modern editorial design that reflects your consumer tech background
-  - Site structure, copy adapted from existing materials and responsive implementation
-  - Light animations, such as section reveals and hover transitions
-  - Basic SEO and launch checks
-- Speaking and advisory — Talk topics, approved stage clips where available, a standard inquiry form for keynotes and panels and a direct route for advisory inquiries
-- Writing — Selected articles and a direct link to Substack
-
-The website includes two consolidated feedback rounds, one on the design and one on the built site before launch. We’ll confirm the build platform before work begins.
-
-### Personal brand strategy + website redesign and rebuild
-
-We’ll define your positioning, priority audiences, tone of voice, and visual direction first. I’ll then use the agreed personal brand strategy to shape the website’s structure, copy, typography, colours, and imagery, with clear paths for speaking and advisory inquiries.
-
-- Full personal brand strategy, guide, website redesign and rebuild described above
-- One brand direction carried through the website and social content
-- One consolidated brand revision and two consolidated website feedback rounds
-
-### Branding photography · +2,000 DKK with either website option
-
-- One 60-minute branding shoot with Theresa, with the location agreed together
-- A curated selection of edited portraits and candid images, light retouching, vertical and horizontal compositions
-- Use on your website, social channels, LinkedIn and future paid ads for your own brand
-- Any location hire or travel costs agreed in advance
-
-Website fees exclude photography, showreel production, platform subscriptions and hosting.
+We’ll confirm the build platform before work begins. Website fees exclude photography, showreel production, platform subscriptions, and hosting. Any photography location hire or travel costs are agreed in advance.
 
 ## 5. How we’ll work together
 
