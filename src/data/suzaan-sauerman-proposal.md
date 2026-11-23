@@ -2,15 +2,28 @@
 
 Suzaan Sauerman x Theresa Schantz · half odd
 
-Hi Suzaan, I enjoyed hearing how you think about wearables, women’s health and AI, and where you’d like to take your speaking work. I’ve put together a few ways we could turn those ideas into content and make it easier for event organisers and product teams to get in touch.
+Hi Suzaan, I enjoyed hearing how you think about wearables, women’s health and AI, and where you’d like to take your speaking work. I’ve put together a few ways we could work together.
+
+[See recommendation and pricing](#next-steps)
 
 All prices are in DKK, excl. moms.
 
 ## What we’re building
 
-On Instagram and TikTok, we’ll turn your experience with health technology into practical guidance. On LinkedIn, we’ll develop your ideas for product teams and event organisers who might book you for advisory work, keynotes or panels.
+On Instagram and TikTok, we’ll turn your experience with health technology into practical guidance. On LinkedIn, we’ll develop your ideas for product teams and event organisers. Make it easier for event organisers to see what you speak about, watch you on stage and get in touch.
 
 Take your 11 years of health tracking across four wearables. In a Reel, you could show what you still have to piece together by hand. A carousel could map where your data ends up. On LinkedIn, we could turn that experience into a question for product teams: what would it take to give people a clear picture of their health without a spreadsheet?
+
+### Sample carousel
+
+> **11 years. Four wearables. One spreadsheet.**\
+> What it takes to see my health data in one place.
+>
+> **What I still piece together by hand**\
+> The wearables collect the data. I pull it into one spreadsheet to compare it across devices and over time.\
+> Each device gives me one view. The spreadsheet is where I see them together.
+
+[See how I extended Antispace Berlin’s identity across print, social content and web](/#antispace-berlin-case-study)
 
 ## Instagram and TikTok packages
 
@@ -23,6 +36,8 @@ Take your 11 years of health tracking across four wearables. In a Reel, you coul
 | &nbsp;&nbsp;&nbsp;&nbsp;Additional Instagram posts or carousels | 1 | 2 |
 | Instagram Story sequences | 2 | 3 |
 | Performance review | Monthly written summary | Monthly written summary and review call |
+
+I’ll provide filming briefs, edit the footage and publish the finished content. You can film from the briefs or book a filming session under position 4 or 5. Package 2 includes six finished Reels per month, each published on Instagram and TikTok. Reels made from a booked shoot count toward those six.
 
 The one-time setup fee covers the initial strategy and first content calendar. The monthly fee covers production and publishing, with a new calendar included from month two onward.
 
@@ -83,7 +98,7 @@ We’ll confirm the build platform before work begins. Website fees exclude phot
 3. **First batch and approval**\
    You supply footage or book a shoot. I prepare the first posts and send them to you for approval.
 4. **Three months of publishing**\
-   The first month starts when the first approved post goes live. We use each monthly review to adjust what we publish next.
+   The first publishing month starts when the first approved post goes live. We use each monthly review to adjust what we publish next.
 5. **End-of-term review**\
    After three months, we’ll review what performed well, which formats to keep and whether to change the posting frequency or scope.
 
@@ -98,7 +113,8 @@ We’ll confirm the build platform before work begins. Website fees exclude phot
 
 ## Next steps
 
-I’d start with **Grow the Personal Brand and LinkedIn editorial support (positions 2 and 3)**, with the first-month setup under **position 2.1**. That gives us room to test several formats on Instagram and TikTok while making your speaking and advisory work more visible on LinkedIn.
+**Recommended for the first three months · Positions 2, 2.1 and 3**\
+Grow the Personal Brand, one-time strategy and setup, and LinkedIn editorial support.
 
 | Investment | Fee excl. moms |
 | --- | ---: |
@@ -106,7 +122,11 @@ I’d start with **Grow the Personal Brand and LinkedIn editorial support (posit
 | Months 2 and 3 | 14,400 DKK/month |
 | Total for the initial three months | 48,700 DKK |
 
-If this feels like the right starting point, send me the positions you’d like to go ahead with and we’ll agree on a kickoff date.
+Invoiced monthly in advance. Optional filming, Substack, branding and website work are priced separately.
+
+If you’d like to start with this combination, reply with **positions 2, 2.1 and 3**, plus any add-ons you’d like. I’ll confirm the scope, send the first invoice and suggest a kickoff date.
+
+[Email Theresa](mailto:ts@halfodd.com?subject=Suzaan%20Sauerman%20proposal)
 
 Speak soon,\
 **Theresa · half odd**

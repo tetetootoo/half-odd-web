@@ -20,14 +20,18 @@ function inline(tokens: Token[] = []): ReactNode {
       case 'del': return <del key={i}>{inline(t.tokens)}</del>;
       case 'codespan': return <code key={i}>{t.text}</code>;
       case 'br': return <br key={i} />;
-      case 'link': return <a key={i} href={safeUrl(t.href)} target="_blank" rel="noreferrer">{inline(t.tokens)}</a>;
+      case 'link': {
+        const href = safeUrl(t.href);
+        const opensNewTab = href && !href.startsWith('#') && !href.toLowerCase().startsWith('mailto:');
+        return <a key={i} href={href} target={opensNewTab ? '_blank' : undefined} rel={opensNewTab ? 'noreferrer' : undefined}>{inline(t.tokens)}</a>;
+      }
       case 'image': return <img key={i} src={safeUrl(t.href)} alt={t.text} loading="lazy" />;
       case 'html': return null;
       default: return <Fragment key={i}>{t.tokens ? inline(t.tokens) : t.text?.replaceAll('&nbsp;', '\u00a0').replaceAll('&amp;', '&')}</Fragment>;
     }
   });
 }
-function renderToken(token: Token): ReactNode {
+function renderToken(token: Token, proposalLayout = false): ReactNode {
   const t = token as Tokens.Generic;
   switch (token.type) {
     case 'heading': {
@@ -35,7 +39,15 @@ function renderToken(token: Token): ReactNode {
       return <Tag>{inline(t.tokens)}</Tag>;
     }
     case 'paragraph': case 'text': return <p>{inline(t.tokens ?? Lexer.lexInline(t.text))}</p>;
-    case 'blockquote': return <aside className={styles.status}>{(t.tokens ?? []).map((child: Token, i: number) => <Fragment key={i}>{renderToken(child)}</Fragment>)}</aside>;
+    case 'blockquote': {
+      if (proposalLayout) {
+        const slides = (token as Tokens.Blockquote).tokens.filter(child => child.type === 'paragraph');
+        return <figure className={textStyles.carousel} aria-label="Two-slide carousel concept">
+          {slides.map((slide, index) => <div key={index}>{renderToken(slide)}</div>)}
+        </figure>;
+      }
+      return <aside className={styles.status}>{(t.tokens ?? []).map((child: Token, i: number) => <Fragment key={i}>{renderToken(child)}</Fragment>)}</aside>;
+    }
     case 'list': {
       const Tag = t.ordered ? 'ol' : 'ul';
       return <Tag>{t.items.map((item: Tokens.ListItem, i: number) => <li key={i}>{item.tokens.map((child, n) => <Fragment key={n}>{renderToken(child)}</Fragment>)}</li>)}</Tag>;
@@ -43,22 +55,36 @@ function renderToken(token: Token): ReactNode {
     case 'table': {
       const table = token as Tokens.Table;
       const includedColumn = table.header.findIndex(cell => cell.text === 'What’s included');
-      return <div className={styles.tableScroll} tabIndex={0} role="region" aria-label="Scrollable table">
-        <table className={styles.table}>
-          <thead><tr>{table.header.map((cell, i) => <th key={i} scope="col" style={{ textAlign: table.align[i] ?? 'left' }}>{inline(cell.tokens)}</th>)}</tr></thead>
-          <tbody>{table.rows.map((row, i) => <tr key={i}>{row.map((cell, j) => {
-            const indent = '&nbsp;'.repeat(4);
-            const indented = j === 0 && cell.text.startsWith(indent);
-            return <td key={j} className={indented ? styles.indentedCell : undefined} style={{ textAlign: table.align[j] ?? 'left' }}>
-              {j === includedColumn ? (
-                <ul className={styles.tableList}>
-                  {cell.text.split('<br>').map((entry, index) => <li key={index}>{inline(Lexer.lexInline(entry.trim()))}</li>)}
-                </ul>
-              ) : inline(indented ? Lexer.lexInline(cell.text.slice(indent.length)) : cell.tokens)}
-            </td>;
-          })}</tr>)}</tbody>
-        </table>
-      </div>;
+      const cardLayout = proposalLayout && includedColumn === 2 && table.header[0].text === 'Position';
+      const includedList = (value: string) => (
+        <ul className={styles.tableList}>
+          {value.split('<br>').map((entry, index) => <li key={index}>{inline(Lexer.lexInline(entry.trim()))}</li>)}
+        </ul>
+      );
+      return <>
+        <div className={`${styles.tableScroll} ${cardLayout ? textStyles.tableWithCards : ''}`} tabIndex={0} role="region" aria-label="Scrollable table">
+          <table className={styles.table}>
+            <thead><tr>{table.header.map((cell, i) => <th key={i} scope="col" style={{ textAlign: table.align[i] ?? 'left' }}>{inline(cell.tokens)}</th>)}</tr></thead>
+            <tbody>{table.rows.map((row, i) => <tr key={i}>{row.map((cell, j) => {
+              const indent = '&nbsp;'.repeat(4);
+              const indented = j === 0 && cell.text.startsWith(indent);
+              return <td key={j} className={indented ? styles.indentedCell : undefined} style={{ textAlign: table.align[j] ?? 'left' }}>
+                {j === includedColumn ? includedList(cell.text) : inline(indented ? Lexer.lexInline(cell.text.slice(indent.length)) : cell.tokens)}
+              </td>;
+            })}</tr>)}</tbody>
+          </table>
+        </div>
+        {cardLayout && <div className={textStyles.serviceCards}>
+          {table.rows.map(([position, service, includes, fee], index) => (
+            <article key={index} className={textStyles.serviceCard}>
+              <h3>{inline(service.tokens)}</h3>
+              <p>{inline(fee.tokens)} <span>excl. moms</span></p>
+              <p className={textStyles.position}>Position {position.text.replaceAll('*', '')}</p>
+              {includedList(includes.text)}
+            </article>
+          ))}
+        </div>}
+      </>;
     }
     case 'hr': return <hr />;
     case 'code': return <pre tabIndex={0} aria-label="Text diagram"><code>{t.text}</code></pre>;
@@ -166,7 +192,7 @@ export function MarkdownTextDoc({ markdown, sectionNavigation = false }: {
           }
           return section
             ? <h2 key={i} id={section.id}>{inline((token as Tokens.Heading).tokens)}</h2>
-            : <Fragment key={i}>{renderToken(token)}</Fragment>;
+            : <Fragment key={i}>{renderToken(token, sectionNavigation)}</Fragment>;
         })}
       </div>
     </article>

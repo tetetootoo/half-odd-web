@@ -83,3 +83,71 @@
   inset-inline-start: -12px;
   border-inline-start: 1px solid #cdbcc4;
 }
+
+.withNavigation .page a[href="#next-steps"] {
+  color: #1759ab;
+  text-underline-offset: .2em;
+}
+
+.withNavigation .page a[href^="mailto:"] {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 7px;
+  background: #422735;
+  color: #fff;
+  text-decoration: none;
+}
+
+.carousel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 225px), 1fr));
+  gap: 12px;
+  max-width: 510px;
+  margin: 0 0 20px;
+}
+
+.carousel > div {
+  display: flex;
+  align-items: center;
+  aspect-ratio: 4 / 5;
+  padding: clamp(20px, 4cqi, 32px);
+  background: #422735;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.carousel > div + div {
+  color: #1c1319;
+  background: #f6f2f4;
+  border: 1px solid #e9e2e5;
+}
+
+.carousel strong {
+  display: block;
+  margin-bottom: .5em;
+  font-size: clamp(22px, 4cqi, 32px);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+}
+
+.carousel strong + br { display: none; }
+
+.serviceCards { display: none; }
+
+@media (max-width: 640px) {
+  .withNavigation .tableWithCards { display: none; }
+  .serviceCards { display: grid; gap: 12px; }
+  .serviceCard {
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid #e9e2e5;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+  }
+  .serviceCard h3 { margin: 0 0 4px; }
+  .serviceCard p + p { margin-top: 4px; }
+  .serviceCard .position, .serviceCard p span { color: #6b5a62; font-size: 14px; }
+  .serviceCard ul { margin-block: 12px 0; padding-inline-start: 1.15em; }
+}
