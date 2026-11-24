@@ -88,12 +88,14 @@
   display: inline-flex;
   min-height: 44px;
   align-items: center;
-  padding: 0 16px;
-  border-radius: 7px;
-  background: #422735;
+  padding: 6px 20px;
+  border-radius: 999px;
+  background: #000;
   color: #fff;
   text-decoration: none;
 }
+
+.withNavigation .page a[download]:hover { background: #292929; }
 
 .serviceCards { display: none; }
 
