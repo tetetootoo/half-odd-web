@@ -229,8 +229,8 @@ export const gridApps: MobileAppItem[] = [
     label: 'Photography',
     iconSrc: '/media/photo-portfolio/icon.png',
     kind: 'site',
-    embedUrl: 'https://theresaschantz.com',
-    link: { url: 'https://theresaschantz.com' },
+    embedUrl: 'https://theresalilly.com',
+    link: { url: 'https://theresalilly.com' },
     description: 'personal photography portfolio',
   },
   {

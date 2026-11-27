@@ -294,7 +294,7 @@ export const desktopItems: DesktopItem[] = [
     windowTitle: 'Photography',
     x: 12.9,
     y: 44.9,
-    link: { url: 'https://theresaschantz.com' },
+    link: { url: 'https://theresalilly.com' },
     description: 'personal photography portfolio',
     iconSrc: '/media/photo-portfolio/icon.png',
   },
@@ -415,7 +415,7 @@ export const systemWindows: DesktopItem[] = [
 
 export const dockLinks = {
   linkedin: 'https://www.linkedin.com/in/theresaschantz/',
-  photography: 'https://theresaschantz.com',
+  photography: 'https://theresalilly.com',
   instagram: 'https://instagram.com/iamparryhotter',
   github: 'https://github.com/tetetootoo',
 };
